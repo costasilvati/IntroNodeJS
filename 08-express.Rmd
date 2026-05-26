@@ -34,6 +34,8 @@ Segundo a MDN, o Express é popular porque:
 
 ## Criando um projeto Express
 
+O código de aula está no repositório do github: (https://github.com/costasilvati/DesWebAvancado/tree/main/codigos)[https://github.com/costasilvati/DesWebAvancado/tree/main/codigos]
+
 Crie uma nova pasta:
 
 ```bash

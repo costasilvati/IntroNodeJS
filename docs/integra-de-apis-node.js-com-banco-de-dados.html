@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title> - 9 Integra de APIs Node.js com Banco de Dados | 04-aula</title>
+<meta name="author" content="Juliana Costa Silva">
+<meta name="description" content="Neste capítulo vamos integrar a API desenvolvida anteriormente com um banco de dados relacional. Utilizaremos o MySQL em conjunto com Node.js e Express para implementar operações de persistência...">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
+<meta property="og:title" content=" - 9 Integra de APIs Node.js com Banco de Dados | 04-aula">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Neste capítulo vamos integrar a API desenvolvida anteriormente com um banco de dados relacional. Utilizaremos o MySQL em conjunto com Node.js e Express para implementar operações de persistência...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" - 9 Integra de APIs Node.js com Banco de Dados | 04-aula">
+<meta name="twitter:description" content="Neste capítulo vamos integrar a API desenvolvida anteriormente com um banco de dados relacional. Utilizaremos o MySQL em conjunto com Node.js e Express para implementar operações de persistência...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.11.0/transition.js"></script><script src="libs/bs3compat-0.11.0/tabs.js"></script><script src="libs/bs3compat-0.11.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">04-aula</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Sobre este livro</a></li>
+<li><a class="" href="javascript-basico-para-nodejs.html"><span class="header-section-number">1</span> JavaScript Basico para NodeJS</a></li>
+<li><a class="" href="javascript-e-objetos.html"><span class="header-section-number">2</span> Javascript e Objetos</a></li>
+<li><a class="" href="atividade-avaliativa.html"><span class="header-section-number">3</span> Atividade avaliativa</a></li>
+<li><a class="" href="web-services.html"><span class="header-section-number">4</span> Web Services</a></li>
+<li><a class="" href="lista-de-atividades-estudo-javascript-nodejs.html"><span class="header-section-number">5</span> Lista de Atividades — Estudo JavaScript (NodeJS)</a></li>
+<li><a class="" href="criando-um-servidor-http-com-nodejs.html"><span class="header-section-number">6</span> Criando um servidor HTTP com Nodejs</a></li>
+<li><a class="" href="npm-json-e-organiza%C3%A7%C3%A3o-de-projetos-node-js.html"><span class="header-section-number">7</span> NPM, JSON e organização de projetos Node JS</a></li>
+<li><a class="" href="express-framework.html"><span class="header-section-number">8</span> Express Framework</a></li>
+<li><a class="active" href="integra-de-apis-node.js-com-banco-de-dados.html"><span class="header-section-number">9</span> Integra de APIs Node.js com Banco de Dados</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/rstudio/bookdown-demo">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="integra-de-apis-node.js-com-banco-de-dados" class="section level1" number="9">
+<h1>
+<span class="header-section-number"> - 9</span> Integra de APIs Node.js com Banco de Dados<a class="anchor" aria-label="anchor" href="#integra-de-apis-node.js-com-banco-de-dados"><i class="fas fa-link"></i></a>
+</h1>
+<p>Neste capítulo vamos integrar a API desenvolvida anteriormente com um banco de dados relacional. Utilizaremos o MySQL em conjunto com Node.js e Express para implementar operações de persistência de dados utilizando SQL.</p>
+<p>Segundo Lecheta,<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;&lt;em&gt;Node Essencial&lt;/em&gt;.&lt;/p&gt;"><sup>27</sup></a></span> uma API sem persistência normalmente perde os dados ao reiniciar o servidor. Por isso, aplicações reais utilizam bancos de dados para armazenar informações permanentemente.</p>
+<p>Também utilizaremos como referência a documentação do Express sobre integração com banco de dados<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Express.js, &lt;em&gt;Database Integration&lt;/em&gt; (2026), &lt;a href="https://expressjs.com/en/guide/database-integration.html"&gt;https://expressjs.com/en/guide/database-integration.html&lt;/a&gt;.&lt;/p&gt;'><sup>28</sup></a></span> e os exemplos de MySQL para Node.js apresentados pelo W3Schools.<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;W3Schools, &lt;em&gt;Node.js MySQL&lt;/em&gt; (2026), &lt;a href="https://www.w3schools.com/nodejs/nodejs_mysql.asp"&gt;https://www.w3schools.com/nodejs/nodejs_mysql.asp&lt;/a&gt;.&lt;/p&gt;'><sup>29</sup></a></span></p>
+<p>Ao final deste capítulo, a API será capaz de:</p>
+<ul>
+<li>listar carros;</li>
+<li>buscar um carro específico;</li>
+<li>inserir novos carros;</li>
+<li>atualizar carros;</li>
+<li>remover carros;</li>
+<li>organizar o código utilizando classes.</li>
+</ul>
+<div id="banco-de-dados-da-aplicação" class="section level2" number="9.1">
+<h2>
+<span class="header-section-number">9.1</span> Banco de dados da aplicação<a class="anchor" aria-label="anchor" href="#banco-de-dados-da-aplica%C3%A7%C3%A3o"><i class="fas fa-link"></i></a>
+</h2>
+<p>A aplicação utilizará um banco chamado:</p>
+<pre class="text"><code>api_carros</code></pre>
+<p>A tabela principal será:</p>
+<pre class="text"><code>carros</code></pre>
+</div>
+<div id="criando-o-banco-de-dados" class="section level2" number="9.2">
+<h2>
+<span class="header-section-number">9.2</span> Criando o banco de dados<a class="anchor" aria-label="anchor" href="#criando-o-banco-de-dados"><i class="fas fa-link"></i></a>
+</h2>
+<p>Antes de desenvolver a API, precisamos criar o banco de dados.</p>
+<p>Execute os comandos SQL abaixo no MySQL:</p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb240-1"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb240-1" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> api_carros;</span></code></pre></div>
+<p>Selecionando o banco:</p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb241-1"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb241-1" tabindex="-1"></a><span class="kw">USE</span> api_carros;</span></code></pre></div>
+<p>Criando a tabela:</p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb242-1"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb242-1" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> carros (</span>
+<span id="cb242-2"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb242-2" tabindex="-1"></a>    <span class="kw">id</span> <span class="dt">INT</span> AUTO_INCREMENT <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb242-3"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb242-3" tabindex="-1"></a>    nome <span class="dt">VARCHAR</span>(<span class="dv">100</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb242-4"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb242-4" tabindex="-1"></a>    marca <span class="dt">VARCHAR</span>(<span class="dv">100</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb242-5"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb242-5" tabindex="-1"></a>    ano <span class="dt">INT</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb242-6"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb242-6" tabindex="-1"></a>    preco <span class="dt">DECIMAL</span>(<span class="dv">10</span>,<span class="dv">2</span>) <span class="kw">NOT</span> <span class="kw">NULL</span></span>
+<span id="cb242-7"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb242-7" tabindex="-1"></a>);</span></code></pre></div>
+<p>Inserindo alguns registros:</p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb243-1"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb243-1" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> carros (nome, marca, ano, preco)</span>
+<span id="cb243-2"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb243-2" tabindex="-1"></a><span class="kw">VALUES</span></span>
+<span id="cb243-3"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb243-3" tabindex="-1"></a>(<span class="st">'Fusca'</span>, <span class="st">'Volkswagen'</span>, <span class="dv">1972</span>, <span class="dv">25000</span>),</span>
+<span id="cb243-4"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb243-4" tabindex="-1"></a>(<span class="st">'Ferrari F40'</span>, <span class="st">'Ferrari'</span>, <span class="dv">1987</span>, <span class="dv">1500000</span>),</span>
+<span id="cb243-5"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb243-5" tabindex="-1"></a>(<span class="st">'Porsche 911'</span>, <span class="st">'Porsche'</span>, <span class="dv">2020</span>, <span class="dv">950000</span>);</span></code></pre></div>
+</div>
+<div id="instalando-o-driver-mysql" class="section level2" number="9.3">
+<h2>
+<span class="header-section-number">9.3</span> Instalando o driver MySQL<a class="anchor" aria-label="anchor" href="#instalando-o-driver-mysql"><i class="fas fa-link"></i></a>
+</h2>
+<p>Para conectar Node.js ao MySQL, utilizaremos a biblioteca <code>mysql2</code>.</p>
+<p>Segundo a documentação do Express, aplicações Node.js normalmente utilizam bibliotecas específicas para comunicação com bancos relacionais.<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Express.js, &lt;em&gt;Database Integration&lt;/em&gt;.&lt;/p&gt;"><sup>30</sup></a></span></p>
+<p>Instale a dependência:</p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb244-1"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb244-1" tabindex="-1"></a><span class="ex">npm</span> install mysql2</span></code></pre></div>
+<p>O <code>package.json</code> será atualizado automaticamente:</p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb245-1"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb245-1" tabindex="-1"></a><span class="er">"dependencies":</span> <span class="fu">{</span></span>
+<span id="cb245-2"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb245-2" tabindex="-1"></a>  <span class="dt">"express"</span><span class="fu">:</span> <span class="st">"^5.0.0"</span><span class="fu">,</span></span>
+<span id="cb245-3"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb245-3" tabindex="-1"></a>  <span class="dt">"mysql2"</span><span class="fu">:</span> <span class="st">"^3.0.0"</span></span>
+<span id="cb245-4"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb245-4" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+</div>
+<div id="estrutura-inicial-do-projeto" class="section level2" number="9.4">
+<h2>
+<span class="header-section-number">9.4</span> Estrutura inicial do projeto<a class="anchor" aria-label="anchor" href="#estrutura-inicial-do-projeto"><i class="fas fa-link"></i></a>
+</h2>
+<p>A estrutura da aplicação será:</p>
+<pre class="text"><code>api-carros/
+├── database/
+│   └── connection.js
+├── routes/
+│   └── carros.js
+├── models/
+│   └── Carro.js
+├── package.json
+└── server.js</code></pre>
+</div>
+<div id="conectando-se-ao-banco-de-dados" class="section level2" number="9.5">
+<h2>
+<span class="header-section-number">9.5</span> Conectando-se ao banco de dados<a class="anchor" aria-label="anchor" href="#conectando-se-ao-banco-de-dados"><i class="fas fa-link"></i></a>
+</h2>
+<p>Crie o arquivo:</p>
+<pre class="text"><code>database/connection.js</code></pre>
+<p>Conteúdo:</p>
+<div class="sourceCode" id="cb248"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb248-1"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb248-1" tabindex="-1"></a><span class="kw">const</span> mysql <span class="op">=</span> <span class="pp">require</span>(<span class="st">'mysql2'</span>)<span class="op">;</span></span>
+<span id="cb248-2"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb248-2" tabindex="-1"></a></span>
+<span id="cb248-3"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb248-3" tabindex="-1"></a><span class="kw">const</span> connection <span class="op">=</span> mysql<span class="op">.</span><span class="fu">createConnection</span>({</span>
+<span id="cb248-4"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb248-4" tabindex="-1"></a>  <span class="dt">host</span><span class="op">:</span> <span class="st">'localhost'</span><span class="op">,</span></span>
+<span id="cb248-5"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb248-5" tabindex="-1"></a>  <span class="dt">user</span><span class="op">:</span> <span class="st">'root'</span><span class="op">,</span></span>
+<span id="cb248-6"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb248-6" tabindex="-1"></a>  <span class="dt">password</span><span class="op">:</span> <span class="st">''</span><span class="op">,</span></span>
+<span id="cb248-7"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb248-7" tabindex="-1"></a>  <span class="dt">database</span><span class="op">:</span> <span class="st">'api_carros'</span></span>
+<span id="cb248-8"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb248-8" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb248-9"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb248-9" tabindex="-1"></a></span>
+<span id="cb248-10"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb248-10" tabindex="-1"></a>connection<span class="op">.</span><span class="fu">connect</span>((erro) <span class="kw">=&gt;</span> {</span>
+<span id="cb248-11"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb248-11" tabindex="-1"></a></span>
+<span id="cb248-12"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb248-12" tabindex="-1"></a>  <span class="cf">if</span> (erro) {</span>
+<span id="cb248-13"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb248-13" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">error</span>(<span class="st">'Erro ao conectar no banco:'</span><span class="op">,</span> erro)<span class="op">;</span></span>
+<span id="cb248-14"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb248-14" tabindex="-1"></a>    <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb248-15"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb248-15" tabindex="-1"></a>  }</span>
+<span id="cb248-16"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb248-16" tabindex="-1"></a></span>
+<span id="cb248-17"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb248-17" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">'Conectado ao MySQL'</span>)<span class="op">;</span></span>
+<span id="cb248-18"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb248-18" tabindex="-1"></a></span>
+<span id="cb248-19"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb248-19" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb248-20"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb248-20" tabindex="-1"></a></span>
+<span id="cb248-21"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb248-21" tabindex="-1"></a>module<span class="op">.</span><span class="at">exports</span> <span class="op">=</span> connection<span class="op">;</span></span></code></pre></div>
+<p>Neste exemplo:</p>
+<ul>
+<li>
+<code>mysql.createConnection()</code> cria a conexão;</li>
+<li>
+<code>host</code> indica o servidor;</li>
+<li>
+<code>user</code> e <code>password</code> representam o usuário do banco;</li>
+<li>
+<code>database</code> indica o banco utilizado.</li>
+</ul>
+<p>Segundo o W3Schools, o objeto de conexão permite executar comandos SQL diretamente pelo Node.js.<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;W3Schools, &lt;em&gt;Node.js MySQL&lt;/em&gt;.&lt;/p&gt;"><sup>31</sup></a></span></p>
+</div>
+<div id="criando-o-servidor-express" class="section level2" number="9.6">
+<h2>
+<span class="header-section-number">9.6</span> Criando o servidor Express<a class="anchor" aria-label="anchor" href="#criando-o-servidor-express"><i class="fas fa-link"></i></a>
+</h2>
+<p>Arquivo:</p>
+<pre class="text"><code>server.js</code></pre>
+<div class="sourceCode" id="cb250"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb250-1"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb250-1" tabindex="-1"></a><span class="kw">const</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">'express'</span>)<span class="op">;</span></span>
+<span id="cb250-2"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb250-2" tabindex="-1"></a></span>
+<span id="cb250-3"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb250-3" tabindex="-1"></a><span class="kw">const</span> app <span class="op">=</span> <span class="fu">express</span>()<span class="op">;</span></span>
+<span id="cb250-4"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb250-4" tabindex="-1"></a></span>
+<span id="cb250-5"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb250-5" tabindex="-1"></a><span class="kw">const</span> carrosRoutes <span class="op">=</span> <span class="pp">require</span>(<span class="st">'./routes/carros'</span>)<span class="op">;</span></span>
+<span id="cb250-6"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb250-6" tabindex="-1"></a></span>
+<span id="cb250-7"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb250-7" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>(express<span class="op">.</span><span class="fu">json</span>())<span class="op">;</span></span>
+<span id="cb250-8"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb250-8" tabindex="-1"></a></span>
+<span id="cb250-9"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb250-9" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>(<span class="st">'/carros'</span><span class="op">,</span> carrosRoutes)<span class="op">;</span></span>
+<span id="cb250-10"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb250-10" tabindex="-1"></a></span>
+<span id="cb250-11"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb250-11" tabindex="-1"></a>app<span class="op">.</span><span class="fu">listen</span>(<span class="dv">3000</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb250-12"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb250-12" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">'Servidor executando na porta 3000'</span>)<span class="op">;</span></span>
+<span id="cb250-13"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb250-13" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+</div>
+<div id="web-service-que-retorna-lista-de-carros" class="section level2" number="9.7">
+<h2>
+<span class="header-section-number">9.7</span> Web service que retorna lista de carros<a class="anchor" aria-label="anchor" href="#web-service-que-retorna-lista-de-carros"><i class="fas fa-link"></i></a>
+</h2>
+<p>Arquivo:</p>
+<pre class="text"><code>routes/carros.js</code></pre>
+<div class="sourceCode" id="cb252"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb252-1"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb252-1" tabindex="-1"></a><span class="kw">const</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">'express'</span>)<span class="op">;</span></span>
+<span id="cb252-2"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb252-2" tabindex="-1"></a></span>
+<span id="cb252-3"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb252-3" tabindex="-1"></a><span class="kw">const</span> router <span class="op">=</span> express<span class="op">.</span><span class="fu">Router</span>()<span class="op">;</span></span>
+<span id="cb252-4"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb252-4" tabindex="-1"></a></span>
+<span id="cb252-5"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb252-5" tabindex="-1"></a><span class="kw">const</span> connection <span class="op">=</span> <span class="pp">require</span>(<span class="st">'../database/connection'</span>)<span class="op">;</span></span>
+<span id="cb252-6"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb252-6" tabindex="-1"></a></span>
+<span id="cb252-7"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb252-7" tabindex="-1"></a>router<span class="op">.</span><span class="fu">get</span>(<span class="st">'/'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb252-8"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb252-8" tabindex="-1"></a></span>
+<span id="cb252-9"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb252-9" tabindex="-1"></a>  <span class="kw">const</span> sql <span class="op">=</span> <span class="st">'SELECT * FROM carros'</span><span class="op">;</span></span>
+<span id="cb252-10"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb252-10" tabindex="-1"></a></span>
+<span id="cb252-11"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb252-11" tabindex="-1"></a>  connection<span class="op">.</span><span class="fu">query</span>(sql<span class="op">,</span> (erro<span class="op">,</span> resultados) <span class="kw">=&gt;</span> {</span>
+<span id="cb252-12"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb252-12" tabindex="-1"></a></span>
+<span id="cb252-13"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb252-13" tabindex="-1"></a>    <span class="cf">if</span> (erro) {</span>
+<span id="cb252-14"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb252-14" tabindex="-1"></a></span>
+<span id="cb252-15"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb252-15" tabindex="-1"></a>      <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">500</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb252-16"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb252-16" tabindex="-1"></a>        <span class="dt">erro</span><span class="op">:</span> <span class="st">'Erro ao buscar carros'</span></span>
+<span id="cb252-17"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb252-17" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb252-18"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb252-18" tabindex="-1"></a></span>
+<span id="cb252-19"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb252-19" tabindex="-1"></a>    }</span>
+<span id="cb252-20"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb252-20" tabindex="-1"></a></span>
+<span id="cb252-21"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb252-21" tabindex="-1"></a>    res<span class="op">.</span><span class="fu">json</span>(resultados)<span class="op">;</span></span>
+<span id="cb252-22"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb252-22" tabindex="-1"></a></span>
+<span id="cb252-23"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb252-23" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb252-24"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb252-24" tabindex="-1"></a></span>
+<span id="cb252-25"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb252-25" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb252-26"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb252-26" tabindex="-1"></a></span>
+<span id="cb252-27"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb252-27" tabindex="-1"></a>module<span class="op">.</span><span class="at">exports</span> <span class="op">=</span> router<span class="op">;</span></span></code></pre></div>
+<p>Neste exemplo:</p>
+<ul>
+<li>
+<code>SELECT * FROM carros</code> busca todos os registros;</li>
+<li>
+<code>connection.query()</code> executa o SQL;</li>
+<li>
+<code>resultados</code> contém os dados retornados.</li>
+</ul>
+<p>Teste:</p>
+<pre class="text"><code>http://localhost:3000/carros</code></pre>
+<p>Resposta esperada:</p>
+<div class="sourceCode" id="cb254"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb254-1"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb254-1" tabindex="-1"></a><span class="ot">[</span></span>
+<span id="cb254-2"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb254-2" tabindex="-1"></a>  <span class="fu">{</span></span>
+<span id="cb254-3"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb254-3" tabindex="-1"></a>    <span class="dt">"id"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb254-4"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb254-4" tabindex="-1"></a>    <span class="dt">"nome"</span><span class="fu">:</span> <span class="st">"Fusca"</span><span class="fu">,</span></span>
+<span id="cb254-5"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb254-5" tabindex="-1"></a>    <span class="dt">"marca"</span><span class="fu">:</span> <span class="st">"Volkswagen"</span><span class="fu">,</span></span>
+<span id="cb254-6"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb254-6" tabindex="-1"></a>    <span class="dt">"ano"</span><span class="fu">:</span> <span class="dv">1972</span><span class="fu">,</span></span>
+<span id="cb254-7"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb254-7" tabindex="-1"></a>    <span class="dt">"preco"</span><span class="fu">:</span> <span class="st">"25000.00"</span></span>
+<span id="cb254-8"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb254-8" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb254-9"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb254-9" tabindex="-1"></a><span class="ot">]</span></span></code></pre></div>
+</div>
+<div id="selecionando-registros-na-tabela-select" class="section level2" number="9.8">
+<h2>
+<span class="header-section-number">9.8</span> Selecionando registros na tabela (SELECT)<a class="anchor" aria-label="anchor" href="#selecionando-registros-na-tabela-select"><i class="fas fa-link"></i></a>
+</h2>
+<p>O comando SQL:</p>
+<div class="sourceCode" id="cb255"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb255-1"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb255-1" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> carros;</span></code></pre></div>
+<p>retorna todos os registros.</p>
+<p>No Node.js:</p>
+<div class="sourceCode" id="cb256"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb256-1"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb256-1" tabindex="-1"></a>connection<span class="op">.</span><span class="fu">query</span>(<span class="st">'SELECT * FROM carros'</span><span class="op">,</span> (erro<span class="op">,</span> resultados) <span class="kw">=&gt;</span> {</span>
+<span id="cb256-2"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb256-2" tabindex="-1"></a></span>
+<span id="cb256-3"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb256-3" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(resultados)<span class="op">;</span></span>
+<span id="cb256-4"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb256-4" tabindex="-1"></a></span>
+<span id="cb256-5"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb256-5" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+</div>
+<div id="selecionando-um-registro-específico" class="section level2" number="9.9">
+<h2>
+<span class="header-section-number">9.9</span> Selecionando um registro específico<a class="anchor" aria-label="anchor" href="#selecionando-um-registro-espec%C3%ADfico"><i class="fas fa-link"></i></a>
+</h2>
+<p>Podemos buscar um carro específico utilizando o ID.</p>
+<div id="rota" class="section level3" number="9.9.1">
+<h3>
+<span class="header-section-number">9.9.1</span> Rota<a class="anchor" aria-label="anchor" href="#rota"><i class="fas fa-link"></i></a>
+</h3>
+<pre class="text"><code>/carros/:id</code></pre>
+</div>
+<div id="código" class="section level3" number="9.9.2">
+<h3>
+<span class="header-section-number">9.9.2</span> Código<a class="anchor" aria-label="anchor" href="#c%C3%B3digo"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb258"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb258-1"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb258-1" tabindex="-1"></a>router<span class="op">.</span><span class="fu">get</span>(<span class="st">'/:id'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb258-2"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb258-2" tabindex="-1"></a></span>
+<span id="cb258-3"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb258-3" tabindex="-1"></a>  <span class="kw">const</span> id <span class="op">=</span> req<span class="op">.</span><span class="at">params</span><span class="op">.</span><span class="at">id</span><span class="op">;</span></span>
+<span id="cb258-4"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb258-4" tabindex="-1"></a></span>
+<span id="cb258-5"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb258-5" tabindex="-1"></a>  <span class="kw">const</span> sql <span class="op">=</span> <span class="st">'SELECT * FROM carros WHERE id = ?'</span><span class="op">;</span></span>
+<span id="cb258-6"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb258-6" tabindex="-1"></a></span>
+<span id="cb258-7"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb258-7" tabindex="-1"></a>  connection<span class="op">.</span><span class="fu">query</span>(sql<span class="op">,</span> [id]<span class="op">,</span> (erro<span class="op">,</span> resultados) <span class="kw">=&gt;</span> {</span>
+<span id="cb258-8"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb258-8" tabindex="-1"></a></span>
+<span id="cb258-9"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb258-9" tabindex="-1"></a>    <span class="cf">if</span> (erro) {</span>
+<span id="cb258-10"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb258-10" tabindex="-1"></a></span>
+<span id="cb258-11"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb258-11" tabindex="-1"></a>      <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">500</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb258-12"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb258-12" tabindex="-1"></a>        <span class="dt">erro</span><span class="op">:</span> <span class="st">'Erro ao buscar carro'</span></span>
+<span id="cb258-13"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb258-13" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb258-14"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb258-14" tabindex="-1"></a></span>
+<span id="cb258-15"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb258-15" tabindex="-1"></a>    }</span>
+<span id="cb258-16"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb258-16" tabindex="-1"></a></span>
+<span id="cb258-17"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb258-17" tabindex="-1"></a>    <span class="cf">if</span> (resultados<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span>) {</span>
+<span id="cb258-18"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb258-18" tabindex="-1"></a></span>
+<span id="cb258-19"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb258-19" tabindex="-1"></a>      <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">404</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb258-20"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb258-20" tabindex="-1"></a>        <span class="dt">erro</span><span class="op">:</span> <span class="st">'Carro não encontrado'</span></span>
+<span id="cb258-21"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb258-21" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb258-22"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb258-22" tabindex="-1"></a></span>
+<span id="cb258-23"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb258-23" tabindex="-1"></a>    }</span>
+<span id="cb258-24"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb258-24" tabindex="-1"></a></span>
+<span id="cb258-25"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb258-25" tabindex="-1"></a>    res<span class="op">.</span><span class="fu">json</span>(resultados[<span class="dv">0</span>])<span class="op">;</span></span>
+<span id="cb258-26"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb258-26" tabindex="-1"></a></span>
+<span id="cb258-27"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb258-27" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb258-28"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb258-28" tabindex="-1"></a></span>
+<span id="cb258-29"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb258-29" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+</div>
+</div>
+<div id="o-que-significa-o-caractere" class="section level2" number="9.10">
+<h2>
+<span class="header-section-number">9.10</span> O que significa o caractere ?<a class="anchor" aria-label="anchor" href="#o-que-significa-o-caractere"><i class="fas fa-link"></i></a>
+</h2>
+<p>O caractere <code>?</code>.</p>
+<p>é um placeholder utilizado para evitar SQL Injection.</p>
+<p>O valor real é enviado separadamente: <code>[id]</code></p>
+<p>Segundo a documentação do MySQL2, esse mecanismo faz o escape automático dos valores.<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;MySQL2, &lt;em&gt;MySQL2 Documentation&lt;/em&gt; (2026), &lt;a href="https://www.npmjs.com/package/mysql2"&gt;https://www.npmjs.com/package/mysql2&lt;/a&gt;.&lt;/p&gt;'><sup>32</sup></a></span></p>
+</div>
+<div id="inserindo-registros-na-tabela-insert" class="section level2" number="9.11">
+<h2>
+<span class="header-section-number">9.11</span> Inserindo registros na tabela (INSERT)<a class="anchor" aria-label="anchor" href="#inserindo-registros-na-tabela-insert"><i class="fas fa-link"></i></a>
+</h2>
+<p>Agora vamos permitir inserção de carros.</p>
+<div id="método-http" class="section level3" number="9.11.1">
+<h3>
+<span class="header-section-number">9.11.1</span> Método HTTP<a class="anchor" aria-label="anchor" href="#m%C3%A9todo-http"><i class="fas fa-link"></i></a>
+</h3>
+<p><code>POST</code></p>
+</div>
+<div id="código-1" class="section level3" number="9.11.2">
+<h3>
+<span class="header-section-number">9.11.2</span> Código<a class="anchor" aria-label="anchor" href="#c%C3%B3digo-1"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb259"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb259-1"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb259-1" tabindex="-1"></a>router<span class="op">.</span><span class="fu">post</span>(<span class="st">'/'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb259-2"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb259-2" tabindex="-1"></a></span>
+<span id="cb259-3"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb259-3" tabindex="-1"></a>  <span class="kw">const</span> { nome<span class="op">,</span> marca<span class="op">,</span> ano<span class="op">,</span> preco } <span class="op">=</span> req<span class="op">.</span><span class="at">body</span><span class="op">;</span></span>
+<span id="cb259-4"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb259-4" tabindex="-1"></a></span>
+<span id="cb259-5"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb259-5" tabindex="-1"></a>  <span class="kw">const</span> sql <span class="op">=</span> <span class="vs">`</span></span>
+<span id="cb259-6"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb259-6" tabindex="-1"></a><span class="vs">    INSERT INTO carros (nome, marca, ano, preco)</span></span>
+<span id="cb259-7"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb259-7" tabindex="-1"></a><span class="vs">    VALUES (?, ?, ?, ?)</span></span>
+<span id="cb259-8"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb259-8" tabindex="-1"></a><span class="vs">  `</span><span class="op">;</span></span>
+<span id="cb259-9"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb259-9" tabindex="-1"></a></span>
+<span id="cb259-10"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb259-10" tabindex="-1"></a>  connection<span class="op">.</span><span class="fu">query</span>(</span>
+<span id="cb259-11"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb259-11" tabindex="-1"></a>    sql<span class="op">,</span></span>
+<span id="cb259-12"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb259-12" tabindex="-1"></a>    [nome<span class="op">,</span> marca<span class="op">,</span> ano<span class="op">,</span> preco]<span class="op">,</span></span>
+<span id="cb259-13"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb259-13" tabindex="-1"></a>    (erro<span class="op">,</span> resultado) <span class="kw">=&gt;</span> {</span>
+<span id="cb259-14"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb259-14" tabindex="-1"></a></span>
+<span id="cb259-15"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb259-15" tabindex="-1"></a>      <span class="cf">if</span> (erro) {</span>
+<span id="cb259-16"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb259-16" tabindex="-1"></a></span>
+<span id="cb259-17"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb259-17" tabindex="-1"></a>        <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">500</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb259-18"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb259-18" tabindex="-1"></a>          <span class="dt">erro</span><span class="op">:</span> <span class="st">'Erro ao inserir carro'</span></span>
+<span id="cb259-19"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb259-19" tabindex="-1"></a>        })<span class="op">;</span></span>
+<span id="cb259-20"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb259-20" tabindex="-1"></a></span>
+<span id="cb259-21"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb259-21" tabindex="-1"></a>      }</span>
+<span id="cb259-22"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb259-22" tabindex="-1"></a></span>
+<span id="cb259-23"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb259-23" tabindex="-1"></a>      res<span class="op">.</span><span class="fu">status</span>(<span class="dv">201</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb259-24"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb259-24" tabindex="-1"></a>        <span class="dt">mensagem</span><span class="op">:</span> <span class="st">'Carro inserido com sucesso'</span><span class="op">,</span></span>
+<span id="cb259-25"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb259-25" tabindex="-1"></a>        <span class="dt">idInserido</span><span class="op">:</span> resultado<span class="op">.</span><span class="at">insertId</span></span>
+<span id="cb259-26"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb259-26" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb259-27"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb259-27" tabindex="-1"></a></span>
+<span id="cb259-28"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb259-28" tabindex="-1"></a>    }</span>
+<span id="cb259-29"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb259-29" tabindex="-1"></a>  )<span class="op">;</span></span>
+<span id="cb259-30"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb259-30" tabindex="-1"></a></span>
+<span id="cb259-31"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb259-31" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+</div>
+<div id="json-enviado-1" class="section level3" number="9.11.3">
+<h3>
+<span class="header-section-number">9.11.3</span> JSON enviado<a class="anchor" aria-label="anchor" href="#json-enviado-1"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb260"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb260-1"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb260-1" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb260-2"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb260-2" tabindex="-1"></a>  <span class="dt">"nome"</span><span class="fu">:</span> <span class="st">"BMW Série 7"</span><span class="fu">,</span></span>
+<span id="cb260-3"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb260-3" tabindex="-1"></a>  <span class="dt">"marca"</span><span class="fu">:</span> <span class="st">"BMW"</span><span class="fu">,</span></span>
+<span id="cb260-4"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb260-4" tabindex="-1"></a>  <span class="dt">"ano"</span><span class="fu">:</span> <span class="dv">2023</span><span class="fu">,</span></span>
+<span id="cb260-5"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb260-5" tabindex="-1"></a>  <span class="dt">"preco"</span><span class="fu">:</span> <span class="dv">750000</span></span>
+<span id="cb260-6"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb260-6" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+</div>
+</div>
+<div id="atualizando-registros-na-tabela-update" class="section level2" number="9.12">
+<h2>
+<span class="header-section-number">9.12</span> Atualizando registros na tabela (UPDATE)<a class="anchor" aria-label="anchor" href="#atualizando-registros-na-tabela-update"><i class="fas fa-link"></i></a>
+</h2>
+<p>Método:</p>
+<pre class="text"><code>PUT</code></pre>
+<div id="código-2" class="section level3" number="9.12.1">
+<h3>
+<span class="header-section-number">9.12.1</span> Código<a class="anchor" aria-label="anchor" href="#c%C3%B3digo-2"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb262"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb262-1"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-1" tabindex="-1"></a>router<span class="op">.</span><span class="fu">put</span>(<span class="st">'/:id'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb262-2"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-2" tabindex="-1"></a></span>
+<span id="cb262-3"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-3" tabindex="-1"></a>  <span class="kw">const</span> id <span class="op">=</span> req<span class="op">.</span><span class="at">params</span><span class="op">.</span><span class="at">id</span><span class="op">;</span></span>
+<span id="cb262-4"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-4" tabindex="-1"></a></span>
+<span id="cb262-5"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-5" tabindex="-1"></a>  <span class="kw">const</span> { nome<span class="op">,</span> marca<span class="op">,</span> ano<span class="op">,</span> preco } <span class="op">=</span> req<span class="op">.</span><span class="at">body</span><span class="op">;</span></span>
+<span id="cb262-6"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-6" tabindex="-1"></a></span>
+<span id="cb262-7"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-7" tabindex="-1"></a>  <span class="kw">const</span> sql <span class="op">=</span> <span class="vs">`</span></span>
+<span id="cb262-8"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-8" tabindex="-1"></a><span class="vs">    UPDATE carros</span></span>
+<span id="cb262-9"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-9" tabindex="-1"></a><span class="vs">    SET nome = ?, marca = ?, ano = ?, preco = ?</span></span>
+<span id="cb262-10"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-10" tabindex="-1"></a><span class="vs">    WHERE id = ?</span></span>
+<span id="cb262-11"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-11" tabindex="-1"></a><span class="vs">  `</span><span class="op">;</span></span>
+<span id="cb262-12"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-12" tabindex="-1"></a></span>
+<span id="cb262-13"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-13" tabindex="-1"></a>  connection<span class="op">.</span><span class="fu">query</span>(</span>
+<span id="cb262-14"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-14" tabindex="-1"></a>    sql<span class="op">,</span></span>
+<span id="cb262-15"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-15" tabindex="-1"></a>    [nome<span class="op">,</span> marca<span class="op">,</span> ano<span class="op">,</span> preco<span class="op">,</span> id]<span class="op">,</span></span>
+<span id="cb262-16"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-16" tabindex="-1"></a>    (erro<span class="op">,</span> resultado) <span class="kw">=&gt;</span> {</span>
+<span id="cb262-17"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-17" tabindex="-1"></a></span>
+<span id="cb262-18"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-18" tabindex="-1"></a>      <span class="cf">if</span> (erro) {</span>
+<span id="cb262-19"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-19" tabindex="-1"></a></span>
+<span id="cb262-20"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-20" tabindex="-1"></a>        <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">500</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb262-21"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-21" tabindex="-1"></a>          <span class="dt">erro</span><span class="op">:</span> <span class="st">'Erro ao atualizar carro'</span></span>
+<span id="cb262-22"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-22" tabindex="-1"></a>        })<span class="op">;</span></span>
+<span id="cb262-23"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-23" tabindex="-1"></a></span>
+<span id="cb262-24"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-24" tabindex="-1"></a>      }</span>
+<span id="cb262-25"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-25" tabindex="-1"></a></span>
+<span id="cb262-26"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-26" tabindex="-1"></a>      res<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb262-27"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-27" tabindex="-1"></a>        <span class="dt">mensagem</span><span class="op">:</span> <span class="st">'Carro atualizado com sucesso'</span></span>
+<span id="cb262-28"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-28" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb262-29"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-29" tabindex="-1"></a></span>
+<span id="cb262-30"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-30" tabindex="-1"></a>    }</span>
+<span id="cb262-31"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-31" tabindex="-1"></a>  )<span class="op">;</span></span>
+<span id="cb262-32"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-32" tabindex="-1"></a></span>
+<span id="cb262-33"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb262-33" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+</div>
+</div>
+<div id="deletando-registros-da-tabela-delete" class="section level2" number="9.13">
+<h2>
+<span class="header-section-number">9.13</span> Deletando registros da tabela (DELETE)<a class="anchor" aria-label="anchor" href="#deletando-registros-da-tabela-delete"><i class="fas fa-link"></i></a>
+</h2>
+<p>Método:</p>
+<pre class="text"><code>DELETE</code></pre>
+<div id="código-3" class="section level3" number="9.13.1">
+<h3>
+<span class="header-section-number">9.13.1</span> Código<a class="anchor" aria-label="anchor" href="#c%C3%B3digo-3"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb264"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb264-1"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb264-1" tabindex="-1"></a>router<span class="op">.</span><span class="fu">delete</span>(<span class="st">'/:id'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb264-2"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb264-2" tabindex="-1"></a></span>
+<span id="cb264-3"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb264-3" tabindex="-1"></a>  <span class="kw">const</span> id <span class="op">=</span> req<span class="op">.</span><span class="at">params</span><span class="op">.</span><span class="at">id</span><span class="op">;</span></span>
+<span id="cb264-4"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb264-4" tabindex="-1"></a></span>
+<span id="cb264-5"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb264-5" tabindex="-1"></a>  <span class="kw">const</span> sql <span class="op">=</span> <span class="st">'DELETE FROM carros WHERE id = ?'</span><span class="op">;</span></span>
+<span id="cb264-6"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb264-6" tabindex="-1"></a></span>
+<span id="cb264-7"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb264-7" tabindex="-1"></a>  connection<span class="op">.</span><span class="fu">query</span>(sql<span class="op">,</span> [id]<span class="op">,</span> (erro<span class="op">,</span> resultado) <span class="kw">=&gt;</span> {</span>
+<span id="cb264-8"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb264-8" tabindex="-1"></a></span>
+<span id="cb264-9"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb264-9" tabindex="-1"></a>    <span class="cf">if</span> (erro) {</span>
+<span id="cb264-10"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb264-10" tabindex="-1"></a></span>
+<span id="cb264-11"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb264-11" tabindex="-1"></a>      <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">500</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb264-12"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb264-12" tabindex="-1"></a>        <span class="dt">erro</span><span class="op">:</span> <span class="st">'Erro ao remover carro'</span></span>
+<span id="cb264-13"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb264-13" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb264-14"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb264-14" tabindex="-1"></a></span>
+<span id="cb264-15"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb264-15" tabindex="-1"></a>    }</span>
+<span id="cb264-16"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb264-16" tabindex="-1"></a></span>
+<span id="cb264-17"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb264-17" tabindex="-1"></a>    res<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb264-18"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb264-18" tabindex="-1"></a>      <span class="dt">mensagem</span><span class="op">:</span> <span class="st">'Carro removido com sucesso'</span></span>
+<span id="cb264-19"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb264-19" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb264-20"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb264-20" tabindex="-1"></a></span>
+<span id="cb264-21"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb264-21" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb264-22"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb264-22" tabindex="-1"></a></span>
+<span id="cb264-23"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb264-23" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+</div>
+</div>
+<div id="testando-os-métodos-http" class="section level2" number="9.14">
+<h2>
+<span class="header-section-number">9.14</span> Testando os métodos HTTP<a class="anchor" aria-label="anchor" href="#testando-os-m%C3%A9todos-http"><i class="fas fa-link"></i></a>
+</h2>
+<p>Ferramentas comuns para testar APIs:</p>
+<ul>
+<li>Postman;</li>
+<li>Insomnia;</li>
+<li>Thunder Client;</li>
+<li>curl.</li>
+</ul>
+<p>Exemplo com curl:</p>
+<div class="sourceCode" id="cb265"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb265-1"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb265-1" tabindex="-1"></a><span class="ex">curl</span> http://localhost:3000/carros</span></code></pre></div>
+<p>Inserindo:</p>
+<div class="sourceCode" id="cb266"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb266-1"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb266-1" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-X</span> POST http://localhost:3000/carros <span class="dt">\</span></span>
+<span id="cb266-2"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb266-2" tabindex="-1"></a>-H <span class="st">"Content-Type: application/json"</span> <span class="dt">\</span></span>
+<span id="cb266-3"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb266-3" tabindex="-1"></a>-d <span class="st">"{</span><span class="dt">\"</span><span class="st">nome</span><span class="dt">\"</span><span class="st">:</span><span class="dt">\"</span><span class="st">Gol</span><span class="dt">\"</span><span class="st">,</span><span class="dt">\"</span><span class="st">marca</span><span class="dt">\"</span><span class="st">:</span><span class="dt">\"</span><span class="st">Volkswagen</span><span class="dt">\"</span><span class="st">,</span><span class="dt">\"</span><span class="st">ano</span><span class="dt">\"</span><span class="st">:2020,</span><span class="dt">\"</span><span class="st">preco</span><span class="dt">\"</span><span class="st">:50000}"</span></span></code></pre></div>
+</div>
+<div id="problema-da-organização-do-código" class="section level2" number="9.15">
+<h2>
+<span class="header-section-number">9.15</span> Problema da organização do código<a class="anchor" aria-label="anchor" href="#problema-da-organiza%C3%A7%C3%A3o-do-c%C3%B3digo"><i class="fas fa-link"></i></a>
+</h2>
+<p>À medida que a aplicação cresce, colocar toda a lógica SQL nas rotas torna o projeto difícil de manter.</p>
+<p>Por isso, aplicações reais normalmente utilizam:</p>
+<ul>
+<li>models;</li>
+<li>controllers;</li>
+<li>services;</li>
+<li>repositories.</li>
+</ul>
+<p>Neste capítulo, utilizaremos uma abordagem baseada em classes.</p>
+</div>
+<div id="organizando-o-código-em-classes" class="section level2" number="9.16">
+<h2>
+<span class="header-section-number">9.16</span> Organizando o código em classes<a class="anchor" aria-label="anchor" href="#organizando-o-c%C3%B3digo-em-classes"><i class="fas fa-link"></i></a>
+</h2>
+<p>Vamos criar uma classe responsável pelas operações da tabela <code>carros</code>.</p>
+<p>Arquivo:</p>
+<pre class="text"><code>models/Carro.js</code></pre>
+</div>
+<div id="classe-carro" class="section level2" number="9.17">
+<h2>
+<span class="header-section-number">9.17</span> Classe Carro<a class="anchor" aria-label="anchor" href="#classe-carro"><i class="fas fa-link"></i></a>
+</h2>
+<div class="sourceCode" id="cb268"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb268-1"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-1" tabindex="-1"></a><span class="kw">const</span> connection <span class="op">=</span> <span class="pp">require</span>(<span class="st">'../database/connection'</span>)<span class="op">;</span></span>
+<span id="cb268-2"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-2" tabindex="-1"></a></span>
+<span id="cb268-3"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-3" tabindex="-1"></a><span class="kw">class</span> Carro {</span>
+<span id="cb268-4"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-4" tabindex="-1"></a></span>
+<span id="cb268-5"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-5" tabindex="-1"></a>  <span class="fu">listar</span>(callback) {</span>
+<span id="cb268-6"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-6" tabindex="-1"></a></span>
+<span id="cb268-7"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-7" tabindex="-1"></a>    <span class="kw">const</span> sql <span class="op">=</span> <span class="st">'SELECT * FROM carros'</span><span class="op">;</span></span>
+<span id="cb268-8"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-8" tabindex="-1"></a></span>
+<span id="cb268-9"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-9" tabindex="-1"></a>    connection<span class="op">.</span><span class="fu">query</span>(sql<span class="op">,</span> callback)<span class="op">;</span></span>
+<span id="cb268-10"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-10" tabindex="-1"></a></span>
+<span id="cb268-11"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-11" tabindex="-1"></a>  }</span>
+<span id="cb268-12"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-12" tabindex="-1"></a></span>
+<span id="cb268-13"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-13" tabindex="-1"></a>  <span class="fu">buscarPorId</span>(id<span class="op">,</span> callback) {</span>
+<span id="cb268-14"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-14" tabindex="-1"></a></span>
+<span id="cb268-15"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-15" tabindex="-1"></a>    <span class="kw">const</span> sql <span class="op">=</span> <span class="st">'SELECT * FROM carros WHERE id = ?'</span><span class="op">;</span></span>
+<span id="cb268-16"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-16" tabindex="-1"></a></span>
+<span id="cb268-17"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-17" tabindex="-1"></a>    connection<span class="op">.</span><span class="fu">query</span>(sql<span class="op">,</span> [id]<span class="op">,</span> callback)<span class="op">;</span></span>
+<span id="cb268-18"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-18" tabindex="-1"></a></span>
+<span id="cb268-19"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-19" tabindex="-1"></a>  }</span>
+<span id="cb268-20"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-20" tabindex="-1"></a></span>
+<span id="cb268-21"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-21" tabindex="-1"></a>  <span class="fu">inserir</span>(dados<span class="op">,</span> callback) {</span>
+<span id="cb268-22"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-22" tabindex="-1"></a></span>
+<span id="cb268-23"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-23" tabindex="-1"></a>    <span class="kw">const</span> sql <span class="op">=</span> <span class="vs">`</span></span>
+<span id="cb268-24"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-24" tabindex="-1"></a><span class="vs">      INSERT INTO carros (nome, marca, ano, preco)</span></span>
+<span id="cb268-25"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-25" tabindex="-1"></a><span class="vs">      VALUES (?, ?, ?, ?)</span></span>
+<span id="cb268-26"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-26" tabindex="-1"></a><span class="vs">    `</span><span class="op">;</span></span>
+<span id="cb268-27"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-27" tabindex="-1"></a></span>
+<span id="cb268-28"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-28" tabindex="-1"></a>    connection<span class="op">.</span><span class="fu">query</span>(</span>
+<span id="cb268-29"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-29" tabindex="-1"></a>      sql<span class="op">,</span></span>
+<span id="cb268-30"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-30" tabindex="-1"></a>      [</span>
+<span id="cb268-31"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-31" tabindex="-1"></a>        dados<span class="op">.</span><span class="at">nome</span><span class="op">,</span></span>
+<span id="cb268-32"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-32" tabindex="-1"></a>        dados<span class="op">.</span><span class="at">marca</span><span class="op">,</span></span>
+<span id="cb268-33"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-33" tabindex="-1"></a>        dados<span class="op">.</span><span class="at">ano</span><span class="op">,</span></span>
+<span id="cb268-34"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-34" tabindex="-1"></a>        dados<span class="op">.</span><span class="at">preco</span></span>
+<span id="cb268-35"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-35" tabindex="-1"></a>      ]<span class="op">,</span></span>
+<span id="cb268-36"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-36" tabindex="-1"></a>      callback</span>
+<span id="cb268-37"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-37" tabindex="-1"></a>    )<span class="op">;</span></span>
+<span id="cb268-38"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-38" tabindex="-1"></a></span>
+<span id="cb268-39"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-39" tabindex="-1"></a>  }</span>
+<span id="cb268-40"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-40" tabindex="-1"></a></span>
+<span id="cb268-41"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-41" tabindex="-1"></a>  <span class="fu">atualizar</span>(id<span class="op">,</span> dados<span class="op">,</span> callback) {</span>
+<span id="cb268-42"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-42" tabindex="-1"></a></span>
+<span id="cb268-43"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-43" tabindex="-1"></a>    <span class="kw">const</span> sql <span class="op">=</span> <span class="vs">`</span></span>
+<span id="cb268-44"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-44" tabindex="-1"></a><span class="vs">      UPDATE carros</span></span>
+<span id="cb268-45"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-45" tabindex="-1"></a><span class="vs">      SET nome = ?, marca = ?, ano = ?, preco = ?</span></span>
+<span id="cb268-46"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-46" tabindex="-1"></a><span class="vs">      WHERE id = ?</span></span>
+<span id="cb268-47"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-47" tabindex="-1"></a><span class="vs">    `</span><span class="op">;</span></span>
+<span id="cb268-48"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-48" tabindex="-1"></a></span>
+<span id="cb268-49"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-49" tabindex="-1"></a>    connection<span class="op">.</span><span class="fu">query</span>(</span>
+<span id="cb268-50"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-50" tabindex="-1"></a>      sql<span class="op">,</span></span>
+<span id="cb268-51"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-51" tabindex="-1"></a>      [</span>
+<span id="cb268-52"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-52" tabindex="-1"></a>        dados<span class="op">.</span><span class="at">nome</span><span class="op">,</span></span>
+<span id="cb268-53"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-53" tabindex="-1"></a>        dados<span class="op">.</span><span class="at">marca</span><span class="op">,</span></span>
+<span id="cb268-54"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-54" tabindex="-1"></a>        dados<span class="op">.</span><span class="at">ano</span><span class="op">,</span></span>
+<span id="cb268-55"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-55" tabindex="-1"></a>        dados<span class="op">.</span><span class="at">preco</span><span class="op">,</span></span>
+<span id="cb268-56"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-56" tabindex="-1"></a>        id</span>
+<span id="cb268-57"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-57" tabindex="-1"></a>      ]<span class="op">,</span></span>
+<span id="cb268-58"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-58" tabindex="-1"></a>      callback</span>
+<span id="cb268-59"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-59" tabindex="-1"></a>    )<span class="op">;</span></span>
+<span id="cb268-60"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-60" tabindex="-1"></a></span>
+<span id="cb268-61"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-61" tabindex="-1"></a>  }</span>
+<span id="cb268-62"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-62" tabindex="-1"></a></span>
+<span id="cb268-63"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-63" tabindex="-1"></a>  <span class="fu">remover</span>(id<span class="op">,</span> callback) {</span>
+<span id="cb268-64"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-64" tabindex="-1"></a></span>
+<span id="cb268-65"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-65" tabindex="-1"></a>    <span class="kw">const</span> sql <span class="op">=</span> <span class="st">'DELETE FROM carros WHERE id = ?'</span><span class="op">;</span></span>
+<span id="cb268-66"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-66" tabindex="-1"></a></span>
+<span id="cb268-67"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-67" tabindex="-1"></a>    connection<span class="op">.</span><span class="fu">query</span>(sql<span class="op">,</span> [id]<span class="op">,</span> callback)<span class="op">;</span></span>
+<span id="cb268-68"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-68" tabindex="-1"></a></span>
+<span id="cb268-69"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-69" tabindex="-1"></a>  }</span>
+<span id="cb268-70"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-70" tabindex="-1"></a></span>
+<span id="cb268-71"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-71" tabindex="-1"></a>}</span>
+<span id="cb268-72"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-72" tabindex="-1"></a></span>
+<span id="cb268-73"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-73" tabindex="-1"></a>module<span class="op">.</span><span class="at">exports</span> <span class="op">=</span> <span class="kw">new</span> <span class="fu">Carro</span>()<span class="op">;</span></span></code></pre></div>
+</div>
+<div id="utilizando-a-classe-nas-rotas" class="section level2" number="9.18">
+<h2>
+<span class="header-section-number">9.18</span> Utilizando a classe nas rotas<a class="anchor" aria-label="anchor" href="#utilizando-a-classe-nas-rotas"><i class="fas fa-link"></i></a>
+</h2>
+<p>Arquivo:</p>
+<pre class="text"><code>routes/carros.js</code></pre>
+<div class="sourceCode" id="cb270"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb270-1"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-1" tabindex="-1"></a><span class="kw">const</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">'express'</span>)<span class="op">;</span></span>
+<span id="cb270-2"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-2" tabindex="-1"></a></span>
+<span id="cb270-3"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-3" tabindex="-1"></a><span class="kw">const</span> router <span class="op">=</span> express<span class="op">.</span><span class="fu">Router</span>()<span class="op">;</span></span>
+<span id="cb270-4"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-4" tabindex="-1"></a></span>
+<span id="cb270-5"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-5" tabindex="-1"></a><span class="kw">const</span> Carro <span class="op">=</span> <span class="pp">require</span>(<span class="st">'../models/Carro'</span>)<span class="op">;</span></span>
+<span id="cb270-6"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-6" tabindex="-1"></a></span>
+<span id="cb270-7"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-7" tabindex="-1"></a>router<span class="op">.</span><span class="fu">get</span>(<span class="st">'/'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb270-8"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-8" tabindex="-1"></a></span>
+<span id="cb270-9"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-9" tabindex="-1"></a>  Carro<span class="op">.</span><span class="fu">listar</span>((erro<span class="op">,</span> resultados) <span class="kw">=&gt;</span> {</span>
+<span id="cb270-10"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-10" tabindex="-1"></a></span>
+<span id="cb270-11"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-11" tabindex="-1"></a>    <span class="cf">if</span> (erro) {</span>
+<span id="cb270-12"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-12" tabindex="-1"></a></span>
+<span id="cb270-13"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-13" tabindex="-1"></a>      <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">500</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb270-14"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-14" tabindex="-1"></a>        <span class="dt">erro</span><span class="op">:</span> <span class="st">'Erro ao listar carros'</span></span>
+<span id="cb270-15"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-15" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb270-16"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-16" tabindex="-1"></a></span>
+<span id="cb270-17"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-17" tabindex="-1"></a>    }</span>
+<span id="cb270-18"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-18" tabindex="-1"></a></span>
+<span id="cb270-19"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-19" tabindex="-1"></a>    res<span class="op">.</span><span class="fu">json</span>(resultados)<span class="op">;</span></span>
+<span id="cb270-20"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-20" tabindex="-1"></a></span>
+<span id="cb270-21"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-21" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb270-22"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-22" tabindex="-1"></a></span>
+<span id="cb270-23"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-23" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb270-24"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-24" tabindex="-1"></a></span>
+<span id="cb270-25"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-25" tabindex="-1"></a>router<span class="op">.</span><span class="fu">get</span>(<span class="st">'/:id'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb270-26"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-26" tabindex="-1"></a></span>
+<span id="cb270-27"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-27" tabindex="-1"></a>  Carro<span class="op">.</span><span class="fu">buscarPorId</span>(req<span class="op">.</span><span class="at">params</span><span class="op">.</span><span class="at">id</span><span class="op">,</span> (erro<span class="op">,</span> resultados) <span class="kw">=&gt;</span> {</span>
+<span id="cb270-28"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-28" tabindex="-1"></a></span>
+<span id="cb270-29"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-29" tabindex="-1"></a>    <span class="cf">if</span> (erro) {</span>
+<span id="cb270-30"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-30" tabindex="-1"></a></span>
+<span id="cb270-31"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-31" tabindex="-1"></a>      <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">500</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb270-32"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-32" tabindex="-1"></a>        <span class="dt">erro</span><span class="op">:</span> <span class="st">'Erro ao buscar carro'</span></span>
+<span id="cb270-33"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-33" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb270-34"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-34" tabindex="-1"></a></span>
+<span id="cb270-35"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-35" tabindex="-1"></a>    }</span>
+<span id="cb270-36"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-36" tabindex="-1"></a></span>
+<span id="cb270-37"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-37" tabindex="-1"></a>    res<span class="op">.</span><span class="fu">json</span>(resultados[<span class="dv">0</span>])<span class="op">;</span></span>
+<span id="cb270-38"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-38" tabindex="-1"></a></span>
+<span id="cb270-39"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-39" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb270-40"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-40" tabindex="-1"></a></span>
+<span id="cb270-41"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-41" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb270-42"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-42" tabindex="-1"></a></span>
+<span id="cb270-43"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-43" tabindex="-1"></a>router<span class="op">.</span><span class="fu">post</span>(<span class="st">'/'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb270-44"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-44" tabindex="-1"></a></span>
+<span id="cb270-45"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-45" tabindex="-1"></a>  Carro<span class="op">.</span><span class="fu">inserir</span>(req<span class="op">.</span><span class="at">body</span><span class="op">,</span> (erro<span class="op">,</span> resultado) <span class="kw">=&gt;</span> {</span>
+<span id="cb270-46"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-46" tabindex="-1"></a></span>
+<span id="cb270-47"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-47" tabindex="-1"></a>    <span class="cf">if</span> (erro) {</span>
+<span id="cb270-48"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-48" tabindex="-1"></a></span>
+<span id="cb270-49"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-49" tabindex="-1"></a>      <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">500</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb270-50"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-50" tabindex="-1"></a>        <span class="dt">erro</span><span class="op">:</span> <span class="st">'Erro ao inserir carro'</span></span>
+<span id="cb270-51"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-51" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb270-52"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-52" tabindex="-1"></a></span>
+<span id="cb270-53"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-53" tabindex="-1"></a>    }</span>
+<span id="cb270-54"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-54" tabindex="-1"></a></span>
+<span id="cb270-55"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-55" tabindex="-1"></a>    res<span class="op">.</span><span class="fu">status</span>(<span class="dv">201</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb270-56"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-56" tabindex="-1"></a>      <span class="dt">mensagem</span><span class="op">:</span> <span class="st">'Carro inserido'</span></span>
+<span id="cb270-57"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-57" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb270-58"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-58" tabindex="-1"></a></span>
+<span id="cb270-59"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-59" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb270-60"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-60" tabindex="-1"></a></span>
+<span id="cb270-61"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-61" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb270-62"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-62" tabindex="-1"></a></span>
+<span id="cb270-63"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb270-63" tabindex="-1"></a>module<span class="op">.</span><span class="at">exports</span> <span class="op">=</span> router<span class="op">;</span></span></code></pre></div>
+</div>
+<div id="vantagens-da-organização-em-classes" class="section level2" number="9.19">
+<h2>
+<span class="header-section-number">9.19</span> Vantagens da organização em classes<a class="anchor" aria-label="anchor" href="#vantagens-da-organiza%C3%A7%C3%A3o-em-classes"><i class="fas fa-link"></i></a>
+</h2>
+<p>Separar regras em classes oferece vantagens importantes:</p>
+<ul>
+<li>código mais organizado;</li>
+<li>reutilização;</li>
+<li>manutenção simplificada;</li>
+<li>separação de responsabilidades;</li>
+<li>melhor escalabilidade.</li>
+</ul>
+<p>Segundo a documentação do Express, aplicações maiores normalmente separam rotas, lógica de negócio e acesso ao banco.<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Express.js, &lt;em&gt;Database Integration&lt;/em&gt;.&lt;/p&gt;"><sup>33</sup></a></span></p>
+</div>
+<div id="considerações-finais-2" class="section level2" number="9.20">
+<h2>
+<span class="header-section-number">9.20</span> Considerações finais<a class="anchor" aria-label="anchor" href="#considera%C3%A7%C3%B5es-finais-2"><i class="fas fa-link"></i></a>
+</h2>
+<p>Neste capítulo estudamos:</p>
+<ul>
+<li>criação de banco de dados;</li>
+<li>conexão Node.js + MySQL;</li>
+<li>SELECT;</li>
+<li>INSERT;</li>
+<li>UPDATE;</li>
+<li>DELETE;</li>
+<li>respostas JSON;</li>
+<li>organização do projeto;</li>
+<li>uso de classes.</li>
+</ul>
+<p>Agora a API possui persistência real em banco de dados, permitindo armazenamento permanente das informações.</p>
+<p>Nos próximos capítulos, esses conceitos servirão como base para autenticação, middleware e arquiteturas mais avançadas.</p>
+
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-express_db" class="csl-entry">
+Express.js. <em>Database Integration</em>. 2026. <a href="https://expressjs.com/en/guide/database-integration.html">https://expressjs.com/en/guide/database-integration.html</a>.
+</div>
+<div id="ref-express_docs" class="csl-entry">
+Express.js. <em>Express - Framework Web Para Node.js</em>. 2026. <a href="https://expressjs.com/pt-br/">https://expressjs.com/pt-br/</a>.
+</div>
+<div id="ref-express_api" class="csl-entry">
+Express.js. <em>Express API Reference</em>. 2026. <a href="https://expressjs.com/pt-br/4x/api.html">https://expressjs.com/pt-br/4x/api.html</a>.
+</div>
+<div id="ref-express_json" class="csl-entry">
+Express.js. <em>Express.json() Middleware</em>. 2026. <a href="https://expressjs.com/pt-br/4x/api.html#express.json">https://expressjs.com/pt-br/4x/api.html#express.json</a>.
+</div>
+<div id="ref-lecheta_node" class="csl-entry">
+Lecheta, Ricardo R. <em>Node Essencial</em>. Novatec, 2018.
+</div>
+<div id="ref-mdn_express_intro" class="csl-entry">
+MDN Web Docs. <em>Introdução Ao Express/Node</em>. 2025. <a href="https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Introduction">https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Introduction</a>.
+</div>
+<div id="ref-mdn_json_parse" class="csl-entry">
+MDN Web Docs. <em>JSON.parse()</em>. 2025. <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse</a>.
+</div>
+<div id="ref-mdn_json_stringify" class="csl-entry">
+MDN Web Docs. <em>JSON.stringify()</em>. 2025. <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify</a>.
+</div>
+<div id="ref-mysql2_docs" class="csl-entry">
+MySQL2. <em>MySQL2 Documentation</em>. 2026. <a href="https://www.npmjs.com/package/mysql2">https://www.npmjs.com/package/mysql2</a>.
+</div>
+<div id="ref-node_npm" class="csl-entry">
+Node.js. <em>An Introduction to the Npm Package Manager</em>. 2026. <a href="https://nodejs.org/en/learn/getting-started/an-introduction-to-the-npm-package-manager">https://nodejs.org/en/learn/getting-started/an-introduction-to-the-npm-package-manager</a>.
+</div>
+<div id="ref-node_commonjs" class="csl-entry">
+Node.js. <em>CommonJS Modules</em>. 2026. <a href="https://nodejs.org/api/modules.html">https://nodejs.org/api/modules.html</a>.
+</div>
+<div id="ref-node_packages" class="csl-entry">
+Node.js. <em>Modules: Packages</em>. 2026. <a href="https://nodejs.org/api/packages.html">https://nodejs.org/api/packages.html</a>.
+</div>
+<div id="ref-node_fs" class="csl-entry">
+Node.js Foundation. <em>Node.js File System (Fs) Module Documentation</em>. 2026. <a href="https://nodejs.org/api/fs.html">https://nodejs.org/api/fs.html</a>.
+</div>
+<div id="ref-node_http" class="csl-entry">
+Node.js Foundation. <em>Node.js HTTP Module Documentation</em>. 2026. <a href="https://nodejs.org/api/http.html">https://nodejs.org/api/http.html</a>.
+</div>
+<div id="ref-node_url" class="csl-entry">
+Node.js Foundation. <em>Node.js URL API Documentation</em>. 2026. <a href="https://nodejs.org/api/url.html">https://nodejs.org/api/url.html</a>.
+</div>
+<div id="ref-npm_init" class="csl-entry">
+npm. <em>Creating a Package.json File</em>. 2024. <a href="https://docs.npmjs.com/creating-a-package-json-file/">https://docs.npmjs.com/creating-a-package-json-file/</a>.
+</div>
+<div id="ref-npm_package_json" class="csl-entry">
+npm. <em>Package.json</em>. 2026. <a href="https://docs.npmjs.com/cli/v11/configuring-npm/package-json/">https://docs.npmjs.com/cli/v11/configuring-npm/package-json/</a>.
+</div>
+<div id="ref-npm_dependencies" class="csl-entry">
+npm. <em>Specifying Dependencies and devDependencies in a Package.json File</em>. 2026. <a href="https://docs.npmjs.com/specifying-dependencies-and-devdependencies-in-a-package-json-file/">https://docs.npmjs.com/specifying-dependencies-and-devdependencies-in-a-package-json-file/</a>.
+</div>
+<div id="ref-w3_mysql" class="csl-entry">
+W3Schools. <em>Node.js MySQL</em>. 2026. <a href="https://www.w3schools.com/nodejs/nodejs_mysql.asp">https://www.w3schools.com/nodejs/nodejs_mysql.asp</a>.
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-nav">
+<div class="prev"><a href="express-framework.html"><span class="header-section-number">8</span> Express Framework</a></div>
+<div class="empty"></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#integra-de-apis-node.js-com-banco-de-dados"><span class="header-section-number">9</span> Integra de APIs Node.js com Banco de Dados</a></li>
+<li><a class="nav-link" href="#banco-de-dados-da-aplica%C3%A7%C3%A3o"><span class="header-section-number">9.1</span> Banco de dados da aplicação</a></li>
+<li><a class="nav-link" href="#criando-o-banco-de-dados"><span class="header-section-number">9.2</span> Criando o banco de dados</a></li>
+<li><a class="nav-link" href="#instalando-o-driver-mysql"><span class="header-section-number">9.3</span> Instalando o driver MySQL</a></li>
+<li><a class="nav-link" href="#estrutura-inicial-do-projeto"><span class="header-section-number">9.4</span> Estrutura inicial do projeto</a></li>
+<li><a class="nav-link" href="#conectando-se-ao-banco-de-dados"><span class="header-section-number">9.5</span> Conectando-se ao banco de dados</a></li>
+<li><a class="nav-link" href="#criando-o-servidor-express"><span class="header-section-number">9.6</span> Criando o servidor Express</a></li>
+<li><a class="nav-link" href="#web-service-que-retorna-lista-de-carros"><span class="header-section-number">9.7</span> Web service que retorna lista de carros</a></li>
+<li><a class="nav-link" href="#selecionando-registros-na-tabela-select"><span class="header-section-number">9.8</span> Selecionando registros na tabela (SELECT)</a></li>
+<li>
+<a class="nav-link" href="#selecionando-um-registro-espec%C3%ADfico"><span class="header-section-number">9.9</span> Selecionando um registro específico</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#rota"><span class="header-section-number">9.9.1</span> Rota</a></li>
+<li><a class="nav-link" href="#c%C3%B3digo"><span class="header-section-number">9.9.2</span> Código</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#o-que-significa-o-caractere"><span class="header-section-number">9.10</span> O que significa o caractere ?</a></li>
+<li>
+<a class="nav-link" href="#inserindo-registros-na-tabela-insert"><span class="header-section-number">9.11</span> Inserindo registros na tabela (INSERT)</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#m%C3%A9todo-http"><span class="header-section-number">9.11.1</span> Método HTTP</a></li>
+<li><a class="nav-link" href="#c%C3%B3digo-1"><span class="header-section-number">9.11.2</span> Código</a></li>
+<li><a class="nav-link" href="#json-enviado-1"><span class="header-section-number">9.11.3</span> JSON enviado</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#atualizando-registros-na-tabela-update"><span class="header-section-number">9.12</span> Atualizando registros na tabela (UPDATE)</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#c%C3%B3digo-2"><span class="header-section-number">9.12.1</span> Código</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#deletando-registros-da-tabela-delete"><span class="header-section-number">9.13</span> Deletando registros da tabela (DELETE)</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#c%C3%B3digo-3"><span class="header-section-number">9.13.1</span> Código</a></li></ul>
+</li>
+<li><a class="nav-link" href="#testando-os-m%C3%A9todos-http"><span class="header-section-number">9.14</span> Testando os métodos HTTP</a></li>
+<li><a class="nav-link" href="#problema-da-organiza%C3%A7%C3%A3o-do-c%C3%B3digo"><span class="header-section-number">9.15</span> Problema da organização do código</a></li>
+<li><a class="nav-link" href="#organizando-o-c%C3%B3digo-em-classes"><span class="header-section-number">9.16</span> Organizando o código em classes</a></li>
+<li><a class="nav-link" href="#classe-carro"><span class="header-section-number">9.17</span> Classe Carro</a></li>
+<li><a class="nav-link" href="#utilizando-a-classe-nas-rotas"><span class="header-section-number">9.18</span> Utilizando a classe nas rotas</a></li>
+<li><a class="nav-link" href="#vantagens-da-organiza%C3%A7%C3%A3o-em-classes"><span class="header-section-number">9.19</span> Vantagens da organização em classes</a></li>
+<li><a class="nav-link" href="#considera%C3%A7%C3%B5es-finais-2"><span class="header-section-number">9.20</span> Considerações finais</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/rstudio/bookdown-demo/blob/master/09-database.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/rstudio/bookdown-demo/edit/master/09-database.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>04-aula</strong>" was written by Juliana Costa Silva. It was last built on 2026-05-26.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

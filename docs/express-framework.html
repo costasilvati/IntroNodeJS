@@ -16,7 +16,7 @@
 <meta name="twitter:description" content="Neste capítulo vamos estudar o framework Express, uma das bibliotecas mais utilizadas para desenvolvimento de aplicações web e APIs com Node.js. O Express simplifica a criação de servidores HTTP,...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.10.0/transition.js"></script><script src="libs/bs3compat-0.10.0/tabs.js"></script><script src="libs/bs3compat-0.10.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.11.0/transition.js"></script><script src="libs/bs3compat-0.11.0/tabs.js"></script><script src="libs/bs3compat-0.11.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
@@ -74,6 +74,7 @@
 <li><a class="" href="criando-um-servidor-http-com-nodejs.html"><span class="header-section-number">6</span> Criando um servidor HTTP com Nodejs</a></li>
 <li><a class="" href="npm-json-e-organiza%C3%A7%C3%A3o-de-projetos-node-js.html"><span class="header-section-number">7</span> NPM, JSON e organização de projetos Node JS</a></li>
 <li><a class="active" href="express-framework.html"><span class="header-section-number">8</span> Express Framework</a></li>
+<li><a class="" href="integra-de-apis-node.js-com-banco-de-dados.html"><span class="header-section-number">9</span> Integra de APIs Node.js com Banco de Dados</a></li>
 </ul>
 
         <div class="book-extra">
@@ -122,6 +123,7 @@
 <h2>
 <span class="header-section-number">8.2</span> Criando um projeto Express<a class="anchor" aria-label="anchor" href="#criando-um-projeto-express"><i class="fas fa-link"></i></a>
 </h2>
+<p>O código de aula está no repositório do github: (<a href="https://github.com/costasilvati/DesWebAvancado/tree/main/codigos" class="uri">https://github.com/costasilvati/DesWebAvancado/tree/main/codigos</a>)[<a href="https://github.com/costasilvati/DesWebAvancado/tree/main/codigos" class="uri">https://github.com/costasilvati/DesWebAvancado/tree/main/codigos</a>]</p>
 <p>Crie uma nova pasta:</p>
 <div class="sourceCode" id="cb186"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb186-1"><a href="express-framework.html#cb186-1" tabindex="-1"></a><span class="fu">mkdir</span> api-express</span>
 <span id="cb186-2"><a href="express-framework.html#cb186-2" tabindex="-1"></a><span class="bu">cd</span> api-express</span></code></pre></div>
@@ -599,93 +601,12 @@ http://localhost:3000/carros/luxo</code></pre>
 <p>O Express simplifica significativamente o desenvolvimento de APIs com Node.js, permitindo focar na lógica da aplicação em vez de lidar manualmente com detalhes do protocolo HTTP.</p>
 <p>Nos próximos capítulos, esses conceitos serão utilizados para construção de APIs REST completas com persistência em banco de dados.</p>
 
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-express_docs" class="csl-entry">
-Express.js. <em>Express - Framework Web Para Node.js</em>. 2026. <a href="https://expressjs.com/pt-br/">https://expressjs.com/pt-br/</a>.
-</div>
-<div id="ref-express_api" class="csl-entry">
-Express.js. <em>Express API Reference</em>. 2026. <a href="https://expressjs.com/pt-br/4x/api.html">https://expressjs.com/pt-br/4x/api.html</a>.
-</div>
-<div id="ref-express_json" class="csl-entry">
-Express.js. <em>Express.json() Middleware</em>. 2026. <a href="https://expressjs.com/pt-br/4x/api.html#express.json">https://expressjs.com/pt-br/4x/api.html#express.json</a>.
-</div>
-<div id="ref-lecheta_node" class="csl-entry">
-Lecheta, Ricardo R. <em>Node Essencial</em>. Novatec, 2018.
-</div>
-<div id="ref-mdn_express_intro" class="csl-entry">
-MDN Web Docs. <em>Introdução Ao Express/Node</em>. 2025. <a href="https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Introduction">https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Introduction</a>.
-</div>
-<div id="ref-mdn_json_parse" class="csl-entry">
-MDN Web Docs. <em>JSON.parse()</em>. 2025. <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse</a>.
-</div>
-<div id="ref-mdn_json_stringify" class="csl-entry">
-MDN Web Docs. <em>JSON.stringify()</em>. 2025. <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify</a>.
-</div>
-<div id="ref-node_npm" class="csl-entry">
-Node.js. <em>An Introduction to the Npm Package Manager</em>. 2026. <a href="https://nodejs.org/en/learn/getting-started/an-introduction-to-the-npm-package-manager">https://nodejs.org/en/learn/getting-started/an-introduction-to-the-npm-package-manager</a>.
-</div>
-<div id="ref-node_commonjs" class="csl-entry">
-Node.js. <em>CommonJS Modules</em>. 2026. <a href="https://nodejs.org/api/modules.html">https://nodejs.org/api/modules.html</a>.
-</div>
-<div id="ref-node_packages" class="csl-entry">
-Node.js. <em>Modules: Packages</em>. 2026. <a href="https://nodejs.org/api/packages.html">https://nodejs.org/api/packages.html</a>.
-</div>
-<div id="ref-node_fs" class="csl-entry">
-Node.js Foundation. <em>Node.js File System (Fs) Module Documentation</em>. 2026. <a href="https://nodejs.org/api/fs.html">https://nodejs.org/api/fs.html</a>.
-</div>
-<div id="ref-node_http" class="csl-entry">
-Node.js Foundation. <em>Node.js HTTP Module Documentation</em>. 2026. <a href="https://nodejs.org/api/http.html">https://nodejs.org/api/http.html</a>.
-</div>
-<div id="ref-node_url" class="csl-entry">
-Node.js Foundation. <em>Node.js URL API Documentation</em>. 2026. <a href="https://nodejs.org/api/url.html">https://nodejs.org/api/url.html</a>.
-</div>
-<div id="ref-npm_init" class="csl-entry">
-npm. <em>Creating a Package.json File</em>. 2024. <a href="https://docs.npmjs.com/creating-a-package-json-file/">https://docs.npmjs.com/creating-a-package-json-file/</a>.
-</div>
-<div id="ref-npm_package_json" class="csl-entry">
-npm. <em>Package.json</em>. 2026. <a href="https://docs.npmjs.com/cli/v11/configuring-npm/package-json/">https://docs.npmjs.com/cli/v11/configuring-npm/package-json/</a>.
-</div>
-<div id="ref-npm_dependencies" class="csl-entry">
-npm. <em>Specifying Dependencies and devDependencies in a Package.json File</em>. 2026. <a href="https://docs.npmjs.com/specifying-dependencies-and-devdependencies-in-a-package-json-file/">https://docs.npmjs.com/specifying-dependencies-and-devdependencies-in-a-package-json-file/</a>.
 </div>
 </div>
-</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   <div class="chapter-nav">
 <div class="prev"><a href="npm-json-e-organiza%C3%A7%C3%A3o-de-projetos-node-js.html"><span class="header-section-number">7</span> NPM, JSON e organização de projetos Node JS</a></div>
-<div class="empty"></div>
+<div class="next"><a href="integra-de-apis-node.js-com-banco-de-dados.html"><span class="header-section-number">9</span> Integra de APIs Node.js com Banco de Dados</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
@@ -744,7 +665,7 @@ npm. <em>Specifying Dependencies and devDependencies in a Package.json File</em>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>04-aula</strong>" was written by Juliana Costa Silva. It was last built on 2026-05-12.</p>
+    <p>"<strong>04-aula</strong>" was written by Juliana Costa Silva. It was last built on 2026-05-26.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
