@@ -1,5 +1,8 @@
 # Integra de APIs Node.js com Banco de Dados
 
+
+[Código desenvolvido em aula](https://github.com/costasilvati/DesWebAvancado/tree/main/codigos/26052026_api-express)
+
 Neste capítulo vamos integrar a API desenvolvida anteriormente com um banco de dados relacional. Utilizaremos o MySQL em conjunto com Node.js e Express para implementar operações de persistência de dados utilizando SQL.
 
 Segundo Lecheta [-@lecheta_node], uma API sem persistência normalmente perde os dados ao reiniciar o servidor. Por isso, aplicações reais utilizam bancos de dados para armazenar informações permanentemente.
@@ -53,18 +56,19 @@ CREATE TABLE carros (
     nome VARCHAR(100) NOT NULL,
     marca VARCHAR(100) NOT NULL,
     ano INT NOT NULL,
-    preco DECIMAL(10,2) NOT NULL
+    preco DECIMAL(10,2) NOT NULL,
+    placa VARCHAR(7) NOT NULL
 );
 ```
 
 Inserindo alguns registros:
 
 ```sql
-INSERT INTO carros (nome, marca, ano, preco)
+INSERT INTO carros (nome, marca, ano, preco, placa)
 VALUES
-('Fusca', 'Volkswagen', 1972, 25000),
-('Ferrari F40', 'Ferrari', 1987, 1500000),
-('Porsche 911', 'Porsche', 2020, 950000);
+('Fusca', 'Volkswagen', 1972, 25000, 'FUS1C80'),
+('Ferrari F40', 'Ferrari', 1987, 1500000, 'FER4R11'),
+('Porsche 911', 'Porsche', 2020, 950000, 'POR5H31');
 ```
 
 ## Instalando o driver MySQL
