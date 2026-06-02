@@ -1,5 +1,7 @@
 # APIs Node JS com JWT
 
+[Código da aula anterior](https://github.com/costasilvati/DesWebAvancado/blob/main/codigos/26052026_api-express.zip)
+
 Neste capítulo vamos estudar como proteger rotas de uma API Node.js utilizando **JWT** (*JSON Web Token*), **Express** e o middleware **express-jwt**. O objetivo é compreender como funciona a autenticação baseada em token e aplicar esse conceito ao sistema de carros desenvolvido no capítulo anterior, que já possui conexão com banco de dados.
 
 A autenticação é uma etapa essencial no desenvolvimento de APIs, pois permite verificar a identidade de um usuário antes de liberar o acesso a determinados recursos. Em APIs REST, é comum utilizar autenticação baseada em token, especialmente com JWT, porque esse modelo é compacto, independente de sessão e adequado para arquiteturas stateless [@rocketseat_jwt_node; @w3schools_express_jwt].
