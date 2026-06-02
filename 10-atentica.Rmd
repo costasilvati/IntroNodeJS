@@ -1,0 +1,595 @@
+# APIs Node JS com JWT
+
+Neste capítulo vamos estudar como proteger rotas de uma API Node.js utilizando **JWT** (*JSON Web Token*), **Express** e o middleware **express-jwt**. O objetivo é compreender como funciona a autenticação baseada em token e aplicar esse conceito ao sistema de carros desenvolvido no capítulo anterior, que já possui conexão com banco de dados.
+
+A autenticação é uma etapa essencial no desenvolvimento de APIs, pois permite verificar a identidade de um usuário antes de liberar o acesso a determinados recursos. Em APIs REST, é comum utilizar autenticação baseada em token, especialmente com JWT, porque esse modelo é compacto, independente de sessão e adequado para arquiteturas stateless [@rocketseat_jwt_node; @w3schools_express_jwt].
+
+## O que é autenticação
+
+Autenticação é o processo de verificar se um usuário é quem afirma ser. Em sistemas web, isso normalmente ocorre por meio de credenciais, como e-mail e senha.
+
+Um fluxo simples de autenticação funciona assim:
+
+1. O usuário envia e-mail e senha para uma rota de login.
+2. A API verifica se os dados estão corretos.
+3. Se as credenciais forem válidas, a API gera um token.
+4. O cliente armazena esse token.
+5. Em novas requisições, o cliente envia o token.
+6. A API valida o token antes de permitir acesso à rota protegida.
+
+Esse modelo evita que o servidor precise manter uma sessão ativa para cada usuário, o que combina bem com APIs REST.
+
+## O que é token
+
+Um **token** é uma credencial digital temporária usada para representar uma autorização de acesso. Em uma API, o token funciona como uma espécie de “comprovante” de que o usuário já realizou login.
+
+Depois que o usuário autentica, ele não precisa enviar e-mail e senha em todas as requisições. Em vez disso, envia o token no cabeçalho HTTP.
+
+Exemplo de cabeçalho:
+
+```http
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6...
+````
+
+A palavra `Bearer` indica que o cliente está enviando um token de acesso.
+
+## O que é JWT
+
+**JWT** significa **JSON Web Token**. Trata-se de um padrão para representar informações de forma segura entre duas partes. Um JWT é composto por três partes separadas por ponto:
+
+```text
+header.payload.signature
+```
+
+Exemplo simplificado:
+
+```text
+xxxxx.yyyyy.zzzzz
+```
+
+As três partes são:
+
+* **Header**: informa o tipo do token e o algoritmo de assinatura.
+* **Payload**: contém os dados, também chamados de *claims*.
+* **Signature**: assinatura usada para verificar se o token foi alterado.
+
+O payload pode conter informações como:
+
+```json
+{
+  "id": 1,
+  "email": "admin@email.com",
+  "perfil": "admin"
+}
+```
+
+É importante destacar que o payload do JWT não deve armazenar informações sensíveis, como senhas. O token é assinado, mas seu conteúdo pode ser decodificado por qualquer pessoa que o possua. A segurança do JWT está principalmente na assinatura e na validação do token [@rocketseat_jwt_node; @w3schools_express_jwt].
+
+## Como APIs utilizam token
+
+Em APIs REST, o token normalmente é usado para proteger rotas privadas. O fluxo mais comum é:
+
+1. O usuário faz login na rota `/login`.
+2. A API gera um JWT.
+3. O cliente recebe o token.
+4. O cliente envia o token nas próximas requisições.
+5. A API valida o token antes de executar operações protegidas.
+
+Exemplo de requisição protegida:
+
+```http
+DELETE /carros/3 HTTP/1.1
+Authorization: Bearer token_aqui
+```
+
+Se o token for válido, a API permite a operação. Caso contrário, retorna erro de autenticação, normalmente com status `401 Unauthorized`.
+
+## Instalando as dependências
+
+No projeto de carros criado anteriormente, instale as bibliotecas necessárias:
+
+```bash
+npm install jsonwebtoken express-jwt
+```
+
+A biblioteca `jsonwebtoken` será usada para gerar o token no login. A biblioteca `express-jwt` será usada como middleware para validar o token nas rotas protegidas. Segundo a documentação do pacote, `express-jwt` fornece um middleware Express para validar JWTs e disponibilizar o payload decodificado na requisição [@express_jwt_npm].
+
+## Estrutura do projeto
+
+Vamos considerar a seguinte estrutura:
+
+```text
+api-carros/
+├── database/
+│   └── connection.js
+├── middleware/
+│   └── auth.js
+├── models/
+│   └── Carro.js
+├── routes/
+│   ├── auth.js
+│   └── carros.js
+├── package.json
+└── server.js
+```
+
+Neste capítulo, vamos adicionar:
+
+* uma rota de login;
+* um middleware de autenticação;
+* proteção das rotas `POST`, `PUT` e `DELETE`.
+
+As rotas `GET` continuarão públicas, pois representam apenas consulta.
+
+## Criando a tabela de usuários
+
+Para autenticar usuários, precisamos de uma tabela no banco de dados.
+
+```sql
+USE api_carros;
+
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(120) NOT NULL UNIQUE,
+    senha VARCHAR(100) NOT NULL
+);
+```
+
+Vamos inserir um usuário inicial:
+
+```sql
+INSERT INTO usuarios (nome, email, senha)
+VALUES ('Administrador', 'admin@email.com', '123456');
+```
+
+Neste exemplo, a senha foi salva em texto puro apenas para fins didáticos. Em sistemas reais, senhas devem ser armazenadas com hash, usando bibliotecas como `bcrypt`.
+
+## Criando o arquivo de configuração do token
+
+Para gerar e validar tokens, precisamos de uma chave secreta.
+
+Crie o arquivo:
+
+```text
+middleware/auth.js
+```
+
+Conteúdo:
+
+```javascript
+const { expressjwt } = require('express-jwt');
+
+const segredo = 'chave_secreta_da_api';
+
+const protegerRota = expressjwt({
+  secret: segredo,
+  algorithms: ['HS256']
+});
+
+module.exports = {
+  segredo,
+  protegerRota
+};
+```
+
+A função `expressjwt()` cria um middleware que valida o token recebido no cabeçalho `Authorization`. O algoritmo `HS256` é um algoritmo simétrico, no qual a mesma chave é usada para assinar e verificar o token [@express_jwt_npm].
+
+## Criando a rota de login
+
+Crie o arquivo:
+
+```text
+routes/auth.js
+```
+
+Conteúdo:
+
+```javascript
+const express = require('express');
+const jwt = require('jsonwebtoken');
+
+const router = express.Router();
+
+const connection = require('../database/connection');
+const { segredo } = require('../middleware/auth');
+
+router.post('/login', (req, res) => {
+
+  const { email, senha } = req.body;
+
+  const sql = 'SELECT * FROM usuarios WHERE email = ? AND senha = ?';
+
+  connection.query(sql, [email, senha], (erro, resultados) => {
+
+    if (erro) {
+      return res.status(500).json({
+        erro: 'Erro ao autenticar usuário'
+      });
+    }
+
+    if (resultados.length === 0) {
+      return res.status(401).json({
+        erro: 'E-mail ou senha inválidos'
+      });
+    }
+
+    const usuario = resultados[0];
+
+    const token = jwt.sign(
+      {
+        id: usuario.id,
+        nome: usuario.nome,
+        email: usuario.email
+      },
+      segredo,
+      {
+        expiresIn: '1h'
+      }
+    );
+
+    res.json({
+      mensagem: 'Login realizado com sucesso',
+      token: token
+    });
+
+  });
+
+});
+
+module.exports = router;
+```
+
+Neste código:
+
+* `req.body` lê o JSON enviado pelo cliente;
+* o banco é consultado para verificar e-mail e senha;
+* `jwt.sign()` gera o token;
+* `expiresIn: '1h'` define validade de uma hora;
+* a resposta retorna o token para o cliente.
+
+## Configurando a rota de autenticação no servidor
+
+No arquivo `server.js`, importe e use a rota de autenticação.
+
+```javascript
+const express = require('express');
+
+const app = express();
+
+const carrosRoutes = require('./routes/carros');
+const authRoutes = require('./routes/auth');
+
+app.use(express.json());
+
+app.use('/auth', authRoutes);
+app.use('/carros', carrosRoutes);
+
+app.listen(3000, () => {
+  console.log('Servidor executando na porta 3000');
+});
+```
+
+Agora a rota de login será:
+
+```text
+POST http://localhost:3000/auth/login
+```
+
+## Testando o login
+
+Envie a seguinte requisição:
+
+```http
+POST /auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "admin@email.com",
+  "senha": "123456"
+}
+```
+
+Resposta esperada:
+
+```json
+{
+  "mensagem": "Login realizado com sucesso",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6..."
+}
+```
+
+Esse token será usado para acessar rotas protegidas.
+
+## Protegendo rotas da API de carros
+
+No capítulo anterior, criamos rotas para:
+
+* listar carros;
+* buscar carro por ID;
+* inserir carro;
+* atualizar carro;
+* remover carro.
+
+Agora vamos permitir que qualquer usuário consulte os carros, mas apenas usuários autenticados possam inserir, atualizar ou remover registros.
+
+Arquivo:
+
+```text
+routes/carros.js
+```
+
+```javascript
+const express = require('express');
+
+const router = express.Router();
+
+const Carro = require('../models/Carro');
+const { protegerRota } = require('../middleware/auth');
+
+router.get('/', (req, res) => {
+
+  Carro.listar((erro, resultados) => {
+
+    if (erro) {
+      return res.status(500).json({
+        erro: 'Erro ao listar carros'
+      });
+    }
+
+    res.json(resultados);
+
+  });
+
+});
+
+router.get('/:id', (req, res) => {
+
+  Carro.buscarPorId(req.params.id, (erro, resultados) => {
+
+    if (erro) {
+      return res.status(500).json({
+        erro: 'Erro ao buscar carro'
+      });
+    }
+
+    if (resultados.length === 0) {
+      return res.status(404).json({
+        erro: 'Carro não encontrado'
+      });
+    }
+
+    res.json(resultados[0]);
+
+  });
+
+});
+
+router.post('/', protegerRota, (req, res) => {
+
+  Carro.inserir(req.body, (erro, resultado) => {
+
+    if (erro) {
+      return res.status(500).json({
+        erro: 'Erro ao inserir carro'
+      });
+    }
+
+    res.status(201).json({
+      mensagem: 'Carro inserido com sucesso',
+      idInserido: resultado.insertId
+    });
+
+  });
+
+});
+
+router.put('/:id', protegerRota, (req, res) => {
+
+  Carro.atualizar(req.params.id, req.body, (erro, resultado) => {
+
+    if (erro) {
+      return res.status(500).json({
+        erro: 'Erro ao atualizar carro'
+      });
+    }
+
+    res.json({
+      mensagem: 'Carro atualizado com sucesso'
+    });
+
+  });
+
+});
+
+router.delete('/:id', protegerRota, (req, res) => {
+
+  Carro.remover(req.params.id, (erro, resultado) => {
+
+    if (erro) {
+      return res.status(500).json({
+        erro: 'Erro ao remover carro'
+      });
+    }
+
+    res.json({
+      mensagem: 'Carro removido com sucesso'
+    });
+
+  });
+
+});
+
+module.exports = router;
+```
+
+Observe que o middleware `protegerRota` foi inserido apenas nas rotas:
+
+```javascript
+router.post('/', protegerRota, ...)
+router.put('/:id', protegerRota, ...)
+router.delete('/:id', protegerRota, ...)
+```
+
+Assim, as rotas `GET` continuam públicas, enquanto as operações que modificam o banco exigem autenticação.
+
+## Enviando o token nas requisições protegidas
+
+Depois de realizar o login, copie o token retornado e envie no cabeçalho:
+
+```http
+Authorization: Bearer SEU_TOKEN_AQUI
+```
+
+Exemplo com `curl`:
+
+```bash
+curl -X POST http://localhost:3000/carros \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer SEU_TOKEN_AQUI" \
+-d "{\"nome\":\"Gol\",\"marca\":\"Volkswagen\",\"ano\":2020,\"preco\":50000}"
+```
+
+Se o token for válido, o carro será inserido.
+
+Se o token não for enviado, a API retornará erro.
+
+## Tratando erro de autenticação
+
+Por padrão, quando o token é inválido ou ausente, o middleware gera um erro. Podemos tratar esse erro no `server.js`.
+
+```javascript
+const express = require('express');
+
+const app = express();
+
+const carrosRoutes = require('./routes/carros');
+const authRoutes = require('./routes/auth');
+
+app.use(express.json());
+
+app.use('/auth', authRoutes);
+app.use('/carros', carrosRoutes);
+
+app.use((erro, req, res, next) => {
+
+  if (erro.name === 'UnauthorizedError') {
+    return res.status(401).json({
+      erro: 'Token inválido ou não informado'
+    });
+  }
+
+  res.status(500).json({
+    erro: 'Erro interno no servidor'
+  });
+
+});
+
+app.listen(3000, () => {
+  console.log('Servidor executando na porta 3000');
+});
+```
+
+Esse middleware de erro torna a resposta mais clara para o cliente.
+
+## Consultando o usuário autenticado
+
+Quando o token é validado, o `express-jwt` disponibiliza os dados decodificados do token na requisição. Em versões atuais, por padrão, o payload fica em:
+
+```javascript
+req.auth
+```
+
+Exemplo:
+
+```javascript
+router.post('/', protegerRota, (req, res) => {
+
+  console.log(req.auth);
+
+  Carro.inserir(req.body, (erro, resultado) => {
+
+    if (erro) {
+      return res.status(500).json({
+        erro: 'Erro ao inserir carro'
+      });
+    }
+
+    res.status(201).json({
+      mensagem: `Carro inserido pelo usuário ${req.auth.email}`,
+      idInserido: resultado.insertId
+    });
+
+  });
+
+});
+```
+
+Isso permite saber qual usuário realizou determinada operação.
+
+## Melhorando a segurança
+
+O exemplo anterior é didático. Em uma aplicação real, alguns cuidados são indispensáveis.
+
+### Não salvar senha em texto puro
+
+Senhas não devem ser salvas diretamente no banco de dados.
+
+Em sistemas reais, utilize hash de senha:
+
+```bash
+npm install bcrypt
+```
+
+### Não deixar a chave secreta no código
+
+A chave secreta do JWT deve ficar em variável de ambiente.
+
+Exemplo:
+
+```javascript
+const segredo = process.env.JWT_SECRET;
+```
+
+### Usar HTTPS em produção
+
+Tokens não devem trafegar em conexões inseguras. Em produção, utilize HTTPS.
+
+### Definir tempo de expiração
+
+Tokens devem ter tempo de validade limitado:
+
+```javascript
+expiresIn: '1h'
+```
+
+Esse cuidado reduz riscos caso o token seja exposto.
+
+## Fluxo completo da autenticação
+
+O fluxo final da API pode ser resumido assim:
+
+1. Cliente envia `POST /auth/login`.
+2. API verifica e-mail e senha no banco.
+3. API gera JWT.
+4. Cliente armazena o token.
+5. Cliente envia o token no cabeçalho `Authorization`.
+6. Middleware `express-jwt` valida o token.
+7. Se válido, a rota é executada.
+8. Se inválido, a API retorna `401`.
+
+## Considerações finais
+
+Neste capítulo estudamos autenticação baseada em token utilizando JWT em uma API Node.js com Express. Vimos que o JWT permite proteger rotas sem armazenar sessões no servidor, o que se ajusta bem ao modelo REST.
+
+Também adaptamos a API de carros para que:
+
+* as rotas `GET` sejam públicas;
+* as rotas `POST`, `PUT` e `DELETE` sejam protegidas;
+* o login gere um token;
+* o token seja validado por middleware;
+* a API responda com status adequado em caso de token inválido.
+
+Esses conceitos são fundamentais para avançar no desenvolvimento de APIs completas, seguras e próximas de aplicações reais.
+
+## Referências

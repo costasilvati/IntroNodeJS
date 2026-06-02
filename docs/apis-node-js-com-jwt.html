@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title> - 10 APIs Node JS com JWT | 04-aula</title>
+<meta name="author" content="Juliana Costa Silva">
+<meta name="description" content="Neste capítulo vamos estudar como proteger rotas de uma API Node.js utilizando JWT (JSON Web Token), Express e o middleware express-jwt. O objetivo é compreender como funciona a autenticação...">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
+<meta property="og:title" content=" - 10 APIs Node JS com JWT | 04-aula">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Neste capítulo vamos estudar como proteger rotas de uma API Node.js utilizando JWT (JSON Web Token), Express e o middleware express-jwt. O objetivo é compreender como funciona a autenticação...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" - 10 APIs Node JS com JWT | 04-aula">
+<meta name="twitter:description" content="Neste capítulo vamos estudar como proteger rotas de uma API Node.js utilizando JWT (JSON Web Token), Express e o middleware express-jwt. O objetivo é compreender como funciona a autenticação...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.11.0/transition.js"></script><script src="libs/bs3compat-0.11.0/tabs.js"></script><script src="libs/bs3compat-0.11.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">04-aula</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Sobre este livro</a></li>
+<li><a class="" href="javascript-basico-para-nodejs.html"><span class="header-section-number">1</span> JavaScript Basico para NodeJS</a></li>
+<li><a class="" href="javascript-e-objetos.html"><span class="header-section-number">2</span> Javascript e Objetos</a></li>
+<li><a class="" href="atividade-avaliativa.html"><span class="header-section-number">3</span> Atividade avaliativa</a></li>
+<li><a class="" href="web-services.html"><span class="header-section-number">4</span> Web Services</a></li>
+<li><a class="" href="lista-de-atividades-estudo-javascript-nodejs.html"><span class="header-section-number">5</span> Lista de Atividades — Estudo JavaScript (NodeJS)</a></li>
+<li><a class="" href="criando-um-servidor-http-com-nodejs.html"><span class="header-section-number">6</span> Criando um servidor HTTP com Nodejs</a></li>
+<li><a class="" href="npm-json-e-organiza%C3%A7%C3%A3o-de-projetos-node-js.html"><span class="header-section-number">7</span> NPM, JSON e organização de projetos Node JS</a></li>
+<li><a class="" href="express-framework.html"><span class="header-section-number">8</span> Express Framework</a></li>
+<li><a class="" href="integra-de-apis-node.js-com-banco-de-dados.html"><span class="header-section-number">9</span> Integra de APIs Node.js com Banco de Dados</a></li>
+<li><a class="active" href="apis-node-js-com-jwt.html"><span class="header-section-number">10</span> APIs Node JS com JWT</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/rstudio/bookdown-demo">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="apis-node-js-com-jwt" class="section level1" number="10">
+<h1>
+<span class="header-section-number"> - 10</span> APIs Node JS com JWT<a class="anchor" aria-label="anchor" href="#apis-node-js-com-jwt"><i class="fas fa-link"></i></a>
+</h1>
+<p>Neste capítulo vamos estudar como proteger rotas de uma API Node.js utilizando <strong>JWT</strong> (<em>JSON Web Token</em>), <strong>Express</strong> e o middleware <strong>express-jwt</strong>. O objetivo é compreender como funciona a autenticação baseada em token e aplicar esse conceito ao sistema de carros desenvolvido no capítulo anterior, que já possui conexão com banco de dados.</p>
+<p>A autenticação é uma etapa essencial no desenvolvimento de APIs, pois permite verificar a identidade de um usuário antes de liberar o acesso a determinados recursos. Em APIs REST, é comum utilizar autenticação baseada em token, especialmente com JWT, porque esse modelo é compacto, independente de sessão e adequado para arquiteturas stateless.<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Rocketseat, &lt;em&gt;Login Com JWT Em Node.js: Aprenda a Proteger APIs de Forma Segura&lt;/em&gt; (2025), &lt;a href="https://www.rocketseat.com.br/blog/artigos/post/login-com-jwt-nodejs"&gt;https://www.rocketseat.com.br/blog/artigos/post/login-com-jwt-nodejs&lt;/a&gt;; W3Schools, &lt;em&gt;Express.js JWT Authentication&lt;/em&gt; (2026), &lt;a href="https://www.w3schools.in/express-js/jwt-authentication"&gt;https://www.w3schools.in/express-js/jwt-authentication&lt;/a&gt;.&lt;/p&gt;'><sup>34</sup></a></span></p>
+<div id="o-que-é-autenticação" class="section level2" number="10.1">
+<h2>
+<span class="header-section-number">10.1</span> O que é autenticação<a class="anchor" aria-label="anchor" href="#o-que-%C3%A9-autentica%C3%A7%C3%A3o"><i class="fas fa-link"></i></a>
+</h2>
+<p>Autenticação é o processo de verificar se um usuário é quem afirma ser. Em sistemas web, isso normalmente ocorre por meio de credenciais, como e-mail e senha.</p>
+<p>Um fluxo simples de autenticação funciona assim:</p>
+<ol style="list-style-type: decimal">
+<li>O usuário envia e-mail e senha para uma rota de login.</li>
+<li>A API verifica se os dados estão corretos.</li>
+<li>Se as credenciais forem válidas, a API gera um token.</li>
+<li>O cliente armazena esse token.</li>
+<li>Em novas requisições, o cliente envia o token.</li>
+<li>A API valida o token antes de permitir acesso à rota protegida.</li>
+</ol>
+<p>Esse modelo evita que o servidor precise manter uma sessão ativa para cada usuário, o que combina bem com APIs REST.</p>
+</div>
+<div id="o-que-é-token" class="section level2" number="10.2">
+<h2>
+<span class="header-section-number">10.2</span> O que é token<a class="anchor" aria-label="anchor" href="#o-que-%C3%A9-token"><i class="fas fa-link"></i></a>
+</h2>
+<p>Um <strong>token</strong> é uma credencial digital temporária usada para representar uma autorização de acesso. Em uma API, o token funciona como uma espécie de “comprovante” de que o usuário já realizou login.</p>
+<p>Depois que o usuário autentica, ele não precisa enviar e-mail e senha em todas as requisições. Em vez disso, envia o token no cabeçalho HTTP.</p>
+<p>Exemplo de cabeçalho:</p>
+<pre class="http"><code>Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6...</code></pre>
+<p>A palavra <code>Bearer</code> indica que o cliente está enviando um token de acesso.</p>
+</div>
+<div id="o-que-é-jwt" class="section level2" number="10.3">
+<h2>
+<span class="header-section-number">10.3</span> O que é JWT<a class="anchor" aria-label="anchor" href="#o-que-%C3%A9-jwt"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>JWT</strong> significa <strong>JSON Web Token</strong>. Trata-se de um padrão para representar informações de forma segura entre duas partes. Um JWT é composto por três partes separadas por ponto:</p>
+<pre class="text"><code>header.payload.signature</code></pre>
+<p>Exemplo simplificado:</p>
+<pre class="text"><code>xxxxx.yyyyy.zzzzz</code></pre>
+<p>As três partes são:</p>
+<ul>
+<li>
+<strong>Header</strong>: informa o tipo do token e o algoritmo de assinatura.</li>
+<li>
+<strong>Payload</strong>: contém os dados, também chamados de <em>claims</em>.</li>
+<li>
+<strong>Signature</strong>: assinatura usada para verificar se o token foi alterado.</li>
+</ul>
+<p>O payload pode conter informações como:</p>
+<div class="sourceCode" id="cb274"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb274-1"><a href="apis-node-js-com-jwt.html#cb274-1" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb274-2"><a href="apis-node-js-com-jwt.html#cb274-2" tabindex="-1"></a>  <span class="dt">"id"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb274-3"><a href="apis-node-js-com-jwt.html#cb274-3" tabindex="-1"></a>  <span class="dt">"email"</span><span class="fu">:</span> <span class="st">"admin@email.com"</span><span class="fu">,</span></span>
+<span id="cb274-4"><a href="apis-node-js-com-jwt.html#cb274-4" tabindex="-1"></a>  <span class="dt">"perfil"</span><span class="fu">:</span> <span class="st">"admin"</span></span>
+<span id="cb274-5"><a href="apis-node-js-com-jwt.html#cb274-5" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p>É importante destacar que o payload do JWT não deve armazenar informações sensíveis, como senhas. O token é assinado, mas seu conteúdo pode ser decodificado por qualquer pessoa que o possua. A segurança do JWT está principalmente na assinatura e na validação do token.<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Rocketseat, &lt;em&gt;Login Com JWT Em Node.js&lt;/em&gt;; W3Schools, &lt;em&gt;Express.js JWT Authentication&lt;/em&gt;.&lt;/p&gt;"><sup>35</sup></a></span></p>
+</div>
+<div id="como-apis-utilizam-token" class="section level2" number="10.4">
+<h2>
+<span class="header-section-number">10.4</span> Como APIs utilizam token<a class="anchor" aria-label="anchor" href="#como-apis-utilizam-token"><i class="fas fa-link"></i></a>
+</h2>
+<p>Em APIs REST, o token normalmente é usado para proteger rotas privadas. O fluxo mais comum é:</p>
+<ol style="list-style-type: decimal">
+<li>O usuário faz login na rota <code>/login</code>.</li>
+<li>A API gera um JWT.</li>
+<li>O cliente recebe o token.</li>
+<li>O cliente envia o token nas próximas requisições.</li>
+<li>A API valida o token antes de executar operações protegidas.</li>
+</ol>
+<p>Exemplo de requisição protegida:</p>
+<pre class="http"><code>DELETE /carros/3 HTTP/1.1
+Authorization: Bearer token_aqui</code></pre>
+<p>Se o token for válido, a API permite a operação. Caso contrário, retorna erro de autenticação, normalmente com status <code>401 Unauthorized</code>.</p>
+</div>
+<div id="instalando-as-dependências" class="section level2" number="10.5">
+<h2>
+<span class="header-section-number">10.5</span> Instalando as dependências<a class="anchor" aria-label="anchor" href="#instalando-as-depend%C3%AAncias"><i class="fas fa-link"></i></a>
+</h2>
+<p>No projeto de carros criado anteriormente, instale as bibliotecas necessárias:</p>
+<div class="sourceCode" id="cb276"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb276-1"><a href="apis-node-js-com-jwt.html#cb276-1" tabindex="-1"></a><span class="ex">npm</span> install jsonwebtoken express-jwt</span></code></pre></div>
+<p>A biblioteca <code>jsonwebtoken</code> será usada para gerar o token no login. A biblioteca <code>express-jwt</code> será usada como middleware para validar o token nas rotas protegidas. Segundo a documentação do pacote, <code>express-jwt</code> fornece um middleware Express para validar JWTs e disponibilizar o payload decodificado na requisição.<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Npm, &lt;em&gt;Express-Jwt&lt;/em&gt; (2024), &lt;a href="https://www.npmjs.com/package/express-jwt"&gt;https://www.npmjs.com/package/express-jwt&lt;/a&gt;.&lt;/p&gt;'><sup>36</sup></a></span></p>
+</div>
+<div id="estrutura-do-projeto" class="section level2" number="10.6">
+<h2>
+<span class="header-section-number">10.6</span> Estrutura do projeto<a class="anchor" aria-label="anchor" href="#estrutura-do-projeto"><i class="fas fa-link"></i></a>
+</h2>
+<p>Vamos considerar a seguinte estrutura:</p>
+<pre class="text"><code>api-carros/
+├── database/
+│   └── connection.js
+├── middleware/
+│   └── auth.js
+├── models/
+│   └── Carro.js
+├── routes/
+│   ├── auth.js
+│   └── carros.js
+├── package.json
+└── server.js</code></pre>
+<p>Neste capítulo, vamos adicionar:</p>
+<ul>
+<li>uma rota de login;</li>
+<li>um middleware de autenticação;</li>
+<li>proteção das rotas <code>POST</code>, <code>PUT</code> e <code>DELETE</code>.</li>
+</ul>
+<p>As rotas <code>GET</code> continuarão públicas, pois representam apenas consulta.</p>
+</div>
+<div id="criando-a-tabela-de-usuários" class="section level2" number="10.7">
+<h2>
+<span class="header-section-number">10.7</span> Criando a tabela de usuários<a class="anchor" aria-label="anchor" href="#criando-a-tabela-de-usu%C3%A1rios"><i class="fas fa-link"></i></a>
+</h2>
+<p>Para autenticar usuários, precisamos de uma tabela no banco de dados.</p>
+<div class="sourceCode" id="cb278"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb278-1"><a href="apis-node-js-com-jwt.html#cb278-1" tabindex="-1"></a><span class="kw">USE</span> api_carros;</span>
+<span id="cb278-2"><a href="apis-node-js-com-jwt.html#cb278-2" tabindex="-1"></a></span>
+<span id="cb278-3"><a href="apis-node-js-com-jwt.html#cb278-3" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> usuarios (</span>
+<span id="cb278-4"><a href="apis-node-js-com-jwt.html#cb278-4" tabindex="-1"></a>    <span class="kw">id</span> <span class="dt">INT</span> AUTO_INCREMENT <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb278-5"><a href="apis-node-js-com-jwt.html#cb278-5" tabindex="-1"></a>    nome <span class="dt">VARCHAR</span>(<span class="dv">100</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb278-6"><a href="apis-node-js-com-jwt.html#cb278-6" tabindex="-1"></a>    email <span class="dt">VARCHAR</span>(<span class="dv">120</span>) <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">UNIQUE</span>,</span>
+<span id="cb278-7"><a href="apis-node-js-com-jwt.html#cb278-7" tabindex="-1"></a>    senha <span class="dt">VARCHAR</span>(<span class="dv">100</span>) <span class="kw">NOT</span> <span class="kw">NULL</span></span>
+<span id="cb278-8"><a href="apis-node-js-com-jwt.html#cb278-8" tabindex="-1"></a>);</span></code></pre></div>
+<p>Vamos inserir um usuário inicial:</p>
+<div class="sourceCode" id="cb279"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb279-1"><a href="apis-node-js-com-jwt.html#cb279-1" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> usuarios (nome, email, senha)</span>
+<span id="cb279-2"><a href="apis-node-js-com-jwt.html#cb279-2" tabindex="-1"></a><span class="kw">VALUES</span> (<span class="st">'Administrador'</span>, <span class="st">'admin@email.com'</span>, <span class="st">'123456'</span>);</span></code></pre></div>
+<p>Neste exemplo, a senha foi salva em texto puro apenas para fins didáticos. Em sistemas reais, senhas devem ser armazenadas com hash, usando bibliotecas como <code>bcrypt</code>.</p>
+</div>
+<div id="criando-o-arquivo-de-configuração-do-token" class="section level2" number="10.8">
+<h2>
+<span class="header-section-number">10.8</span> Criando o arquivo de configuração do token<a class="anchor" aria-label="anchor" href="#criando-o-arquivo-de-configura%C3%A7%C3%A3o-do-token"><i class="fas fa-link"></i></a>
+</h2>
+<p>Para gerar e validar tokens, precisamos de uma chave secreta.</p>
+<p>Crie o arquivo:</p>
+<pre class="text"><code>middleware/auth.js</code></pre>
+<p>Conteúdo:</p>
+<div class="sourceCode" id="cb281"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb281-1"><a href="apis-node-js-com-jwt.html#cb281-1" tabindex="-1"></a><span class="kw">const</span> { expressjwt } <span class="op">=</span> <span class="pp">require</span>(<span class="st">'express-jwt'</span>)<span class="op">;</span></span>
+<span id="cb281-2"><a href="apis-node-js-com-jwt.html#cb281-2" tabindex="-1"></a></span>
+<span id="cb281-3"><a href="apis-node-js-com-jwt.html#cb281-3" tabindex="-1"></a><span class="kw">const</span> segredo <span class="op">=</span> <span class="st">'chave_secreta_da_api'</span><span class="op">;</span></span>
+<span id="cb281-4"><a href="apis-node-js-com-jwt.html#cb281-4" tabindex="-1"></a></span>
+<span id="cb281-5"><a href="apis-node-js-com-jwt.html#cb281-5" tabindex="-1"></a><span class="kw">const</span> protegerRota <span class="op">=</span> <span class="fu">expressjwt</span>({</span>
+<span id="cb281-6"><a href="apis-node-js-com-jwt.html#cb281-6" tabindex="-1"></a>  <span class="dt">secret</span><span class="op">:</span> segredo<span class="op">,</span></span>
+<span id="cb281-7"><a href="apis-node-js-com-jwt.html#cb281-7" tabindex="-1"></a>  <span class="dt">algorithms</span><span class="op">:</span> [<span class="st">'HS256'</span>]</span>
+<span id="cb281-8"><a href="apis-node-js-com-jwt.html#cb281-8" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb281-9"><a href="apis-node-js-com-jwt.html#cb281-9" tabindex="-1"></a></span>
+<span id="cb281-10"><a href="apis-node-js-com-jwt.html#cb281-10" tabindex="-1"></a>module<span class="op">.</span><span class="at">exports</span> <span class="op">=</span> {</span>
+<span id="cb281-11"><a href="apis-node-js-com-jwt.html#cb281-11" tabindex="-1"></a>  segredo<span class="op">,</span></span>
+<span id="cb281-12"><a href="apis-node-js-com-jwt.html#cb281-12" tabindex="-1"></a>  protegerRota</span>
+<span id="cb281-13"><a href="apis-node-js-com-jwt.html#cb281-13" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+<p>A função <code>expressjwt()</code> cria um middleware que valida o token recebido no cabeçalho <code>Authorization</code>. O algoritmo <code>HS256</code> é um algoritmo simétrico, no qual a mesma chave é usada para assinar e verificar o token.<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Npm, &lt;em&gt;Express-Jwt&lt;/em&gt;.&lt;/p&gt;"><sup>37</sup></a></span></p>
+</div>
+<div id="criando-a-rota-de-login" class="section level2" number="10.9">
+<h2>
+<span class="header-section-number">10.9</span> Criando a rota de login<a class="anchor" aria-label="anchor" href="#criando-a-rota-de-login"><i class="fas fa-link"></i></a>
+</h2>
+<p>Crie o arquivo:</p>
+<pre class="text"><code>routes/auth.js</code></pre>
+<p>Conteúdo:</p>
+<div class="sourceCode" id="cb283"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb283-1"><a href="apis-node-js-com-jwt.html#cb283-1" tabindex="-1"></a><span class="kw">const</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">'express'</span>)<span class="op">;</span></span>
+<span id="cb283-2"><a href="apis-node-js-com-jwt.html#cb283-2" tabindex="-1"></a><span class="kw">const</span> jwt <span class="op">=</span> <span class="pp">require</span>(<span class="st">'jsonwebtoken'</span>)<span class="op">;</span></span>
+<span id="cb283-3"><a href="apis-node-js-com-jwt.html#cb283-3" tabindex="-1"></a></span>
+<span id="cb283-4"><a href="apis-node-js-com-jwt.html#cb283-4" tabindex="-1"></a><span class="kw">const</span> router <span class="op">=</span> express<span class="op">.</span><span class="fu">Router</span>()<span class="op">;</span></span>
+<span id="cb283-5"><a href="apis-node-js-com-jwt.html#cb283-5" tabindex="-1"></a></span>
+<span id="cb283-6"><a href="apis-node-js-com-jwt.html#cb283-6" tabindex="-1"></a><span class="kw">const</span> connection <span class="op">=</span> <span class="pp">require</span>(<span class="st">'../database/connection'</span>)<span class="op">;</span></span>
+<span id="cb283-7"><a href="apis-node-js-com-jwt.html#cb283-7" tabindex="-1"></a><span class="kw">const</span> { segredo } <span class="op">=</span> <span class="pp">require</span>(<span class="st">'../middleware/auth'</span>)<span class="op">;</span></span>
+<span id="cb283-8"><a href="apis-node-js-com-jwt.html#cb283-8" tabindex="-1"></a></span>
+<span id="cb283-9"><a href="apis-node-js-com-jwt.html#cb283-9" tabindex="-1"></a>router<span class="op">.</span><span class="fu">post</span>(<span class="st">'/login'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb283-10"><a href="apis-node-js-com-jwt.html#cb283-10" tabindex="-1"></a></span>
+<span id="cb283-11"><a href="apis-node-js-com-jwt.html#cb283-11" tabindex="-1"></a>  <span class="kw">const</span> { email<span class="op">,</span> senha } <span class="op">=</span> req<span class="op">.</span><span class="at">body</span><span class="op">;</span></span>
+<span id="cb283-12"><a href="apis-node-js-com-jwt.html#cb283-12" tabindex="-1"></a></span>
+<span id="cb283-13"><a href="apis-node-js-com-jwt.html#cb283-13" tabindex="-1"></a>  <span class="kw">const</span> sql <span class="op">=</span> <span class="st">'SELECT * FROM usuarios WHERE email = ? AND senha = ?'</span><span class="op">;</span></span>
+<span id="cb283-14"><a href="apis-node-js-com-jwt.html#cb283-14" tabindex="-1"></a></span>
+<span id="cb283-15"><a href="apis-node-js-com-jwt.html#cb283-15" tabindex="-1"></a>  connection<span class="op">.</span><span class="fu">query</span>(sql<span class="op">,</span> [email<span class="op">,</span> senha]<span class="op">,</span> (erro<span class="op">,</span> resultados) <span class="kw">=&gt;</span> {</span>
+<span id="cb283-16"><a href="apis-node-js-com-jwt.html#cb283-16" tabindex="-1"></a></span>
+<span id="cb283-17"><a href="apis-node-js-com-jwt.html#cb283-17" tabindex="-1"></a>    <span class="cf">if</span> (erro) {</span>
+<span id="cb283-18"><a href="apis-node-js-com-jwt.html#cb283-18" tabindex="-1"></a>      <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">500</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb283-19"><a href="apis-node-js-com-jwt.html#cb283-19" tabindex="-1"></a>        <span class="dt">erro</span><span class="op">:</span> <span class="st">'Erro ao autenticar usuário'</span></span>
+<span id="cb283-20"><a href="apis-node-js-com-jwt.html#cb283-20" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb283-21"><a href="apis-node-js-com-jwt.html#cb283-21" tabindex="-1"></a>    }</span>
+<span id="cb283-22"><a href="apis-node-js-com-jwt.html#cb283-22" tabindex="-1"></a></span>
+<span id="cb283-23"><a href="apis-node-js-com-jwt.html#cb283-23" tabindex="-1"></a>    <span class="cf">if</span> (resultados<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span>) {</span>
+<span id="cb283-24"><a href="apis-node-js-com-jwt.html#cb283-24" tabindex="-1"></a>      <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">401</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb283-25"><a href="apis-node-js-com-jwt.html#cb283-25" tabindex="-1"></a>        <span class="dt">erro</span><span class="op">:</span> <span class="st">'E-mail ou senha inválidos'</span></span>
+<span id="cb283-26"><a href="apis-node-js-com-jwt.html#cb283-26" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb283-27"><a href="apis-node-js-com-jwt.html#cb283-27" tabindex="-1"></a>    }</span>
+<span id="cb283-28"><a href="apis-node-js-com-jwt.html#cb283-28" tabindex="-1"></a></span>
+<span id="cb283-29"><a href="apis-node-js-com-jwt.html#cb283-29" tabindex="-1"></a>    <span class="kw">const</span> usuario <span class="op">=</span> resultados[<span class="dv">0</span>]<span class="op">;</span></span>
+<span id="cb283-30"><a href="apis-node-js-com-jwt.html#cb283-30" tabindex="-1"></a></span>
+<span id="cb283-31"><a href="apis-node-js-com-jwt.html#cb283-31" tabindex="-1"></a>    <span class="kw">const</span> token <span class="op">=</span> jwt<span class="op">.</span><span class="fu">sign</span>(</span>
+<span id="cb283-32"><a href="apis-node-js-com-jwt.html#cb283-32" tabindex="-1"></a>      {</span>
+<span id="cb283-33"><a href="apis-node-js-com-jwt.html#cb283-33" tabindex="-1"></a>        <span class="dt">id</span><span class="op">:</span> usuario<span class="op">.</span><span class="at">id</span><span class="op">,</span></span>
+<span id="cb283-34"><a href="apis-node-js-com-jwt.html#cb283-34" tabindex="-1"></a>        <span class="dt">nome</span><span class="op">:</span> usuario<span class="op">.</span><span class="at">nome</span><span class="op">,</span></span>
+<span id="cb283-35"><a href="apis-node-js-com-jwt.html#cb283-35" tabindex="-1"></a>        <span class="dt">email</span><span class="op">:</span> usuario<span class="op">.</span><span class="at">email</span></span>
+<span id="cb283-36"><a href="apis-node-js-com-jwt.html#cb283-36" tabindex="-1"></a>      }<span class="op">,</span></span>
+<span id="cb283-37"><a href="apis-node-js-com-jwt.html#cb283-37" tabindex="-1"></a>      segredo<span class="op">,</span></span>
+<span id="cb283-38"><a href="apis-node-js-com-jwt.html#cb283-38" tabindex="-1"></a>      {</span>
+<span id="cb283-39"><a href="apis-node-js-com-jwt.html#cb283-39" tabindex="-1"></a>        <span class="dt">expiresIn</span><span class="op">:</span> <span class="st">'1h'</span></span>
+<span id="cb283-40"><a href="apis-node-js-com-jwt.html#cb283-40" tabindex="-1"></a>      }</span>
+<span id="cb283-41"><a href="apis-node-js-com-jwt.html#cb283-41" tabindex="-1"></a>    )<span class="op">;</span></span>
+<span id="cb283-42"><a href="apis-node-js-com-jwt.html#cb283-42" tabindex="-1"></a></span>
+<span id="cb283-43"><a href="apis-node-js-com-jwt.html#cb283-43" tabindex="-1"></a>    res<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb283-44"><a href="apis-node-js-com-jwt.html#cb283-44" tabindex="-1"></a>      <span class="dt">mensagem</span><span class="op">:</span> <span class="st">'Login realizado com sucesso'</span><span class="op">,</span></span>
+<span id="cb283-45"><a href="apis-node-js-com-jwt.html#cb283-45" tabindex="-1"></a>      <span class="dt">token</span><span class="op">:</span> token</span>
+<span id="cb283-46"><a href="apis-node-js-com-jwt.html#cb283-46" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb283-47"><a href="apis-node-js-com-jwt.html#cb283-47" tabindex="-1"></a></span>
+<span id="cb283-48"><a href="apis-node-js-com-jwt.html#cb283-48" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb283-49"><a href="apis-node-js-com-jwt.html#cb283-49" tabindex="-1"></a></span>
+<span id="cb283-50"><a href="apis-node-js-com-jwt.html#cb283-50" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb283-51"><a href="apis-node-js-com-jwt.html#cb283-51" tabindex="-1"></a></span>
+<span id="cb283-52"><a href="apis-node-js-com-jwt.html#cb283-52" tabindex="-1"></a>module<span class="op">.</span><span class="at">exports</span> <span class="op">=</span> router<span class="op">;</span></span></code></pre></div>
+<p>Neste código:</p>
+<ul>
+<li>
+<code>req.body</code> lê o JSON enviado pelo cliente;</li>
+<li>o banco é consultado para verificar e-mail e senha;</li>
+<li>
+<code>jwt.sign()</code> gera o token;</li>
+<li>
+<code>expiresIn: '1h'</code> define validade de uma hora;</li>
+<li>a resposta retorna o token para o cliente.</li>
+</ul>
+</div>
+<div id="configurando-a-rota-de-autenticação-no-servidor" class="section level2" number="10.10">
+<h2>
+<span class="header-section-number">10.10</span> Configurando a rota de autenticação no servidor<a class="anchor" aria-label="anchor" href="#configurando-a-rota-de-autentica%C3%A7%C3%A3o-no-servidor"><i class="fas fa-link"></i></a>
+</h2>
+<p>No arquivo <code>server.js</code>, importe e use a rota de autenticação.</p>
+<div class="sourceCode" id="cb284"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb284-1"><a href="apis-node-js-com-jwt.html#cb284-1" tabindex="-1"></a><span class="kw">const</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">'express'</span>)<span class="op">;</span></span>
+<span id="cb284-2"><a href="apis-node-js-com-jwt.html#cb284-2" tabindex="-1"></a></span>
+<span id="cb284-3"><a href="apis-node-js-com-jwt.html#cb284-3" tabindex="-1"></a><span class="kw">const</span> app <span class="op">=</span> <span class="fu">express</span>()<span class="op">;</span></span>
+<span id="cb284-4"><a href="apis-node-js-com-jwt.html#cb284-4" tabindex="-1"></a></span>
+<span id="cb284-5"><a href="apis-node-js-com-jwt.html#cb284-5" tabindex="-1"></a><span class="kw">const</span> carrosRoutes <span class="op">=</span> <span class="pp">require</span>(<span class="st">'./routes/carros'</span>)<span class="op">;</span></span>
+<span id="cb284-6"><a href="apis-node-js-com-jwt.html#cb284-6" tabindex="-1"></a><span class="kw">const</span> authRoutes <span class="op">=</span> <span class="pp">require</span>(<span class="st">'./routes/auth'</span>)<span class="op">;</span></span>
+<span id="cb284-7"><a href="apis-node-js-com-jwt.html#cb284-7" tabindex="-1"></a></span>
+<span id="cb284-8"><a href="apis-node-js-com-jwt.html#cb284-8" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>(express<span class="op">.</span><span class="fu">json</span>())<span class="op">;</span></span>
+<span id="cb284-9"><a href="apis-node-js-com-jwt.html#cb284-9" tabindex="-1"></a></span>
+<span id="cb284-10"><a href="apis-node-js-com-jwt.html#cb284-10" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>(<span class="st">'/auth'</span><span class="op">,</span> authRoutes)<span class="op">;</span></span>
+<span id="cb284-11"><a href="apis-node-js-com-jwt.html#cb284-11" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>(<span class="st">'/carros'</span><span class="op">,</span> carrosRoutes)<span class="op">;</span></span>
+<span id="cb284-12"><a href="apis-node-js-com-jwt.html#cb284-12" tabindex="-1"></a></span>
+<span id="cb284-13"><a href="apis-node-js-com-jwt.html#cb284-13" tabindex="-1"></a>app<span class="op">.</span><span class="fu">listen</span>(<span class="dv">3000</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb284-14"><a href="apis-node-js-com-jwt.html#cb284-14" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">'Servidor executando na porta 3000'</span>)<span class="op">;</span></span>
+<span id="cb284-15"><a href="apis-node-js-com-jwt.html#cb284-15" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+<p>Agora a rota de login será:</p>
+<pre class="text"><code>POST http://localhost:3000/auth/login</code></pre>
+</div>
+<div id="testando-o-login" class="section level2" number="10.11">
+<h2>
+<span class="header-section-number">10.11</span> Testando o login<a class="anchor" aria-label="anchor" href="#testando-o-login"><i class="fas fa-link"></i></a>
+</h2>
+<p>Envie a seguinte requisição:</p>
+<pre class="http"><code>POST /auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "admin@email.com",
+  "senha": "123456"
+}</code></pre>
+<p>Resposta esperada:</p>
+<div class="sourceCode" id="cb287"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb287-1"><a href="apis-node-js-com-jwt.html#cb287-1" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb287-2"><a href="apis-node-js-com-jwt.html#cb287-2" tabindex="-1"></a>  <span class="dt">"mensagem"</span><span class="fu">:</span> <span class="st">"Login realizado com sucesso"</span><span class="fu">,</span></span>
+<span id="cb287-3"><a href="apis-node-js-com-jwt.html#cb287-3" tabindex="-1"></a>  <span class="dt">"token"</span><span class="fu">:</span> <span class="st">"eyJhbGciOiJIUzI1NiIsInR5cCI6..."</span></span>
+<span id="cb287-4"><a href="apis-node-js-com-jwt.html#cb287-4" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p>Esse token será usado para acessar rotas protegidas.</p>
+</div>
+<div id="protegendo-rotas-da-api-de-carros" class="section level2" number="10.12">
+<h2>
+<span class="header-section-number">10.12</span> Protegendo rotas da API de carros<a class="anchor" aria-label="anchor" href="#protegendo-rotas-da-api-de-carros"><i class="fas fa-link"></i></a>
+</h2>
+<p>No capítulo anterior, criamos rotas para:</p>
+<ul>
+<li>listar carros;</li>
+<li>buscar carro por ID;</li>
+<li>inserir carro;</li>
+<li>atualizar carro;</li>
+<li>remover carro.</li>
+</ul>
+<p>Agora vamos permitir que qualquer usuário consulte os carros, mas apenas usuários autenticados possam inserir, atualizar ou remover registros.</p>
+<p>Arquivo:</p>
+<pre class="text"><code>routes/carros.js</code></pre>
+<div class="sourceCode" id="cb289"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb289-1"><a href="apis-node-js-com-jwt.html#cb289-1" tabindex="-1"></a><span class="kw">const</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">'express'</span>)<span class="op">;</span></span>
+<span id="cb289-2"><a href="apis-node-js-com-jwt.html#cb289-2" tabindex="-1"></a></span>
+<span id="cb289-3"><a href="apis-node-js-com-jwt.html#cb289-3" tabindex="-1"></a><span class="kw">const</span> router <span class="op">=</span> express<span class="op">.</span><span class="fu">Router</span>()<span class="op">;</span></span>
+<span id="cb289-4"><a href="apis-node-js-com-jwt.html#cb289-4" tabindex="-1"></a></span>
+<span id="cb289-5"><a href="apis-node-js-com-jwt.html#cb289-5" tabindex="-1"></a><span class="kw">const</span> Carro <span class="op">=</span> <span class="pp">require</span>(<span class="st">'../models/Carro'</span>)<span class="op">;</span></span>
+<span id="cb289-6"><a href="apis-node-js-com-jwt.html#cb289-6" tabindex="-1"></a><span class="kw">const</span> { protegerRota } <span class="op">=</span> <span class="pp">require</span>(<span class="st">'../middleware/auth'</span>)<span class="op">;</span></span>
+<span id="cb289-7"><a href="apis-node-js-com-jwt.html#cb289-7" tabindex="-1"></a></span>
+<span id="cb289-8"><a href="apis-node-js-com-jwt.html#cb289-8" tabindex="-1"></a>router<span class="op">.</span><span class="fu">get</span>(<span class="st">'/'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb289-9"><a href="apis-node-js-com-jwt.html#cb289-9" tabindex="-1"></a></span>
+<span id="cb289-10"><a href="apis-node-js-com-jwt.html#cb289-10" tabindex="-1"></a>  Carro<span class="op">.</span><span class="fu">listar</span>((erro<span class="op">,</span> resultados) <span class="kw">=&gt;</span> {</span>
+<span id="cb289-11"><a href="apis-node-js-com-jwt.html#cb289-11" tabindex="-1"></a></span>
+<span id="cb289-12"><a href="apis-node-js-com-jwt.html#cb289-12" tabindex="-1"></a>    <span class="cf">if</span> (erro) {</span>
+<span id="cb289-13"><a href="apis-node-js-com-jwt.html#cb289-13" tabindex="-1"></a>      <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">500</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb289-14"><a href="apis-node-js-com-jwt.html#cb289-14" tabindex="-1"></a>        <span class="dt">erro</span><span class="op">:</span> <span class="st">'Erro ao listar carros'</span></span>
+<span id="cb289-15"><a href="apis-node-js-com-jwt.html#cb289-15" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb289-16"><a href="apis-node-js-com-jwt.html#cb289-16" tabindex="-1"></a>    }</span>
+<span id="cb289-17"><a href="apis-node-js-com-jwt.html#cb289-17" tabindex="-1"></a></span>
+<span id="cb289-18"><a href="apis-node-js-com-jwt.html#cb289-18" tabindex="-1"></a>    res<span class="op">.</span><span class="fu">json</span>(resultados)<span class="op">;</span></span>
+<span id="cb289-19"><a href="apis-node-js-com-jwt.html#cb289-19" tabindex="-1"></a></span>
+<span id="cb289-20"><a href="apis-node-js-com-jwt.html#cb289-20" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb289-21"><a href="apis-node-js-com-jwt.html#cb289-21" tabindex="-1"></a></span>
+<span id="cb289-22"><a href="apis-node-js-com-jwt.html#cb289-22" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb289-23"><a href="apis-node-js-com-jwt.html#cb289-23" tabindex="-1"></a></span>
+<span id="cb289-24"><a href="apis-node-js-com-jwt.html#cb289-24" tabindex="-1"></a>router<span class="op">.</span><span class="fu">get</span>(<span class="st">'/:id'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb289-25"><a href="apis-node-js-com-jwt.html#cb289-25" tabindex="-1"></a></span>
+<span id="cb289-26"><a href="apis-node-js-com-jwt.html#cb289-26" tabindex="-1"></a>  Carro<span class="op">.</span><span class="fu">buscarPorId</span>(req<span class="op">.</span><span class="at">params</span><span class="op">.</span><span class="at">id</span><span class="op">,</span> (erro<span class="op">,</span> resultados) <span class="kw">=&gt;</span> {</span>
+<span id="cb289-27"><a href="apis-node-js-com-jwt.html#cb289-27" tabindex="-1"></a></span>
+<span id="cb289-28"><a href="apis-node-js-com-jwt.html#cb289-28" tabindex="-1"></a>    <span class="cf">if</span> (erro) {</span>
+<span id="cb289-29"><a href="apis-node-js-com-jwt.html#cb289-29" tabindex="-1"></a>      <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">500</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb289-30"><a href="apis-node-js-com-jwt.html#cb289-30" tabindex="-1"></a>        <span class="dt">erro</span><span class="op">:</span> <span class="st">'Erro ao buscar carro'</span></span>
+<span id="cb289-31"><a href="apis-node-js-com-jwt.html#cb289-31" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb289-32"><a href="apis-node-js-com-jwt.html#cb289-32" tabindex="-1"></a>    }</span>
+<span id="cb289-33"><a href="apis-node-js-com-jwt.html#cb289-33" tabindex="-1"></a></span>
+<span id="cb289-34"><a href="apis-node-js-com-jwt.html#cb289-34" tabindex="-1"></a>    <span class="cf">if</span> (resultados<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span>) {</span>
+<span id="cb289-35"><a href="apis-node-js-com-jwt.html#cb289-35" tabindex="-1"></a>      <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">404</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb289-36"><a href="apis-node-js-com-jwt.html#cb289-36" tabindex="-1"></a>        <span class="dt">erro</span><span class="op">:</span> <span class="st">'Carro não encontrado'</span></span>
+<span id="cb289-37"><a href="apis-node-js-com-jwt.html#cb289-37" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb289-38"><a href="apis-node-js-com-jwt.html#cb289-38" tabindex="-1"></a>    }</span>
+<span id="cb289-39"><a href="apis-node-js-com-jwt.html#cb289-39" tabindex="-1"></a></span>
+<span id="cb289-40"><a href="apis-node-js-com-jwt.html#cb289-40" tabindex="-1"></a>    res<span class="op">.</span><span class="fu">json</span>(resultados[<span class="dv">0</span>])<span class="op">;</span></span>
+<span id="cb289-41"><a href="apis-node-js-com-jwt.html#cb289-41" tabindex="-1"></a></span>
+<span id="cb289-42"><a href="apis-node-js-com-jwt.html#cb289-42" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb289-43"><a href="apis-node-js-com-jwt.html#cb289-43" tabindex="-1"></a></span>
+<span id="cb289-44"><a href="apis-node-js-com-jwt.html#cb289-44" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb289-45"><a href="apis-node-js-com-jwt.html#cb289-45" tabindex="-1"></a></span>
+<span id="cb289-46"><a href="apis-node-js-com-jwt.html#cb289-46" tabindex="-1"></a>router<span class="op">.</span><span class="fu">post</span>(<span class="st">'/'</span><span class="op">,</span> protegerRota<span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb289-47"><a href="apis-node-js-com-jwt.html#cb289-47" tabindex="-1"></a></span>
+<span id="cb289-48"><a href="apis-node-js-com-jwt.html#cb289-48" tabindex="-1"></a>  Carro<span class="op">.</span><span class="fu">inserir</span>(req<span class="op">.</span><span class="at">body</span><span class="op">,</span> (erro<span class="op">,</span> resultado) <span class="kw">=&gt;</span> {</span>
+<span id="cb289-49"><a href="apis-node-js-com-jwt.html#cb289-49" tabindex="-1"></a></span>
+<span id="cb289-50"><a href="apis-node-js-com-jwt.html#cb289-50" tabindex="-1"></a>    <span class="cf">if</span> (erro) {</span>
+<span id="cb289-51"><a href="apis-node-js-com-jwt.html#cb289-51" tabindex="-1"></a>      <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">500</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb289-52"><a href="apis-node-js-com-jwt.html#cb289-52" tabindex="-1"></a>        <span class="dt">erro</span><span class="op">:</span> <span class="st">'Erro ao inserir carro'</span></span>
+<span id="cb289-53"><a href="apis-node-js-com-jwt.html#cb289-53" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb289-54"><a href="apis-node-js-com-jwt.html#cb289-54" tabindex="-1"></a>    }</span>
+<span id="cb289-55"><a href="apis-node-js-com-jwt.html#cb289-55" tabindex="-1"></a></span>
+<span id="cb289-56"><a href="apis-node-js-com-jwt.html#cb289-56" tabindex="-1"></a>    res<span class="op">.</span><span class="fu">status</span>(<span class="dv">201</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb289-57"><a href="apis-node-js-com-jwt.html#cb289-57" tabindex="-1"></a>      <span class="dt">mensagem</span><span class="op">:</span> <span class="st">'Carro inserido com sucesso'</span><span class="op">,</span></span>
+<span id="cb289-58"><a href="apis-node-js-com-jwt.html#cb289-58" tabindex="-1"></a>      <span class="dt">idInserido</span><span class="op">:</span> resultado<span class="op">.</span><span class="at">insertId</span></span>
+<span id="cb289-59"><a href="apis-node-js-com-jwt.html#cb289-59" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb289-60"><a href="apis-node-js-com-jwt.html#cb289-60" tabindex="-1"></a></span>
+<span id="cb289-61"><a href="apis-node-js-com-jwt.html#cb289-61" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb289-62"><a href="apis-node-js-com-jwt.html#cb289-62" tabindex="-1"></a></span>
+<span id="cb289-63"><a href="apis-node-js-com-jwt.html#cb289-63" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb289-64"><a href="apis-node-js-com-jwt.html#cb289-64" tabindex="-1"></a></span>
+<span id="cb289-65"><a href="apis-node-js-com-jwt.html#cb289-65" tabindex="-1"></a>router<span class="op">.</span><span class="fu">put</span>(<span class="st">'/:id'</span><span class="op">,</span> protegerRota<span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb289-66"><a href="apis-node-js-com-jwt.html#cb289-66" tabindex="-1"></a></span>
+<span id="cb289-67"><a href="apis-node-js-com-jwt.html#cb289-67" tabindex="-1"></a>  Carro<span class="op">.</span><span class="fu">atualizar</span>(req<span class="op">.</span><span class="at">params</span><span class="op">.</span><span class="at">id</span><span class="op">,</span> req<span class="op">.</span><span class="at">body</span><span class="op">,</span> (erro<span class="op">,</span> resultado) <span class="kw">=&gt;</span> {</span>
+<span id="cb289-68"><a href="apis-node-js-com-jwt.html#cb289-68" tabindex="-1"></a></span>
+<span id="cb289-69"><a href="apis-node-js-com-jwt.html#cb289-69" tabindex="-1"></a>    <span class="cf">if</span> (erro) {</span>
+<span id="cb289-70"><a href="apis-node-js-com-jwt.html#cb289-70" tabindex="-1"></a>      <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">500</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb289-71"><a href="apis-node-js-com-jwt.html#cb289-71" tabindex="-1"></a>        <span class="dt">erro</span><span class="op">:</span> <span class="st">'Erro ao atualizar carro'</span></span>
+<span id="cb289-72"><a href="apis-node-js-com-jwt.html#cb289-72" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb289-73"><a href="apis-node-js-com-jwt.html#cb289-73" tabindex="-1"></a>    }</span>
+<span id="cb289-74"><a href="apis-node-js-com-jwt.html#cb289-74" tabindex="-1"></a></span>
+<span id="cb289-75"><a href="apis-node-js-com-jwt.html#cb289-75" tabindex="-1"></a>    res<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb289-76"><a href="apis-node-js-com-jwt.html#cb289-76" tabindex="-1"></a>      <span class="dt">mensagem</span><span class="op">:</span> <span class="st">'Carro atualizado com sucesso'</span></span>
+<span id="cb289-77"><a href="apis-node-js-com-jwt.html#cb289-77" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb289-78"><a href="apis-node-js-com-jwt.html#cb289-78" tabindex="-1"></a></span>
+<span id="cb289-79"><a href="apis-node-js-com-jwt.html#cb289-79" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb289-80"><a href="apis-node-js-com-jwt.html#cb289-80" tabindex="-1"></a></span>
+<span id="cb289-81"><a href="apis-node-js-com-jwt.html#cb289-81" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb289-82"><a href="apis-node-js-com-jwt.html#cb289-82" tabindex="-1"></a></span>
+<span id="cb289-83"><a href="apis-node-js-com-jwt.html#cb289-83" tabindex="-1"></a>router<span class="op">.</span><span class="fu">delete</span>(<span class="st">'/:id'</span><span class="op">,</span> protegerRota<span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb289-84"><a href="apis-node-js-com-jwt.html#cb289-84" tabindex="-1"></a></span>
+<span id="cb289-85"><a href="apis-node-js-com-jwt.html#cb289-85" tabindex="-1"></a>  Carro<span class="op">.</span><span class="fu">remover</span>(req<span class="op">.</span><span class="at">params</span><span class="op">.</span><span class="at">id</span><span class="op">,</span> (erro<span class="op">,</span> resultado) <span class="kw">=&gt;</span> {</span>
+<span id="cb289-86"><a href="apis-node-js-com-jwt.html#cb289-86" tabindex="-1"></a></span>
+<span id="cb289-87"><a href="apis-node-js-com-jwt.html#cb289-87" tabindex="-1"></a>    <span class="cf">if</span> (erro) {</span>
+<span id="cb289-88"><a href="apis-node-js-com-jwt.html#cb289-88" tabindex="-1"></a>      <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">500</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb289-89"><a href="apis-node-js-com-jwt.html#cb289-89" tabindex="-1"></a>        <span class="dt">erro</span><span class="op">:</span> <span class="st">'Erro ao remover carro'</span></span>
+<span id="cb289-90"><a href="apis-node-js-com-jwt.html#cb289-90" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb289-91"><a href="apis-node-js-com-jwt.html#cb289-91" tabindex="-1"></a>    }</span>
+<span id="cb289-92"><a href="apis-node-js-com-jwt.html#cb289-92" tabindex="-1"></a></span>
+<span id="cb289-93"><a href="apis-node-js-com-jwt.html#cb289-93" tabindex="-1"></a>    res<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb289-94"><a href="apis-node-js-com-jwt.html#cb289-94" tabindex="-1"></a>      <span class="dt">mensagem</span><span class="op">:</span> <span class="st">'Carro removido com sucesso'</span></span>
+<span id="cb289-95"><a href="apis-node-js-com-jwt.html#cb289-95" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb289-96"><a href="apis-node-js-com-jwt.html#cb289-96" tabindex="-1"></a></span>
+<span id="cb289-97"><a href="apis-node-js-com-jwt.html#cb289-97" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb289-98"><a href="apis-node-js-com-jwt.html#cb289-98" tabindex="-1"></a></span>
+<span id="cb289-99"><a href="apis-node-js-com-jwt.html#cb289-99" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb289-100"><a href="apis-node-js-com-jwt.html#cb289-100" tabindex="-1"></a></span>
+<span id="cb289-101"><a href="apis-node-js-com-jwt.html#cb289-101" tabindex="-1"></a>module<span class="op">.</span><span class="at">exports</span> <span class="op">=</span> router<span class="op">;</span></span></code></pre></div>
+<p>Observe que o middleware <code>protegerRota</code> foi inserido apenas nas rotas:</p>
+<div class="sourceCode" id="cb290"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb290-1"><a href="apis-node-js-com-jwt.html#cb290-1" tabindex="-1"></a>router<span class="op">.</span><span class="fu">post</span>(<span class="st">'/'</span><span class="op">,</span> protegerRota<span class="op">,</span> <span class="op">...</span>)</span>
+<span id="cb290-2"><a href="apis-node-js-com-jwt.html#cb290-2" tabindex="-1"></a>router<span class="op">.</span><span class="fu">put</span>(<span class="st">'/:id'</span><span class="op">,</span> protegerRota<span class="op">,</span> <span class="op">...</span>)</span>
+<span id="cb290-3"><a href="apis-node-js-com-jwt.html#cb290-3" tabindex="-1"></a>router<span class="op">.</span><span class="fu">delete</span>(<span class="st">'/:id'</span><span class="op">,</span> protegerRota<span class="op">,</span> <span class="op">...</span>)</span></code></pre></div>
+<p>Assim, as rotas <code>GET</code> continuam públicas, enquanto as operações que modificam o banco exigem autenticação.</p>
+</div>
+<div id="enviando-o-token-nas-requisições-protegidas" class="section level2" number="10.13">
+<h2>
+<span class="header-section-number">10.13</span> Enviando o token nas requisições protegidas<a class="anchor" aria-label="anchor" href="#enviando-o-token-nas-requisi%C3%A7%C3%B5es-protegidas"><i class="fas fa-link"></i></a>
+</h2>
+<p>Depois de realizar o login, copie o token retornado e envie no cabeçalho:</p>
+<pre class="http"><code>Authorization: Bearer SEU_TOKEN_AQUI</code></pre>
+<p>Exemplo com <code>curl</code>:</p>
+<div class="sourceCode" id="cb292"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb292-1"><a href="apis-node-js-com-jwt.html#cb292-1" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-X</span> POST http://localhost:3000/carros <span class="dt">\</span></span>
+<span id="cb292-2"><a href="apis-node-js-com-jwt.html#cb292-2" tabindex="-1"></a>-H <span class="st">"Content-Type: application/json"</span> <span class="dt">\</span></span>
+<span id="cb292-3"><a href="apis-node-js-com-jwt.html#cb292-3" tabindex="-1"></a>-H <span class="st">"Authorization: Bearer SEU_TOKEN_AQUI"</span> <span class="dt">\</span></span>
+<span id="cb292-4"><a href="apis-node-js-com-jwt.html#cb292-4" tabindex="-1"></a>-d <span class="st">"{</span><span class="dt">\"</span><span class="st">nome</span><span class="dt">\"</span><span class="st">:</span><span class="dt">\"</span><span class="st">Gol</span><span class="dt">\"</span><span class="st">,</span><span class="dt">\"</span><span class="st">marca</span><span class="dt">\"</span><span class="st">:</span><span class="dt">\"</span><span class="st">Volkswagen</span><span class="dt">\"</span><span class="st">,</span><span class="dt">\"</span><span class="st">ano</span><span class="dt">\"</span><span class="st">:2020,</span><span class="dt">\"</span><span class="st">preco</span><span class="dt">\"</span><span class="st">:50000}"</span></span></code></pre></div>
+<p>Se o token for válido, o carro será inserido.</p>
+<p>Se o token não for enviado, a API retornará erro.</p>
+</div>
+<div id="tratando-erro-de-autenticação" class="section level2" number="10.14">
+<h2>
+<span class="header-section-number">10.14</span> Tratando erro de autenticação<a class="anchor" aria-label="anchor" href="#tratando-erro-de-autentica%C3%A7%C3%A3o"><i class="fas fa-link"></i></a>
+</h2>
+<p>Por padrão, quando o token é inválido ou ausente, o middleware gera um erro. Podemos tratar esse erro no <code>server.js</code>.</p>
+<div class="sourceCode" id="cb293"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb293-1"><a href="apis-node-js-com-jwt.html#cb293-1" tabindex="-1"></a><span class="kw">const</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">'express'</span>)<span class="op">;</span></span>
+<span id="cb293-2"><a href="apis-node-js-com-jwt.html#cb293-2" tabindex="-1"></a></span>
+<span id="cb293-3"><a href="apis-node-js-com-jwt.html#cb293-3" tabindex="-1"></a><span class="kw">const</span> app <span class="op">=</span> <span class="fu">express</span>()<span class="op">;</span></span>
+<span id="cb293-4"><a href="apis-node-js-com-jwt.html#cb293-4" tabindex="-1"></a></span>
+<span id="cb293-5"><a href="apis-node-js-com-jwt.html#cb293-5" tabindex="-1"></a><span class="kw">const</span> carrosRoutes <span class="op">=</span> <span class="pp">require</span>(<span class="st">'./routes/carros'</span>)<span class="op">;</span></span>
+<span id="cb293-6"><a href="apis-node-js-com-jwt.html#cb293-6" tabindex="-1"></a><span class="kw">const</span> authRoutes <span class="op">=</span> <span class="pp">require</span>(<span class="st">'./routes/auth'</span>)<span class="op">;</span></span>
+<span id="cb293-7"><a href="apis-node-js-com-jwt.html#cb293-7" tabindex="-1"></a></span>
+<span id="cb293-8"><a href="apis-node-js-com-jwt.html#cb293-8" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>(express<span class="op">.</span><span class="fu">json</span>())<span class="op">;</span></span>
+<span id="cb293-9"><a href="apis-node-js-com-jwt.html#cb293-9" tabindex="-1"></a></span>
+<span id="cb293-10"><a href="apis-node-js-com-jwt.html#cb293-10" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>(<span class="st">'/auth'</span><span class="op">,</span> authRoutes)<span class="op">;</span></span>
+<span id="cb293-11"><a href="apis-node-js-com-jwt.html#cb293-11" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>(<span class="st">'/carros'</span><span class="op">,</span> carrosRoutes)<span class="op">;</span></span>
+<span id="cb293-12"><a href="apis-node-js-com-jwt.html#cb293-12" tabindex="-1"></a></span>
+<span id="cb293-13"><a href="apis-node-js-com-jwt.html#cb293-13" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>((erro<span class="op">,</span> req<span class="op">,</span> res<span class="op">,</span> next) <span class="kw">=&gt;</span> {</span>
+<span id="cb293-14"><a href="apis-node-js-com-jwt.html#cb293-14" tabindex="-1"></a></span>
+<span id="cb293-15"><a href="apis-node-js-com-jwt.html#cb293-15" tabindex="-1"></a>  <span class="cf">if</span> (erro<span class="op">.</span><span class="at">name</span> <span class="op">===</span> <span class="st">'UnauthorizedError'</span>) {</span>
+<span id="cb293-16"><a href="apis-node-js-com-jwt.html#cb293-16" tabindex="-1"></a>    <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">401</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb293-17"><a href="apis-node-js-com-jwt.html#cb293-17" tabindex="-1"></a>      <span class="dt">erro</span><span class="op">:</span> <span class="st">'Token inválido ou não informado'</span></span>
+<span id="cb293-18"><a href="apis-node-js-com-jwt.html#cb293-18" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb293-19"><a href="apis-node-js-com-jwt.html#cb293-19" tabindex="-1"></a>  }</span>
+<span id="cb293-20"><a href="apis-node-js-com-jwt.html#cb293-20" tabindex="-1"></a></span>
+<span id="cb293-21"><a href="apis-node-js-com-jwt.html#cb293-21" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">status</span>(<span class="dv">500</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb293-22"><a href="apis-node-js-com-jwt.html#cb293-22" tabindex="-1"></a>    <span class="dt">erro</span><span class="op">:</span> <span class="st">'Erro interno no servidor'</span></span>
+<span id="cb293-23"><a href="apis-node-js-com-jwt.html#cb293-23" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb293-24"><a href="apis-node-js-com-jwt.html#cb293-24" tabindex="-1"></a></span>
+<span id="cb293-25"><a href="apis-node-js-com-jwt.html#cb293-25" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb293-26"><a href="apis-node-js-com-jwt.html#cb293-26" tabindex="-1"></a></span>
+<span id="cb293-27"><a href="apis-node-js-com-jwt.html#cb293-27" tabindex="-1"></a>app<span class="op">.</span><span class="fu">listen</span>(<span class="dv">3000</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb293-28"><a href="apis-node-js-com-jwt.html#cb293-28" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">'Servidor executando na porta 3000'</span>)<span class="op">;</span></span>
+<span id="cb293-29"><a href="apis-node-js-com-jwt.html#cb293-29" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+<p>Esse middleware de erro torna a resposta mais clara para o cliente.</p>
+</div>
+<div id="consultando-o-usuário-autenticado" class="section level2" number="10.15">
+<h2>
+<span class="header-section-number">10.15</span> Consultando o usuário autenticado<a class="anchor" aria-label="anchor" href="#consultando-o-usu%C3%A1rio-autenticado"><i class="fas fa-link"></i></a>
+</h2>
+<p>Quando o token é validado, o <code>express-jwt</code> disponibiliza os dados decodificados do token na requisição. Em versões atuais, por padrão, o payload fica em:</p>
+<div class="sourceCode" id="cb294"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb294-1"><a href="apis-node-js-com-jwt.html#cb294-1" tabindex="-1"></a>req<span class="op">.</span><span class="at">auth</span></span></code></pre></div>
+<p>Exemplo:</p>
+<div class="sourceCode" id="cb295"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb295-1"><a href="apis-node-js-com-jwt.html#cb295-1" tabindex="-1"></a>router<span class="op">.</span><span class="fu">post</span>(<span class="st">'/'</span><span class="op">,</span> protegerRota<span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb295-2"><a href="apis-node-js-com-jwt.html#cb295-2" tabindex="-1"></a></span>
+<span id="cb295-3"><a href="apis-node-js-com-jwt.html#cb295-3" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(req<span class="op">.</span><span class="at">auth</span>)<span class="op">;</span></span>
+<span id="cb295-4"><a href="apis-node-js-com-jwt.html#cb295-4" tabindex="-1"></a></span>
+<span id="cb295-5"><a href="apis-node-js-com-jwt.html#cb295-5" tabindex="-1"></a>  Carro<span class="op">.</span><span class="fu">inserir</span>(req<span class="op">.</span><span class="at">body</span><span class="op">,</span> (erro<span class="op">,</span> resultado) <span class="kw">=&gt;</span> {</span>
+<span id="cb295-6"><a href="apis-node-js-com-jwt.html#cb295-6" tabindex="-1"></a></span>
+<span id="cb295-7"><a href="apis-node-js-com-jwt.html#cb295-7" tabindex="-1"></a>    <span class="cf">if</span> (erro) {</span>
+<span id="cb295-8"><a href="apis-node-js-com-jwt.html#cb295-8" tabindex="-1"></a>      <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">500</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb295-9"><a href="apis-node-js-com-jwt.html#cb295-9" tabindex="-1"></a>        <span class="dt">erro</span><span class="op">:</span> <span class="st">'Erro ao inserir carro'</span></span>
+<span id="cb295-10"><a href="apis-node-js-com-jwt.html#cb295-10" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb295-11"><a href="apis-node-js-com-jwt.html#cb295-11" tabindex="-1"></a>    }</span>
+<span id="cb295-12"><a href="apis-node-js-com-jwt.html#cb295-12" tabindex="-1"></a></span>
+<span id="cb295-13"><a href="apis-node-js-com-jwt.html#cb295-13" tabindex="-1"></a>    res<span class="op">.</span><span class="fu">status</span>(<span class="dv">201</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb295-14"><a href="apis-node-js-com-jwt.html#cb295-14" tabindex="-1"></a>      <span class="dt">mensagem</span><span class="op">:</span> <span class="vs">`Carro inserido pelo usuário </span><span class="sc">${</span>req<span class="op">.</span><span class="at">auth</span><span class="op">.</span><span class="at">email</span><span class="sc">}</span><span class="vs">`</span><span class="op">,</span></span>
+<span id="cb295-15"><a href="apis-node-js-com-jwt.html#cb295-15" tabindex="-1"></a>      <span class="dt">idInserido</span><span class="op">:</span> resultado<span class="op">.</span><span class="at">insertId</span></span>
+<span id="cb295-16"><a href="apis-node-js-com-jwt.html#cb295-16" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb295-17"><a href="apis-node-js-com-jwt.html#cb295-17" tabindex="-1"></a></span>
+<span id="cb295-18"><a href="apis-node-js-com-jwt.html#cb295-18" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb295-19"><a href="apis-node-js-com-jwt.html#cb295-19" tabindex="-1"></a></span>
+<span id="cb295-20"><a href="apis-node-js-com-jwt.html#cb295-20" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+<p>Isso permite saber qual usuário realizou determinada operação.</p>
+</div>
+<div id="melhorando-a-segurança" class="section level2" number="10.16">
+<h2>
+<span class="header-section-number">10.16</span> Melhorando a segurança<a class="anchor" aria-label="anchor" href="#melhorando-a-seguran%C3%A7a"><i class="fas fa-link"></i></a>
+</h2>
+<p>O exemplo anterior é didático. Em uma aplicação real, alguns cuidados são indispensáveis.</p>
+<div id="não-salvar-senha-em-texto-puro" class="section level3" number="10.16.1">
+<h3>
+<span class="header-section-number">10.16.1</span> Não salvar senha em texto puro<a class="anchor" aria-label="anchor" href="#n%C3%A3o-salvar-senha-em-texto-puro"><i class="fas fa-link"></i></a>
+</h3>
+<p>Senhas não devem ser salvas diretamente no banco de dados.</p>
+<p>Em sistemas reais, utilize hash de senha:</p>
+<div class="sourceCode" id="cb296"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb296-1"><a href="apis-node-js-com-jwt.html#cb296-1" tabindex="-1"></a><span class="ex">npm</span> install bcrypt</span></code></pre></div>
+</div>
+<div id="não-deixar-a-chave-secreta-no-código" class="section level3" number="10.16.2">
+<h3>
+<span class="header-section-number">10.16.2</span> Não deixar a chave secreta no código<a class="anchor" aria-label="anchor" href="#n%C3%A3o-deixar-a-chave-secreta-no-c%C3%B3digo"><i class="fas fa-link"></i></a>
+</h3>
+<p>A chave secreta do JWT deve ficar em variável de ambiente.</p>
+<p>Exemplo:</p>
+<div class="sourceCode" id="cb297"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb297-1"><a href="apis-node-js-com-jwt.html#cb297-1" tabindex="-1"></a><span class="kw">const</span> segredo <span class="op">=</span> <span class="bu">process</span><span class="op">.</span><span class="at">env</span><span class="op">.</span><span class="at">JWT_SECRET</span><span class="op">;</span></span></code></pre></div>
+</div>
+<div id="usar-https-em-produção" class="section level3" number="10.16.3">
+<h3>
+<span class="header-section-number">10.16.3</span> Usar HTTPS em produção<a class="anchor" aria-label="anchor" href="#usar-https-em-produ%C3%A7%C3%A3o"><i class="fas fa-link"></i></a>
+</h3>
+<p>Tokens não devem trafegar em conexões inseguras. Em produção, utilize HTTPS.</p>
+</div>
+<div id="definir-tempo-de-expiração" class="section level3" number="10.16.4">
+<h3>
+<span class="header-section-number">10.16.4</span> Definir tempo de expiração<a class="anchor" aria-label="anchor" href="#definir-tempo-de-expira%C3%A7%C3%A3o"><i class="fas fa-link"></i></a>
+</h3>
+<p>Tokens devem ter tempo de validade limitado:</p>
+<div class="sourceCode" id="cb298"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb298-1"><a href="apis-node-js-com-jwt.html#cb298-1" tabindex="-1"></a>expiresIn<span class="op">:</span> <span class="st">'1h'</span></span></code></pre></div>
+<p>Esse cuidado reduz riscos caso o token seja exposto.</p>
+</div>
+</div>
+<div id="fluxo-completo-da-autenticação" class="section level2" number="10.17">
+<h2>
+<span class="header-section-number">10.17</span> Fluxo completo da autenticação<a class="anchor" aria-label="anchor" href="#fluxo-completo-da-autentica%C3%A7%C3%A3o"><i class="fas fa-link"></i></a>
+</h2>
+<p>O fluxo final da API pode ser resumido assim:</p>
+<ol style="list-style-type: decimal">
+<li>Cliente envia <code>POST /auth/login</code>.</li>
+<li>API verifica e-mail e senha no banco.</li>
+<li>API gera JWT.</li>
+<li>Cliente armazena o token.</li>
+<li>Cliente envia o token no cabeçalho <code>Authorization</code>.</li>
+<li>Middleware <code>express-jwt</code> valida o token.</li>
+<li>Se válido, a rota é executada.</li>
+<li>Se inválido, a API retorna <code>401</code>.</li>
+</ol>
+</div>
+<div id="considerações-finais-3" class="section level2" number="10.18">
+<h2>
+<span class="header-section-number">10.18</span> Considerações finais<a class="anchor" aria-label="anchor" href="#considera%C3%A7%C3%B5es-finais-3"><i class="fas fa-link"></i></a>
+</h2>
+<p>Neste capítulo estudamos autenticação baseada em token utilizando JWT em uma API Node.js com Express. Vimos que o JWT permite proteger rotas sem armazenar sessões no servidor, o que se ajusta bem ao modelo REST.</p>
+<p>Também adaptamos a API de carros para que:</p>
+<ul>
+<li>as rotas <code>GET</code> sejam públicas;</li>
+<li>as rotas <code>POST</code>, <code>PUT</code> e <code>DELETE</code> sejam protegidas;</li>
+<li>o login gere um token;</li>
+<li>o token seja validado por middleware;</li>
+<li>a API responda com status adequado em caso de token inválido.</li>
+</ul>
+<p>Esses conceitos são fundamentais para avançar no desenvolvimento de APIs completas, seguras e próximas de aplicações reais.</p>
+</div>
+<div id="referências-1" class="section level2" number="10.19">
+<h2>
+<span class="header-section-number">10.19</span> Referências<a class="anchor" aria-label="anchor" href="#refer%C3%AAncias-1"><i class="fas fa-link"></i></a>
+</h2>
+
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-express_db" class="csl-entry">
+Express.js. <em>Database Integration</em>. 2026. <a href="https://expressjs.com/en/guide/database-integration.html">https://expressjs.com/en/guide/database-integration.html</a>.
+</div>
+<div id="ref-express_docs" class="csl-entry">
+Express.js. <em>Express - Framework Web Para Node.js</em>. 2026. <a href="https://expressjs.com/pt-br/">https://expressjs.com/pt-br/</a>.
+</div>
+<div id="ref-express_api" class="csl-entry">
+Express.js. <em>Express API Reference</em>. 2026. <a href="https://expressjs.com/pt-br/4x/api.html">https://expressjs.com/pt-br/4x/api.html</a>.
+</div>
+<div id="ref-express_json" class="csl-entry">
+Express.js. <em>Express.json() Middleware</em>. 2026. <a href="https://expressjs.com/pt-br/4x/api.html#express.json">https://expressjs.com/pt-br/4x/api.html#express.json</a>.
+</div>
+<div id="ref-lecheta_node" class="csl-entry">
+Lecheta, Ricardo R. <em>Node Essencial</em>. Novatec, 2018.
+</div>
+<div id="ref-mdn_express_intro" class="csl-entry">
+MDN Web Docs. <em>Introdução Ao Express/Node</em>. 2025. <a href="https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Introduction">https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Introduction</a>.
+</div>
+<div id="ref-mdn_json_parse" class="csl-entry">
+MDN Web Docs. <em>JSON.parse()</em>. 2025. <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse</a>.
+</div>
+<div id="ref-mdn_json_stringify" class="csl-entry">
+MDN Web Docs. <em>JSON.stringify()</em>. 2025. <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify</a>.
+</div>
+<div id="ref-mysql2_docs" class="csl-entry">
+MySQL2. <em>MySQL2 Documentation</em>. 2026. <a href="https://www.npmjs.com/package/mysql2">https://www.npmjs.com/package/mysql2</a>.
+</div>
+<div id="ref-node_npm" class="csl-entry">
+Node.js. <em>An Introduction to the Npm Package Manager</em>. 2026. <a href="https://nodejs.org/en/learn/getting-started/an-introduction-to-the-npm-package-manager">https://nodejs.org/en/learn/getting-started/an-introduction-to-the-npm-package-manager</a>.
+</div>
+<div id="ref-node_commonjs" class="csl-entry">
+Node.js. <em>CommonJS Modules</em>. 2026. <a href="https://nodejs.org/api/modules.html">https://nodejs.org/api/modules.html</a>.
+</div>
+<div id="ref-node_packages" class="csl-entry">
+Node.js. <em>Modules: Packages</em>. 2026. <a href="https://nodejs.org/api/packages.html">https://nodejs.org/api/packages.html</a>.
+</div>
+<div id="ref-node_fs" class="csl-entry">
+Node.js Foundation. <em>Node.js File System (Fs) Module Documentation</em>. 2026. <a href="https://nodejs.org/api/fs.html">https://nodejs.org/api/fs.html</a>.
+</div>
+<div id="ref-node_http" class="csl-entry">
+Node.js Foundation. <em>Node.js HTTP Module Documentation</em>. 2026. <a href="https://nodejs.org/api/http.html">https://nodejs.org/api/http.html</a>.
+</div>
+<div id="ref-node_url" class="csl-entry">
+Node.js Foundation. <em>Node.js URL API Documentation</em>. 2026. <a href="https://nodejs.org/api/url.html">https://nodejs.org/api/url.html</a>.
+</div>
+<div id="ref-npm_init" class="csl-entry">
+npm. <em>Creating a Package.json File</em>. 2024. <a href="https://docs.npmjs.com/creating-a-package-json-file/">https://docs.npmjs.com/creating-a-package-json-file/</a>.
+</div>
+<div id="ref-express_jwt_npm" class="csl-entry">
+npm. <em>Express-Jwt</em>. 2024. <a href="https://www.npmjs.com/package/express-jwt">https://www.npmjs.com/package/express-jwt</a>.
+</div>
+<div id="ref-npm_package_json" class="csl-entry">
+npm. <em>Package.json</em>. 2026. <a href="https://docs.npmjs.com/cli/v11/configuring-npm/package-json/">https://docs.npmjs.com/cli/v11/configuring-npm/package-json/</a>.
+</div>
+<div id="ref-npm_dependencies" class="csl-entry">
+npm. <em>Specifying Dependencies and devDependencies in a Package.json File</em>. 2026. <a href="https://docs.npmjs.com/specifying-dependencies-and-devdependencies-in-a-package-json-file/">https://docs.npmjs.com/specifying-dependencies-and-devdependencies-in-a-package-json-file/</a>.
+</div>
+<div id="ref-rocketseat_jwt_node" class="csl-entry">
+Rocketseat. <em>Login Com JWT Em Node.js: Aprenda a Proteger APIs de Forma Segura</em>. 2025. <a href="https://www.rocketseat.com.br/blog/artigos/post/login-com-jwt-nodejs">https://www.rocketseat.com.br/blog/artigos/post/login-com-jwt-nodejs</a>.
+</div>
+<div id="ref-w3schools_express_jwt" class="csl-entry">
+W3Schools. <em>Express.js JWT Authentication</em>. 2026. <a href="https://www.w3schools.in/express-js/jwt-authentication">https://www.w3schools.in/express-js/jwt-authentication</a>.
+</div>
+<div id="ref-w3_mysql" class="csl-entry">
+W3Schools. <em>Node.js MySQL</em>. 2026. <a href="https://www.w3schools.com/nodejs/nodejs_mysql.asp">https://www.w3schools.com/nodejs/nodejs_mysql.asp</a>.
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-nav">
+<div class="prev"><a href="integra-de-apis-node.js-com-banco-de-dados.html"><span class="header-section-number">9</span> Integra de APIs Node.js com Banco de Dados</a></div>
+<div class="empty"></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#apis-node-js-com-jwt"><span class="header-section-number">10</span> APIs Node JS com JWT</a></li>
+<li><a class="nav-link" href="#o-que-%C3%A9-autentica%C3%A7%C3%A3o"><span class="header-section-number">10.1</span> O que é autenticação</a></li>
+<li><a class="nav-link" href="#o-que-%C3%A9-token"><span class="header-section-number">10.2</span> O que é token</a></li>
+<li><a class="nav-link" href="#o-que-%C3%A9-jwt"><span class="header-section-number">10.3</span> O que é JWT</a></li>
+<li><a class="nav-link" href="#como-apis-utilizam-token"><span class="header-section-number">10.4</span> Como APIs utilizam token</a></li>
+<li><a class="nav-link" href="#instalando-as-depend%C3%AAncias"><span class="header-section-number">10.5</span> Instalando as dependências</a></li>
+<li><a class="nav-link" href="#estrutura-do-projeto"><span class="header-section-number">10.6</span> Estrutura do projeto</a></li>
+<li><a class="nav-link" href="#criando-a-tabela-de-usu%C3%A1rios"><span class="header-section-number">10.7</span> Criando a tabela de usuários</a></li>
+<li><a class="nav-link" href="#criando-o-arquivo-de-configura%C3%A7%C3%A3o-do-token"><span class="header-section-number">10.8</span> Criando o arquivo de configuração do token</a></li>
+<li><a class="nav-link" href="#criando-a-rota-de-login"><span class="header-section-number">10.9</span> Criando a rota de login</a></li>
+<li><a class="nav-link" href="#configurando-a-rota-de-autentica%C3%A7%C3%A3o-no-servidor"><span class="header-section-number">10.10</span> Configurando a rota de autenticação no servidor</a></li>
+<li><a class="nav-link" href="#testando-o-login"><span class="header-section-number">10.11</span> Testando o login</a></li>
+<li><a class="nav-link" href="#protegendo-rotas-da-api-de-carros"><span class="header-section-number">10.12</span> Protegendo rotas da API de carros</a></li>
+<li><a class="nav-link" href="#enviando-o-token-nas-requisi%C3%A7%C3%B5es-protegidas"><span class="header-section-number">10.13</span> Enviando o token nas requisições protegidas</a></li>
+<li><a class="nav-link" href="#tratando-erro-de-autentica%C3%A7%C3%A3o"><span class="header-section-number">10.14</span> Tratando erro de autenticação</a></li>
+<li><a class="nav-link" href="#consultando-o-usu%C3%A1rio-autenticado"><span class="header-section-number">10.15</span> Consultando o usuário autenticado</a></li>
+<li>
+<a class="nav-link" href="#melhorando-a-seguran%C3%A7a"><span class="header-section-number">10.16</span> Melhorando a segurança</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#n%C3%A3o-salvar-senha-em-texto-puro"><span class="header-section-number">10.16.1</span> Não salvar senha em texto puro</a></li>
+<li><a class="nav-link" href="#n%C3%A3o-deixar-a-chave-secreta-no-c%C3%B3digo"><span class="header-section-number">10.16.2</span> Não deixar a chave secreta no código</a></li>
+<li><a class="nav-link" href="#usar-https-em-produ%C3%A7%C3%A3o"><span class="header-section-number">10.16.3</span> Usar HTTPS em produção</a></li>
+<li><a class="nav-link" href="#definir-tempo-de-expira%C3%A7%C3%A3o"><span class="header-section-number">10.16.4</span> Definir tempo de expiração</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#fluxo-completo-da-autentica%C3%A7%C3%A3o"><span class="header-section-number">10.17</span> Fluxo completo da autenticação</a></li>
+<li><a class="nav-link" href="#considera%C3%A7%C3%B5es-finais-3"><span class="header-section-number">10.18</span> Considerações finais</a></li>
+<li><a class="nav-link" href="#refer%C3%AAncias-1"><span class="header-section-number">10.19</span> Referências</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/rstudio/bookdown-demo/blob/master/10-atentica.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/rstudio/bookdown-demo/edit/master/10-atentica.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>04-aula</strong>" was written by Juliana Costa Silva. It was last built on 2026-06-02.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>
