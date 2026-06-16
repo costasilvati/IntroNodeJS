@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>_&gt;11 Loja de carros com clientes e vendas | Desenvolvimento web Avançado</title>
+<meta name="author" content="Juliana Costa Silva">
+<meta name="description" content="Neste capítulo vamos finalizar a sequência prática da API da loja de carros. Até aqui, a aplicação já possui cadastro de carros, conexão com banco de dados, organização em rotas e classes, além de...">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
+<meta property="og:title" content="_&gt;11 Loja de carros com clientes e vendas | Desenvolvimento web Avançado">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Neste capítulo vamos finalizar a sequência prática da API da loja de carros. Até aqui, a aplicação já possui cadastro de carros, conexão com banco de dados, organização em rotas e classes, além de...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="_&gt;11 Loja de carros com clientes e vendas | Desenvolvimento web Avançado">
+<meta name="twitter:description" content="Neste capítulo vamos finalizar a sequência prática da API da loja de carros. Até aqui, a aplicação já possui cadastro de carros, conexão com banco de dados, organização em rotas e classes, além de...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.11.0/transition.js"></script><script src="libs/bs3compat-0.11.0/tabs.js"></script><script src="libs/bs3compat-0.11.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Desenvolvimento web Avançado</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Sobre este livro</a></li>
+<li><a class="" href="javascript-basico-para-nodejs.html"><span class="header-section-number">1</span> JavaScript Basico para NodeJS</a></li>
+<li><a class="" href="javascript-e-objetos.html"><span class="header-section-number">2</span> Javascript e Objetos</a></li>
+<li><a class="" href="atividade-avaliativa.html"><span class="header-section-number">3</span> Atividade avaliativa</a></li>
+<li><a class="" href="web-services.html"><span class="header-section-number">4</span> Web Services</a></li>
+<li><a class="" href="lista-de-atividades-estudo-javascript-nodejs.html"><span class="header-section-number">5</span> Lista de Atividades — Estudo JavaScript (NodeJS)</a></li>
+<li><a class="" href="criando-um-servidor-http-com-nodejs.html"><span class="header-section-number">6</span> Criando um servidor HTTP com Nodejs</a></li>
+<li><a class="" href="npm-json-e-organiza%C3%A7%C3%A3o-de-projetos-node-js.html"><span class="header-section-number">7</span> NPM, JSON e organização de projetos Node JS</a></li>
+<li><a class="" href="express-framework.html"><span class="header-section-number">8</span> Express Framework</a></li>
+<li><a class="" href="integra-de-apis-node.js-com-banco-de-dados.html"><span class="header-section-number">9</span> Integra de APIs Node.js com Banco de Dados</a></li>
+<li><a class="" href="apis-node-js-com-jwt.html"><span class="header-section-number">10</span> APIs Node JS com JWT</a></li>
+<li><a class="active" href="loja-de-carros-com-clientes-e-vendas.html"><span class="header-section-number">11</span> Loja de carros com clientes e vendas</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/rstudio/bookdown-demo">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="loja-de-carros-com-clientes-e-vendas" class="section level1" number="11">
+<h1>
+<span class="header-section-number">_&gt;11</span> Loja de carros com clientes e vendas<a class="anchor" aria-label="anchor" href="#loja-de-carros-com-clientes-e-vendas"><i class="fas fa-link"></i></a>
+</h1>
+<p>Neste capítulo vamos finalizar a sequência prática da API da loja de carros. Até aqui, a aplicação já possui cadastro de carros, conexão com banco de dados, organização em rotas e classes, além de autenticação com JWT para proteger rotas sensíveis. Agora, vamos ampliar o sistema para incluir <strong>clientes</strong> e <strong>vendas</strong>.</p>
+<p>A regra principal do sistema será:</p>
+<ul>
+<li>um cliente pode comprar vários carros;</li>
+<li>cada carro pode ser vendido para apenas um cliente;</li>
+<li>o cadastro de clientes e o registro de vendas só podem ser feitos por usuários autenticados.</li>
+</ul>
+<p>Essa estrutura é comum em aplicações reais, nas quais os dados são persistidos em banco relacional e as operações que modificam informações precisam de autenticação.<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Lecheta, &lt;em&gt;Node Essencial&lt;/em&gt;; Express.js, &lt;em&gt;Database Integration&lt;/em&gt;; Rocketseat, &lt;em&gt;Login Com JWT Em Node.js&lt;/em&gt;.&lt;/p&gt;"><sup>38</sup></a></span></p>
+<div id="modelo-de-dados-da-loja" class="section level2" number="11.1">
+<h2>
+<span class="header-section-number">11.1</span> Modelo de dados da loja<a class="anchor" aria-label="anchor" href="#modelo-de-dados-da-loja"><i class="fas fa-link"></i></a>
+</h2>
+<p>A aplicação terá quatro tabelas principais:</p>
+<ul>
+<li>
+<code>usuarios</code>: usuários autorizados a cadastrar clientes e registrar vendas;</li>
+<li>
+<code>clientes</code>: pessoas que compram carros;</li>
+<li>
+<code>carros</code>: veículos disponíveis na loja;</li>
+<li>
+<code>vendas</code>: registro da venda de um carro para um cliente.</li>
+</ul>
+<p>O relacionamento principal será:</p>
+<pre class="text"><code>clientes 1 ---- N vendas
+carros   1 ---- 0..1 vendas
+usuarios 1 ---- N vendas</code></pre>
+<p>Isso significa que:</p>
+<ul>
+<li>um cliente pode aparecer em várias vendas;</li>
+<li>um carro pode aparecer em no máximo uma venda;</li>
+<li>um usuário autenticado pode registrar várias vendas.</li>
+</ul>
+</div>
+<div id="criando-as-tabelas-do-banco-de-dados" class="section level2" number="11.2">
+<h2>
+<span class="header-section-number">11.2</span> Criando as tabelas do banco de dados<a class="anchor" aria-label="anchor" href="#criando-as-tabelas-do-banco-de-dados"><i class="fas fa-link"></i></a>
+</h2>
+<p>Vamos considerar o banco já utilizado anteriormente:</p>
+<div class="sourceCode" id="cb300"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb300-1"><a href="loja-de-carros-com-clientes-e-vendas.html#cb300-1" tabindex="-1"></a><span class="kw">USE</span> api_carros;</span></code></pre></div>
+<p>A tabela <code>usuarios</code> já foi criada no capítulo sobre autenticação. Caso ainda não exista, ela pode ser criada assim:</p>
+<div class="sourceCode" id="cb301"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb301-1"><a href="loja-de-carros-com-clientes-e-vendas.html#cb301-1" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> usuarios (</span>
+<span id="cb301-2"><a href="loja-de-carros-com-clientes-e-vendas.html#cb301-2" tabindex="-1"></a>    <span class="kw">id</span> <span class="dt">INT</span> AUTO_INCREMENT <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb301-3"><a href="loja-de-carros-com-clientes-e-vendas.html#cb301-3" tabindex="-1"></a>    nome <span class="dt">VARCHAR</span>(<span class="dv">100</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb301-4"><a href="loja-de-carros-com-clientes-e-vendas.html#cb301-4" tabindex="-1"></a>    email <span class="dt">VARCHAR</span>(<span class="dv">120</span>) <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">UNIQUE</span>,</span>
+<span id="cb301-5"><a href="loja-de-carros-com-clientes-e-vendas.html#cb301-5" tabindex="-1"></a>    senha <span class="dt">VARCHAR</span>(<span class="dv">100</span>) <span class="kw">NOT</span> <span class="kw">NULL</span></span>
+<span id="cb301-6"><a href="loja-de-carros-com-clientes-e-vendas.html#cb301-6" tabindex="-1"></a>);</span></code></pre></div>
+<p>A tabela <code>clientes</code> será responsável por armazenar os compradores.</p>
+<div class="sourceCode" id="cb302"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb302-1"><a href="loja-de-carros-com-clientes-e-vendas.html#cb302-1" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> clientes (</span>
+<span id="cb302-2"><a href="loja-de-carros-com-clientes-e-vendas.html#cb302-2" tabindex="-1"></a>    <span class="kw">id</span> <span class="dt">INT</span> AUTO_INCREMENT <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb302-3"><a href="loja-de-carros-com-clientes-e-vendas.html#cb302-3" tabindex="-1"></a>    nome <span class="dt">VARCHAR</span>(<span class="dv">100</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb302-4"><a href="loja-de-carros-com-clientes-e-vendas.html#cb302-4" tabindex="-1"></a>    cpf <span class="dt">VARCHAR</span>(<span class="dv">14</span>) <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">UNIQUE</span>,</span>
+<span id="cb302-5"><a href="loja-de-carros-com-clientes-e-vendas.html#cb302-5" tabindex="-1"></a>    email <span class="dt">VARCHAR</span>(<span class="dv">120</span>),</span>
+<span id="cb302-6"><a href="loja-de-carros-com-clientes-e-vendas.html#cb302-6" tabindex="-1"></a>    telefone <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
+<span id="cb302-7"><a href="loja-de-carros-com-clientes-e-vendas.html#cb302-7" tabindex="-1"></a>    criado_em <span class="dt">TIMESTAMP</span> <span class="kw">DEFAULT</span> <span class="fu">CURRENT_TIMESTAMP</span></span>
+<span id="cb302-8"><a href="loja-de-carros-com-clientes-e-vendas.html#cb302-8" tabindex="-1"></a>);</span></code></pre></div>
+<p>A tabela <code>carros</code> pode ser mantida como no capítulo anterior, mas vamos acrescentar o campo <code>vendido</code>, para facilitar consultas.</p>
+<div class="sourceCode" id="cb303"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb303-1"><a href="loja-de-carros-com-clientes-e-vendas.html#cb303-1" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> carros (</span>
+<span id="cb303-2"><a href="loja-de-carros-com-clientes-e-vendas.html#cb303-2" tabindex="-1"></a>    <span class="kw">id</span> <span class="dt">INT</span> AUTO_INCREMENT <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb303-3"><a href="loja-de-carros-com-clientes-e-vendas.html#cb303-3" tabindex="-1"></a>    nome <span class="dt">VARCHAR</span>(<span class="dv">100</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb303-4"><a href="loja-de-carros-com-clientes-e-vendas.html#cb303-4" tabindex="-1"></a>    marca <span class="dt">VARCHAR</span>(<span class="dv">100</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb303-5"><a href="loja-de-carros-com-clientes-e-vendas.html#cb303-5" tabindex="-1"></a>    ano <span class="dt">INT</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb303-6"><a href="loja-de-carros-com-clientes-e-vendas.html#cb303-6" tabindex="-1"></a>    preco <span class="dt">DECIMAL</span>(<span class="dv">10</span>,<span class="dv">2</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb303-7"><a href="loja-de-carros-com-clientes-e-vendas.html#cb303-7" tabindex="-1"></a>    vendido <span class="dt">BOOLEAN</span> <span class="kw">DEFAULT</span> <span class="kw">FALSE</span></span>
+<span id="cb303-8"><a href="loja-de-carros-com-clientes-e-vendas.html#cb303-8" tabindex="-1"></a>);</span></code></pre></div>
+<p>A tabela <code>vendas</code> registra a associação entre cliente, carro e usuário responsável pela venda.</p>
+<div class="sourceCode" id="cb304"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb304-1"><a href="loja-de-carros-com-clientes-e-vendas.html#cb304-1" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> vendas (</span>
+<span id="cb304-2"><a href="loja-de-carros-com-clientes-e-vendas.html#cb304-2" tabindex="-1"></a>    <span class="kw">id</span> <span class="dt">INT</span> AUTO_INCREMENT <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb304-3"><a href="loja-de-carros-com-clientes-e-vendas.html#cb304-3" tabindex="-1"></a>    cliente_id <span class="dt">INT</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb304-4"><a href="loja-de-carros-com-clientes-e-vendas.html#cb304-4" tabindex="-1"></a>    carro_id <span class="dt">INT</span> <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">UNIQUE</span>,</span>
+<span id="cb304-5"><a href="loja-de-carros-com-clientes-e-vendas.html#cb304-5" tabindex="-1"></a>    usuario_id <span class="dt">INT</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb304-6"><a href="loja-de-carros-com-clientes-e-vendas.html#cb304-6" tabindex="-1"></a>    valor_venda <span class="dt">DECIMAL</span>(<span class="dv">10</span>,<span class="dv">2</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb304-7"><a href="loja-de-carros-com-clientes-e-vendas.html#cb304-7" tabindex="-1"></a>    data_venda <span class="dt">TIMESTAMP</span> <span class="kw">DEFAULT</span> <span class="fu">CURRENT_TIMESTAMP</span>,</span>
+<span id="cb304-8"><a href="loja-de-carros-com-clientes-e-vendas.html#cb304-8" tabindex="-1"></a></span>
+<span id="cb304-9"><a href="loja-de-carros-com-clientes-e-vendas.html#cb304-9" tabindex="-1"></a>    <span class="kw">CONSTRAINT</span> fk_vendas_clientes</span>
+<span id="cb304-10"><a href="loja-de-carros-com-clientes-e-vendas.html#cb304-10" tabindex="-1"></a>        <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (cliente_id)</span>
+<span id="cb304-11"><a href="loja-de-carros-com-clientes-e-vendas.html#cb304-11" tabindex="-1"></a>        <span class="kw">REFERENCES</span> clientes(<span class="kw">id</span>),</span>
+<span id="cb304-12"><a href="loja-de-carros-com-clientes-e-vendas.html#cb304-12" tabindex="-1"></a></span>
+<span id="cb304-13"><a href="loja-de-carros-com-clientes-e-vendas.html#cb304-13" tabindex="-1"></a>    <span class="kw">CONSTRAINT</span> fk_vendas_carros</span>
+<span id="cb304-14"><a href="loja-de-carros-com-clientes-e-vendas.html#cb304-14" tabindex="-1"></a>        <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (carro_id)</span>
+<span id="cb304-15"><a href="loja-de-carros-com-clientes-e-vendas.html#cb304-15" tabindex="-1"></a>        <span class="kw">REFERENCES</span> carros(<span class="kw">id</span>),</span>
+<span id="cb304-16"><a href="loja-de-carros-com-clientes-e-vendas.html#cb304-16" tabindex="-1"></a></span>
+<span id="cb304-17"><a href="loja-de-carros-com-clientes-e-vendas.html#cb304-17" tabindex="-1"></a>    <span class="kw">CONSTRAINT</span> fk_vendas_usuarios</span>
+<span id="cb304-18"><a href="loja-de-carros-com-clientes-e-vendas.html#cb304-18" tabindex="-1"></a>        <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (usuario_id)</span>
+<span id="cb304-19"><a href="loja-de-carros-com-clientes-e-vendas.html#cb304-19" tabindex="-1"></a>        <span class="kw">REFERENCES</span> usuarios(<span class="kw">id</span>)</span>
+<span id="cb304-20"><a href="loja-de-carros-com-clientes-e-vendas.html#cb304-20" tabindex="-1"></a>);</span></code></pre></div>
+<p>O campo:</p>
+<div class="sourceCode" id="cb305"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb305-1"><a href="loja-de-carros-com-clientes-e-vendas.html#cb305-1" tabindex="-1"></a>carro_id <span class="dt">INT</span> <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">UNIQUE</span></span></code></pre></div>
+<p>impede que o mesmo carro seja vendido mais de uma vez. Essa restrição é importante porque representa uma regra de negócio diretamente no banco de dados.</p>
+</div>
+<div id="inserindo-dados-iniciais" class="section level2" number="11.3">
+<h2>
+<span class="header-section-number">11.3</span> Inserindo dados iniciais<a class="anchor" aria-label="anchor" href="#inserindo-dados-iniciais"><i class="fas fa-link"></i></a>
+</h2>
+<p>Podemos cadastrar alguns carros disponíveis:</p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb306-1"><a href="loja-de-carros-com-clientes-e-vendas.html#cb306-1" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> carros (nome, marca, ano, preco, vendido)</span>
+<span id="cb306-2"><a href="loja-de-carros-com-clientes-e-vendas.html#cb306-2" tabindex="-1"></a><span class="kw">VALUES</span></span>
+<span id="cb306-3"><a href="loja-de-carros-com-clientes-e-vendas.html#cb306-3" tabindex="-1"></a>(<span class="st">'Fusca'</span>, <span class="st">'Volkswagen'</span>, <span class="dv">1972</span>, <span class="dv">25000</span>, <span class="kw">false</span>),</span>
+<span id="cb306-4"><a href="loja-de-carros-com-clientes-e-vendas.html#cb306-4" tabindex="-1"></a>(<span class="st">'Ferrari F40'</span>, <span class="st">'Ferrari'</span>, <span class="dv">1987</span>, <span class="dv">1500000</span>, <span class="kw">false</span>),</span>
+<span id="cb306-5"><a href="loja-de-carros-com-clientes-e-vendas.html#cb306-5" tabindex="-1"></a>(<span class="st">'Porsche 911'</span>, <span class="st">'Porsche'</span>, <span class="dv">2020</span>, <span class="dv">950000</span>, <span class="kw">false</span>),</span>
+<span id="cb306-6"><a href="loja-de-carros-com-clientes-e-vendas.html#cb306-6" tabindex="-1"></a>(<span class="st">'BMW Série 7'</span>, <span class="st">'BMW'</span>, <span class="dv">2023</span>, <span class="dv">750000</span>, <span class="kw">false</span>);</span></code></pre></div>
+<p>Também podemos inserir clientes de teste:</p>
+<div class="sourceCode" id="cb307"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb307-1"><a href="loja-de-carros-com-clientes-e-vendas.html#cb307-1" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> clientes (nome, cpf, email, telefone)</span>
+<span id="cb307-2"><a href="loja-de-carros-com-clientes-e-vendas.html#cb307-2" tabindex="-1"></a><span class="kw">VALUES</span></span>
+<span id="cb307-3"><a href="loja-de-carros-com-clientes-e-vendas.html#cb307-3" tabindex="-1"></a>(<span class="st">'Ana Silva'</span>, <span class="st">'111.111.111-11'</span>, <span class="st">'ana@email.com'</span>, <span class="st">'43999990000'</span>),</span>
+<span id="cb307-4"><a href="loja-de-carros-com-clientes-e-vendas.html#cb307-4" tabindex="-1"></a>(<span class="st">'Carlos Souza'</span>, <span class="st">'222.222.222-22'</span>, <span class="st">'carlos@email.com'</span>, <span class="st">'43988880000'</span>);</span></code></pre></div>
+</div>
+<div id="estrutura-final-do-projeto" class="section level2" number="11.4">
+<h2>
+<span class="header-section-number">11.4</span> Estrutura final do projeto<a class="anchor" aria-label="anchor" href="#estrutura-final-do-projeto"><i class="fas fa-link"></i></a>
+</h2>
+<p>A estrutura do projeto será organizada em pastas:</p>
+<pre class="text"><code>api-carros/
+├── database/
+│   └── connection.js
+├── middleware/
+│   └── auth.js
+├── models/
+│   ├── Carro.js
+│   ├── Cliente.js
+│   └── Venda.js
+├── routes/
+│   ├── auth.js
+│   ├── carros.js
+│   ├── clientes.js
+│   └── vendas.js
+├── package.json
+└── server.js</code></pre>
+<p>Essa organização separa responsabilidades:</p>
+<ul>
+<li>
+<code>database</code>: conexão com banco;</li>
+<li>
+<code>middleware</code>: autenticação;</li>
+<li>
+<code>models</code>: classes de acesso aos dados;</li>
+<li>
+<code>routes</code>: definição das rotas da API;</li>
+<li>
+<code>server.js</code>: configuração principal da aplicação.</li>
+</ul>
+</div>
+<div id="arquivo-de-conexão-com-banco-de-dados" class="section level2" number="11.5">
+<h2>
+<span class="header-section-number">11.5</span> Arquivo de conexão com banco de dados<a class="anchor" aria-label="anchor" href="#arquivo-de-conex%C3%A3o-com-banco-de-dados"><i class="fas fa-link"></i></a>
+</h2>
+<p>O arquivo de conexão permanece semelhante ao utilizado nos capítulos anteriores.</p>
+<p>Arquivo:</p>
+<pre class="text"><code>database/connection.js</code></pre>
+<div class="sourceCode" id="cb310"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb310-1"><a href="loja-de-carros-com-clientes-e-vendas.html#cb310-1" tabindex="-1"></a><span class="kw">const</span> mysql <span class="op">=</span> <span class="pp">require</span>(<span class="st">'mysql2'</span>)<span class="op">;</span></span>
+<span id="cb310-2"><a href="loja-de-carros-com-clientes-e-vendas.html#cb310-2" tabindex="-1"></a></span>
+<span id="cb310-3"><a href="loja-de-carros-com-clientes-e-vendas.html#cb310-3" tabindex="-1"></a><span class="kw">const</span> connection <span class="op">=</span> mysql<span class="op">.</span><span class="fu">createConnection</span>({</span>
+<span id="cb310-4"><a href="loja-de-carros-com-clientes-e-vendas.html#cb310-4" tabindex="-1"></a>  <span class="dt">host</span><span class="op">:</span> <span class="st">'localhost'</span><span class="op">,</span></span>
+<span id="cb310-5"><a href="loja-de-carros-com-clientes-e-vendas.html#cb310-5" tabindex="-1"></a>  <span class="dt">user</span><span class="op">:</span> <span class="st">'root'</span><span class="op">,</span></span>
+<span id="cb310-6"><a href="loja-de-carros-com-clientes-e-vendas.html#cb310-6" tabindex="-1"></a>  <span class="dt">password</span><span class="op">:</span> <span class="st">''</span><span class="op">,</span></span>
+<span id="cb310-7"><a href="loja-de-carros-com-clientes-e-vendas.html#cb310-7" tabindex="-1"></a>  <span class="dt">database</span><span class="op">:</span> <span class="st">'api_carros'</span></span>
+<span id="cb310-8"><a href="loja-de-carros-com-clientes-e-vendas.html#cb310-8" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb310-9"><a href="loja-de-carros-com-clientes-e-vendas.html#cb310-9" tabindex="-1"></a></span>
+<span id="cb310-10"><a href="loja-de-carros-com-clientes-e-vendas.html#cb310-10" tabindex="-1"></a>connection<span class="op">.</span><span class="fu">connect</span>((erro) <span class="kw">=&gt;</span> {</span>
+<span id="cb310-11"><a href="loja-de-carros-com-clientes-e-vendas.html#cb310-11" tabindex="-1"></a>  <span class="cf">if</span> (erro) {</span>
+<span id="cb310-12"><a href="loja-de-carros-com-clientes-e-vendas.html#cb310-12" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">error</span>(<span class="st">'Erro ao conectar no banco:'</span><span class="op">,</span> erro)<span class="op">;</span></span>
+<span id="cb310-13"><a href="loja-de-carros-com-clientes-e-vendas.html#cb310-13" tabindex="-1"></a>    <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb310-14"><a href="loja-de-carros-com-clientes-e-vendas.html#cb310-14" tabindex="-1"></a>  }</span>
+<span id="cb310-15"><a href="loja-de-carros-com-clientes-e-vendas.html#cb310-15" tabindex="-1"></a></span>
+<span id="cb310-16"><a href="loja-de-carros-com-clientes-e-vendas.html#cb310-16" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">'Conectado ao banco de dados MySQL'</span>)<span class="op">;</span></span>
+<span id="cb310-17"><a href="loja-de-carros-com-clientes-e-vendas.html#cb310-17" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb310-18"><a href="loja-de-carros-com-clientes-e-vendas.html#cb310-18" tabindex="-1"></a></span>
+<span id="cb310-19"><a href="loja-de-carros-com-clientes-e-vendas.html#cb310-19" tabindex="-1"></a>module<span class="op">.</span><span class="at">exports</span> <span class="op">=</span> connection<span class="op">;</span></span></code></pre></div>
+<p>Esse arquivo exporta a conexão para que ela possa ser reutilizada nas classes <code>Carro</code>, <code>Cliente</code> e <code>Venda</code>.</p>
+</div>
+<div id="classe-cliente" class="section level2" number="11.6">
+<h2>
+<span class="header-section-number">11.6</span> Classe Cliente<a class="anchor" aria-label="anchor" href="#classe-cliente"><i class="fas fa-link"></i></a>
+</h2>
+<p>A classe <code>Cliente</code> será responsável pelas operações de cadastro, consulta, atualização e remoção de clientes.</p>
+<p>Arquivo:</p>
+<pre class="text"><code>models/Cliente.js</code></pre>
+<div class="sourceCode" id="cb312"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb312-1"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-1" tabindex="-1"></a><span class="kw">const</span> connection <span class="op">=</span> <span class="pp">require</span>(<span class="st">'../database/connection'</span>)<span class="op">;</span></span>
+<span id="cb312-2"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-2" tabindex="-1"></a></span>
+<span id="cb312-3"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-3" tabindex="-1"></a><span class="kw">class</span> Cliente {</span>
+<span id="cb312-4"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-4" tabindex="-1"></a></span>
+<span id="cb312-5"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-5" tabindex="-1"></a>  <span class="fu">listar</span>(callback) {</span>
+<span id="cb312-6"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-6" tabindex="-1"></a>    <span class="kw">const</span> sql <span class="op">=</span> <span class="st">'SELECT * FROM clientes'</span><span class="op">;</span></span>
+<span id="cb312-7"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-7" tabindex="-1"></a>    connection<span class="op">.</span><span class="fu">query</span>(sql<span class="op">,</span> callback)<span class="op">;</span></span>
+<span id="cb312-8"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-8" tabindex="-1"></a>  }</span>
+<span id="cb312-9"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-9" tabindex="-1"></a></span>
+<span id="cb312-10"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-10" tabindex="-1"></a>  <span class="fu">buscarPorId</span>(id<span class="op">,</span> callback) {</span>
+<span id="cb312-11"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-11" tabindex="-1"></a>    <span class="kw">const</span> sql <span class="op">=</span> <span class="st">'SELECT * FROM clientes WHERE id = ?'</span><span class="op">;</span></span>
+<span id="cb312-12"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-12" tabindex="-1"></a>    connection<span class="op">.</span><span class="fu">query</span>(sql<span class="op">,</span> [id]<span class="op">,</span> callback)<span class="op">;</span></span>
+<span id="cb312-13"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-13" tabindex="-1"></a>  }</span>
+<span id="cb312-14"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-14" tabindex="-1"></a></span>
+<span id="cb312-15"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-15" tabindex="-1"></a>  <span class="fu">inserir</span>(dados<span class="op">,</span> callback) {</span>
+<span id="cb312-16"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-16" tabindex="-1"></a>    <span class="kw">const</span> sql <span class="op">=</span> <span class="vs">`</span></span>
+<span id="cb312-17"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-17" tabindex="-1"></a><span class="vs">      INSERT INTO clientes (nome, cpf, email, telefone)</span></span>
+<span id="cb312-18"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-18" tabindex="-1"></a><span class="vs">      VALUES (?, ?, ?, ?)</span></span>
+<span id="cb312-19"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-19" tabindex="-1"></a><span class="vs">    `</span><span class="op">;</span></span>
+<span id="cb312-20"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-20" tabindex="-1"></a></span>
+<span id="cb312-21"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-21" tabindex="-1"></a>    connection<span class="op">.</span><span class="fu">query</span>(</span>
+<span id="cb312-22"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-22" tabindex="-1"></a>      sql<span class="op">,</span></span>
+<span id="cb312-23"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-23" tabindex="-1"></a>      [</span>
+<span id="cb312-24"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-24" tabindex="-1"></a>        dados<span class="op">.</span><span class="at">nome</span><span class="op">,</span></span>
+<span id="cb312-25"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-25" tabindex="-1"></a>        dados<span class="op">.</span><span class="at">cpf</span><span class="op">,</span></span>
+<span id="cb312-26"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-26" tabindex="-1"></a>        dados<span class="op">.</span><span class="at">email</span><span class="op">,</span></span>
+<span id="cb312-27"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-27" tabindex="-1"></a>        dados<span class="op">.</span><span class="at">telefone</span></span>
+<span id="cb312-28"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-28" tabindex="-1"></a>      ]<span class="op">,</span></span>
+<span id="cb312-29"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-29" tabindex="-1"></a>      callback</span>
+<span id="cb312-30"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-30" tabindex="-1"></a>    )<span class="op">;</span></span>
+<span id="cb312-31"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-31" tabindex="-1"></a>  }</span>
+<span id="cb312-32"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-32" tabindex="-1"></a></span>
+<span id="cb312-33"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-33" tabindex="-1"></a>  <span class="fu">atualizar</span>(id<span class="op">,</span> dados<span class="op">,</span> callback) {</span>
+<span id="cb312-34"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-34" tabindex="-1"></a>    <span class="kw">const</span> sql <span class="op">=</span> <span class="vs">`</span></span>
+<span id="cb312-35"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-35" tabindex="-1"></a><span class="vs">      UPDATE clientes</span></span>
+<span id="cb312-36"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-36" tabindex="-1"></a><span class="vs">      SET nome = ?, cpf = ?, email = ?, telefone = ?</span></span>
+<span id="cb312-37"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-37" tabindex="-1"></a><span class="vs">      WHERE id = ?</span></span>
+<span id="cb312-38"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-38" tabindex="-1"></a><span class="vs">    `</span><span class="op">;</span></span>
+<span id="cb312-39"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-39" tabindex="-1"></a></span>
+<span id="cb312-40"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-40" tabindex="-1"></a>    connection<span class="op">.</span><span class="fu">query</span>(</span>
+<span id="cb312-41"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-41" tabindex="-1"></a>      sql<span class="op">,</span></span>
+<span id="cb312-42"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-42" tabindex="-1"></a>      [</span>
+<span id="cb312-43"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-43" tabindex="-1"></a>        dados<span class="op">.</span><span class="at">nome</span><span class="op">,</span></span>
+<span id="cb312-44"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-44" tabindex="-1"></a>        dados<span class="op">.</span><span class="at">cpf</span><span class="op">,</span></span>
+<span id="cb312-45"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-45" tabindex="-1"></a>        dados<span class="op">.</span><span class="at">email</span><span class="op">,</span></span>
+<span id="cb312-46"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-46" tabindex="-1"></a>        dados<span class="op">.</span><span class="at">telefone</span><span class="op">,</span></span>
+<span id="cb312-47"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-47" tabindex="-1"></a>        id</span>
+<span id="cb312-48"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-48" tabindex="-1"></a>      ]<span class="op">,</span></span>
+<span id="cb312-49"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-49" tabindex="-1"></a>      callback</span>
+<span id="cb312-50"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-50" tabindex="-1"></a>    )<span class="op">;</span></span>
+<span id="cb312-51"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-51" tabindex="-1"></a>  }</span>
+<span id="cb312-52"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-52" tabindex="-1"></a></span>
+<span id="cb312-53"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-53" tabindex="-1"></a>  <span class="fu">remover</span>(id<span class="op">,</span> callback) {</span>
+<span id="cb312-54"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-54" tabindex="-1"></a>    <span class="kw">const</span> sql <span class="op">=</span> <span class="st">'DELETE FROM clientes WHERE id = ?'</span><span class="op">;</span></span>
+<span id="cb312-55"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-55" tabindex="-1"></a>    connection<span class="op">.</span><span class="fu">query</span>(sql<span class="op">,</span> [id]<span class="op">,</span> callback)<span class="op">;</span></span>
+<span id="cb312-56"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-56" tabindex="-1"></a>  }</span>
+<span id="cb312-57"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-57" tabindex="-1"></a></span>
+<span id="cb312-58"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-58" tabindex="-1"></a>}</span>
+<span id="cb312-59"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-59" tabindex="-1"></a></span>
+<span id="cb312-60"><a href="loja-de-carros-com-clientes-e-vendas.html#cb312-60" tabindex="-1"></a>module<span class="op">.</span><span class="at">exports</span> <span class="op">=</span> <span class="kw">new</span> <span class="fu">Cliente</span>()<span class="op">;</span></span></code></pre></div>
+<p>A classe isola o acesso à tabela <code>clientes</code>, evitando que os comandos SQL fiquem diretamente espalhados pelas rotas.</p>
+</div>
+<div id="rotas-de-clientes-protegidas-por-autenticação" class="section level2" number="11.7">
+<h2>
+<span class="header-section-number">11.7</span> Rotas de clientes protegidas por autenticação<a class="anchor" aria-label="anchor" href="#rotas-de-clientes-protegidas-por-autentica%C3%A7%C3%A3o"><i class="fas fa-link"></i></a>
+</h2>
+<p>Como o enunciado do sistema define que o cadastro de clientes deve ser feito apenas por usuários autenticados, vamos proteger as rotas que modificam dados.</p>
+<p>Arquivo:</p>
+<pre class="text"><code>routes/clientes.js</code></pre>
+<div class="sourceCode" id="cb314"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb314-1"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-1" tabindex="-1"></a><span class="kw">const</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">'express'</span>)<span class="op">;</span></span>
+<span id="cb314-2"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-2" tabindex="-1"></a></span>
+<span id="cb314-3"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-3" tabindex="-1"></a><span class="kw">const</span> router <span class="op">=</span> express<span class="op">.</span><span class="fu">Router</span>()<span class="op">;</span></span>
+<span id="cb314-4"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-4" tabindex="-1"></a></span>
+<span id="cb314-5"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-5" tabindex="-1"></a><span class="kw">const</span> Cliente <span class="op">=</span> <span class="pp">require</span>(<span class="st">'../models/Cliente'</span>)<span class="op">;</span></span>
+<span id="cb314-6"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-6" tabindex="-1"></a><span class="kw">const</span> { protegerRota } <span class="op">=</span> <span class="pp">require</span>(<span class="st">'../middleware/auth'</span>)<span class="op">;</span></span>
+<span id="cb314-7"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-7" tabindex="-1"></a></span>
+<span id="cb314-8"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-8" tabindex="-1"></a>router<span class="op">.</span><span class="fu">get</span>(<span class="st">'/'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb314-9"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-9" tabindex="-1"></a>  Cliente<span class="op">.</span><span class="fu">listar</span>((erro<span class="op">,</span> resultados) <span class="kw">=&gt;</span> {</span>
+<span id="cb314-10"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-10" tabindex="-1"></a>    <span class="cf">if</span> (erro) {</span>
+<span id="cb314-11"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-11" tabindex="-1"></a>      <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">500</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb314-12"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-12" tabindex="-1"></a>        <span class="dt">erro</span><span class="op">:</span> <span class="st">'Erro ao listar clientes'</span></span>
+<span id="cb314-13"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-13" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb314-14"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-14" tabindex="-1"></a>    }</span>
+<span id="cb314-15"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-15" tabindex="-1"></a></span>
+<span id="cb314-16"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-16" tabindex="-1"></a>    res<span class="op">.</span><span class="fu">json</span>(resultados)<span class="op">;</span></span>
+<span id="cb314-17"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-17" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb314-18"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-18" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb314-19"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-19" tabindex="-1"></a></span>
+<span id="cb314-20"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-20" tabindex="-1"></a>router<span class="op">.</span><span class="fu">get</span>(<span class="st">'/:id'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb314-21"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-21" tabindex="-1"></a>  Cliente<span class="op">.</span><span class="fu">buscarPorId</span>(req<span class="op">.</span><span class="at">params</span><span class="op">.</span><span class="at">id</span><span class="op">,</span> (erro<span class="op">,</span> resultados) <span class="kw">=&gt;</span> {</span>
+<span id="cb314-22"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-22" tabindex="-1"></a>    <span class="cf">if</span> (erro) {</span>
+<span id="cb314-23"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-23" tabindex="-1"></a>      <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">500</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb314-24"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-24" tabindex="-1"></a>        <span class="dt">erro</span><span class="op">:</span> <span class="st">'Erro ao buscar cliente'</span></span>
+<span id="cb314-25"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-25" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb314-26"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-26" tabindex="-1"></a>    }</span>
+<span id="cb314-27"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-27" tabindex="-1"></a></span>
+<span id="cb314-28"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-28" tabindex="-1"></a>    <span class="cf">if</span> (resultados<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span>) {</span>
+<span id="cb314-29"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-29" tabindex="-1"></a>      <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">404</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb314-30"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-30" tabindex="-1"></a>        <span class="dt">erro</span><span class="op">:</span> <span class="st">'Cliente não encontrado'</span></span>
+<span id="cb314-31"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-31" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb314-32"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-32" tabindex="-1"></a>    }</span>
+<span id="cb314-33"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-33" tabindex="-1"></a></span>
+<span id="cb314-34"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-34" tabindex="-1"></a>    res<span class="op">.</span><span class="fu">json</span>(resultados[<span class="dv">0</span>])<span class="op">;</span></span>
+<span id="cb314-35"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-35" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb314-36"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-36" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb314-37"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-37" tabindex="-1"></a></span>
+<span id="cb314-38"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-38" tabindex="-1"></a>router<span class="op">.</span><span class="fu">post</span>(<span class="st">'/'</span><span class="op">,</span> protegerRota<span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb314-39"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-39" tabindex="-1"></a>  Cliente<span class="op">.</span><span class="fu">inserir</span>(req<span class="op">.</span><span class="at">body</span><span class="op">,</span> (erro<span class="op">,</span> resultado) <span class="kw">=&gt;</span> {</span>
+<span id="cb314-40"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-40" tabindex="-1"></a>    <span class="cf">if</span> (erro) {</span>
+<span id="cb314-41"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-41" tabindex="-1"></a>      <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">500</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb314-42"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-42" tabindex="-1"></a>        <span class="dt">erro</span><span class="op">:</span> <span class="st">'Erro ao inserir cliente'</span></span>
+<span id="cb314-43"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-43" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb314-44"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-44" tabindex="-1"></a>    }</span>
+<span id="cb314-45"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-45" tabindex="-1"></a></span>
+<span id="cb314-46"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-46" tabindex="-1"></a>    res<span class="op">.</span><span class="fu">status</span>(<span class="dv">201</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb314-47"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-47" tabindex="-1"></a>      <span class="dt">mensagem</span><span class="op">:</span> <span class="st">'Cliente cadastrado com sucesso'</span><span class="op">,</span></span>
+<span id="cb314-48"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-48" tabindex="-1"></a>      <span class="dt">idInserido</span><span class="op">:</span> resultado<span class="op">.</span><span class="at">insertId</span></span>
+<span id="cb314-49"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-49" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb314-50"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-50" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb314-51"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-51" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb314-52"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-52" tabindex="-1"></a></span>
+<span id="cb314-53"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-53" tabindex="-1"></a>router<span class="op">.</span><span class="fu">put</span>(<span class="st">'/:id'</span><span class="op">,</span> protegerRota<span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb314-54"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-54" tabindex="-1"></a>  Cliente<span class="op">.</span><span class="fu">atualizar</span>(req<span class="op">.</span><span class="at">params</span><span class="op">.</span><span class="at">id</span><span class="op">,</span> req<span class="op">.</span><span class="at">body</span><span class="op">,</span> (erro) <span class="kw">=&gt;</span> {</span>
+<span id="cb314-55"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-55" tabindex="-1"></a>    <span class="cf">if</span> (erro) {</span>
+<span id="cb314-56"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-56" tabindex="-1"></a>      <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">500</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb314-57"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-57" tabindex="-1"></a>        <span class="dt">erro</span><span class="op">:</span> <span class="st">'Erro ao atualizar cliente'</span></span>
+<span id="cb314-58"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-58" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb314-59"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-59" tabindex="-1"></a>    }</span>
+<span id="cb314-60"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-60" tabindex="-1"></a></span>
+<span id="cb314-61"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-61" tabindex="-1"></a>    res<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb314-62"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-62" tabindex="-1"></a>      <span class="dt">mensagem</span><span class="op">:</span> <span class="st">'Cliente atualizado com sucesso'</span></span>
+<span id="cb314-63"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-63" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb314-64"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-64" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb314-65"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-65" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb314-66"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-66" tabindex="-1"></a></span>
+<span id="cb314-67"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-67" tabindex="-1"></a>router<span class="op">.</span><span class="fu">delete</span>(<span class="st">'/:id'</span><span class="op">,</span> protegerRota<span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb314-68"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-68" tabindex="-1"></a>  Cliente<span class="op">.</span><span class="fu">remover</span>(req<span class="op">.</span><span class="at">params</span><span class="op">.</span><span class="at">id</span><span class="op">,</span> (erro) <span class="kw">=&gt;</span> {</span>
+<span id="cb314-69"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-69" tabindex="-1"></a>    <span class="cf">if</span> (erro) {</span>
+<span id="cb314-70"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-70" tabindex="-1"></a>      <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">500</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb314-71"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-71" tabindex="-1"></a>        <span class="dt">erro</span><span class="op">:</span> <span class="st">'Erro ao remover cliente'</span></span>
+<span id="cb314-72"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-72" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb314-73"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-73" tabindex="-1"></a>    }</span>
+<span id="cb314-74"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-74" tabindex="-1"></a></span>
+<span id="cb314-75"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-75" tabindex="-1"></a>    res<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb314-76"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-76" tabindex="-1"></a>      <span class="dt">mensagem</span><span class="op">:</span> <span class="st">'Cliente removido com sucesso'</span></span>
+<span id="cb314-77"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-77" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb314-78"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-78" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb314-79"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-79" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb314-80"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-80" tabindex="-1"></a></span>
+<span id="cb314-81"><a href="loja-de-carros-com-clientes-e-vendas.html#cb314-81" tabindex="-1"></a>module<span class="op">.</span><span class="at">exports</span> <span class="op">=</span> router<span class="op">;</span></span></code></pre></div>
+<p>Neste exemplo:</p>
+<ul>
+<li>
+<code>GET /clientes</code> é público;</li>
+<li>
+<code>GET /clientes/:id</code> é público;</li>
+<li>
+<code>POST /clientes</code> exige token;</li>
+<li>
+<code>PUT /clientes/:id</code> exige token;</li>
+<li>
+<code>DELETE /clientes/:id</code> exige token.</li>
+</ul>
+<p>Essa estratégia é comum em APIs: consultas podem ser públicas, enquanto alterações exigem autenticação.<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Npm, &lt;em&gt;Express-Jwt&lt;/em&gt;.&lt;/p&gt;"><sup>39</sup></a></span></p>
+</div>
+<div id="classe-venda" class="section level2" number="11.8">
+<h2>
+<span class="header-section-number">11.8</span> Classe Venda<a class="anchor" aria-label="anchor" href="#classe-venda"><i class="fas fa-link"></i></a>
+</h2>
+<p>A classe <code>Venda</code> será responsável por registrar e consultar vendas.</p>
+<p>A venda envolve relacionamento entre três tabelas:</p>
+<ul>
+<li>
+<code>clientes</code>;</li>
+<li>
+<code>carros</code>;</li>
+<li>
+<code>usuarios</code>.</li>
+</ul>
+<p>Além disso, a operação de venda precisa:</p>
+<ol style="list-style-type: decimal">
+<li>verificar se o carro existe;</li>
+<li>verificar se o carro ainda não foi vendido;</li>
+<li>registrar a venda;</li>
+<li>atualizar o carro como vendido.</li>
+</ol>
+<p>Esses passos envolvem mais de uma operação no banco. Em sistemas reais, o ideal é usar <strong>transação</strong>, pois ela garante que todas as operações sejam concluídas corretamente ou nenhuma delas seja efetivada.</p>
+<p>Arquivo:</p>
+<pre class="text"><code>models/Venda.js</code></pre>
+<div class="sourceCode" id="cb316"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb316-1"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-1" tabindex="-1"></a><span class="kw">const</span> connection <span class="op">=</span> <span class="pp">require</span>(<span class="st">'../database/connection'</span>)<span class="op">;</span></span>
+<span id="cb316-2"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-2" tabindex="-1"></a></span>
+<span id="cb316-3"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-3" tabindex="-1"></a><span class="kw">class</span> Venda {</span>
+<span id="cb316-4"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-4" tabindex="-1"></a></span>
+<span id="cb316-5"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-5" tabindex="-1"></a>  <span class="fu">listar</span>(callback) {</span>
+<span id="cb316-6"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-6" tabindex="-1"></a>    <span class="kw">const</span> sql <span class="op">=</span> <span class="vs">`</span></span>
+<span id="cb316-7"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-7" tabindex="-1"></a><span class="vs">      SELECT </span></span>
+<span id="cb316-8"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-8" tabindex="-1"></a><span class="vs">        vendas.id,</span></span>
+<span id="cb316-9"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-9" tabindex="-1"></a><span class="vs">        vendas.valor_venda,</span></span>
+<span id="cb316-10"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-10" tabindex="-1"></a><span class="vs">        vendas.data_venda,</span></span>
+<span id="cb316-11"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-11" tabindex="-1"></a><span class="vs">        clientes.nome AS cliente,</span></span>
+<span id="cb316-12"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-12" tabindex="-1"></a><span class="vs">        carros.nome AS carro,</span></span>
+<span id="cb316-13"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-13" tabindex="-1"></a><span class="vs">        carros.marca AS marca,</span></span>
+<span id="cb316-14"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-14" tabindex="-1"></a><span class="vs">        usuarios.nome AS usuario</span></span>
+<span id="cb316-15"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-15" tabindex="-1"></a><span class="vs">      FROM vendas</span></span>
+<span id="cb316-16"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-16" tabindex="-1"></a><span class="vs">      INNER JOIN clientes ON vendas.cliente_id = clientes.id</span></span>
+<span id="cb316-17"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-17" tabindex="-1"></a><span class="vs">      INNER JOIN carros ON vendas.carro_id = carros.id</span></span>
+<span id="cb316-18"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-18" tabindex="-1"></a><span class="vs">      INNER JOIN usuarios ON vendas.usuario_id = usuarios.id</span></span>
+<span id="cb316-19"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-19" tabindex="-1"></a><span class="vs">      ORDER BY vendas.data_venda DESC</span></span>
+<span id="cb316-20"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-20" tabindex="-1"></a><span class="vs">    `</span><span class="op">;</span></span>
+<span id="cb316-21"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-21" tabindex="-1"></a></span>
+<span id="cb316-22"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-22" tabindex="-1"></a>    connection<span class="op">.</span><span class="fu">query</span>(sql<span class="op">,</span> callback)<span class="op">;</span></span>
+<span id="cb316-23"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-23" tabindex="-1"></a>  }</span>
+<span id="cb316-24"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-24" tabindex="-1"></a></span>
+<span id="cb316-25"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-25" tabindex="-1"></a>  <span class="fu">buscarPorId</span>(id<span class="op">,</span> callback) {</span>
+<span id="cb316-26"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-26" tabindex="-1"></a>    <span class="kw">const</span> sql <span class="op">=</span> <span class="vs">`</span></span>
+<span id="cb316-27"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-27" tabindex="-1"></a><span class="vs">      SELECT </span></span>
+<span id="cb316-28"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-28" tabindex="-1"></a><span class="vs">        vendas.id,</span></span>
+<span id="cb316-29"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-29" tabindex="-1"></a><span class="vs">        vendas.valor_venda,</span></span>
+<span id="cb316-30"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-30" tabindex="-1"></a><span class="vs">        vendas.data_venda,</span></span>
+<span id="cb316-31"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-31" tabindex="-1"></a><span class="vs">        clientes.nome AS cliente,</span></span>
+<span id="cb316-32"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-32" tabindex="-1"></a><span class="vs">        carros.nome AS carro,</span></span>
+<span id="cb316-33"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-33" tabindex="-1"></a><span class="vs">        carros.marca AS marca,</span></span>
+<span id="cb316-34"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-34" tabindex="-1"></a><span class="vs">        usuarios.nome AS usuario</span></span>
+<span id="cb316-35"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-35" tabindex="-1"></a><span class="vs">      FROM vendas</span></span>
+<span id="cb316-36"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-36" tabindex="-1"></a><span class="vs">      INNER JOIN clientes ON vendas.cliente_id = clientes.id</span></span>
+<span id="cb316-37"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-37" tabindex="-1"></a><span class="vs">      INNER JOIN carros ON vendas.carro_id = carros.id</span></span>
+<span id="cb316-38"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-38" tabindex="-1"></a><span class="vs">      INNER JOIN usuarios ON vendas.usuario_id = usuarios.id</span></span>
+<span id="cb316-39"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-39" tabindex="-1"></a><span class="vs">      WHERE vendas.id = ?</span></span>
+<span id="cb316-40"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-40" tabindex="-1"></a><span class="vs">    `</span><span class="op">;</span></span>
+<span id="cb316-41"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-41" tabindex="-1"></a></span>
+<span id="cb316-42"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-42" tabindex="-1"></a>    connection<span class="op">.</span><span class="fu">query</span>(sql<span class="op">,</span> [id]<span class="op">,</span> callback)<span class="op">;</span></span>
+<span id="cb316-43"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-43" tabindex="-1"></a>  }</span>
+<span id="cb316-44"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-44" tabindex="-1"></a></span>
+<span id="cb316-45"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-45" tabindex="-1"></a>  <span class="fu">inserir</span>(dados<span class="op">,</span> usuarioId<span class="op">,</span> callback) {</span>
+<span id="cb316-46"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-46" tabindex="-1"></a>    connection<span class="op">.</span><span class="fu">beginTransaction</span>((erroTransacao) <span class="kw">=&gt;</span> {</span>
+<span id="cb316-47"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-47" tabindex="-1"></a>      <span class="cf">if</span> (erroTransacao) {</span>
+<span id="cb316-48"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-48" tabindex="-1"></a>        <span class="cf">return</span> <span class="fu">callback</span>(erroTransacao)<span class="op">;</span></span>
+<span id="cb316-49"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-49" tabindex="-1"></a>      }</span>
+<span id="cb316-50"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-50" tabindex="-1"></a></span>
+<span id="cb316-51"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-51" tabindex="-1"></a>      <span class="kw">const</span> sqlBuscaCarro <span class="op">=</span> <span class="st">'SELECT * FROM carros WHERE id = ?'</span><span class="op">;</span></span>
+<span id="cb316-52"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-52" tabindex="-1"></a></span>
+<span id="cb316-53"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-53" tabindex="-1"></a>      connection<span class="op">.</span><span class="fu">query</span>(sqlBuscaCarro<span class="op">,</span> [dados<span class="op">.</span><span class="at">carro_id</span>]<span class="op">,</span> (erroBusca<span class="op">,</span> carros) <span class="kw">=&gt;</span> {</span>
+<span id="cb316-54"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-54" tabindex="-1"></a>        <span class="cf">if</span> (erroBusca) {</span>
+<span id="cb316-55"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-55" tabindex="-1"></a>          <span class="cf">return</span> connection<span class="op">.</span><span class="fu">rollback</span>(() <span class="kw">=&gt;</span> <span class="fu">callback</span>(erroBusca))<span class="op">;</span></span>
+<span id="cb316-56"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-56" tabindex="-1"></a>        }</span>
+<span id="cb316-57"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-57" tabindex="-1"></a></span>
+<span id="cb316-58"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-58" tabindex="-1"></a>        <span class="cf">if</span> (carros<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span>) {</span>
+<span id="cb316-59"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-59" tabindex="-1"></a>          <span class="cf">return</span> connection<span class="op">.</span><span class="fu">rollback</span>(() <span class="kw">=&gt;</span> <span class="fu">callback</span>(<span class="kw">new</span> <span class="bu">Error</span>(<span class="st">'Carro não encontrado'</span>)))<span class="op">;</span></span>
+<span id="cb316-60"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-60" tabindex="-1"></a>        }</span>
+<span id="cb316-61"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-61" tabindex="-1"></a></span>
+<span id="cb316-62"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-62" tabindex="-1"></a>        <span class="kw">const</span> carro <span class="op">=</span> carros[<span class="dv">0</span>]<span class="op">;</span></span>
+<span id="cb316-63"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-63" tabindex="-1"></a></span>
+<span id="cb316-64"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-64" tabindex="-1"></a>        <span class="cf">if</span> (carro<span class="op">.</span><span class="at">vendido</span>) {</span>
+<span id="cb316-65"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-65" tabindex="-1"></a>          <span class="cf">return</span> connection<span class="op">.</span><span class="fu">rollback</span>(() <span class="kw">=&gt;</span> <span class="fu">callback</span>(<span class="kw">new</span> <span class="bu">Error</span>(<span class="st">'Carro já vendido'</span>)))<span class="op">;</span></span>
+<span id="cb316-66"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-66" tabindex="-1"></a>        }</span>
+<span id="cb316-67"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-67" tabindex="-1"></a></span>
+<span id="cb316-68"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-68" tabindex="-1"></a>        <span class="kw">const</span> sqlVenda <span class="op">=</span> <span class="vs">`</span></span>
+<span id="cb316-69"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-69" tabindex="-1"></a><span class="vs">          INSERT INTO vendas (cliente_id, carro_id, usuario_id, valor_venda)</span></span>
+<span id="cb316-70"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-70" tabindex="-1"></a><span class="vs">          VALUES (?, ?, ?, ?)</span></span>
+<span id="cb316-71"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-71" tabindex="-1"></a><span class="vs">        `</span><span class="op">;</span></span>
+<span id="cb316-72"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-72" tabindex="-1"></a></span>
+<span id="cb316-73"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-73" tabindex="-1"></a>        connection<span class="op">.</span><span class="fu">query</span>(</span>
+<span id="cb316-74"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-74" tabindex="-1"></a>          sqlVenda<span class="op">,</span></span>
+<span id="cb316-75"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-75" tabindex="-1"></a>          [</span>
+<span id="cb316-76"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-76" tabindex="-1"></a>            dados<span class="op">.</span><span class="at">cliente_id</span><span class="op">,</span></span>
+<span id="cb316-77"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-77" tabindex="-1"></a>            dados<span class="op">.</span><span class="at">carro_id</span><span class="op">,</span></span>
+<span id="cb316-78"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-78" tabindex="-1"></a>            usuarioId<span class="op">,</span></span>
+<span id="cb316-79"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-79" tabindex="-1"></a>            dados<span class="op">.</span><span class="at">valor_venda</span></span>
+<span id="cb316-80"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-80" tabindex="-1"></a>          ]<span class="op">,</span></span>
+<span id="cb316-81"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-81" tabindex="-1"></a>          (erroVenda<span class="op">,</span> resultadoVenda) <span class="kw">=&gt;</span> {</span>
+<span id="cb316-82"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-82" tabindex="-1"></a>            <span class="cf">if</span> (erroVenda) {</span>
+<span id="cb316-83"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-83" tabindex="-1"></a>              <span class="cf">return</span> connection<span class="op">.</span><span class="fu">rollback</span>(() <span class="kw">=&gt;</span> <span class="fu">callback</span>(erroVenda))<span class="op">;</span></span>
+<span id="cb316-84"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-84" tabindex="-1"></a>            }</span>
+<span id="cb316-85"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-85" tabindex="-1"></a></span>
+<span id="cb316-86"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-86" tabindex="-1"></a>            <span class="kw">const</span> sqlAtualizaCarro <span class="op">=</span> <span class="vs">`</span></span>
+<span id="cb316-87"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-87" tabindex="-1"></a><span class="vs">              UPDATE carros</span></span>
+<span id="cb316-88"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-88" tabindex="-1"></a><span class="vs">              SET vendido = true</span></span>
+<span id="cb316-89"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-89" tabindex="-1"></a><span class="vs">              WHERE id = ?</span></span>
+<span id="cb316-90"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-90" tabindex="-1"></a><span class="vs">            `</span><span class="op">;</span></span>
+<span id="cb316-91"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-91" tabindex="-1"></a></span>
+<span id="cb316-92"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-92" tabindex="-1"></a>            connection<span class="op">.</span><span class="fu">query</span>(sqlAtualizaCarro<span class="op">,</span> [dados<span class="op">.</span><span class="at">carro_id</span>]<span class="op">,</span> (erroAtualiza) <span class="kw">=&gt;</span> {</span>
+<span id="cb316-93"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-93" tabindex="-1"></a>              <span class="cf">if</span> (erroAtualiza) {</span>
+<span id="cb316-94"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-94" tabindex="-1"></a>                <span class="cf">return</span> connection<span class="op">.</span><span class="fu">rollback</span>(() <span class="kw">=&gt;</span> <span class="fu">callback</span>(erroAtualiza))<span class="op">;</span></span>
+<span id="cb316-95"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-95" tabindex="-1"></a>              }</span>
+<span id="cb316-96"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-96" tabindex="-1"></a></span>
+<span id="cb316-97"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-97" tabindex="-1"></a>              connection<span class="op">.</span><span class="fu">commit</span>((erroCommit) <span class="kw">=&gt;</span> {</span>
+<span id="cb316-98"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-98" tabindex="-1"></a>                <span class="cf">if</span> (erroCommit) {</span>
+<span id="cb316-99"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-99" tabindex="-1"></a>                  <span class="cf">return</span> connection<span class="op">.</span><span class="fu">rollback</span>(() <span class="kw">=&gt;</span> <span class="fu">callback</span>(erroCommit))<span class="op">;</span></span>
+<span id="cb316-100"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-100" tabindex="-1"></a>                }</span>
+<span id="cb316-101"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-101" tabindex="-1"></a></span>
+<span id="cb316-102"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-102" tabindex="-1"></a>                <span class="fu">callback</span>(<span class="kw">null</span><span class="op">,</span> resultadoVenda)<span class="op">;</span></span>
+<span id="cb316-103"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-103" tabindex="-1"></a>              })<span class="op">;</span></span>
+<span id="cb316-104"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-104" tabindex="-1"></a>            })<span class="op">;</span></span>
+<span id="cb316-105"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-105" tabindex="-1"></a>          }</span>
+<span id="cb316-106"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-106" tabindex="-1"></a>        )<span class="op">;</span></span>
+<span id="cb316-107"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-107" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb316-108"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-108" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb316-109"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-109" tabindex="-1"></a>  }</span>
+<span id="cb316-110"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-110" tabindex="-1"></a></span>
+<span id="cb316-111"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-111" tabindex="-1"></a>}</span>
+<span id="cb316-112"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-112" tabindex="-1"></a></span>
+<span id="cb316-113"><a href="loja-de-carros-com-clientes-e-vendas.html#cb316-113" tabindex="-1"></a>module<span class="op">.</span><span class="at">exports</span> <span class="op">=</span> <span class="kw">new</span> <span class="fu">Venda</span>()<span class="op">;</span></span></code></pre></div>
+</div>
+<div id="explicando-a-transação" class="section level2" number="11.9">
+<h2>
+<span class="header-section-number">11.9</span> Explicando a transação<a class="anchor" aria-label="anchor" href="#explicando-a-transa%C3%A7%C3%A3o"><i class="fas fa-link"></i></a>
+</h2>
+<p>A venda precisa alterar duas tabelas:</p>
+<ul>
+<li>inserir registro em <code>vendas</code>;</li>
+<li>atualizar o campo <code>vendido</code> em <code>carros</code>.</li>
+</ul>
+<p>Se a venda for inserida, mas o carro não for atualizado, o banco ficará inconsistente. Por isso usamos:</p>
+<div class="sourceCode" id="cb317"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb317-1"><a href="loja-de-carros-com-clientes-e-vendas.html#cb317-1" tabindex="-1"></a>connection<span class="op">.</span><span class="fu">beginTransaction</span>()</span></code></pre></div>
+<p>Para iniciar a transação.</p>
+<p>Se ocorrer erro:</p>
+<div class="sourceCode" id="cb318"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb318-1"><a href="loja-de-carros-com-clientes-e-vendas.html#cb318-1" tabindex="-1"></a>connection<span class="op">.</span><span class="fu">rollback</span>()</span></code></pre></div>
+<p>Para desfazer as operações.</p>
+<p>Se tudo der certo:</p>
+<div class="sourceCode" id="cb319"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb319-1"><a href="loja-de-carros-com-clientes-e-vendas.html#cb319-1" tabindex="-1"></a>connection<span class="op">.</span><span class="fu">commit</span>()</span></code></pre></div>
+<p>Para confirmar as alterações.</p>
+<p>Essa lógica é importante em qualquer operação que envolva múltiplas tabelas relacionadas.</p>
+</div>
+<div id="rotas-de-vendas" class="section level2" number="11.10">
+<h2>
+<span class="header-section-number">11.10</span> Rotas de vendas<a class="anchor" aria-label="anchor" href="#rotas-de-vendas"><i class="fas fa-link"></i></a>
+</h2>
+<p>O registro de venda deve ser feito apenas por usuário autenticado, pois representa uma alteração importante no sistema.</p>
+<p>Arquivo:</p>
+<pre class="text"><code>routes/vendas.js</code></pre>
+<div class="sourceCode" id="cb321"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb321-1"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-1" tabindex="-1"></a><span class="kw">const</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">'express'</span>)<span class="op">;</span></span>
+<span id="cb321-2"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-2" tabindex="-1"></a></span>
+<span id="cb321-3"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-3" tabindex="-1"></a><span class="kw">const</span> router <span class="op">=</span> express<span class="op">.</span><span class="fu">Router</span>()<span class="op">;</span></span>
+<span id="cb321-4"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-4" tabindex="-1"></a></span>
+<span id="cb321-5"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-5" tabindex="-1"></a><span class="kw">const</span> Venda <span class="op">=</span> <span class="pp">require</span>(<span class="st">'../models/Venda'</span>)<span class="op">;</span></span>
+<span id="cb321-6"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-6" tabindex="-1"></a><span class="kw">const</span> { protegerRota } <span class="op">=</span> <span class="pp">require</span>(<span class="st">'../middleware/auth'</span>)<span class="op">;</span></span>
+<span id="cb321-7"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-7" tabindex="-1"></a></span>
+<span id="cb321-8"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-8" tabindex="-1"></a>router<span class="op">.</span><span class="fu">get</span>(<span class="st">'/'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb321-9"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-9" tabindex="-1"></a>  Venda<span class="op">.</span><span class="fu">listar</span>((erro<span class="op">,</span> resultados) <span class="kw">=&gt;</span> {</span>
+<span id="cb321-10"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-10" tabindex="-1"></a>    <span class="cf">if</span> (erro) {</span>
+<span id="cb321-11"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-11" tabindex="-1"></a>      <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">500</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb321-12"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-12" tabindex="-1"></a>        <span class="dt">erro</span><span class="op">:</span> <span class="st">'Erro ao listar vendas'</span></span>
+<span id="cb321-13"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-13" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb321-14"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-14" tabindex="-1"></a>    }</span>
+<span id="cb321-15"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-15" tabindex="-1"></a></span>
+<span id="cb321-16"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-16" tabindex="-1"></a>    res<span class="op">.</span><span class="fu">json</span>(resultados)<span class="op">;</span></span>
+<span id="cb321-17"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-17" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb321-18"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-18" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb321-19"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-19" tabindex="-1"></a></span>
+<span id="cb321-20"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-20" tabindex="-1"></a>router<span class="op">.</span><span class="fu">get</span>(<span class="st">'/:id'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb321-21"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-21" tabindex="-1"></a>  Venda<span class="op">.</span><span class="fu">buscarPorId</span>(req<span class="op">.</span><span class="at">params</span><span class="op">.</span><span class="at">id</span><span class="op">,</span> (erro<span class="op">,</span> resultados) <span class="kw">=&gt;</span> {</span>
+<span id="cb321-22"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-22" tabindex="-1"></a>    <span class="cf">if</span> (erro) {</span>
+<span id="cb321-23"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-23" tabindex="-1"></a>      <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">500</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb321-24"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-24" tabindex="-1"></a>        <span class="dt">erro</span><span class="op">:</span> <span class="st">'Erro ao buscar venda'</span></span>
+<span id="cb321-25"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-25" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb321-26"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-26" tabindex="-1"></a>    }</span>
+<span id="cb321-27"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-27" tabindex="-1"></a></span>
+<span id="cb321-28"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-28" tabindex="-1"></a>    <span class="cf">if</span> (resultados<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span>) {</span>
+<span id="cb321-29"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-29" tabindex="-1"></a>      <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">404</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb321-30"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-30" tabindex="-1"></a>        <span class="dt">erro</span><span class="op">:</span> <span class="st">'Venda não encontrada'</span></span>
+<span id="cb321-31"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-31" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb321-32"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-32" tabindex="-1"></a>    }</span>
+<span id="cb321-33"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-33" tabindex="-1"></a></span>
+<span id="cb321-34"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-34" tabindex="-1"></a>    res<span class="op">.</span><span class="fu">json</span>(resultados[<span class="dv">0</span>])<span class="op">;</span></span>
+<span id="cb321-35"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-35" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb321-36"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-36" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb321-37"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-37" tabindex="-1"></a></span>
+<span id="cb321-38"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-38" tabindex="-1"></a>router<span class="op">.</span><span class="fu">post</span>(<span class="st">'/'</span><span class="op">,</span> protegerRota<span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb321-39"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-39" tabindex="-1"></a>  <span class="kw">const</span> usuarioId <span class="op">=</span> req<span class="op">.</span><span class="at">auth</span><span class="op">.</span><span class="at">id</span><span class="op">;</span></span>
+<span id="cb321-40"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-40" tabindex="-1"></a></span>
+<span id="cb321-41"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-41" tabindex="-1"></a>  Venda<span class="op">.</span><span class="fu">inserir</span>(req<span class="op">.</span><span class="at">body</span><span class="op">,</span> usuarioId<span class="op">,</span> (erro<span class="op">,</span> resultado) <span class="kw">=&gt;</span> {</span>
+<span id="cb321-42"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-42" tabindex="-1"></a>    <span class="cf">if</span> (erro) {</span>
+<span id="cb321-43"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-43" tabindex="-1"></a>      <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">400</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb321-44"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-44" tabindex="-1"></a>        <span class="dt">erro</span><span class="op">:</span> erro<span class="op">.</span><span class="at">message</span></span>
+<span id="cb321-45"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-45" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb321-46"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-46" tabindex="-1"></a>    }</span>
+<span id="cb321-47"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-47" tabindex="-1"></a></span>
+<span id="cb321-48"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-48" tabindex="-1"></a>    res<span class="op">.</span><span class="fu">status</span>(<span class="dv">201</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb321-49"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-49" tabindex="-1"></a>      <span class="dt">mensagem</span><span class="op">:</span> <span class="st">'Venda registrada com sucesso'</span><span class="op">,</span></span>
+<span id="cb321-50"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-50" tabindex="-1"></a>      <span class="dt">idVenda</span><span class="op">:</span> resultado<span class="op">.</span><span class="at">insertId</span><span class="op">,</span></span>
+<span id="cb321-51"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-51" tabindex="-1"></a>      <span class="dt">usuarioResponsavel</span><span class="op">:</span> usuarioId</span>
+<span id="cb321-52"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-52" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb321-53"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-53" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb321-54"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-54" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb321-55"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-55" tabindex="-1"></a></span>
+<span id="cb321-56"><a href="loja-de-carros-com-clientes-e-vendas.html#cb321-56" tabindex="-1"></a>module<span class="op">.</span><span class="at">exports</span> <span class="op">=</span> router<span class="op">;</span></span></code></pre></div>
+<p>A rota <code>POST /vendas</code> recebe o cliente, o carro e o valor da venda.</p>
+<p>O usuário responsável pela venda não vem do corpo da requisição. Ele vem do token JWT:</p>
+<div class="sourceCode" id="cb322"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb322-1"><a href="loja-de-carros-com-clientes-e-vendas.html#cb322-1" tabindex="-1"></a><span class="kw">const</span> usuarioId <span class="op">=</span> req<span class="op">.</span><span class="at">auth</span><span class="op">.</span><span class="at">id</span><span class="op">;</span></span></code></pre></div>
+<p>Isso impede que o cliente da API informe manualmente o usuário responsável pela venda.</p>
+</div>
+<div id="exemplo-de-json-para-registrar-uma-venda" class="section level2" number="11.11">
+<h2>
+<span class="header-section-number">11.11</span> Exemplo de JSON para registrar uma venda<a class="anchor" aria-label="anchor" href="#exemplo-de-json-para-registrar-uma-venda"><i class="fas fa-link"></i></a>
+</h2>
+<p>Para registrar uma venda, o cliente da API deve enviar:</p>
+<div class="sourceCode" id="cb323"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb323-1"><a href="loja-de-carros-com-clientes-e-vendas.html#cb323-1" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb323-2"><a href="loja-de-carros-com-clientes-e-vendas.html#cb323-2" tabindex="-1"></a>  <span class="dt">"cliente_id"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb323-3"><a href="loja-de-carros-com-clientes-e-vendas.html#cb323-3" tabindex="-1"></a>  <span class="dt">"carro_id"</span><span class="fu">:</span> <span class="dv">2</span><span class="fu">,</span></span>
+<span id="cb323-4"><a href="loja-de-carros-com-clientes-e-vendas.html#cb323-4" tabindex="-1"></a>  <span class="dt">"valor_venda"</span><span class="fu">:</span> <span class="dv">1500000</span></span>
+<span id="cb323-5"><a href="loja-de-carros-com-clientes-e-vendas.html#cb323-5" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p>A requisição deve conter o token:</p>
+<pre class="http"><code>Authorization: Bearer SEU_TOKEN_AQUI</code></pre>
+<p>Exemplo com <code>curl</code>:</p>
+<div class="sourceCode" id="cb325"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb325-1"><a href="loja-de-carros-com-clientes-e-vendas.html#cb325-1" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-X</span> POST http://localhost:3000/vendas <span class="dt">\</span></span>
+<span id="cb325-2"><a href="loja-de-carros-com-clientes-e-vendas.html#cb325-2" tabindex="-1"></a>-H <span class="st">"Content-Type: application/json"</span> <span class="dt">\</span></span>
+<span id="cb325-3"><a href="loja-de-carros-com-clientes-e-vendas.html#cb325-3" tabindex="-1"></a>-H <span class="st">"Authorization: Bearer SEU_TOKEN_AQUI"</span> <span class="dt">\</span></span>
+<span id="cb325-4"><a href="loja-de-carros-com-clientes-e-vendas.html#cb325-4" tabindex="-1"></a>-d <span class="st">"{</span><span class="dt">\"</span><span class="st">cliente_id</span><span class="dt">\"</span><span class="st">:1,</span><span class="dt">\"</span><span class="st">carro_id</span><span class="dt">\"</span><span class="st">:2,</span><span class="dt">\"</span><span class="st">valor_venda</span><span class="dt">\"</span><span class="st">:1500000}"</span></span></code></pre></div>
+</div>
+<div id="atualizando-a-classe-carro" class="section level2" number="11.12">
+<h2>
+<span class="header-section-number">11.12</span> Atualizando a classe Carro<a class="anchor" aria-label="anchor" href="#atualizando-a-classe-carro"><i class="fas fa-link"></i></a>
+</h2>
+<p>A classe <code>Carro</code> pode ser mantida como nos capítulos anteriores, mas é interessante listar também se o carro está vendido.</p>
+<p>Arquivo:</p>
+<pre class="text"><code>models/Carro.js</code></pre>
+<div class="sourceCode" id="cb327"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb327-1"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-1" tabindex="-1"></a><span class="kw">const</span> connection <span class="op">=</span> <span class="pp">require</span>(<span class="st">'../database/connection'</span>)<span class="op">;</span></span>
+<span id="cb327-2"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-2" tabindex="-1"></a></span>
+<span id="cb327-3"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-3" tabindex="-1"></a><span class="kw">class</span> Carro {</span>
+<span id="cb327-4"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-4" tabindex="-1"></a></span>
+<span id="cb327-5"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-5" tabindex="-1"></a>  <span class="fu">listar</span>(callback) {</span>
+<span id="cb327-6"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-6" tabindex="-1"></a>    <span class="kw">const</span> sql <span class="op">=</span> <span class="st">'SELECT * FROM carros'</span><span class="op">;</span></span>
+<span id="cb327-7"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-7" tabindex="-1"></a>    connection<span class="op">.</span><span class="fu">query</span>(sql<span class="op">,</span> callback)<span class="op">;</span></span>
+<span id="cb327-8"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-8" tabindex="-1"></a>  }</span>
+<span id="cb327-9"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-9" tabindex="-1"></a></span>
+<span id="cb327-10"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-10" tabindex="-1"></a>  <span class="fu">listarDisponiveis</span>(callback) {</span>
+<span id="cb327-11"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-11" tabindex="-1"></a>    <span class="kw">const</span> sql <span class="op">=</span> <span class="st">'SELECT * FROM carros WHERE vendido = false'</span><span class="op">;</span></span>
+<span id="cb327-12"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-12" tabindex="-1"></a>    connection<span class="op">.</span><span class="fu">query</span>(sql<span class="op">,</span> callback)<span class="op">;</span></span>
+<span id="cb327-13"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-13" tabindex="-1"></a>  }</span>
+<span id="cb327-14"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-14" tabindex="-1"></a></span>
+<span id="cb327-15"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-15" tabindex="-1"></a>  <span class="fu">buscarPorId</span>(id<span class="op">,</span> callback) {</span>
+<span id="cb327-16"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-16" tabindex="-1"></a>    <span class="kw">const</span> sql <span class="op">=</span> <span class="st">'SELECT * FROM carros WHERE id = ?'</span><span class="op">;</span></span>
+<span id="cb327-17"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-17" tabindex="-1"></a>    connection<span class="op">.</span><span class="fu">query</span>(sql<span class="op">,</span> [id]<span class="op">,</span> callback)<span class="op">;</span></span>
+<span id="cb327-18"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-18" tabindex="-1"></a>  }</span>
+<span id="cb327-19"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-19" tabindex="-1"></a></span>
+<span id="cb327-20"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-20" tabindex="-1"></a>  <span class="fu">inserir</span>(dados<span class="op">,</span> callback) {</span>
+<span id="cb327-21"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-21" tabindex="-1"></a>    <span class="kw">const</span> sql <span class="op">=</span> <span class="vs">`</span></span>
+<span id="cb327-22"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-22" tabindex="-1"></a><span class="vs">      INSERT INTO carros (nome, marca, ano, preco)</span></span>
+<span id="cb327-23"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-23" tabindex="-1"></a><span class="vs">      VALUES (?, ?, ?, ?)</span></span>
+<span id="cb327-24"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-24" tabindex="-1"></a><span class="vs">    `</span><span class="op">;</span></span>
+<span id="cb327-25"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-25" tabindex="-1"></a></span>
+<span id="cb327-26"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-26" tabindex="-1"></a>    connection<span class="op">.</span><span class="fu">query</span>(</span>
+<span id="cb327-27"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-27" tabindex="-1"></a>      sql<span class="op">,</span></span>
+<span id="cb327-28"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-28" tabindex="-1"></a>      [</span>
+<span id="cb327-29"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-29" tabindex="-1"></a>        dados<span class="op">.</span><span class="at">nome</span><span class="op">,</span></span>
+<span id="cb327-30"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-30" tabindex="-1"></a>        dados<span class="op">.</span><span class="at">marca</span><span class="op">,</span></span>
+<span id="cb327-31"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-31" tabindex="-1"></a>        dados<span class="op">.</span><span class="at">ano</span><span class="op">,</span></span>
+<span id="cb327-32"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-32" tabindex="-1"></a>        dados<span class="op">.</span><span class="at">preco</span></span>
+<span id="cb327-33"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-33" tabindex="-1"></a>      ]<span class="op">,</span></span>
+<span id="cb327-34"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-34" tabindex="-1"></a>      callback</span>
+<span id="cb327-35"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-35" tabindex="-1"></a>    )<span class="op">;</span></span>
+<span id="cb327-36"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-36" tabindex="-1"></a>  }</span>
+<span id="cb327-37"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-37" tabindex="-1"></a></span>
+<span id="cb327-38"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-38" tabindex="-1"></a>  <span class="fu">atualizar</span>(id<span class="op">,</span> dados<span class="op">,</span> callback) {</span>
+<span id="cb327-39"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-39" tabindex="-1"></a>    <span class="kw">const</span> sql <span class="op">=</span> <span class="vs">`</span></span>
+<span id="cb327-40"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-40" tabindex="-1"></a><span class="vs">      UPDATE carros</span></span>
+<span id="cb327-41"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-41" tabindex="-1"></a><span class="vs">      SET nome = ?, marca = ?, ano = ?, preco = ?</span></span>
+<span id="cb327-42"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-42" tabindex="-1"></a><span class="vs">      WHERE id = ?</span></span>
+<span id="cb327-43"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-43" tabindex="-1"></a><span class="vs">    `</span><span class="op">;</span></span>
+<span id="cb327-44"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-44" tabindex="-1"></a></span>
+<span id="cb327-45"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-45" tabindex="-1"></a>    connection<span class="op">.</span><span class="fu">query</span>(</span>
+<span id="cb327-46"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-46" tabindex="-1"></a>      sql<span class="op">,</span></span>
+<span id="cb327-47"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-47" tabindex="-1"></a>      [</span>
+<span id="cb327-48"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-48" tabindex="-1"></a>        dados<span class="op">.</span><span class="at">nome</span><span class="op">,</span></span>
+<span id="cb327-49"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-49" tabindex="-1"></a>        dados<span class="op">.</span><span class="at">marca</span><span class="op">,</span></span>
+<span id="cb327-50"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-50" tabindex="-1"></a>        dados<span class="op">.</span><span class="at">ano</span><span class="op">,</span></span>
+<span id="cb327-51"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-51" tabindex="-1"></a>        dados<span class="op">.</span><span class="at">preco</span><span class="op">,</span></span>
+<span id="cb327-52"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-52" tabindex="-1"></a>        id</span>
+<span id="cb327-53"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-53" tabindex="-1"></a>      ]<span class="op">,</span></span>
+<span id="cb327-54"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-54" tabindex="-1"></a>      callback</span>
+<span id="cb327-55"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-55" tabindex="-1"></a>    )<span class="op">;</span></span>
+<span id="cb327-56"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-56" tabindex="-1"></a>  }</span>
+<span id="cb327-57"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-57" tabindex="-1"></a></span>
+<span id="cb327-58"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-58" tabindex="-1"></a>  <span class="fu">remover</span>(id<span class="op">,</span> callback) {</span>
+<span id="cb327-59"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-59" tabindex="-1"></a>    <span class="kw">const</span> sql <span class="op">=</span> <span class="st">'DELETE FROM carros WHERE id = ?'</span><span class="op">;</span></span>
+<span id="cb327-60"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-60" tabindex="-1"></a>    connection<span class="op">.</span><span class="fu">query</span>(sql<span class="op">,</span> [id]<span class="op">,</span> callback)<span class="op">;</span></span>
+<span id="cb327-61"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-61" tabindex="-1"></a>  }</span>
+<span id="cb327-62"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-62" tabindex="-1"></a></span>
+<span id="cb327-63"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-63" tabindex="-1"></a>}</span>
+<span id="cb327-64"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-64" tabindex="-1"></a></span>
+<span id="cb327-65"><a href="loja-de-carros-com-clientes-e-vendas.html#cb327-65" tabindex="-1"></a>module<span class="op">.</span><span class="at">exports</span> <span class="op">=</span> <span class="kw">new</span> <span class="fu">Carro</span>()<span class="op">;</span></span></code></pre></div>
+</div>
+<div id="rota-para-listar-carros-disponíveis" class="section level2" number="11.13">
+<h2>
+<span class="header-section-number">11.13</span> Rota para listar carros disponíveis<a class="anchor" aria-label="anchor" href="#rota-para-listar-carros-dispon%C3%ADveis"><i class="fas fa-link"></i></a>
+</h2>
+<p>Podemos acrescentar uma rota específica para carros ainda não vendidos.</p>
+<p>Arquivo:</p>
+<pre class="text"><code>routes/carros.js</code></pre>
+<div class="sourceCode" id="cb329"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb329-1"><a href="loja-de-carros-com-clientes-e-vendas.html#cb329-1" tabindex="-1"></a>router<span class="op">.</span><span class="fu">get</span>(<span class="st">'/disponiveis'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb329-2"><a href="loja-de-carros-com-clientes-e-vendas.html#cb329-2" tabindex="-1"></a>  Carro<span class="op">.</span><span class="fu">listarDisponiveis</span>((erro<span class="op">,</span> resultados) <span class="kw">=&gt;</span> {</span>
+<span id="cb329-3"><a href="loja-de-carros-com-clientes-e-vendas.html#cb329-3" tabindex="-1"></a>    <span class="cf">if</span> (erro) {</span>
+<span id="cb329-4"><a href="loja-de-carros-com-clientes-e-vendas.html#cb329-4" tabindex="-1"></a>      <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">500</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb329-5"><a href="loja-de-carros-com-clientes-e-vendas.html#cb329-5" tabindex="-1"></a>        <span class="dt">erro</span><span class="op">:</span> <span class="st">'Erro ao listar carros disponíveis'</span></span>
+<span id="cb329-6"><a href="loja-de-carros-com-clientes-e-vendas.html#cb329-6" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb329-7"><a href="loja-de-carros-com-clientes-e-vendas.html#cb329-7" tabindex="-1"></a>    }</span>
+<span id="cb329-8"><a href="loja-de-carros-com-clientes-e-vendas.html#cb329-8" tabindex="-1"></a></span>
+<span id="cb329-9"><a href="loja-de-carros-com-clientes-e-vendas.html#cb329-9" tabindex="-1"></a>    res<span class="op">.</span><span class="fu">json</span>(resultados)<span class="op">;</span></span>
+<span id="cb329-10"><a href="loja-de-carros-com-clientes-e-vendas.html#cb329-10" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb329-11"><a href="loja-de-carros-com-clientes-e-vendas.html#cb329-11" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+<p>Essa rota ajuda a aplicação cliente a exibir apenas carros que ainda podem ser vendidos.</p>
+</div>
+<div id="configurando-as-rotas-no-servidor" class="section level2" number="11.14">
+<h2>
+<span class="header-section-number">11.14</span> Configurando as rotas no servidor<a class="anchor" aria-label="anchor" href="#configurando-as-rotas-no-servidor"><i class="fas fa-link"></i></a>
+</h2>
+<p>Arquivo:</p>
+<pre class="text"><code>server.js</code></pre>
+<div class="sourceCode" id="cb331"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb331-1"><a href="loja-de-carros-com-clientes-e-vendas.html#cb331-1" tabindex="-1"></a><span class="kw">const</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">'express'</span>)<span class="op">;</span></span>
+<span id="cb331-2"><a href="loja-de-carros-com-clientes-e-vendas.html#cb331-2" tabindex="-1"></a></span>
+<span id="cb331-3"><a href="loja-de-carros-com-clientes-e-vendas.html#cb331-3" tabindex="-1"></a><span class="kw">const</span> app <span class="op">=</span> <span class="fu">express</span>()<span class="op">;</span></span>
+<span id="cb331-4"><a href="loja-de-carros-com-clientes-e-vendas.html#cb331-4" tabindex="-1"></a></span>
+<span id="cb331-5"><a href="loja-de-carros-com-clientes-e-vendas.html#cb331-5" tabindex="-1"></a><span class="kw">const</span> carrosRoutes <span class="op">=</span> <span class="pp">require</span>(<span class="st">'./routes/carros'</span>)<span class="op">;</span></span>
+<span id="cb331-6"><a href="loja-de-carros-com-clientes-e-vendas.html#cb331-6" tabindex="-1"></a><span class="kw">const</span> clientesRoutes <span class="op">=</span> <span class="pp">require</span>(<span class="st">'./routes/clientes'</span>)<span class="op">;</span></span>
+<span id="cb331-7"><a href="loja-de-carros-com-clientes-e-vendas.html#cb331-7" tabindex="-1"></a><span class="kw">const</span> vendasRoutes <span class="op">=</span> <span class="pp">require</span>(<span class="st">'./routes/vendas'</span>)<span class="op">;</span></span>
+<span id="cb331-8"><a href="loja-de-carros-com-clientes-e-vendas.html#cb331-8" tabindex="-1"></a><span class="kw">const</span> authRoutes <span class="op">=</span> <span class="pp">require</span>(<span class="st">'./routes/auth'</span>)<span class="op">;</span></span>
+<span id="cb331-9"><a href="loja-de-carros-com-clientes-e-vendas.html#cb331-9" tabindex="-1"></a></span>
+<span id="cb331-10"><a href="loja-de-carros-com-clientes-e-vendas.html#cb331-10" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>(express<span class="op">.</span><span class="fu">json</span>())<span class="op">;</span></span>
+<span id="cb331-11"><a href="loja-de-carros-com-clientes-e-vendas.html#cb331-11" tabindex="-1"></a></span>
+<span id="cb331-12"><a href="loja-de-carros-com-clientes-e-vendas.html#cb331-12" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>(<span class="st">'/auth'</span><span class="op">,</span> authRoutes)<span class="op">;</span></span>
+<span id="cb331-13"><a href="loja-de-carros-com-clientes-e-vendas.html#cb331-13" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>(<span class="st">'/carros'</span><span class="op">,</span> carrosRoutes)<span class="op">;</span></span>
+<span id="cb331-14"><a href="loja-de-carros-com-clientes-e-vendas.html#cb331-14" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>(<span class="st">'/clientes'</span><span class="op">,</span> clientesRoutes)<span class="op">;</span></span>
+<span id="cb331-15"><a href="loja-de-carros-com-clientes-e-vendas.html#cb331-15" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>(<span class="st">'/vendas'</span><span class="op">,</span> vendasRoutes)<span class="op">;</span></span>
+<span id="cb331-16"><a href="loja-de-carros-com-clientes-e-vendas.html#cb331-16" tabindex="-1"></a></span>
+<span id="cb331-17"><a href="loja-de-carros-com-clientes-e-vendas.html#cb331-17" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>((erro<span class="op">,</span> req<span class="op">,</span> res<span class="op">,</span> next) <span class="kw">=&gt;</span> {</span>
+<span id="cb331-18"><a href="loja-de-carros-com-clientes-e-vendas.html#cb331-18" tabindex="-1"></a>  <span class="cf">if</span> (erro<span class="op">.</span><span class="at">name</span> <span class="op">===</span> <span class="st">'UnauthorizedError'</span>) {</span>
+<span id="cb331-19"><a href="loja-de-carros-com-clientes-e-vendas.html#cb331-19" tabindex="-1"></a>    <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">401</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb331-20"><a href="loja-de-carros-com-clientes-e-vendas.html#cb331-20" tabindex="-1"></a>      <span class="dt">erro</span><span class="op">:</span> <span class="st">'Token inválido ou não informado'</span></span>
+<span id="cb331-21"><a href="loja-de-carros-com-clientes-e-vendas.html#cb331-21" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb331-22"><a href="loja-de-carros-com-clientes-e-vendas.html#cb331-22" tabindex="-1"></a>  }</span>
+<span id="cb331-23"><a href="loja-de-carros-com-clientes-e-vendas.html#cb331-23" tabindex="-1"></a></span>
+<span id="cb331-24"><a href="loja-de-carros-com-clientes-e-vendas.html#cb331-24" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">status</span>(<span class="dv">500</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb331-25"><a href="loja-de-carros-com-clientes-e-vendas.html#cb331-25" tabindex="-1"></a>    <span class="dt">erro</span><span class="op">:</span> <span class="st">'Erro interno no servidor'</span></span>
+<span id="cb331-26"><a href="loja-de-carros-com-clientes-e-vendas.html#cb331-26" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb331-27"><a href="loja-de-carros-com-clientes-e-vendas.html#cb331-27" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb331-28"><a href="loja-de-carros-com-clientes-e-vendas.html#cb331-28" tabindex="-1"></a></span>
+<span id="cb331-29"><a href="loja-de-carros-com-clientes-e-vendas.html#cb331-29" tabindex="-1"></a>app<span class="op">.</span><span class="fu">listen</span>(<span class="dv">3000</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb331-30"><a href="loja-de-carros-com-clientes-e-vendas.html#cb331-30" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">'Servidor executando na porta 3000'</span>)<span class="op">;</span></span>
+<span id="cb331-31"><a href="loja-de-carros-com-clientes-e-vendas.html#cb331-31" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+<p>Agora a API possui os seguintes conjuntos de rotas:</p>
+<pre class="text"><code>/auth/login
+/carros
+/clientes
+/vendas</code></pre>
+</div>
+<div id="testando-o-fluxo-completo" class="section level2" number="11.15">
+<h2>
+<span class="header-section-number">11.15</span> Testando o fluxo completo<a class="anchor" aria-label="anchor" href="#testando-o-fluxo-completo"><i class="fas fa-link"></i></a>
+</h2>
+<p>Primeiro, faça login:</p>
+<div class="sourceCode" id="cb333"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb333-1"><a href="loja-de-carros-com-clientes-e-vendas.html#cb333-1" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-X</span> POST http://localhost:3000/auth/login <span class="dt">\</span></span>
+<span id="cb333-2"><a href="loja-de-carros-com-clientes-e-vendas.html#cb333-2" tabindex="-1"></a>-H <span class="st">"Content-Type: application/json"</span> <span class="dt">\</span></span>
+<span id="cb333-3"><a href="loja-de-carros-com-clientes-e-vendas.html#cb333-3" tabindex="-1"></a>-d <span class="st">"{</span><span class="dt">\"</span><span class="st">email</span><span class="dt">\"</span><span class="st">:</span><span class="dt">\"</span><span class="st">admin@email.com</span><span class="dt">\"</span><span class="st">,</span><span class="dt">\"</span><span class="st">senha</span><span class="dt">\"</span><span class="st">:</span><span class="dt">\"</span><span class="st">123456</span><span class="dt">\"</span><span class="st">}"</span></span></code></pre></div>
+<p>Copie o token retornado.</p>
+<p>Depois, cadastre um cliente:</p>
+<div class="sourceCode" id="cb334"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb334-1"><a href="loja-de-carros-com-clientes-e-vendas.html#cb334-1" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-X</span> POST http://localhost:3000/clientes <span class="dt">\</span></span>
+<span id="cb334-2"><a href="loja-de-carros-com-clientes-e-vendas.html#cb334-2" tabindex="-1"></a>-H <span class="st">"Content-Type: application/json"</span> <span class="dt">\</span></span>
+<span id="cb334-3"><a href="loja-de-carros-com-clientes-e-vendas.html#cb334-3" tabindex="-1"></a>-H <span class="st">"Authorization: Bearer SEU_TOKEN_AQUI"</span> <span class="dt">\</span></span>
+<span id="cb334-4"><a href="loja-de-carros-com-clientes-e-vendas.html#cb334-4" tabindex="-1"></a>-d <span class="st">"{</span><span class="dt">\"</span><span class="st">nome</span><span class="dt">\"</span><span class="st">:</span><span class="dt">\"</span><span class="st">Mariana Lima</span><span class="dt">\"</span><span class="st">,</span><span class="dt">\"</span><span class="st">cpf</span><span class="dt">\"</span><span class="st">:</span><span class="dt">\"</span><span class="st">333.333.333-33</span><span class="dt">\"</span><span class="st">,</span><span class="dt">\"</span><span class="st">email</span><span class="dt">\"</span><span class="st">:</span><span class="dt">\"</span><span class="st">mariana@email.com</span><span class="dt">\"</span><span class="st">,</span><span class="dt">\"</span><span class="st">telefone</span><span class="dt">\"</span><span class="st">:</span><span class="dt">\"</span><span class="st">43977770000</span><span class="dt">\"</span><span class="st">}"</span></span></code></pre></div>
+<p>Liste carros disponíveis:</p>
+<div class="sourceCode" id="cb335"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb335-1"><a href="loja-de-carros-com-clientes-e-vendas.html#cb335-1" tabindex="-1"></a><span class="ex">curl</span> http://localhost:3000/carros/disponiveis</span></code></pre></div>
+<p>Registre uma venda:</p>
+<div class="sourceCode" id="cb336"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb336-1"><a href="loja-de-carros-com-clientes-e-vendas.html#cb336-1" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-X</span> POST http://localhost:3000/vendas <span class="dt">\</span></span>
+<span id="cb336-2"><a href="loja-de-carros-com-clientes-e-vendas.html#cb336-2" tabindex="-1"></a>-H <span class="st">"Content-Type: application/json"</span> <span class="dt">\</span></span>
+<span id="cb336-3"><a href="loja-de-carros-com-clientes-e-vendas.html#cb336-3" tabindex="-1"></a>-H <span class="st">"Authorization: Bearer SEU_TOKEN_AQUI"</span> <span class="dt">\</span></span>
+<span id="cb336-4"><a href="loja-de-carros-com-clientes-e-vendas.html#cb336-4" tabindex="-1"></a>-d <span class="st">"{</span><span class="dt">\"</span><span class="st">cliente_id</span><span class="dt">\"</span><span class="st">:3,</span><span class="dt">\"</span><span class="st">carro_id</span><span class="dt">\"</span><span class="st">:1,</span><span class="dt">\"</span><span class="st">valor_venda</span><span class="dt">\"</span><span class="st">:25000}"</span></span></code></pre></div>
+<p>Liste as vendas:</p>
+<div class="sourceCode" id="cb337"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb337-1"><a href="loja-de-carros-com-clientes-e-vendas.html#cb337-1" tabindex="-1"></a><span class="ex">curl</span> http://localhost:3000/vendas</span></code></pre></div>
+</div>
+<div id="resultado-esperado-da-listagem-de-vendas" class="section level2" number="11.16">
+<h2>
+<span class="header-section-number">11.16</span> Resultado esperado da listagem de vendas<a class="anchor" aria-label="anchor" href="#resultado-esperado-da-listagem-de-vendas"><i class="fas fa-link"></i></a>
+</h2>
+<p>A rota <code>/vendas</code> retorna dados integrados das tabelas relacionadas.</p>
+<p>Exemplo:</p>
+<div class="sourceCode" id="cb338"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb338-1"><a href="loja-de-carros-com-clientes-e-vendas.html#cb338-1" tabindex="-1"></a><span class="ot">[</span></span>
+<span id="cb338-2"><a href="loja-de-carros-com-clientes-e-vendas.html#cb338-2" tabindex="-1"></a>  <span class="fu">{</span></span>
+<span id="cb338-3"><a href="loja-de-carros-com-clientes-e-vendas.html#cb338-3" tabindex="-1"></a>    <span class="dt">"id"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb338-4"><a href="loja-de-carros-com-clientes-e-vendas.html#cb338-4" tabindex="-1"></a>    <span class="dt">"valor_venda"</span><span class="fu">:</span> <span class="st">"25000.00"</span><span class="fu">,</span></span>
+<span id="cb338-5"><a href="loja-de-carros-com-clientes-e-vendas.html#cb338-5" tabindex="-1"></a>    <span class="dt">"data_venda"</span><span class="fu">:</span> <span class="st">"2026-06-01T12:00:00.000Z"</span><span class="fu">,</span></span>
+<span id="cb338-6"><a href="loja-de-carros-com-clientes-e-vendas.html#cb338-6" tabindex="-1"></a>    <span class="dt">"cliente"</span><span class="fu">:</span> <span class="st">"Mariana Lima"</span><span class="fu">,</span></span>
+<span id="cb338-7"><a href="loja-de-carros-com-clientes-e-vendas.html#cb338-7" tabindex="-1"></a>    <span class="dt">"carro"</span><span class="fu">:</span> <span class="st">"Fusca"</span><span class="fu">,</span></span>
+<span id="cb338-8"><a href="loja-de-carros-com-clientes-e-vendas.html#cb338-8" tabindex="-1"></a>    <span class="dt">"marca"</span><span class="fu">:</span> <span class="st">"Volkswagen"</span><span class="fu">,</span></span>
+<span id="cb338-9"><a href="loja-de-carros-com-clientes-e-vendas.html#cb338-9" tabindex="-1"></a>    <span class="dt">"usuario"</span><span class="fu">:</span> <span class="st">"Administrador"</span></span>
+<span id="cb338-10"><a href="loja-de-carros-com-clientes-e-vendas.html#cb338-10" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb338-11"><a href="loja-de-carros-com-clientes-e-vendas.html#cb338-11" tabindex="-1"></a><span class="ot">]</span></span></code></pre></div>
+<p>Esse resultado é produzido por meio de <code>INNER JOIN</code>, que combina registros das tabelas relacionadas.</p>
+</div>
+<div id="por-que-usar-inner-join" class="section level2" number="11.17">
+<h2>
+<span class="header-section-number">11.17</span> Por que usar INNER JOIN<a class="anchor" aria-label="anchor" href="#por-que-usar-inner-join"><i class="fas fa-link"></i></a>
+</h2>
+<p>A venda armazena apenas os identificadores:</p>
+<pre class="text"><code>cliente_id
+carro_id
+usuario_id</code></pre>
+<p>Esses campos são chaves estrangeiras. Para exibir nomes e informações completas, usamos <code>INNER JOIN</code>.</p>
+<p>Exemplo:</p>
+<div class="sourceCode" id="cb340"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb340-1"><a href="loja-de-carros-com-clientes-e-vendas.html#cb340-1" tabindex="-1"></a><span class="kw">SELECT</span> </span>
+<span id="cb340-2"><a href="loja-de-carros-com-clientes-e-vendas.html#cb340-2" tabindex="-1"></a>  vendas.<span class="kw">id</span>,</span>
+<span id="cb340-3"><a href="loja-de-carros-com-clientes-e-vendas.html#cb340-3" tabindex="-1"></a>  clientes.nome <span class="kw">AS</span> cliente,</span>
+<span id="cb340-4"><a href="loja-de-carros-com-clientes-e-vendas.html#cb340-4" tabindex="-1"></a>  carros.nome <span class="kw">AS</span> carro</span>
+<span id="cb340-5"><a href="loja-de-carros-com-clientes-e-vendas.html#cb340-5" tabindex="-1"></a><span class="kw">FROM</span> vendas</span>
+<span id="cb340-6"><a href="loja-de-carros-com-clientes-e-vendas.html#cb340-6" tabindex="-1"></a><span class="kw">INNER</span> <span class="kw">JOIN</span> clientes <span class="kw">ON</span> vendas.cliente_id <span class="op">=</span> clientes.<span class="kw">id</span></span>
+<span id="cb340-7"><a href="loja-de-carros-com-clientes-e-vendas.html#cb340-7" tabindex="-1"></a><span class="kw">INNER</span> <span class="kw">JOIN</span> carros <span class="kw">ON</span> vendas.carro_id <span class="op">=</span> carros.<span class="kw">id</span>;</span></code></pre></div>
+<p>Esse comando permite retornar uma resposta mais útil para quem consome a API.</p>
+</div>
+<div id="considerações-finais-4" class="section level2" number="11.18">
+<h2>
+<span class="header-section-number">11.18</span> Considerações finais<a class="anchor" aria-label="anchor" href="#considera%C3%A7%C3%B5es-finais-4"><i class="fas fa-link"></i></a>
+</h2>
+<p>Neste capítulo, a API da loja de carros evoluiu para um sistema com relacionamento entre entidades. O sistema passou a registrar clientes e vendas, mantendo as regras:</p>
+<ul>
+<li>um cliente pode comprar vários carros;</li>
+<li>cada carro pode ser vendido apenas uma vez;</li>
+<li>a venda é registrada por um usuário autenticado;</li>
+<li>alterações sensíveis exigem token JWT;</li>
+<li>relacionamentos são persistidos no banco com chaves estrangeiras.</li>
+</ul>
+<p>Também foram aplicados conceitos importantes de desenvolvimento back-end:</p>
+<ul>
+<li>modelagem relacional;</li>
+<li>chaves estrangeiras;</li>
+<li>relacionamento um-para-muitos;</li>
+<li>uso de <code>INNER JOIN</code>;</li>
+<li>transações;</li>
+<li>autenticação em rotas protegidas;</li>
+<li>organização em classes e rotas.</li>
+</ul>
+</div>
+<div id="referências-2" class="section level2 unnumbered">
+<h2>Referências<a class="anchor" aria-label="anchor" href="#refer%C3%AAncias-2"><i class="fas fa-link"></i></a>
+</h2>
+
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-express_db" class="csl-entry">
+Express.js. <em>Database Integration</em>. 2026. <a href="https://expressjs.com/en/guide/database-integration.html">https://expressjs.com/en/guide/database-integration.html</a>.
+</div>
+<div id="ref-express_docs" class="csl-entry">
+Express.js. <em>Express - Framework Web Para Node.js</em>. 2026. <a href="https://expressjs.com/pt-br/">https://expressjs.com/pt-br/</a>.
+</div>
+<div id="ref-express_api" class="csl-entry">
+Express.js. <em>Express API Reference</em>. 2026. <a href="https://expressjs.com/pt-br/4x/api.html">https://expressjs.com/pt-br/4x/api.html</a>.
+</div>
+<div id="ref-express_json" class="csl-entry">
+Express.js. <em>Express.json() Middleware</em>. 2026. <a href="https://expressjs.com/pt-br/4x/api.html#express.json">https://expressjs.com/pt-br/4x/api.html#express.json</a>.
+</div>
+<div id="ref-lecheta_node" class="csl-entry">
+Lecheta, Ricardo R. <em>Node Essencial</em>. Novatec, 2018.
+</div>
+<div id="ref-mdn_express_intro" class="csl-entry">
+MDN Web Docs. <em>Introdução Ao Express/Node</em>. 2025. <a href="https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Introduction">https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Introduction</a>.
+</div>
+<div id="ref-mdn_json_parse" class="csl-entry">
+MDN Web Docs. <em>JSON.parse()</em>. 2025. <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse</a>.
+</div>
+<div id="ref-mdn_json_stringify" class="csl-entry">
+MDN Web Docs. <em>JSON.stringify()</em>. 2025. <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify</a>.
+</div>
+<div id="ref-mysql2_docs" class="csl-entry">
+MySQL2. <em>MySQL2 Documentation</em>. 2026. <a href="https://www.npmjs.com/package/mysql2">https://www.npmjs.com/package/mysql2</a>.
+</div>
+<div id="ref-node_npm" class="csl-entry">
+Node.js. <em>An Introduction to the Npm Package Manager</em>. 2026. <a href="https://nodejs.org/en/learn/getting-started/an-introduction-to-the-npm-package-manager">https://nodejs.org/en/learn/getting-started/an-introduction-to-the-npm-package-manager</a>.
+</div>
+<div id="ref-node_commonjs" class="csl-entry">
+Node.js. <em>CommonJS Modules</em>. 2026. <a href="https://nodejs.org/api/modules.html">https://nodejs.org/api/modules.html</a>.
+</div>
+<div id="ref-node_packages" class="csl-entry">
+Node.js. <em>Modules: Packages</em>. 2026. <a href="https://nodejs.org/api/packages.html">https://nodejs.org/api/packages.html</a>.
+</div>
+<div id="ref-node_fs" class="csl-entry">
+Node.js Foundation. <em>Node.js File System (Fs) Module Documentation</em>. 2026. <a href="https://nodejs.org/api/fs.html">https://nodejs.org/api/fs.html</a>.
+</div>
+<div id="ref-node_http" class="csl-entry">
+Node.js Foundation. <em>Node.js HTTP Module Documentation</em>. 2026. <a href="https://nodejs.org/api/http.html">https://nodejs.org/api/http.html</a>.
+</div>
+<div id="ref-node_url" class="csl-entry">
+Node.js Foundation. <em>Node.js URL API Documentation</em>. 2026. <a href="https://nodejs.org/api/url.html">https://nodejs.org/api/url.html</a>.
+</div>
+<div id="ref-npm_init" class="csl-entry">
+npm. <em>Creating a Package.json File</em>. 2024. <a href="https://docs.npmjs.com/creating-a-package-json-file/">https://docs.npmjs.com/creating-a-package-json-file/</a>.
+</div>
+<div id="ref-express_jwt_npm" class="csl-entry">
+npm. <em>Express-Jwt</em>. 2024. <a href="https://www.npmjs.com/package/express-jwt">https://www.npmjs.com/package/express-jwt</a>.
+</div>
+<div id="ref-npm_package_json" class="csl-entry">
+npm. <em>Package.json</em>. 2026. <a href="https://docs.npmjs.com/cli/v11/configuring-npm/package-json/">https://docs.npmjs.com/cli/v11/configuring-npm/package-json/</a>.
+</div>
+<div id="ref-npm_dependencies" class="csl-entry">
+npm. <em>Specifying Dependencies and devDependencies in a Package.json File</em>. 2026. <a href="https://docs.npmjs.com/specifying-dependencies-and-devdependencies-in-a-package-json-file/">https://docs.npmjs.com/specifying-dependencies-and-devdependencies-in-a-package-json-file/</a>.
+</div>
+<div id="ref-rocketseat_jwt_node" class="csl-entry">
+Rocketseat. <em>Login Com JWT Em Node.js: Aprenda a Proteger APIs de Forma Segura</em>. 2025. <a href="https://www.rocketseat.com.br/blog/artigos/post/login-com-jwt-nodejs">https://www.rocketseat.com.br/blog/artigos/post/login-com-jwt-nodejs</a>.
+</div>
+<div id="ref-w3schools_express_jwt" class="csl-entry">
+W3Schools. <em>Express.js JWT Authentication</em>. 2026. <a href="https://www.w3schools.in/express-js/jwt-authentication">https://www.w3schools.in/express-js/jwt-authentication</a>.
+</div>
+<div id="ref-w3_mysql" class="csl-entry">
+W3Schools. <em>Node.js MySQL</em>. 2026. <a href="https://www.w3schools.com/nodejs/nodejs_mysql.asp">https://www.w3schools.com/nodejs/nodejs_mysql.asp</a>.
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-nav">
+<div class="prev"><a href="apis-node-js-com-jwt.html"><span class="header-section-number">10</span> APIs Node JS com JWT</a></div>
+<div class="empty"></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#loja-de-carros-com-clientes-e-vendas"><span class="header-section-number">11</span> Loja de carros com clientes e vendas</a></li>
+<li><a class="nav-link" href="#modelo-de-dados-da-loja"><span class="header-section-number">11.1</span> Modelo de dados da loja</a></li>
+<li><a class="nav-link" href="#criando-as-tabelas-do-banco-de-dados"><span class="header-section-number">11.2</span> Criando as tabelas do banco de dados</a></li>
+<li><a class="nav-link" href="#inserindo-dados-iniciais"><span class="header-section-number">11.3</span> Inserindo dados iniciais</a></li>
+<li><a class="nav-link" href="#estrutura-final-do-projeto"><span class="header-section-number">11.4</span> Estrutura final do projeto</a></li>
+<li><a class="nav-link" href="#arquivo-de-conex%C3%A3o-com-banco-de-dados"><span class="header-section-number">11.5</span> Arquivo de conexão com banco de dados</a></li>
+<li><a class="nav-link" href="#classe-cliente"><span class="header-section-number">11.6</span> Classe Cliente</a></li>
+<li><a class="nav-link" href="#rotas-de-clientes-protegidas-por-autentica%C3%A7%C3%A3o"><span class="header-section-number">11.7</span> Rotas de clientes protegidas por autenticação</a></li>
+<li><a class="nav-link" href="#classe-venda"><span class="header-section-number">11.8</span> Classe Venda</a></li>
+<li><a class="nav-link" href="#explicando-a-transa%C3%A7%C3%A3o"><span class="header-section-number">11.9</span> Explicando a transação</a></li>
+<li><a class="nav-link" href="#rotas-de-vendas"><span class="header-section-number">11.10</span> Rotas de vendas</a></li>
+<li><a class="nav-link" href="#exemplo-de-json-para-registrar-uma-venda"><span class="header-section-number">11.11</span> Exemplo de JSON para registrar uma venda</a></li>
+<li><a class="nav-link" href="#atualizando-a-classe-carro"><span class="header-section-number">11.12</span> Atualizando a classe Carro</a></li>
+<li><a class="nav-link" href="#rota-para-listar-carros-dispon%C3%ADveis"><span class="header-section-number">11.13</span> Rota para listar carros disponíveis</a></li>
+<li><a class="nav-link" href="#configurando-as-rotas-no-servidor"><span class="header-section-number">11.14</span> Configurando as rotas no servidor</a></li>
+<li><a class="nav-link" href="#testando-o-fluxo-completo"><span class="header-section-number">11.15</span> Testando o fluxo completo</a></li>
+<li><a class="nav-link" href="#resultado-esperado-da-listagem-de-vendas"><span class="header-section-number">11.16</span> Resultado esperado da listagem de vendas</a></li>
+<li><a class="nav-link" href="#por-que-usar-inner-join"><span class="header-section-number">11.17</span> Por que usar INNER JOIN</a></li>
+<li><a class="nav-link" href="#considera%C3%A7%C3%B5es-finais-4"><span class="header-section-number">11.18</span> Considerações finais</a></li>
+<li><a class="nav-link" href="#refer%C3%AAncias-2">Referências</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/rstudio/bookdown-demo/blob/master/12-venda.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/rstudio/bookdown-demo/edit/master/12-venda.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Desenvolvimento web Avançado</strong>" was written by Juliana Costa Silva. It was last built on 2026-06-16.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

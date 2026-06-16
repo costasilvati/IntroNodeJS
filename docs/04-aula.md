@@ -1,11 +1,3 @@
----
-title: "04-aula"
-output: html_document
-editor_options: 
-  markdown: 
-    wrap: 72
----
-
 # Atividade avaliativa
 
 Desenvolva, em JavaScript executado com *node.js*, um programa capaz de
