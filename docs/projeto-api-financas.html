@@ -1,0 +1,1311 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>_>11 Projeto Final — API de Controle Financeiro | Desenvolvimento web Avançado</title>
+
+    <meta name="author" content="Juliana Costa Silva" />
+  
+   <meta name="description" content="<p>This is a minimal book of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::bs4_book,
+set in the _output.yml file.</p>" />
+   <meta name="generator" content="placeholder" />
+  <meta property="og:title" content="_>11 Projeto Final — API de Controle Financeiro | Desenvolvimento web Avançado" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="<p>This is a minimal book of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::bs4_book,
+set in the _output.yml file.</p>" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="_>11 Projeto Final — API de Controle Financeiro | Desenvolvimento web Avançado" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal book of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::bs4_book,
+set in the _output.yml file.</p>" />
+  
+  <!-- JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script>
+    <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet" />
+    <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script>
+    <script src="libs/bs3compat-0.11.0/transition.js"></script>
+    <script src="libs/bs3compat-0.11.0/tabs.js"></script>
+    <script src="libs/bs3compat-0.11.0/bs3compat.js"></script>
+    <link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet" />
+    <script src="libs/bs4_book-1.0.0/bs4_book.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script>
+
+  <!-- CSS -->
+  <style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+    <style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+      <link rel="stylesheet" href="style.css" />
+  
+</head>
+
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book">
+    <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Desenvolvimento web Avançado</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+      </form>
+
+      <nav aria-label="Table of contents">
+        <h2>Table of contents</h2>
+        <div id="book-toc"></div>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="#">View book source <i class="fab fa-github"></i></a></li></p>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="col-sm-12 col-md-9 col-lg-7" id="content">
+<div id="projeto-api-financas" class="section level1" number="11">
+<h1><span class="header-section-number">_>11</span> Projeto Final — API de Controle Financeiro</h1>
+<p><strong>Disciplina:</strong> Programação Web Back-end
+<strong>Tipo:</strong> Projeto avaliativo (enunciado)
+<strong>Tecnologias obrigatórias:</strong> Node.js, NPM, Express, MySQL (driver <code>mysql2</code>), autenticação com JWT (<code>jsonwebtoken</code> + <code>express-jwt</code>) e <code>bcrypt</code>
+<strong>Modalidade:</strong> grupos de até 3 pessoas
+<strong>Pré-requisitos:</strong> todos os capítulos anteriores deste livro, em especial <a href="web-services.html">Web Services</a>, <a href="npm-json-e-organiza%C3%A7%C3%A3o-de-projetos-node-js.html">NPM, JSON e organização de projetos Node JS</a>, <a href="express-framework.html">Express Framework</a>, <a href="integra-de-apis-node.js-com-banco-de-dados.html">Integração de APIs Node.js com Banco de Dados</a>, <a href="apis-node-js-com-jwt.html">APIs Node JS com JWT</a> e <a href="loja-de-carros-com-clientes-e-vendas.html">Loja de carros com clientes e vendas</a></p>
+<hr />
+<div id="visão-geral" class="section level2" number="11.1">
+<h2><span class="header-section-number">11.1</span> Visão geral</h2>
+<p>Ao longo deste livro, construímos passo a passo a <strong>API da loja de carros</strong>: começamos com um servidor HTTP, organizamos o projeto com o NPM, migramos para o Express, conectamos ao MySQL, protegemos as rotas com JWT e, por fim, relacionamos carros, clientes e vendas com transações.</p>
+<p>Neste projeto, o grupo vai aplicar <strong>os mesmos conceitos</strong> para construir, do zero, uma <strong>API REST de controle financeiro pessoal</strong>. Não há interface gráfica: o produto entregue é a <strong>API</strong>, testada com <code>curl</code> (ou outro cliente HTTP, como Postman, Insomnia ou a extensão Thunder Client do VS Code).</p>
+<p>Na API, um usuário se cadastra, faz <em>login</em> e registra suas movimentações de dinheiro. Cada movimentação (chamada aqui de <strong>lançamento</strong>) é:</p>
+<ul>
+<li>de um de <strong>dois tipos</strong>: <strong>entrada</strong> (dinheiro que chega) ou <strong>saída</strong> (dinheiro que sai);</li>
+<li>relacionada a uma <strong>categoria</strong>, por exemplo <em>alimentação</em>, <em>saúde</em>, <em>mobilidade</em>, <em>moradia</em> ou <em>salário</em>;</li>
+<li>relacionada a uma <strong>fonte</strong> (para entradas) ou a um <strong>destino</strong> (para saídas), por exemplo <em>salário</em>, <em>cartão Nubank</em>, <em>Visa crédito</em>, <em>poupança</em> ou <em>conta corrente</em>.</li>
+</ul>
+<p>A partir desses dados, a API deve gerar <strong>relatórios em JSON</strong>: gastos por categoria, movimentação por fonte/destino e <strong>previsão das faturas dos cartões de crédito</strong>. Como <strong>desafio</strong> (pontuação extra), o grupo pode criar uma rota de <strong>saúde financeira</strong>, que devolve indicadores, projeções e dicas calculados a partir dos dados do usuário.</p>
+<pre class="text"><code>┌───────────────────────┐   HTTP + JSON     ┌──────────────────────────────┐   mysql2   ┌──────────────┐
+│ curl / Postman /      │ ────────────────► │ server.js (Express)          │ ─────────► │ MySQL        │
+│ Insomnia / Thunder    │ ◄──────────────── │  routes/  → rotas (Router)   │ ◄───────── │ api_financas │
+│                       │  Authorization:   │  middleware/auth.js (JWT)    │            │              │
+│                       │  Bearer &lt;token&gt;   │  models/  → classes com SQL  │            │              │
+└───────────────────────┘                   └──────────────────────────────┘            └──────────────┘</code></pre>
+<blockquote>
+<p><strong>Comparando com a loja de carros.</strong> Na loja, as rotas <code>GET</code> eram <strong>públicas</strong> e só as operações de escrita exigiam <em>token</em>. Aqui é diferente: os dados financeiros são <strong>privados</strong>, e <strong>todas</strong> as rotas (exceto cadastro e <em>login</em>) exigem <em>token</em>. Além disso, cada usuário só pode enxergar os <strong>próprios</strong> dados.</p>
+</blockquote>
+<hr />
+</div>
+<div id="objetivos-de-aprendizagem" class="section level2" number="11.2">
+<h2><span class="header-section-number">11.2</span> Objetivos de aprendizagem</h2>
+<p>Ao concluir o projeto, o(a) aluno(a) deve ser capaz de:</p>
+<ol style="list-style-type: decimal">
+<li>Organizar um projeto Node.js com <strong>NPM</strong>, <em>scripts</em> (<code>npm start</code>, <code>npm run dev</code>) e <strong>nodemon</strong>.</li>
+<li>Construir uma <strong>API REST</strong> com <strong>Express</strong>, separando as rotas em arquivos com <code>express.Router()</code> e usando corretamente <strong>verbos HTTP</strong>, <strong><em>path parameters</em></strong>, <strong><em>query parameters</em></strong> e <strong>códigos de <em>status</em></strong>.</li>
+<li><strong>Modelar</strong> um banco <strong>MySQL</strong> com chaves estrangeiras e restrições <strong><code>UNIQUE</code></strong>, e acessá-lo com o driver <strong><code>mysql2</code></strong> usando <strong>consultas parametrizadas</strong> (<code>?</code>).</li>
+<li>Organizar o acesso a dados em <strong>classes de modelo</strong> (<code>models/</code>), como na classe <code>Carro</code>.</li>
+<li>Implementar <strong>cadastro</strong> com senha protegida por <strong><em>hash</em></strong> (<code>bcrypt</code>) e <strong><em>login</em></strong> com <strong>JWT</strong>, protegendo as rotas com um <em>middleware</em>.</li>
+<li>Usar <strong>transações</strong> (<code>beginTransaction</code>, <code>commit</code>, <code>rollback</code>) quando várias instruções SQL precisam ser gravadas juntas.</li>
+<li>Implementar <strong>regras de negócio</strong> no servidor: validações, agregações (<code>SUM</code>, <code>GROUP BY</code>) e o cálculo de faturas de cartão de crédito.</li>
+</ol>
+<hr />
+</div>
+<div id="conceitos-do-livro-aplicados-no-projeto" class="section level2" number="11.3">
+<h2><span class="header-section-number">11.3</span> Conceitos do livro aplicados no projeto</h2>
+<p>O projeto foi pensado para que <strong>cada capítulo</strong> do livro seja usado. A tabela abaixo serve de roteiro de estudo e de <em>checklist</em>.</p>
+<table>
+<caption><span id="tab:tabela-conceitos-livro">Table 11.1: </span> Onde cada conceito do livro aparece no projeto</caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Capítulo do livro</th>
+<th>Conceito</th>
+<th>Onde aparece no projeto</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>JavaScript básico e objetos</td>
+<td>Funções, <em>arrow functions</em>, objetos, arrays (<code>map</code>, <code>filter</code>, <code>reduce</code>), <em>template strings</em>, classes</td>
+<td>Validações, cálculo de faturas, montagem das respostas JSON, classes de modelo</td>
+</tr>
+<tr class="even">
+<td>Web Services</td>
+<td>REST, recursos no plural (<code>/lancamentos</code>), verbos HTTP, códigos de <em>status</em>, <code>Content-Type: application/json</code></td>
+<td>Todas as rotas</td>
+</tr>
+<tr class="odd">
+<td>Servidor HTTP com Node.js</td>
+<td>Ciclo requisição/resposta</td>
+<td>Base do entendimento do Express</td>
+</tr>
+<tr class="even">
+<td>NPM, JSON e organização</td>
+<td><code>npm init</code>, <code>package.json</code>, <code>dependencies</code> × <code>devDependencies</code>, <code>npm start</code>, <code>nodemon</code>, <code>module.exports</code> / <code>require</code></td>
+<td>Estrutura do projeto e <em>scripts</em></td>
+</tr>
+<tr class="odd">
+<td>Express Framework</td>
+<td><code>express.json()</code>, <code>express.Router()</code>, <code>app.use</code>, <code>req.params</code>, <code>req.query</code>, <code>req.body</code>, <code>res.status().json()</code></td>
+<td><code>server.js</code> e pasta <code>routes/</code></td>
+</tr>
+<tr class="even">
+<td>Integração com banco de dados</td>
+<td>MySQL, <code>mysql2</code>, <code>database/connection.js</code>, SELECT/INSERT/UPDATE/DELETE com <code>?</code>, classes de modelo</td>
+<td>Pasta <code>models/</code></td>
+</tr>
+<tr class="odd">
+<td>APIs com JWT</td>
+<td><code>jwt.sign</code> com <code>expiresIn</code>, <code>express-jwt</code> (<code>protegerRota</code>), <code>Authorization: Bearer</code>, <code>UnauthorizedError</code>, <code>req.auth</code></td>
+<td>Pasta <code>middleware/</code> e rota <code>auth.js</code></td>
+</tr>
+<tr class="even">
+<td>JWT — Melhorando a segurança</td>
+<td>Senha com <em>hash</em>, chave secreta fora do código, tempo de expiração</td>
+<td><strong>Obrigatórios</strong> neste projeto (no livro eram recomendações)</td>
+</tr>
+<tr class="odd">
+<td>Loja de carros com clientes e vendas</td>
+<td>Relacionamentos 1–N, <code>UNIQUE</code> no banco, transações, id do usuário vindo do <em>token</em></td>
+<td>Modelo de dados, cadastro e lançamentos</td>
+</tr>
+</tbody>
+</table>
+<div id="conceitos-novos-pequenos-passos-além-do-livro" class="section level3" number="11.3.1">
+<h3><span class="header-section-number">11.3.1</span> Conceitos novos (pequenos passos além do livro)</h3>
+<p>Três itens que o livro apenas <strong>recomendou</strong> passam a ser <strong>obrigatórios</strong>. Eles serão revisados em aula:</p>
+<p><strong>1. Variáveis de ambiente com <code>dotenv</code>.</strong> A chave secreta do JWT e a senha do banco não podem ficar no código nem no repositório.</p>
+<div class="sourceCode" id="cb300"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb300-1"><a href="projeto-api-financas.html#cb300-1" tabindex="-1"></a><span class="ex">npm</span> install dotenv</span></code></pre></div>
+<pre class="text"><code># .env  (NÃO versionar — incluir no .gitignore)
+PORT=3000
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=sua_senha
+DB_NAME=api_financas
+JWT_SECRET=uma_frase_longa_e_dificil_de_adivinhar</code></pre>
+<div class="sourceCode" id="cb302"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb302-1"><a href="projeto-api-financas.html#cb302-1" tabindex="-1"></a><span class="co">// primeira linha do server.js</span></span>
+<span id="cb302-2"><a href="projeto-api-financas.html#cb302-2" tabindex="-1"></a><span class="pp">require</span>(<span class="st">&#39;dotenv&#39;</span>)<span class="op">.</span><span class="fu">config</span>()<span class="op">;</span></span>
+<span id="cb302-3"><a href="projeto-api-financas.html#cb302-3" tabindex="-1"></a></span>
+<span id="cb302-4"><a href="projeto-api-financas.html#cb302-4" tabindex="-1"></a><span class="co">// em qualquer arquivo</span></span>
+<span id="cb302-5"><a href="projeto-api-financas.html#cb302-5" tabindex="-1"></a><span class="kw">const</span> segredo <span class="op">=</span> <span class="bu">process</span><span class="op">.</span><span class="at">env</span><span class="op">.</span><span class="at">JWT_SECRET</span><span class="op">;</span></span></code></pre></div>
+<p>O repositório deve conter um arquivo <strong><code>.env.example</code></strong>, com os mesmos nomes de variáveis e valores fictícios, e um <strong><code>.gitignore</code></strong> com <code>node_modules/</code> e <code>.env</code>.</p>
+<p><strong>2. <em>Hash</em> de senha com <code>bcrypt</code>.</strong> A senha <strong>nunca</strong> é gravada em texto puro, e o <em>login</em> deixa de comparar a senha no SQL:</p>
+<div class="sourceCode" id="cb303"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb303-1"><a href="projeto-api-financas.html#cb303-1" tabindex="-1"></a><span class="kw">const</span> bcrypt <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;bcrypt&#39;</span>)<span class="op">;</span></span>
+<span id="cb303-2"><a href="projeto-api-financas.html#cb303-2" tabindex="-1"></a></span>
+<span id="cb303-3"><a href="projeto-api-financas.html#cb303-3" tabindex="-1"></a><span class="co">// no cadastro</span></span>
+<span id="cb303-4"><a href="projeto-api-financas.html#cb303-4" tabindex="-1"></a><span class="kw">const</span> senhaHash <span class="op">=</span> <span class="cf">await</span> bcrypt<span class="op">.</span><span class="fu">hash</span>(senha<span class="op">,</span> <span class="dv">10</span>)<span class="op">;</span>   <span class="co">// 10 = custo (rodadas de salt)</span></span>
+<span id="cb303-5"><a href="projeto-api-financas.html#cb303-5" tabindex="-1"></a></span>
+<span id="cb303-6"><a href="projeto-api-financas.html#cb303-6" tabindex="-1"></a><span class="co">// no login: busca o usuário SÓ pelo e-mail e compara a senha no Node</span></span>
+<span id="cb303-7"><a href="projeto-api-financas.html#cb303-7" tabindex="-1"></a><span class="kw">const</span> confere <span class="op">=</span> <span class="cf">await</span> bcrypt<span class="op">.</span><span class="fu">compare</span>(senhaDigitada<span class="op">,</span> usuario<span class="op">.</span><span class="at">senha_hash</span>)<span class="op">;</span></span></code></pre></div>
+<p><strong>3. Restrições <code>CHECK</code> no MySQL.</strong> A partir do MySQL 8.0.16, as restrições <code>CHECK</code> são verificadas pelo banco. Elas impedem, por exemplo, um valor negativo, mesmo que a validação da rota falhe.</p>
+<hr />
+</div>
+</div>
+<div id="modelo-de-dados" class="section level2" number="11.4">
+<h2><span class="header-section-number">11.4</span> Modelo de dados</h2>
+<p>O modelo abaixo é a <strong>referência mínima</strong>. O grupo pode acrescentar campos e tabelas, mas <strong>não pode remover</strong> as entidades, os relacionamentos e as restrições descritas.</p>
+<pre class="text"><code>usuarios 1 ──── N categorias
+usuarios 1 ──── N fontes_destinos
+usuarios 1 ──── N lancamentos
+categorias 1 ── N lancamentos
+fontes_destinos 1 ── N lancamentos
+
+┌────────────────────────┐        ┌──────────────────────────────┐        ┌──────────────────────────┐
+│ usuarios               │        │ lancamentos                  │        │ fontes_destinos          │
+│────────────────────────│        │──────────────────────────────│        │──────────────────────────│
+│ id (PK)                │◄───────│ usuario_id (FK)              │        │ id (PK)                  │
+│ nome                   │        │ id (PK)                      │        │ usuario_id (FK)          │
+│ email   UNIQUE         │        │ tipo (entrada | saida)       │───────►│ nome                     │
+│ cpf     UNIQUE         │        │ descricao                    │        │ tipo (renda | conta |    │
+│ senha_hash             │        │ valor (&gt; 0)                  │        │       cartao_credito)    │
+│ criado_em              │        │ data                         │        │ dia_fechamento (cartão)  │
+└────────────────────────┘        │ categoria_id (FK)            │        │ dia_vencimento (cartão)  │
+                                  │ fonte_destino_id (FK)        │        │ limite         (cartão)  │
+┌────────────────────────┐        │ parcela_atual                │        └──────────────────────────┘
+│ categorias             │        │ total_parcelas               │
+│────────────────────────│◄───────│ grupo_parcelamento           │
+│ id (PK)                │        └──────────────────────────────┘
+│ usuario_id (FK)        │
+│ nome                   │
+│ tipo (entrada | saida) │
+└────────────────────────┘</code></pre>
+<table>
+<caption><span id="tab:tabela-entidades-backend">Table 11.2: </span> Entidades do sistema</caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Entidade</th>
+<th>Descrição</th>
+<th>Regras principais</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Usuário</strong></td>
+<td>Pessoa que usa a API.</td>
+<td><code>email</code> e <code>cpf</code> <strong>únicos no banco</strong>; senha guardada <strong>apenas</strong> como <em>hash</em>.</td>
+</tr>
+<tr class="even">
+<td><strong>Categoria</strong></td>
+<td>Classifica o lançamento (<em>alimentação</em>, <em>saúde</em>, <em>salário</em>…).</td>
+<td>Pertence a um usuário. Tem <code>tipo</code> (<code>entrada</code> ou <code>saida</code>); um lançamento só pode usar categoria do <strong>mesmo tipo</strong>.</td>
+</tr>
+<tr class="odd">
+<td><strong>Fonte/Destino</strong></td>
+<td>De onde o dinheiro vem ou para onde vai (<em>salário</em>, <em>poupança</em>, <em>cartão Nubank</em>…).</td>
+<td>Pertence a um usuário. <code>tipo</code> ∈ {<code>renda</code>, <code>conta</code>, <code>cartao_credito</code>}. Se for cartão, <code>dia_fechamento</code>, <code>dia_vencimento</code> e <code>limite</code> são <strong>obrigatórios</strong>.</td>
+</tr>
+<tr class="even">
+<td><strong>Lançamento</strong></td>
+<td>Uma movimentação financeira.</td>
+<td><code>valor</code> <strong>positivo</strong> (o sinal vem do <code>tipo</code>); <code>data</code> obrigatória; <strong>deve</strong> ter categoria e fonte/destino do <strong>mesmo usuário</strong>. Compras no cartão podem ser <strong>parceladas</strong>.</td>
+</tr>
+</tbody>
+</table>
+<div id="script-de-criação-do-banco" class="section level3" number="11.4.1">
+<h3><span class="header-section-number">11.4.1</span> Script de criação do banco</h3>
+<p>Arquivo: <code>database/schema.sql</code></p>
+<div class="sourceCode" id="cb305"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb305-1"><a href="projeto-api-financas.html#cb305-1" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> api_financas;</span>
+<span id="cb305-2"><a href="projeto-api-financas.html#cb305-2" tabindex="-1"></a><span class="kw">USE</span> api_financas;</span>
+<span id="cb305-3"><a href="projeto-api-financas.html#cb305-3" tabindex="-1"></a></span>
+<span id="cb305-4"><a href="projeto-api-financas.html#cb305-4" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> usuarios (</span>
+<span id="cb305-5"><a href="projeto-api-financas.html#cb305-5" tabindex="-1"></a>  <span class="kw">id</span>          <span class="dt">INT</span> AUTO_INCREMENT <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb305-6"><a href="projeto-api-financas.html#cb305-6" tabindex="-1"></a>  nome        <span class="dt">VARCHAR</span>(<span class="dv">120</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb305-7"><a href="projeto-api-financas.html#cb305-7" tabindex="-1"></a>  email       <span class="dt">VARCHAR</span>(<span class="dv">160</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb305-8"><a href="projeto-api-financas.html#cb305-8" tabindex="-1"></a>  cpf         <span class="dt">CHAR</span>(<span class="dv">11</span>)     <span class="kw">NOT</span> <span class="kw">NULL</span>,                 <span class="co">-- só dígitos</span></span>
+<span id="cb305-9"><a href="projeto-api-financas.html#cb305-9" tabindex="-1"></a>  senha_hash  <span class="dt">VARCHAR</span>(<span class="dv">100</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb305-10"><a href="projeto-api-financas.html#cb305-10" tabindex="-1"></a>  criado_em   DATETIME     <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">DEFAULT</span> <span class="fu">CURRENT_TIMESTAMP</span>,</span>
+<span id="cb305-11"><a href="projeto-api-financas.html#cb305-11" tabindex="-1"></a>  <span class="kw">CONSTRAINT</span> uq_usuarios_email <span class="kw">UNIQUE</span> (email),</span>
+<span id="cb305-12"><a href="projeto-api-financas.html#cb305-12" tabindex="-1"></a>  <span class="kw">CONSTRAINT</span> uq_usuarios_cpf   <span class="kw">UNIQUE</span> (cpf)</span>
+<span id="cb305-13"><a href="projeto-api-financas.html#cb305-13" tabindex="-1"></a>);</span>
+<span id="cb305-14"><a href="projeto-api-financas.html#cb305-14" tabindex="-1"></a></span>
+<span id="cb305-15"><a href="projeto-api-financas.html#cb305-15" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> categorias (</span>
+<span id="cb305-16"><a href="projeto-api-financas.html#cb305-16" tabindex="-1"></a>  <span class="kw">id</span>          <span class="dt">INT</span> AUTO_INCREMENT <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb305-17"><a href="projeto-api-financas.html#cb305-17" tabindex="-1"></a>  usuario_id  <span class="dt">INT</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb305-18"><a href="projeto-api-financas.html#cb305-18" tabindex="-1"></a>  nome        <span class="dt">VARCHAR</span>(<span class="dv">60</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb305-19"><a href="projeto-api-financas.html#cb305-19" tabindex="-1"></a>  tipo        ENUM(<span class="st">&#39;entrada&#39;</span>, <span class="st">&#39;saida&#39;</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb305-20"><a href="projeto-api-financas.html#cb305-20" tabindex="-1"></a>  <span class="kw">CONSTRAINT</span> uq_categorias_nome <span class="kw">UNIQUE</span> (usuario_id, nome, tipo),</span>
+<span id="cb305-21"><a href="projeto-api-financas.html#cb305-21" tabindex="-1"></a>  <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (usuario_id) <span class="kw">REFERENCES</span> usuarios(<span class="kw">id</span>) <span class="kw">ON</span> <span class="kw">DELETE</span> <span class="kw">CASCADE</span></span>
+<span id="cb305-22"><a href="projeto-api-financas.html#cb305-22" tabindex="-1"></a>);</span>
+<span id="cb305-23"><a href="projeto-api-financas.html#cb305-23" tabindex="-1"></a></span>
+<span id="cb305-24"><a href="projeto-api-financas.html#cb305-24" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> fontes_destinos (</span>
+<span id="cb305-25"><a href="projeto-api-financas.html#cb305-25" tabindex="-1"></a>  <span class="kw">id</span>              <span class="dt">INT</span> AUTO_INCREMENT <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb305-26"><a href="projeto-api-financas.html#cb305-26" tabindex="-1"></a>  usuario_id      <span class="dt">INT</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb305-27"><a href="projeto-api-financas.html#cb305-27" tabindex="-1"></a>  nome            <span class="dt">VARCHAR</span>(<span class="dv">60</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb305-28"><a href="projeto-api-financas.html#cb305-28" tabindex="-1"></a>  tipo            ENUM(<span class="st">&#39;renda&#39;</span>, <span class="st">&#39;conta&#39;</span>, <span class="st">&#39;cartao_credito&#39;</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb305-29"><a href="projeto-api-financas.html#cb305-29" tabindex="-1"></a>  dia_fechamento  TINYINT <span class="kw">NULL</span>,</span>
+<span id="cb305-30"><a href="projeto-api-financas.html#cb305-30" tabindex="-1"></a>  dia_vencimento  TINYINT <span class="kw">NULL</span>,</span>
+<span id="cb305-31"><a href="projeto-api-financas.html#cb305-31" tabindex="-1"></a>  limite          <span class="dt">DECIMAL</span>(<span class="dv">12</span>, <span class="dv">2</span>) <span class="kw">NULL</span>,</span>
+<span id="cb305-32"><a href="projeto-api-financas.html#cb305-32" tabindex="-1"></a>  <span class="kw">CONSTRAINT</span> uq_fontes_nome <span class="kw">UNIQUE</span> (usuario_id, nome),</span>
+<span id="cb305-33"><a href="projeto-api-financas.html#cb305-33" tabindex="-1"></a>  <span class="kw">CONSTRAINT</span> ck_dias <span class="kw">CHECK</span> (</span>
+<span id="cb305-34"><a href="projeto-api-financas.html#cb305-34" tabindex="-1"></a>    (dia_fechamento <span class="kw">IS</span> <span class="kw">NULL</span> <span class="kw">OR</span> dia_fechamento <span class="kw">BETWEEN</span> <span class="dv">1</span> <span class="kw">AND</span> <span class="dv">31</span>) <span class="kw">AND</span></span>
+<span id="cb305-35"><a href="projeto-api-financas.html#cb305-35" tabindex="-1"></a>    (dia_vencimento <span class="kw">IS</span> <span class="kw">NULL</span> <span class="kw">OR</span> dia_vencimento <span class="kw">BETWEEN</span> <span class="dv">1</span> <span class="kw">AND</span> <span class="dv">31</span>)</span>
+<span id="cb305-36"><a href="projeto-api-financas.html#cb305-36" tabindex="-1"></a>  ),</span>
+<span id="cb305-37"><a href="projeto-api-financas.html#cb305-37" tabindex="-1"></a>  <span class="kw">CONSTRAINT</span> ck_cartao <span class="kw">CHECK</span> (</span>
+<span id="cb305-38"><a href="projeto-api-financas.html#cb305-38" tabindex="-1"></a>    tipo <span class="op">&lt;&gt;</span> <span class="st">&#39;cartao_credito&#39;</span> <span class="kw">OR</span></span>
+<span id="cb305-39"><a href="projeto-api-financas.html#cb305-39" tabindex="-1"></a>    (dia_fechamento <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">AND</span> dia_vencimento <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">AND</span> limite <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span>)</span>
+<span id="cb305-40"><a href="projeto-api-financas.html#cb305-40" tabindex="-1"></a>  ),</span>
+<span id="cb305-41"><a href="projeto-api-financas.html#cb305-41" tabindex="-1"></a>  <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (usuario_id) <span class="kw">REFERENCES</span> usuarios(<span class="kw">id</span>) <span class="kw">ON</span> <span class="kw">DELETE</span> <span class="kw">CASCADE</span></span>
+<span id="cb305-42"><a href="projeto-api-financas.html#cb305-42" tabindex="-1"></a>);</span>
+<span id="cb305-43"><a href="projeto-api-financas.html#cb305-43" tabindex="-1"></a></span>
+<span id="cb305-44"><a href="projeto-api-financas.html#cb305-44" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> lancamentos (</span>
+<span id="cb305-45"><a href="projeto-api-financas.html#cb305-45" tabindex="-1"></a>  <span class="kw">id</span>                  <span class="dt">INT</span> AUTO_INCREMENT <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb305-46"><a href="projeto-api-financas.html#cb305-46" tabindex="-1"></a>  usuario_id          <span class="dt">INT</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb305-47"><a href="projeto-api-financas.html#cb305-47" tabindex="-1"></a>  tipo                ENUM(<span class="st">&#39;entrada&#39;</span>, <span class="st">&#39;saida&#39;</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb305-48"><a href="projeto-api-financas.html#cb305-48" tabindex="-1"></a>  descricao           <span class="dt">VARCHAR</span>(<span class="dv">120</span>)   <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb305-49"><a href="projeto-api-financas.html#cb305-49" tabindex="-1"></a>  valor               <span class="dt">DECIMAL</span>(<span class="dv">12</span>, <span class="dv">2</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb305-50"><a href="projeto-api-financas.html#cb305-50" tabindex="-1"></a>  <span class="kw">data</span>                <span class="dt">DATE</span>           <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb305-51"><a href="projeto-api-financas.html#cb305-51" tabindex="-1"></a>  categoria_id        <span class="dt">INT</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb305-52"><a href="projeto-api-financas.html#cb305-52" tabindex="-1"></a>  fonte_destino_id    <span class="dt">INT</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb305-53"><a href="projeto-api-financas.html#cb305-53" tabindex="-1"></a>  parcela_atual       TINYINT <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">DEFAULT</span> <span class="dv">1</span>,</span>
+<span id="cb305-54"><a href="projeto-api-financas.html#cb305-54" tabindex="-1"></a>  total_parcelas      TINYINT <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">DEFAULT</span> <span class="dv">1</span>,</span>
+<span id="cb305-55"><a href="projeto-api-financas.html#cb305-55" tabindex="-1"></a>  grupo_parcelamento  <span class="dt">CHAR</span>(<span class="dv">36</span>) <span class="kw">NULL</span>,                 <span class="co">-- mesmo valor em todas as parcelas</span></span>
+<span id="cb305-56"><a href="projeto-api-financas.html#cb305-56" tabindex="-1"></a>  criado_em           DATETIME <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">DEFAULT</span> <span class="fu">CURRENT_TIMESTAMP</span>,</span>
+<span id="cb305-57"><a href="projeto-api-financas.html#cb305-57" tabindex="-1"></a>  <span class="kw">CONSTRAINT</span> ck_valor    <span class="kw">CHECK</span> (valor <span class="op">&gt;</span> <span class="dv">0</span>),</span>
+<span id="cb305-58"><a href="projeto-api-financas.html#cb305-58" tabindex="-1"></a>  <span class="kw">CONSTRAINT</span> ck_parcelas <span class="kw">CHECK</span> (total_parcelas <span class="kw">BETWEEN</span> <span class="dv">1</span> <span class="kw">AND</span> <span class="dv">48</span></span>
+<span id="cb305-59"><a href="projeto-api-financas.html#cb305-59" tabindex="-1"></a>                                <span class="kw">AND</span> parcela_atual <span class="kw">BETWEEN</span> <span class="dv">1</span> <span class="kw">AND</span> total_parcelas),</span>
+<span id="cb305-60"><a href="projeto-api-financas.html#cb305-60" tabindex="-1"></a>  <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (usuario_id)       <span class="kw">REFERENCES</span> usuarios(<span class="kw">id</span>) <span class="kw">ON</span> <span class="kw">DELETE</span> <span class="kw">CASCADE</span>,</span>
+<span id="cb305-61"><a href="projeto-api-financas.html#cb305-61" tabindex="-1"></a>  <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (categoria_id)     <span class="kw">REFERENCES</span> categorias(<span class="kw">id</span>),</span>
+<span id="cb305-62"><a href="projeto-api-financas.html#cb305-62" tabindex="-1"></a>  <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (fonte_destino_id) <span class="kw">REFERENCES</span> fontes_destinos(<span class="kw">id</span>),</span>
+<span id="cb305-63"><a href="projeto-api-financas.html#cb305-63" tabindex="-1"></a>  <span class="kw">INDEX</span> idx_lancamentos_usuario_data (usuario_id, <span class="kw">data</span>)</span>
+<span id="cb305-64"><a href="projeto-api-financas.html#cb305-64" tabindex="-1"></a>);</span></code></pre></div>
+<p>Além do <code>schema.sql</code>, o grupo deve entregar um <strong><code>database/seed.sql</code></strong> com pelo menos <strong>2 usuários</strong> e <strong>3 meses de lançamentos</strong> (incluindo ao menos um cartão de crédito e uma compra parcelada), para a demonstração. Como as senhas são gravadas com <em>hash</em>, o <em>seed</em> deve conter o <em>hash</em> gerado pelo <code>bcrypt</code> (ou o grupo pode criar os usuários pela rota de cadastro e inserir o restante pelo SQL).</p>
+</div>
+<div id="e-mail-e-cpf-únicos-a-garantia-vem-do-banco" class="section level3" number="11.4.2">
+<h3><span class="header-section-number">11.4.2</span> E-mail e CPF únicos: a garantia vem do banco</h3>
+<p>O sistema <strong>não pode permitir dois usuários com o mesmo e-mail ou o mesmo CPF</strong>. Assim como, na loja de carros, a restrição <code>UNIQUE</code> em <code>carro_id</code> garantia que um carro fosse vendido uma única vez, aqui as restrições <code>uq_usuarios_email</code> e <code>uq_usuarios_cpf</code> garantem a regra <strong>no próprio banco</strong>.</p>
+<blockquote>
+<p><strong>Por que não basta fazer um SELECT antes de inserir?</strong> Se duas requisições de cadastro chegarem ao mesmo tempo, as duas podem executar o <code>SELECT</code>, não encontrar ninguém e, em seguida, as duas fazerem o <code>INSERT</code>. Esse problema se chama <strong>condição de corrida</strong> (<em>race condition</em>). A restrição <code>UNIQUE</code> é verificada pelo MySQL de forma atômica: a segunda inserção sempre falha. O <code>SELECT</code> prévio pode existir para dar uma resposta mais rápida, mas <strong>a garantia é do banco</strong>.</p>
+</blockquote>
+<p>Para que a regra funcione de verdade, os dados precisam ser <strong>normalizados</strong> antes de gravar:</p>
+<ul>
+<li>e-mail: <code>email.trim().toLowerCase()</code> (assim, <code>Ana@Email.com</code> e <code>ana@email.com</code> são o mesmo e-mail);</li>
+<li>CPF: somente dígitos, <code>cpf.replace(/\D/g, '')</code> (assim, <code>529.982.247-25</code> e <code>52998224725</code> são o mesmo CPF).</li>
+</ul>
+<p>Quando o MySQL recusa uma inserção por causa de um <code>UNIQUE</code>, o erro devolvido pelo <code>mysql2</code> tem <code>code === 'ER_DUP_ENTRY'</code> (número <code>1062</code>), e a mensagem (<code>sqlMessage</code>) contém o <strong>nome da restrição</strong> violada. É por isso que as restrições foram nomeadas no <code>schema.sql</code>.</p>
+<hr />
+</div>
+</div>
+<div id="requisitos-funcionais" class="section level2" number="11.5">
+<h2><span class="header-section-number">11.5</span> Requisitos funcionais</h2>
+<p>Com exceção de RF1 e RF2, <strong>todas</strong> as rotas devem estar protegidas pelo <em>middleware</em> JWT. Todas as validações devem ser feitas <strong>no servidor</strong>, com respostas em JSON e o código de <em>status</em> adequado.</p>
+<div id="rf1-cadastro-de-usuário" class="section level3" number="11.5.1">
+<h3><span class="header-section-number">11.5.1</span> RF1 — Cadastro de usuário</h3>
+<p><code>POST /auth/cadastro</code>, com corpo JSON contendo <code>nome</code>, <code>email</code>, <code>cpf</code> e <code>senha</code>.</p>
+<ul>
+<li><strong>Validações</strong> (resposta <code>400</code> com as mensagens):
+<ul>
+<li>todos os campos obrigatórios;</li>
+<li>e-mail em formato válido;</li>
+<li>CPF com <strong>dígitos verificadores válidos</strong> (não basta ter 11 dígitos);</li>
+<li>senha com no mínimo 8 caracteres, contendo letras e números.</li>
+</ul></li>
+<li>Senha gravada com <code>bcrypt</code>. O <code>senha_hash</code> <strong>nunca</strong> aparece em nenhuma resposta da API.</li>
+<li>E-mail ou CPF já cadastrado → <strong><code>409 Conflict</code></strong>, indicando <strong>qual</strong> campo está duplicado.</li>
+<li>O cadastro deve criar, <strong>na mesma transação</strong>, o usuário, um conjunto de <strong>categorias padrão</strong> (ex.: <em>Salário</em> e <em>Outras entradas</em> como entrada; <em>Alimentação</em>, <em>Moradia</em>, <em>Saúde</em>, <em>Mobilidade</em>, <em>Lazer</em>, <em>Educação</em> e <em>Outras saídas</em> como saída) e uma fonte/destino padrão (<em>Conta corrente</em>). Se qualquer inserção falhar, nada é gravado (<code>rollback</code>).</li>
+<li>Sucesso → <strong><code>201 Created</code></strong> com <code>id</code>, <code>nome</code> e <code>email</code>.</li>
+</ul>
+<p>Função utilitária de validação de CPF:</p>
+<p>Arquivo: <code>utils/cpf.js</code></p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb306-1"><a href="projeto-api-financas.html#cb306-1" tabindex="-1"></a><span class="co">// Valida os dois dígitos verificadores do CPF</span></span>
+<span id="cb306-2"><a href="projeto-api-financas.html#cb306-2" tabindex="-1"></a><span class="kw">function</span> <span class="fu">cpfValido</span>(cpf) {</span>
+<span id="cb306-3"><a href="projeto-api-financas.html#cb306-3" tabindex="-1"></a>  <span class="kw">const</span> d <span class="op">=</span> <span class="bu">String</span>(cpf)<span class="op">.</span><span class="fu">replace</span>(<span class="ss">/</span><span class="sc">\D</span><span class="ss">/g</span><span class="op">,</span> <span class="st">&#39;&#39;</span>)<span class="op">;</span>            <span class="co">// mantém só os dígitos</span></span>
+<span id="cb306-4"><a href="projeto-api-financas.html#cb306-4" tabindex="-1"></a>  <span class="cf">if</span> (d<span class="op">.</span><span class="at">length</span> <span class="op">!==</span> <span class="dv">11</span> <span class="op">||</span> <span class="ss">/</span><span class="sc">^(\d)\1{10}$</span><span class="ss">/</span><span class="op">.</span><span class="fu">test</span>(d)) {     <span class="co">// rejeita 111.111.111-11 etc.</span></span>
+<span id="cb306-5"><a href="projeto-api-financas.html#cb306-5" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb306-6"><a href="projeto-api-financas.html#cb306-6" tabindex="-1"></a>  }</span>
+<span id="cb306-7"><a href="projeto-api-financas.html#cb306-7" tabindex="-1"></a>  <span class="kw">const</span> digito <span class="op">=</span> (tamanho) <span class="kw">=&gt;</span> {</span>
+<span id="cb306-8"><a href="projeto-api-financas.html#cb306-8" tabindex="-1"></a>    <span class="kw">let</span> soma <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb306-9"><a href="projeto-api-financas.html#cb306-9" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> tamanho<span class="op">;</span> i<span class="op">++</span>) soma <span class="op">+=</span> <span class="bu">Number</span>(d[i]) <span class="op">*</span> (tamanho <span class="op">+</span> <span class="dv">1</span> <span class="op">-</span> i)<span class="op">;</span></span>
+<span id="cb306-10"><a href="projeto-api-financas.html#cb306-10" tabindex="-1"></a>    <span class="kw">const</span> resto <span class="op">=</span> (soma <span class="op">*</span> <span class="dv">10</span>) <span class="op">%</span> <span class="dv">11</span><span class="op">;</span></span>
+<span id="cb306-11"><a href="projeto-api-financas.html#cb306-11" tabindex="-1"></a>    <span class="cf">return</span> resto <span class="op">===</span> <span class="dv">10</span> <span class="op">?</span> <span class="dv">0</span> <span class="op">:</span> resto<span class="op">;</span></span>
+<span id="cb306-12"><a href="projeto-api-financas.html#cb306-12" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb306-13"><a href="projeto-api-financas.html#cb306-13" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">digito</span>(<span class="dv">9</span>) <span class="op">===</span> <span class="bu">Number</span>(d[<span class="dv">9</span>]) <span class="op">&amp;&amp;</span> <span class="fu">digito</span>(<span class="dv">10</span>) <span class="op">===</span> <span class="bu">Number</span>(d[<span class="dv">10</span>])<span class="op">;</span></span>
+<span id="cb306-14"><a href="projeto-api-financas.html#cb306-14" tabindex="-1"></a>}</span>
+<span id="cb306-15"><a href="projeto-api-financas.html#cb306-15" tabindex="-1"></a></span>
+<span id="cb306-16"><a href="projeto-api-financas.html#cb306-16" tabindex="-1"></a>module<span class="op">.</span><span class="at">exports</span> <span class="op">=</span> { cpfValido }<span class="op">;</span></span>
+<span id="cb306-17"><a href="projeto-api-financas.html#cb306-17" tabindex="-1"></a></span>
+<span id="cb306-18"><a href="projeto-api-financas.html#cb306-18" tabindex="-1"></a><span class="co">// cpfValido(&#39;529.982.247-25&#39;) → true</span></span>
+<span id="cb306-19"><a href="projeto-api-financas.html#cb306-19" tabindex="-1"></a><span class="co">// cpfValido(&#39;529.982.247-24&#39;) → false (dígito verificador errado)</span></span></code></pre></div>
+<p>Trecho da classe <code>Usuario</code>, com a <strong>transação</strong> do cadastro (mesmo padrão da classe <code>Venda</code>):</p>
+<p>Arquivo: <code>models/Usuario.js</code> (trecho)</p>
+<div class="sourceCode" id="cb307"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb307-1"><a href="projeto-api-financas.html#cb307-1" tabindex="-1"></a><span class="kw">const</span> connection <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;../database/connection&#39;</span>)<span class="op">;</span></span>
+<span id="cb307-2"><a href="projeto-api-financas.html#cb307-2" tabindex="-1"></a></span>
+<span id="cb307-3"><a href="projeto-api-financas.html#cb307-3" tabindex="-1"></a><span class="kw">const</span> CATEGORIAS_PADRAO <span class="op">=</span> [</span>
+<span id="cb307-4"><a href="projeto-api-financas.html#cb307-4" tabindex="-1"></a>  [<span class="st">&#39;Salário&#39;</span><span class="op">,</span> <span class="st">&#39;entrada&#39;</span>]<span class="op">,</span> [<span class="st">&#39;Outras entradas&#39;</span><span class="op">,</span> <span class="st">&#39;entrada&#39;</span>]<span class="op">,</span></span>
+<span id="cb307-5"><a href="projeto-api-financas.html#cb307-5" tabindex="-1"></a>  [<span class="st">&#39;Alimentação&#39;</span><span class="op">,</span> <span class="st">&#39;saida&#39;</span>]<span class="op">,</span> [<span class="st">&#39;Moradia&#39;</span><span class="op">,</span> <span class="st">&#39;saida&#39;</span>]<span class="op">,</span> [<span class="st">&#39;Saúde&#39;</span><span class="op">,</span> <span class="st">&#39;saida&#39;</span>]<span class="op">,</span></span>
+<span id="cb307-6"><a href="projeto-api-financas.html#cb307-6" tabindex="-1"></a>  [<span class="st">&#39;Mobilidade&#39;</span><span class="op">,</span> <span class="st">&#39;saida&#39;</span>]<span class="op">,</span> [<span class="st">&#39;Lazer&#39;</span><span class="op">,</span> <span class="st">&#39;saida&#39;</span>]<span class="op">,</span> [<span class="st">&#39;Educação&#39;</span><span class="op">,</span> <span class="st">&#39;saida&#39;</span>]<span class="op">,</span> [<span class="st">&#39;Outras saídas&#39;</span><span class="op">,</span> <span class="st">&#39;saida&#39;</span>]<span class="op">,</span></span>
+<span id="cb307-7"><a href="projeto-api-financas.html#cb307-7" tabindex="-1"></a>]<span class="op">;</span></span>
+<span id="cb307-8"><a href="projeto-api-financas.html#cb307-8" tabindex="-1"></a></span>
+<span id="cb307-9"><a href="projeto-api-financas.html#cb307-9" tabindex="-1"></a><span class="kw">class</span> Usuario {</span>
+<span id="cb307-10"><a href="projeto-api-financas.html#cb307-10" tabindex="-1"></a>  <span class="fu">cadastrar</span>({ nome<span class="op">,</span> email<span class="op">,</span> cpf<span class="op">,</span> senhaHash }<span class="op">,</span> callback) {</span>
+<span id="cb307-11"><a href="projeto-api-financas.html#cb307-11" tabindex="-1"></a>    connection<span class="op">.</span><span class="fu">beginTransaction</span>((erro) <span class="kw">=&gt;</span> {</span>
+<span id="cb307-12"><a href="projeto-api-financas.html#cb307-12" tabindex="-1"></a>      <span class="cf">if</span> (erro) <span class="cf">return</span> <span class="fu">callback</span>(erro)<span class="op">;</span></span>
+<span id="cb307-13"><a href="projeto-api-financas.html#cb307-13" tabindex="-1"></a></span>
+<span id="cb307-14"><a href="projeto-api-financas.html#cb307-14" tabindex="-1"></a>      <span class="kw">const</span> sqlUsuario <span class="op">=</span> <span class="st">&#39;INSERT INTO usuarios (nome, email, cpf, senha_hash) VALUES (?, ?, ?, ?)&#39;</span><span class="op">;</span></span>
+<span id="cb307-15"><a href="projeto-api-financas.html#cb307-15" tabindex="-1"></a>      connection<span class="op">.</span><span class="fu">query</span>(sqlUsuario<span class="op">,</span> [nome<span class="op">,</span> email<span class="op">,</span> cpf<span class="op">,</span> senhaHash]<span class="op">,</span> (erro<span class="op">,</span> resultado) <span class="kw">=&gt;</span> {</span>
+<span id="cb307-16"><a href="projeto-api-financas.html#cb307-16" tabindex="-1"></a>        <span class="cf">if</span> (erro) <span class="cf">return</span> connection<span class="op">.</span><span class="fu">rollback</span>(() <span class="kw">=&gt;</span> <span class="fu">callback</span>(erro))<span class="op">;</span></span>
+<span id="cb307-17"><a href="projeto-api-financas.html#cb307-17" tabindex="-1"></a></span>
+<span id="cb307-18"><a href="projeto-api-financas.html#cb307-18" tabindex="-1"></a>        <span class="kw">const</span> usuarioId <span class="op">=</span> resultado<span class="op">.</span><span class="at">insertId</span><span class="op">;</span></span>
+<span id="cb307-19"><a href="projeto-api-financas.html#cb307-19" tabindex="-1"></a>        <span class="kw">const</span> linhas <span class="op">=</span> CATEGORIAS_PADRAO<span class="op">.</span><span class="fu">map</span>(([nomeCat<span class="op">,</span> tipo]) <span class="kw">=&gt;</span> [usuarioId<span class="op">,</span> nomeCat<span class="op">,</span> tipo])<span class="op">;</span></span>
+<span id="cb307-20"><a href="projeto-api-financas.html#cb307-20" tabindex="-1"></a></span>
+<span id="cb307-21"><a href="projeto-api-financas.html#cb307-21" tabindex="-1"></a>        <span class="co">// INSERT de várias linhas: VALUES ? recebe um array de arrays</span></span>
+<span id="cb307-22"><a href="projeto-api-financas.html#cb307-22" tabindex="-1"></a>        connection<span class="op">.</span><span class="fu">query</span>(<span class="st">&#39;INSERT INTO categorias (usuario_id, nome, tipo) VALUES ?&#39;</span><span class="op">,</span> [linhas]<span class="op">,</span> (erro) <span class="kw">=&gt;</span> {</span>
+<span id="cb307-23"><a href="projeto-api-financas.html#cb307-23" tabindex="-1"></a>          <span class="cf">if</span> (erro) <span class="cf">return</span> connection<span class="op">.</span><span class="fu">rollback</span>(() <span class="kw">=&gt;</span> <span class="fu">callback</span>(erro))<span class="op">;</span></span>
+<span id="cb307-24"><a href="projeto-api-financas.html#cb307-24" tabindex="-1"></a></span>
+<span id="cb307-25"><a href="projeto-api-financas.html#cb307-25" tabindex="-1"></a>          <span class="kw">const</span> sqlFonte <span class="op">=</span> <span class="st">&quot;INSERT INTO fontes_destinos (usuario_id, nome, tipo) VALUES (?, &#39;Conta corrente&#39;, &#39;conta&#39;)&quot;</span><span class="op">;</span></span>
+<span id="cb307-26"><a href="projeto-api-financas.html#cb307-26" tabindex="-1"></a>          connection<span class="op">.</span><span class="fu">query</span>(sqlFonte<span class="op">,</span> [usuarioId]<span class="op">,</span> (erro) <span class="kw">=&gt;</span> {</span>
+<span id="cb307-27"><a href="projeto-api-financas.html#cb307-27" tabindex="-1"></a>            <span class="cf">if</span> (erro) <span class="cf">return</span> connection<span class="op">.</span><span class="fu">rollback</span>(() <span class="kw">=&gt;</span> <span class="fu">callback</span>(erro))<span class="op">;</span></span>
+<span id="cb307-28"><a href="projeto-api-financas.html#cb307-28" tabindex="-1"></a></span>
+<span id="cb307-29"><a href="projeto-api-financas.html#cb307-29" tabindex="-1"></a>            connection<span class="op">.</span><span class="fu">commit</span>((erro) <span class="kw">=&gt;</span> {</span>
+<span id="cb307-30"><a href="projeto-api-financas.html#cb307-30" tabindex="-1"></a>              <span class="cf">if</span> (erro) <span class="cf">return</span> connection<span class="op">.</span><span class="fu">rollback</span>(() <span class="kw">=&gt;</span> <span class="fu">callback</span>(erro))<span class="op">;</span></span>
+<span id="cb307-31"><a href="projeto-api-financas.html#cb307-31" tabindex="-1"></a>              <span class="fu">callback</span>(<span class="kw">null</span><span class="op">,</span> { <span class="dt">id</span><span class="op">:</span> usuarioId<span class="op">,</span> nome<span class="op">,</span> email })<span class="op">;</span></span>
+<span id="cb307-32"><a href="projeto-api-financas.html#cb307-32" tabindex="-1"></a>            })<span class="op">;</span></span>
+<span id="cb307-33"><a href="projeto-api-financas.html#cb307-33" tabindex="-1"></a>          })<span class="op">;</span></span>
+<span id="cb307-34"><a href="projeto-api-financas.html#cb307-34" tabindex="-1"></a>        })<span class="op">;</span></span>
+<span id="cb307-35"><a href="projeto-api-financas.html#cb307-35" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb307-36"><a href="projeto-api-financas.html#cb307-36" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb307-37"><a href="projeto-api-financas.html#cb307-37" tabindex="-1"></a>  }</span>
+<span id="cb307-38"><a href="projeto-api-financas.html#cb307-38" tabindex="-1"></a>}</span>
+<span id="cb307-39"><a href="projeto-api-financas.html#cb307-39" tabindex="-1"></a></span>
+<span id="cb307-40"><a href="projeto-api-financas.html#cb307-40" tabindex="-1"></a>module<span class="op">.</span><span class="at">exports</span> <span class="op">=</span> <span class="kw">new</span> <span class="fu">Usuario</span>()<span class="op">;</span></span></code></pre></div>
+<p>Trecho da rota de cadastro, tratando o <code>ER_DUP_ENTRY</code>:</p>
+<p>Arquivo: <code>routes/auth.js</code> (trecho)</p>
+<div class="sourceCode" id="cb308"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb308-1"><a href="projeto-api-financas.html#cb308-1" tabindex="-1"></a><span class="kw">const</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;express&#39;</span>)<span class="op">;</span></span>
+<span id="cb308-2"><a href="projeto-api-financas.html#cb308-2" tabindex="-1"></a><span class="kw">const</span> bcrypt <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;bcrypt&#39;</span>)<span class="op">;</span></span>
+<span id="cb308-3"><a href="projeto-api-financas.html#cb308-3" tabindex="-1"></a><span class="kw">const</span> Usuario <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;../models/Usuario&#39;</span>)<span class="op">;</span></span>
+<span id="cb308-4"><a href="projeto-api-financas.html#cb308-4" tabindex="-1"></a><span class="kw">const</span> { cpfValido } <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;../utils/cpf&#39;</span>)<span class="op">;</span></span>
+<span id="cb308-5"><a href="projeto-api-financas.html#cb308-5" tabindex="-1"></a></span>
+<span id="cb308-6"><a href="projeto-api-financas.html#cb308-6" tabindex="-1"></a><span class="kw">const</span> router <span class="op">=</span> express<span class="op">.</span><span class="fu">Router</span>()<span class="op">;</span></span>
+<span id="cb308-7"><a href="projeto-api-financas.html#cb308-7" tabindex="-1"></a></span>
+<span id="cb308-8"><a href="projeto-api-financas.html#cb308-8" tabindex="-1"></a>router<span class="op">.</span><span class="fu">post</span>(<span class="st">&#39;/cadastro&#39;</span><span class="op">,</span> <span class="kw">async</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb308-9"><a href="projeto-api-financas.html#cb308-9" tabindex="-1"></a>  <span class="kw">const</span> { nome<span class="op">,</span> email<span class="op">,</span> cpf<span class="op">,</span> senha } <span class="op">=</span> req<span class="op">.</span><span class="at">body</span><span class="op">;</span></span>
+<span id="cb308-10"><a href="projeto-api-financas.html#cb308-10" tabindex="-1"></a>  <span class="kw">const</span> erros <span class="op">=</span> {}<span class="op">;</span></span>
+<span id="cb308-11"><a href="projeto-api-financas.html#cb308-11" tabindex="-1"></a></span>
+<span id="cb308-12"><a href="projeto-api-financas.html#cb308-12" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span>nome <span class="op">||</span> <span class="op">!</span>nome<span class="op">.</span><span class="fu">trim</span>()) erros<span class="op">.</span><span class="at">nome</span> <span class="op">=</span> <span class="st">&#39;Informe o nome.&#39;</span><span class="op">;</span></span>
+<span id="cb308-13"><a href="projeto-api-financas.html#cb308-13" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span>email <span class="op">||</span> <span class="op">!</span><span class="ss">/</span><span class="sc">^[^\s@]+</span><span class="ss">@</span><span class="sc">[^\s@]+\.[^\s@]+$</span><span class="ss">/</span><span class="op">.</span><span class="fu">test</span>(email)) erros<span class="op">.</span><span class="at">email</span> <span class="op">=</span> <span class="st">&#39;E-mail inválido.&#39;</span><span class="op">;</span></span>
+<span id="cb308-14"><a href="projeto-api-financas.html#cb308-14" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span>cpf <span class="op">||</span> <span class="op">!</span><span class="fu">cpfValido</span>(cpf)) erros<span class="op">.</span><span class="at">cpf</span> <span class="op">=</span> <span class="st">&#39;CPF inválido.&#39;</span><span class="op">;</span></span>
+<span id="cb308-15"><a href="projeto-api-financas.html#cb308-15" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span>senha <span class="op">||</span> senha<span class="op">.</span><span class="at">length</span> <span class="op">&lt;</span> <span class="dv">8</span> <span class="op">||</span> <span class="op">!</span><span class="ss">/</span><span class="sc">[A-Za-z]</span><span class="ss">/</span><span class="op">.</span><span class="fu">test</span>(senha) <span class="op">||</span> <span class="op">!</span><span class="ss">/</span><span class="sc">\d</span><span class="ss">/</span><span class="op">.</span><span class="fu">test</span>(senha)) {</span>
+<span id="cb308-16"><a href="projeto-api-financas.html#cb308-16" tabindex="-1"></a>    erros<span class="op">.</span><span class="at">senha</span> <span class="op">=</span> <span class="st">&#39;A senha deve ter ao menos 8 caracteres, com letras e números.&#39;</span><span class="op">;</span></span>
+<span id="cb308-17"><a href="projeto-api-financas.html#cb308-17" tabindex="-1"></a>  }</span>
+<span id="cb308-18"><a href="projeto-api-financas.html#cb308-18" tabindex="-1"></a>  <span class="cf">if</span> (<span class="bu">Object</span><span class="op">.</span><span class="fu">keys</span>(erros)<span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb308-19"><a href="projeto-api-financas.html#cb308-19" tabindex="-1"></a>    <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">400</span>)<span class="op">.</span><span class="fu">json</span>({ <span class="dt">erro</span><span class="op">:</span> <span class="st">&#39;Dados inválidos.&#39;</span><span class="op">,</span> <span class="dt">campos</span><span class="op">:</span> erros })<span class="op">;</span></span>
+<span id="cb308-20"><a href="projeto-api-financas.html#cb308-20" tabindex="-1"></a>  }</span>
+<span id="cb308-21"><a href="projeto-api-financas.html#cb308-21" tabindex="-1"></a></span>
+<span id="cb308-22"><a href="projeto-api-financas.html#cb308-22" tabindex="-1"></a>  <span class="kw">const</span> senhaHash <span class="op">=</span> <span class="cf">await</span> bcrypt<span class="op">.</span><span class="fu">hash</span>(senha<span class="op">,</span> <span class="dv">10</span>)<span class="op">;</span></span>
+<span id="cb308-23"><a href="projeto-api-financas.html#cb308-23" tabindex="-1"></a>  <span class="kw">const</span> dados <span class="op">=</span> {</span>
+<span id="cb308-24"><a href="projeto-api-financas.html#cb308-24" tabindex="-1"></a>    <span class="dt">nome</span><span class="op">:</span> nome<span class="op">.</span><span class="fu">trim</span>()<span class="op">,</span></span>
+<span id="cb308-25"><a href="projeto-api-financas.html#cb308-25" tabindex="-1"></a>    <span class="dt">email</span><span class="op">:</span> email<span class="op">.</span><span class="fu">trim</span>()<span class="op">.</span><span class="fu">toLowerCase</span>()<span class="op">,</span>   <span class="co">// normalização</span></span>
+<span id="cb308-26"><a href="projeto-api-financas.html#cb308-26" tabindex="-1"></a>    <span class="dt">cpf</span><span class="op">:</span> cpf<span class="op">.</span><span class="fu">replace</span>(<span class="ss">/</span><span class="sc">\D</span><span class="ss">/g</span><span class="op">,</span> <span class="st">&#39;&#39;</span>)<span class="op">,</span>         <span class="co">// normalização</span></span>
+<span id="cb308-27"><a href="projeto-api-financas.html#cb308-27" tabindex="-1"></a>    senhaHash<span class="op">,</span></span>
+<span id="cb308-28"><a href="projeto-api-financas.html#cb308-28" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb308-29"><a href="projeto-api-financas.html#cb308-29" tabindex="-1"></a></span>
+<span id="cb308-30"><a href="projeto-api-financas.html#cb308-30" tabindex="-1"></a>  Usuario<span class="op">.</span><span class="fu">cadastrar</span>(dados<span class="op">,</span> (erro<span class="op">,</span> usuario) <span class="kw">=&gt;</span> {</span>
+<span id="cb308-31"><a href="projeto-api-financas.html#cb308-31" tabindex="-1"></a>    <span class="cf">if</span> (erro <span class="op">&amp;&amp;</span> erro<span class="op">.</span><span class="at">code</span> <span class="op">===</span> <span class="st">&#39;ER_DUP_ENTRY&#39;</span>) {</span>
+<span id="cb308-32"><a href="projeto-api-financas.html#cb308-32" tabindex="-1"></a>      <span class="kw">const</span> campo <span class="op">=</span> erro<span class="op">.</span><span class="at">sqlMessage</span><span class="op">.</span><span class="fu">includes</span>(<span class="st">&#39;uq_usuarios_cpf&#39;</span>) <span class="op">?</span> <span class="st">&#39;cpf&#39;</span> <span class="op">:</span> <span class="st">&#39;email&#39;</span><span class="op">;</span></span>
+<span id="cb308-33"><a href="projeto-api-financas.html#cb308-33" tabindex="-1"></a>      <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">409</span>)<span class="op">.</span><span class="fu">json</span>({</span>
+<span id="cb308-34"><a href="projeto-api-financas.html#cb308-34" tabindex="-1"></a>        <span class="dt">erro</span><span class="op">:</span> <span class="st">&#39;Usuário já cadastrado.&#39;</span><span class="op">,</span></span>
+<span id="cb308-35"><a href="projeto-api-financas.html#cb308-35" tabindex="-1"></a>        <span class="dt">campos</span><span class="op">:</span> { [campo]<span class="op">:</span> <span class="vs">`Já existe um usuário com este </span><span class="sc">${</span>campo <span class="op">===</span> <span class="st">&#39;cpf&#39;</span> <span class="op">?</span> <span class="st">&#39;CPF&#39;</span> <span class="op">:</span> <span class="st">&#39;e-mail&#39;</span><span class="sc">}</span><span class="vs">.`</span> }<span class="op">,</span></span>
+<span id="cb308-36"><a href="projeto-api-financas.html#cb308-36" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb308-37"><a href="projeto-api-financas.html#cb308-37" tabindex="-1"></a>    }</span>
+<span id="cb308-38"><a href="projeto-api-financas.html#cb308-38" tabindex="-1"></a>    <span class="cf">if</span> (erro) {</span>
+<span id="cb308-39"><a href="projeto-api-financas.html#cb308-39" tabindex="-1"></a>      <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">500</span>)<span class="op">.</span><span class="fu">json</span>({ <span class="dt">erro</span><span class="op">:</span> <span class="st">&#39;Erro ao cadastrar usuário.&#39;</span> })<span class="op">;</span></span>
+<span id="cb308-40"><a href="projeto-api-financas.html#cb308-40" tabindex="-1"></a>    }</span>
+<span id="cb308-41"><a href="projeto-api-financas.html#cb308-41" tabindex="-1"></a>    <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">201</span>)<span class="op">.</span><span class="fu">json</span>(usuario)<span class="op">;</span></span>
+<span id="cb308-42"><a href="projeto-api-financas.html#cb308-42" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb308-43"><a href="projeto-api-financas.html#cb308-43" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb308-44"><a href="projeto-api-financas.html#cb308-44" tabindex="-1"></a></span>
+<span id="cb308-45"><a href="projeto-api-financas.html#cb308-45" tabindex="-1"></a>module<span class="op">.</span><span class="at">exports</span> <span class="op">=</span> router<span class="op">;</span></span></code></pre></div>
+</div>
+<div id="rf2-login" class="section level3" number="11.5.2">
+<h3><span class="header-section-number">11.5.2</span> RF2 — <em>Login</em></h3>
+<p><code>POST /auth/login</code>, com <code>email</code> e <code>senha</code>.</p>
+<ul>
+<li>Buscar o usuário <strong>somente pelo e-mail</strong> (normalizado) e comparar a senha com <code>bcrypt.compare</code>.</li>
+<li>Credenciais inválidas → <strong><code>401</code></strong> com mensagem <strong>genérica</strong> (“E-mail ou senha inválidos.”). A resposta não pode revelar se o e-mail existe.</li>
+<li>Sucesso → <strong><code>200</code></strong> com o <em>token</em> gerado por <code>jwt.sign({ id, nome, email }, process.env.JWT_SECRET, { expiresIn: '1h' })</code> e os dados básicos do usuário.</li>
+<li>Rota <code>GET /auth/me</code> (protegida): devolve os dados do usuário dono do <em>token</em> (sem <code>senha_hash</code>).</li>
+</ul>
+<p>O <em>middleware</em> segue o capítulo de JWT, agora lendo a chave do <code>.env</code>:</p>
+<p>Arquivo: <code>middleware/auth.js</code></p>
+<div class="sourceCode" id="cb309"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb309-1"><a href="projeto-api-financas.html#cb309-1" tabindex="-1"></a><span class="kw">const</span> { expressjwt } <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;express-jwt&#39;</span>)<span class="op">;</span></span>
+<span id="cb309-2"><a href="projeto-api-financas.html#cb309-2" tabindex="-1"></a></span>
+<span id="cb309-3"><a href="projeto-api-financas.html#cb309-3" tabindex="-1"></a><span class="kw">const</span> protegerRota <span class="op">=</span> <span class="fu">expressjwt</span>({</span>
+<span id="cb309-4"><a href="projeto-api-financas.html#cb309-4" tabindex="-1"></a>  <span class="dt">secret</span><span class="op">:</span> <span class="bu">process</span><span class="op">.</span><span class="at">env</span><span class="op">.</span><span class="at">JWT_SECRET</span><span class="op">,</span></span>
+<span id="cb309-5"><a href="projeto-api-financas.html#cb309-5" tabindex="-1"></a>  <span class="dt">algorithms</span><span class="op">:</span> [<span class="st">&#39;HS256&#39;</span>]<span class="op">,</span></span>
+<span id="cb309-6"><a href="projeto-api-financas.html#cb309-6" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb309-7"><a href="projeto-api-financas.html#cb309-7" tabindex="-1"></a></span>
+<span id="cb309-8"><a href="projeto-api-financas.html#cb309-8" tabindex="-1"></a>module<span class="op">.</span><span class="at">exports</span> <span class="op">=</span> protegerRota<span class="op">;</span></span></code></pre></div>
+<p>Arquivo: <code>server.js</code> (trecho)</p>
+<div class="sourceCode" id="cb310"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb310-1"><a href="projeto-api-financas.html#cb310-1" tabindex="-1"></a><span class="pp">require</span>(<span class="st">&#39;dotenv&#39;</span>)<span class="op">.</span><span class="fu">config</span>()<span class="op">;</span></span>
+<span id="cb310-2"><a href="projeto-api-financas.html#cb310-2" tabindex="-1"></a><span class="kw">const</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;express&#39;</span>)<span class="op">;</span></span>
+<span id="cb310-3"><a href="projeto-api-financas.html#cb310-3" tabindex="-1"></a><span class="kw">const</span> protegerRota <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;./middleware/auth&#39;</span>)<span class="op">;</span></span>
+<span id="cb310-4"><a href="projeto-api-financas.html#cb310-4" tabindex="-1"></a></span>
+<span id="cb310-5"><a href="projeto-api-financas.html#cb310-5" tabindex="-1"></a><span class="kw">const</span> app <span class="op">=</span> <span class="fu">express</span>()<span class="op">;</span></span>
+<span id="cb310-6"><a href="projeto-api-financas.html#cb310-6" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>(express<span class="op">.</span><span class="fu">json</span>())<span class="op">;</span></span>
+<span id="cb310-7"><a href="projeto-api-financas.html#cb310-7" tabindex="-1"></a></span>
+<span id="cb310-8"><a href="projeto-api-financas.html#cb310-8" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>(<span class="st">&#39;/auth&#39;</span><span class="op">,</span> <span class="pp">require</span>(<span class="st">&#39;./routes/auth&#39;</span>))<span class="op">;</span>            <span class="co">// cadastro, login (públicas) e /me</span></span>
+<span id="cb310-9"><a href="projeto-api-financas.html#cb310-9" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>(<span class="st">&#39;/categorias&#39;</span><span class="op">,</span> protegerRota<span class="op">,</span> <span class="pp">require</span>(<span class="st">&#39;./routes/categorias&#39;</span>))<span class="op">;</span></span>
+<span id="cb310-10"><a href="projeto-api-financas.html#cb310-10" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>(<span class="st">&#39;/fontes-destinos&#39;</span><span class="op">,</span> protegerRota<span class="op">,</span> <span class="pp">require</span>(<span class="st">&#39;./routes/fontesDestinos&#39;</span>))<span class="op">;</span></span>
+<span id="cb310-11"><a href="projeto-api-financas.html#cb310-11" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>(<span class="st">&#39;/lancamentos&#39;</span><span class="op">,</span> protegerRota<span class="op">,</span> <span class="pp">require</span>(<span class="st">&#39;./routes/lancamentos&#39;</span>))<span class="op">;</span></span>
+<span id="cb310-12"><a href="projeto-api-financas.html#cb310-12" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>(<span class="st">&#39;/relatorios&#39;</span><span class="op">,</span> protegerRota<span class="op">,</span> <span class="pp">require</span>(<span class="st">&#39;./routes/relatorios&#39;</span>))<span class="op">;</span></span>
+<span id="cb310-13"><a href="projeto-api-financas.html#cb310-13" tabindex="-1"></a></span>
+<span id="cb310-14"><a href="projeto-api-financas.html#cb310-14" tabindex="-1"></a><span class="co">// Rota inexistente</span></span>
+<span id="cb310-15"><a href="projeto-api-financas.html#cb310-15" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>((req<span class="op">,</span> res) <span class="kw">=&gt;</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">404</span>)<span class="op">.</span><span class="fu">json</span>({ <span class="dt">erro</span><span class="op">:</span> <span class="st">&#39;Rota não encontrada.&#39;</span> }))<span class="op">;</span></span>
+<span id="cb310-16"><a href="projeto-api-financas.html#cb310-16" tabindex="-1"></a></span>
+<span id="cb310-17"><a href="projeto-api-financas.html#cb310-17" tabindex="-1"></a><span class="co">// Tratamento de erros (sempre com 4 parâmetros e por último)</span></span>
+<span id="cb310-18"><a href="projeto-api-financas.html#cb310-18" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>((erro<span class="op">,</span> req<span class="op">,</span> res<span class="op">,</span> next) <span class="kw">=&gt;</span> {</span>
+<span id="cb310-19"><a href="projeto-api-financas.html#cb310-19" tabindex="-1"></a>  <span class="cf">if</span> (erro<span class="op">.</span><span class="at">name</span> <span class="op">===</span> <span class="st">&#39;UnauthorizedError&#39;</span>) {</span>
+<span id="cb310-20"><a href="projeto-api-financas.html#cb310-20" tabindex="-1"></a>    <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">401</span>)<span class="op">.</span><span class="fu">json</span>({ <span class="dt">erro</span><span class="op">:</span> <span class="st">&#39;Token ausente, inválido ou expirado.&#39;</span> })<span class="op">;</span></span>
+<span id="cb310-21"><a href="projeto-api-financas.html#cb310-21" tabindex="-1"></a>  }</span>
+<span id="cb310-22"><a href="projeto-api-financas.html#cb310-22" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">error</span>(erro)<span class="op">;</span></span>
+<span id="cb310-23"><a href="projeto-api-financas.html#cb310-23" tabindex="-1"></a>  <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">500</span>)<span class="op">.</span><span class="fu">json</span>({ <span class="dt">erro</span><span class="op">:</span> <span class="st">&#39;Erro interno do servidor.&#39;</span> })<span class="op">;</span></span>
+<span id="cb310-24"><a href="projeto-api-financas.html#cb310-24" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb310-25"><a href="projeto-api-financas.html#cb310-25" tabindex="-1"></a></span>
+<span id="cb310-26"><a href="projeto-api-financas.html#cb310-26" tabindex="-1"></a>app<span class="op">.</span><span class="fu">listen</span>(<span class="bu">process</span><span class="op">.</span><span class="at">env</span><span class="op">.</span><span class="at">PORT</span> <span class="op">||</span> <span class="dv">3000</span><span class="op">,</span> () <span class="kw">=&gt;</span> <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&#39;API de finanças rodando.&#39;</span>))<span class="op">;</span></span></code></pre></div>
+<blockquote>
+<p>Em <code>routes/auth.js</code>, a rota <code>/me</code> deve receber o <em>middleware</em> individualmente: <code>router.get('/me', protegerRota, (req, res) =&gt; { ... })</code>.</p>
+</blockquote>
+</div>
+<div id="rf3-isolamento-dos-dados-entre-usuários" class="section level3" number="11.5.3">
+<h3><span class="header-section-number">11.5.3</span> RF3 — Isolamento dos dados entre usuários</h3>
+<p>Requisito <strong>transversal</strong>, válido para todas as rotas protegidas:</p>
+<ul>
+<li>O id do usuário vem <strong>sempre</strong> de <code>req.auth.id</code> (o <em>token</em>), <strong>nunca</strong> do corpo da requisição, da URL ou da <em>query string</em>.</li>
+<li><strong>Toda</strong> consulta deve filtrar pelo dono: <code>WHERE id = ? AND usuario_id = ?</code>.</li>
+<li>Ao criar ou editar um lançamento, a API deve verificar que a <strong>categoria</strong> e a <strong>fonte/destino</strong> informadas pertencem ao <strong>mesmo usuário</strong>.</li>
+<li>Pedir um registro de outro usuário (ex.: <code>GET /lancamentos/57</code>, sendo o 57 de outra pessoa) deve devolver <strong><code>404</code></strong>: para esse usuário, o registro “não existe”.</li>
+</ul>
+<div class="sourceCode" id="cb311"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb311-1"><a href="projeto-api-financas.html#cb311-1" tabindex="-1"></a><span class="co">// ❌ ERRADO — qualquer usuário autenticado lê qualquer lançamento</span></span>
+<span id="cb311-2"><a href="projeto-api-financas.html#cb311-2" tabindex="-1"></a>connection<span class="op">.</span><span class="fu">query</span>(<span class="st">&#39;SELECT * FROM lancamentos WHERE id = ?&#39;</span><span class="op">,</span> [id]<span class="op">,</span> callback)<span class="op">;</span></span>
+<span id="cb311-3"><a href="projeto-api-financas.html#cb311-3" tabindex="-1"></a></span>
+<span id="cb311-4"><a href="projeto-api-financas.html#cb311-4" tabindex="-1"></a><span class="co">// ✅ CERTO — o dono vem do token</span></span>
+<span id="cb311-5"><a href="projeto-api-financas.html#cb311-5" tabindex="-1"></a>connection<span class="op">.</span><span class="fu">query</span>(<span class="st">&#39;SELECT * FROM lancamentos WHERE id = ? AND usuario_id = ?&#39;</span><span class="op">,</span> [id<span class="op">,</span> usuarioId]<span class="op">,</span> callback)<span class="op">;</span></span></code></pre></div>
+</div>
+<div id="rf4-crud-de-categorias" class="section level3" number="11.5.4">
+<h3><span class="header-section-number">11.5.4</span> RF4 — CRUD de categorias</h3>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Método</th>
+<th>Rota</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>GET</code></td>
+<td><code>/categorias?tipo=saida</code></td>
+<td>Lista as categorias do usuário (filtro opcional por tipo)</td>
+</tr>
+<tr class="even">
+<td><code>POST</code></td>
+<td><code>/categorias</code></td>
+<td>Cria (<code>201</code>); nome repetido para o mesmo tipo → <code>409</code></td>
+</tr>
+<tr class="odd">
+<td><code>PUT</code></td>
+<td><code>/categorias/:id</code></td>
+<td>Atualiza (<code>200</code>); inexistente ou de outro usuário → <code>404</code></td>
+</tr>
+<tr class="even">
+<td><code>DELETE</code></td>
+<td><code>/categorias/:id</code></td>
+<td>Exclui (<code>204</code>); se houver lançamentos vinculados → <code>409</code> com mensagem explicativa</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="rf5-crud-de-fontesdestinos" class="section level3" number="11.5.5">
+<h3><span class="header-section-number">11.5.5</span> RF5 — CRUD de fontes/destinos</h3>
+<p>Mesmas rotas e regras das categorias, em <code>/fontes-destinos</code>. Além disso:</p>
+<ul>
+<li><code>tipo</code> deve ser <code>renda</code>, <code>conta</code> ou <code>cartao_credito</code> (<code>400</code> caso contrário);</li>
+<li>se o tipo for <code>cartao_credito</code>, <code>dia_fechamento</code>, <code>dia_vencimento</code> (1 a 31) e <code>limite</code> (&gt; 0) são obrigatórios (<code>400</code> se faltarem).</li>
+</ul>
+</div>
+<div id="rf6-crud-de-lançamentos" class="section level3" number="11.5.6">
+<h3><span class="header-section-number">11.5.6</span> RF6 — CRUD de lançamentos</h3>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Método</th>
+<th>Rota</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>GET</code></td>
+<td><code>/lancamentos?inicio=2026-10-01&amp;fim=2026-10-31&amp;tipo=saida&amp;categoriaId=3&amp;fonteDestinoId=2&amp;pagina=1</code></td>
+<td>Lista com filtros (todos opcionais; o padrão é o mês corrente) e paginação (20 por página)</td>
+</tr>
+<tr class="even">
+<td><code>GET</code></td>
+<td><code>/lancamentos/:id</code></td>
+<td>Detalha um lançamento</td>
+</tr>
+<tr class="odd">
+<td><code>POST</code></td>
+<td><code>/lancamentos</code></td>
+<td>Cria um lançamento (ou várias parcelas)</td>
+</tr>
+<tr class="even">
+<td><code>PUT</code></td>
+<td><code>/lancamentos/:id</code></td>
+<td>Atualiza</td>
+</tr>
+<tr class="odd">
+<td><code>DELETE</code></td>
+<td><code>/lancamentos/:id?todasParcelas=true</code></td>
+<td>Exclui a parcela ou, com <code>todasParcelas=true</code>, todas as parcelas da mesma compra</td>
+</tr>
+</tbody>
+</table>
+<p>Regras:</p>
+<ul>
+<li><strong>Validações</strong> (<code>400</code>): <code>tipo</code>, <code>descricao</code>, <code>valor</code>, <code>data</code>, <code>categoriaId</code> e <code>fonteDestinoId</code> obrigatórios; valor numérico <strong>maior que zero</strong>; data válida no formato <code>AAAA-MM-DD</code>; o <strong>tipo da categoria</strong> deve ser igual ao <strong>tipo do lançamento</strong> (uma saída não pode usar a categoria <em>Salário</em>).</li>
+<li>Categoria ou fonte/destino inexistente <strong>ou de outro usuário</strong> → <code>404</code>.</li>
+<li><strong>Parcelamento:</strong> se o destino for um cartão de crédito, o corpo pode trazer <code>parcelas</code> (1 a 48). A API grava <strong>um lançamento por parcela</strong>, todos com a <strong>mesma <code>data</code> da compra</strong>, o mesmo <code>grupo_parcelamento</code> (gerado com <code>crypto.randomUUID()</code>, nativo do Node) e <code>parcela_atual</code> de 1 a N. O valor é dividido <strong>em centavos</strong>, e a diferença de arredondamento vai para a primeira parcela: R$ 100,00 em 3× → 33,34 + 33,33 + 33,33.</li>
+<li>A resposta da listagem deve trazer, além dos itens, um <strong>resumo do período filtrado</strong>: total de entradas, total de saídas e saldo.</li>
+</ul>
+<div class="sourceCode" id="cb312"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb312-1"><a href="projeto-api-financas.html#cb312-1" tabindex="-1"></a><span class="co">// Divide um valor em parcelas sem perder centavos</span></span>
+<span id="cb312-2"><a href="projeto-api-financas.html#cb312-2" tabindex="-1"></a><span class="kw">function</span> <span class="fu">dividirEmParcelas</span>(valorTotal<span class="op">,</span> quantidade) {</span>
+<span id="cb312-3"><a href="projeto-api-financas.html#cb312-3" tabindex="-1"></a>  <span class="kw">const</span> centavos <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(valorTotal <span class="op">*</span> <span class="dv">100</span>)<span class="op">;</span></span>
+<span id="cb312-4"><a href="projeto-api-financas.html#cb312-4" tabindex="-1"></a>  <span class="kw">const</span> base <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>(centavos <span class="op">/</span> quantidade)<span class="op">;</span></span>
+<span id="cb312-5"><a href="projeto-api-financas.html#cb312-5" tabindex="-1"></a>  <span class="kw">const</span> resto <span class="op">=</span> centavos <span class="op">-</span> base <span class="op">*</span> quantidade<span class="op">;</span></span>
+<span id="cb312-6"><a href="projeto-api-financas.html#cb312-6" tabindex="-1"></a>  <span class="cf">return</span> <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>({ <span class="dt">length</span><span class="op">:</span> quantidade }<span class="op">,</span> (_<span class="op">,</span> i) <span class="kw">=&gt;</span> (base <span class="op">+</span> (i <span class="op">===</span> <span class="dv">0</span> <span class="op">?</span> resto <span class="op">:</span> <span class="dv">0</span>)) <span class="op">/</span> <span class="dv">100</span>)<span class="op">;</span></span>
+<span id="cb312-7"><a href="projeto-api-financas.html#cb312-7" tabindex="-1"></a>}</span>
+<span id="cb312-8"><a href="projeto-api-financas.html#cb312-8" tabindex="-1"></a></span>
+<span id="cb312-9"><a href="projeto-api-financas.html#cb312-9" tabindex="-1"></a><span class="co">// dividirEmParcelas(100, 3) → [33.34, 33.33, 33.33]</span></span></code></pre></div>
+<p>Exemplo de requisição e de resposta da listagem:</p>
+<div class="sourceCode" id="cb313"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb313-1"><a href="projeto-api-financas.html#cb313-1" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-X</span> POST http://localhost:3000/lancamentos <span class="dt">\</span></span>
+<span id="cb313-2"><a href="projeto-api-financas.html#cb313-2" tabindex="-1"></a>  <span class="at">-H</span> <span class="st">&quot;Content-Type: application/json&quot;</span> <span class="dt">\</span></span>
+<span id="cb313-3"><a href="projeto-api-financas.html#cb313-3" tabindex="-1"></a>  <span class="at">-H</span> <span class="st">&quot;Authorization: Bearer SEU_TOKEN_AQUI&quot;</span> <span class="dt">\</span></span>
+<span id="cb313-4"><a href="projeto-api-financas.html#cb313-4" tabindex="-1"></a>  <span class="at">-d</span> <span class="st">&#39;{&quot;tipo&quot;:&quot;saida&quot;,&quot;descricao&quot;:&quot;Notebook&quot;,&quot;valor&quot;:3000,&quot;data&quot;:&quot;2026-10-28&quot;,</span></span>
+<span id="cb313-5"><a href="projeto-api-financas.html#cb313-5" tabindex="-1"></a><span class="st">       &quot;categoriaId&quot;:7,&quot;fonteDestinoId&quot;:3,&quot;parcelas&quot;:10}&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb314-1"><a href="projeto-api-financas.html#cb314-1" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb314-2"><a href="projeto-api-financas.html#cb314-2" tabindex="-1"></a>  <span class="dt">&quot;periodo&quot;</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">&quot;inicio&quot;</span><span class="fu">:</span> <span class="st">&quot;2026-10-01&quot;</span><span class="fu">,</span> <span class="dt">&quot;fim&quot;</span><span class="fu">:</span> <span class="st">&quot;2026-10-31&quot;</span> <span class="fu">},</span></span>
+<span id="cb314-3"><a href="projeto-api-financas.html#cb314-3" tabindex="-1"></a>  <span class="dt">&quot;resumo&quot;</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">&quot;entradas&quot;</span><span class="fu">:</span> <span class="fl">5200.00</span><span class="fu">,</span> <span class="dt">&quot;saidas&quot;</span><span class="fu">:</span> <span class="fl">3250.00</span><span class="fu">,</span> <span class="dt">&quot;saldo&quot;</span><span class="fu">:</span> <span class="fl">1950.00</span> <span class="fu">},</span></span>
+<span id="cb314-4"><a href="projeto-api-financas.html#cb314-4" tabindex="-1"></a>  <span class="dt">&quot;pagina&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb314-5"><a href="projeto-api-financas.html#cb314-5" tabindex="-1"></a>  <span class="dt">&quot;totalPaginas&quot;</span><span class="fu">:</span> <span class="dv">2</span><span class="fu">,</span></span>
+<span id="cb314-6"><a href="projeto-api-financas.html#cb314-6" tabindex="-1"></a>  <span class="dt">&quot;itens&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb314-7"><a href="projeto-api-financas.html#cb314-7" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb314-8"><a href="projeto-api-financas.html#cb314-8" tabindex="-1"></a>      <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">41</span><span class="fu">,</span> <span class="dt">&quot;tipo&quot;</span><span class="fu">:</span> <span class="st">&quot;saida&quot;</span><span class="fu">,</span> <span class="dt">&quot;descricao&quot;</span><span class="fu">:</span> <span class="st">&quot;Notebook&quot;</span><span class="fu">,</span> <span class="dt">&quot;valor&quot;</span><span class="fu">:</span> <span class="fl">300.00</span><span class="fu">,</span> <span class="dt">&quot;data&quot;</span><span class="fu">:</span> <span class="st">&quot;2026-10-28&quot;</span><span class="fu">,</span></span>
+<span id="cb314-9"><a href="projeto-api-financas.html#cb314-9" tabindex="-1"></a>      <span class="dt">&quot;categoria&quot;</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">7</span><span class="fu">,</span> <span class="dt">&quot;nome&quot;</span><span class="fu">:</span> <span class="st">&quot;Educação&quot;</span> <span class="fu">},</span></span>
+<span id="cb314-10"><a href="projeto-api-financas.html#cb314-10" tabindex="-1"></a>      <span class="dt">&quot;fonteDestino&quot;</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">3</span><span class="fu">,</span> <span class="dt">&quot;nome&quot;</span><span class="fu">:</span> <span class="st">&quot;Cartão Nubank&quot;</span> <span class="fu">},</span></span>
+<span id="cb314-11"><a href="projeto-api-financas.html#cb314-11" tabindex="-1"></a>      <span class="dt">&quot;parcela&quot;</span><span class="fu">:</span> <span class="st">&quot;1/10&quot;</span></span>
+<span id="cb314-12"><a href="projeto-api-financas.html#cb314-12" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb314-13"><a href="projeto-api-financas.html#cb314-13" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="cb314-14"><a href="projeto-api-financas.html#cb314-14" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+</div>
+<div id="rf7-relatório-por-categoria" class="section level3" number="11.5.7">
+<h3><span class="header-section-number">11.5.7</span> RF7 — Relatório por categoria</h3>
+<p><code>GET /relatorios/categorias?inicio=AAAA-MM-DD&amp;fim=AAAA-MM-DD</code></p>
+<ul>
+<li>Total de <strong>saídas por categoria</strong>, com o <strong>percentual</strong> de cada uma sobre o total, do maior para o menor.</li>
+<li>Total de <strong>entradas por categoria</strong>.</li>
+<li><strong>Comparação com o período anterior</strong> de mesmo tamanho (ex.: outubro × setembro): para cada categoria, o valor do período anterior e a variação percentual.</li>
+<li><code>inicio</code> e <code>fim</code> obrigatórios e válidos, com <code>inicio &lt;= fim</code> (<code>400</code> caso contrário).</li>
+</ul>
+<p>Os totais devem ser calculados <strong>com SQL</strong> (<code>SUM</code> e <code>GROUP BY</code>), e não carregando todos os lançamentos para somar no JavaScript:</p>
+<div class="sourceCode" id="cb315"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb315-1"><a href="projeto-api-financas.html#cb315-1" tabindex="-1"></a><span class="kw">SELECT</span> c.<span class="kw">id</span>, c.nome, <span class="fu">SUM</span>(l.valor) <span class="kw">AS</span> total</span>
+<span id="cb315-2"><a href="projeto-api-financas.html#cb315-2" tabindex="-1"></a>  <span class="kw">FROM</span> lancamentos l</span>
+<span id="cb315-3"><a href="projeto-api-financas.html#cb315-3" tabindex="-1"></a>  <span class="kw">JOIN</span> categorias  c <span class="kw">ON</span> c.<span class="kw">id</span> <span class="op">=</span> l.categoria_id</span>
+<span id="cb315-4"><a href="projeto-api-financas.html#cb315-4" tabindex="-1"></a> <span class="kw">WHERE</span> l.usuario_id <span class="op">=</span> ?</span>
+<span id="cb315-5"><a href="projeto-api-financas.html#cb315-5" tabindex="-1"></a>   <span class="kw">AND</span> l.tipo <span class="op">=</span> <span class="st">&#39;saida&#39;</span></span>
+<span id="cb315-6"><a href="projeto-api-financas.html#cb315-6" tabindex="-1"></a>   <span class="kw">AND</span> l.<span class="kw">data</span> <span class="kw">BETWEEN</span> ? <span class="kw">AND</span> ?</span>
+<span id="cb315-7"><a href="projeto-api-financas.html#cb315-7" tabindex="-1"></a> <span class="kw">GROUP</span> <span class="kw">BY</span> c.<span class="kw">id</span>, c.nome</span>
+<span id="cb315-8"><a href="projeto-api-financas.html#cb315-8" tabindex="-1"></a> <span class="kw">ORDER</span> <span class="kw">BY</span> total <span class="kw">DESC</span>;</span></code></pre></div>
+<blockquote>
+<p><strong>Atenção:</strong> o <code>mysql2</code> devolve colunas <code>DECIMAL</code> e o resultado de <code>SUM</code> como <strong>texto</strong> (<code>"980.50"</code>), para não perder precisão. Converta com <code>Number(...)</code> antes de calcular percentuais e de devolver o JSON.</p>
+</blockquote>
+<p>Exemplo de resposta:</p>
+<div class="sourceCode" id="cb316"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb316-1"><a href="projeto-api-financas.html#cb316-1" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb316-2"><a href="projeto-api-financas.html#cb316-2" tabindex="-1"></a>  <span class="dt">&quot;periodo&quot;</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">&quot;inicio&quot;</span><span class="fu">:</span> <span class="st">&quot;2026-10-01&quot;</span><span class="fu">,</span> <span class="dt">&quot;fim&quot;</span><span class="fu">:</span> <span class="st">&quot;2026-10-31&quot;</span> <span class="fu">},</span></span>
+<span id="cb316-3"><a href="projeto-api-financas.html#cb316-3" tabindex="-1"></a>  <span class="dt">&quot;periodoAnterior&quot;</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">&quot;inicio&quot;</span><span class="fu">:</span> <span class="st">&quot;2026-09-01&quot;</span><span class="fu">,</span> <span class="dt">&quot;fim&quot;</span><span class="fu">:</span> <span class="st">&quot;2026-09-30&quot;</span> <span class="fu">},</span></span>
+<span id="cb316-4"><a href="projeto-api-financas.html#cb316-4" tabindex="-1"></a>  <span class="dt">&quot;saidas&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb316-5"><a href="projeto-api-financas.html#cb316-5" tabindex="-1"></a>    <span class="dt">&quot;total&quot;</span><span class="fu">:</span> <span class="fl">3250.00</span><span class="fu">,</span></span>
+<span id="cb316-6"><a href="projeto-api-financas.html#cb316-6" tabindex="-1"></a>    <span class="dt">&quot;categorias&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb316-7"><a href="projeto-api-financas.html#cb316-7" tabindex="-1"></a>      <span class="fu">{</span> <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">4</span><span class="fu">,</span> <span class="dt">&quot;nome&quot;</span><span class="fu">:</span> <span class="st">&quot;Moradia&quot;</span><span class="fu">,</span>     <span class="dt">&quot;total&quot;</span><span class="fu">:</span> <span class="fl">1500.00</span><span class="fu">,</span> <span class="dt">&quot;percentual&quot;</span><span class="fu">:</span> <span class="fl">46.15</span><span class="fu">,</span> <span class="dt">&quot;anterior&quot;</span><span class="fu">:</span> <span class="fl">1500.00</span><span class="fu">,</span> <span class="dt">&quot;variacao&quot;</span><span class="fu">:</span> <span class="fl">0.00</span> <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb316-8"><a href="projeto-api-financas.html#cb316-8" tabindex="-1"></a>      <span class="fu">{</span> <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">3</span><span class="fu">,</span> <span class="dt">&quot;nome&quot;</span><span class="fu">:</span> <span class="st">&quot;Alimentação&quot;</span><span class="fu">,</span> <span class="dt">&quot;total&quot;</span><span class="fu">:</span> <span class="fl">980.50</span><span class="fu">,</span>  <span class="dt">&quot;percentual&quot;</span><span class="fu">:</span> <span class="fl">30.17</span><span class="fu">,</span> <span class="dt">&quot;anterior&quot;</span><span class="fu">:</span> <span class="fl">870.00</span><span class="fu">,</span>  <span class="dt">&quot;variacao&quot;</span><span class="fu">:</span> <span class="fl">12.70</span> <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb316-9"><a href="projeto-api-financas.html#cb316-9" tabindex="-1"></a>      <span class="fu">{</span> <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">6</span><span class="fu">,</span> <span class="dt">&quot;nome&quot;</span><span class="fu">:</span> <span class="st">&quot;Mobilidade&quot;</span><span class="fu">,</span>  <span class="dt">&quot;total&quot;</span><span class="fu">:</span> <span class="fl">769.50</span><span class="fu">,</span>  <span class="dt">&quot;percentual&quot;</span><span class="fu">:</span> <span class="fl">23.68</span><span class="fu">,</span> <span class="dt">&quot;anterior&quot;</span><span class="fu">:</span> <span class="fl">812.30</span><span class="fu">,</span>  <span class="dt">&quot;variacao&quot;</span><span class="fu">:</span> <span class="fl">-5.27</span> <span class="fu">}</span></span>
+<span id="cb316-10"><a href="projeto-api-financas.html#cb316-10" tabindex="-1"></a>    <span class="ot">]</span></span>
+<span id="cb316-11"><a href="projeto-api-financas.html#cb316-11" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb316-12"><a href="projeto-api-financas.html#cb316-12" tabindex="-1"></a>  <span class="dt">&quot;entradas&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb316-13"><a href="projeto-api-financas.html#cb316-13" tabindex="-1"></a>    <span class="dt">&quot;total&quot;</span><span class="fu">:</span> <span class="fl">5200.00</span><span class="fu">,</span></span>
+<span id="cb316-14"><a href="projeto-api-financas.html#cb316-14" tabindex="-1"></a>    <span class="dt">&quot;categorias&quot;</span><span class="fu">:</span> <span class="ot">[</span> <span class="fu">{</span> <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span> <span class="dt">&quot;nome&quot;</span><span class="fu">:</span> <span class="st">&quot;Salário&quot;</span><span class="fu">,</span> <span class="dt">&quot;total&quot;</span><span class="fu">:</span> <span class="fl">5200.00</span><span class="fu">,</span> <span class="dt">&quot;percentual&quot;</span><span class="fu">:</span> <span class="fl">100.00</span> <span class="fu">}</span> <span class="ot">]</span></span>
+<span id="cb316-15"><a href="projeto-api-financas.html#cb316-15" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb316-16"><a href="projeto-api-financas.html#cb316-16" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+</div>
+<div id="rf8-relatório-por-fontedestino" class="section level3" number="11.5.8">
+<h3><span class="header-section-number">11.5.8</span> RF8 — Relatório por fonte/destino</h3>
+<p><code>GET /relatorios/fontes-destinos?inicio=AAAA-MM-DD&amp;fim=AAAA-MM-DD</code></p>
+<ul>
+<li>Total de <strong>entradas por fonte</strong> (quanto veio do salário, de <em>freelances</em>, de rendimentos…).</li>
+<li>Total de <strong>saídas por destino</strong> (quanto saiu da conta corrente, de cada cartão, da poupança…).</li>
+<li>Para fontes/destinos do tipo <code>conta</code>: <strong>saldo do período</strong> (entradas − saídas).</li>
+</ul>
+</div>
+<div id="rf9-previsão-de-faturas-de-cartão-de-crédito" class="section level3" number="11.5.9">
+<h3><span class="header-section-number">11.5.9</span> RF9 — Previsão de faturas de cartão de crédito</h3>
+<p><code>GET /relatorios/faturas?meses=3</code></p>
+<p>Para <strong>cada cartão de crédito</strong> do usuário, devolver a <strong>fatura atual</strong> (aberta) e as <strong>próximas faturas</strong> (o padrão é 3; <code>meses</code> aceita de 1 a 12), considerando as <strong>parcelas futuras</strong>. Para cada fatura:</p>
+<ul>
+<li>data de <strong>fechamento</strong>, data de <strong>vencimento</strong> e <strong>referência</strong> (<code>AAAA-MM</code>, mês do vencimento);</li>
+<li>os lançamentos que a compõem, com a parcela (ex.: <code>"Notebook — 3/10"</code>);</li>
+<li>o <strong>valor total</strong>.</li>
+</ul>
+<p>Para cada cartão, também: <strong>limite total</strong>, <strong>limite utilizado</strong> (soma de todas as parcelas cuja fatura ainda não venceu) e <strong>limite disponível</strong>.</p>
+<p><strong>Regra de fechamento.</strong> Uma compra entra na fatura que fecha <strong>no mesmo mês</strong> se for feita <strong>antes</strong> do dia de fechamento; se for feita <strong>no dia do fechamento ou depois</strong>, entra na fatura do mês seguinte. A parcela <em>k</em> cai <em>k</em> − 1 meses depois da fatura da primeira parcela. Se o dia de vencimento for <strong>maior</strong> que o de fechamento, o vencimento é no mesmo mês do fechamento; senão, no mês seguinte. Dias que não existem no mês (ex.: dia 31 em fevereiro) viram o último dia do mês.</p>
+<table style="width:100%;">
+<caption><span id="tab:tabela-exemplo-faturas-backend">Table 11.3: </span> Exemplos de aplicação da regra de fechamento</caption>
+<colgroup>
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Cartão</th>
+<th>Compra</th>
+<th>Parcela</th>
+<th>Fechamento</th>
+<th>Vencimento</th>
+<th>Referência</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Nubank (fecha dia 3, vence dia 10)</td>
+<td>02/11/2026</td>
+<td>1/1</td>
+<td>03/11/2026</td>
+<td>10/11/2026</td>
+<td>2026-11</td>
+</tr>
+<tr class="even">
+<td>Nubank (fecha dia 3, vence dia 10)</td>
+<td>03/11/2026</td>
+<td>1/1</td>
+<td>03/12/2026</td>
+<td>10/12/2026</td>
+<td>2026-12</td>
+</tr>
+<tr class="odd">
+<td>Visa (fecha dia 25, vence dia 5)</td>
+<td>28/12/2026</td>
+<td>1/1</td>
+<td>25/01/2027</td>
+<td>05/02/2027</td>
+<td>2027-02</td>
+</tr>
+<tr class="even">
+<td>Visa (fecha dia 25, vence dia 5)</td>
+<td>20/12/2026</td>
+<td>3/3</td>
+<td>25/02/2027</td>
+<td>05/03/2027</td>
+<td>2027-03</td>
+</tr>
+</tbody>
+</table>
+<p>Implementação de referência (o grupo pode usá-la, adaptá-la ou escrever a sua):</p>
+<p>Arquivo: <code>utils/faturas.js</code></p>
+<div class="sourceCode" id="cb317"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb317-1"><a href="projeto-api-financas.html#cb317-1" tabindex="-1"></a><span class="co">// Datas em UTC para evitar problemas de fuso horário</span></span>
+<span id="cb317-2"><a href="projeto-api-financas.html#cb317-2" tabindex="-1"></a><span class="kw">function</span> <span class="fu">ultimoDiaDoMes</span>(ano<span class="op">,</span> mes) {              <span class="co">// mes: 0 a 11</span></span>
+<span id="cb317-3"><a href="projeto-api-financas.html#cb317-3" tabindex="-1"></a>  <span class="cf">return</span> <span class="kw">new</span> <span class="bu">Date</span>(<span class="bu">Date</span><span class="op">.</span><span class="fu">UTC</span>(ano<span class="op">,</span> mes <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">0</span>))<span class="op">.</span><span class="fu">getUTCDate</span>()<span class="op">;</span></span>
+<span id="cb317-4"><a href="projeto-api-financas.html#cb317-4" tabindex="-1"></a>}</span>
+<span id="cb317-5"><a href="projeto-api-financas.html#cb317-5" tabindex="-1"></a></span>
+<span id="cb317-6"><a href="projeto-api-financas.html#cb317-6" tabindex="-1"></a><span class="kw">function</span> <span class="fu">dataSegura</span>(ano<span class="op">,</span> mes<span class="op">,</span> dia) {             <span class="co">// aceita mes &gt; 11 e ajusta dia 31 em meses curtos</span></span>
+<span id="cb317-7"><a href="projeto-api-financas.html#cb317-7" tabindex="-1"></a>  <span class="kw">const</span> a <span class="op">=</span> ano <span class="op">+</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>(mes <span class="op">/</span> <span class="dv">12</span>)<span class="op">;</span></span>
+<span id="cb317-8"><a href="projeto-api-financas.html#cb317-8" tabindex="-1"></a>  <span class="kw">const</span> m <span class="op">=</span> ((mes <span class="op">%</span> <span class="dv">12</span>) <span class="op">+</span> <span class="dv">12</span>) <span class="op">%</span> <span class="dv">12</span><span class="op">;</span></span>
+<span id="cb317-9"><a href="projeto-api-financas.html#cb317-9" tabindex="-1"></a>  <span class="cf">return</span> <span class="kw">new</span> <span class="bu">Date</span>(<span class="bu">Date</span><span class="op">.</span><span class="fu">UTC</span>(a<span class="op">,</span> m<span class="op">,</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(dia<span class="op">,</span> <span class="fu">ultimoDiaDoMes</span>(a<span class="op">,</span> m))))<span class="op">;</span></span>
+<span id="cb317-10"><a href="projeto-api-financas.html#cb317-10" tabindex="-1"></a>}</span>
+<span id="cb317-11"><a href="projeto-api-financas.html#cb317-11" tabindex="-1"></a></span>
+<span id="cb317-12"><a href="projeto-api-financas.html#cb317-12" tabindex="-1"></a><span class="co">// dataCompra: &#39;AAAA-MM-DD&#39;; cartao: { diaFechamento, diaVencimento }</span></span>
+<span id="cb317-13"><a href="projeto-api-financas.html#cb317-13" tabindex="-1"></a><span class="kw">function</span> <span class="fu">calcularFatura</span>(dataCompra<span class="op">,</span> cartao<span class="op">,</span> numeroParcela <span class="op">=</span> <span class="dv">1</span>) {</span>
+<span id="cb317-14"><a href="projeto-api-financas.html#cb317-14" tabindex="-1"></a>  <span class="kw">const</span> [ano<span class="op">,</span> mes<span class="op">,</span> dia] <span class="op">=</span> dataCompra<span class="op">.</span><span class="fu">split</span>(<span class="st">&#39;-&#39;</span>)<span class="op">.</span><span class="fu">map</span>(<span class="bu">Number</span>)<span class="op">;</span></span>
+<span id="cb317-15"><a href="projeto-api-financas.html#cb317-15" tabindex="-1"></a>  <span class="kw">const</span> m <span class="op">=</span> mes <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb317-16"><a href="projeto-api-financas.html#cb317-16" tabindex="-1"></a>  <span class="kw">const</span> fechamentoDoMes <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(cartao<span class="op">.</span><span class="at">diaFechamento</span><span class="op">,</span> <span class="fu">ultimoDiaDoMes</span>(ano<span class="op">,</span> m))<span class="op">;</span></span>
+<span id="cb317-17"><a href="projeto-api-financas.html#cb317-17" tabindex="-1"></a></span>
+<span id="cb317-18"><a href="projeto-api-financas.html#cb317-18" tabindex="-1"></a>  <span class="kw">let</span> mesFechamento <span class="op">=</span> dia <span class="op">&lt;</span> fechamentoDoMes <span class="op">?</span> m <span class="op">:</span> m <span class="op">+</span> <span class="dv">1</span><span class="op">;</span>   <span class="co">// antes do fechamento: fatura deste mês</span></span>
+<span id="cb317-19"><a href="projeto-api-financas.html#cb317-19" tabindex="-1"></a>  mesFechamento <span class="op">+=</span> numeroParcela <span class="op">-</span> <span class="dv">1</span><span class="op">;</span>                       <span class="co">// parcelas seguintes: meses seguintes</span></span>
+<span id="cb317-20"><a href="projeto-api-financas.html#cb317-20" tabindex="-1"></a></span>
+<span id="cb317-21"><a href="projeto-api-financas.html#cb317-21" tabindex="-1"></a>  <span class="kw">const</span> fechamento <span class="op">=</span> <span class="fu">dataSegura</span>(ano<span class="op">,</span> mesFechamento<span class="op">,</span> cartao<span class="op">.</span><span class="at">diaFechamento</span>)<span class="op">;</span></span>
+<span id="cb317-22"><a href="projeto-api-financas.html#cb317-22" tabindex="-1"></a>  <span class="kw">const</span> mesVencimento <span class="op">=</span> cartao<span class="op">.</span><span class="at">diaVencimento</span> <span class="op">&gt;</span> cartao<span class="op">.</span><span class="at">diaFechamento</span> <span class="op">?</span> mesFechamento <span class="op">:</span> mesFechamento <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb317-23"><a href="projeto-api-financas.html#cb317-23" tabindex="-1"></a>  <span class="kw">const</span> vencimento <span class="op">=</span> <span class="fu">dataSegura</span>(ano<span class="op">,</span> mesVencimento<span class="op">,</span> cartao<span class="op">.</span><span class="at">diaVencimento</span>)<span class="op">;</span></span>
+<span id="cb317-24"><a href="projeto-api-financas.html#cb317-24" tabindex="-1"></a></span>
+<span id="cb317-25"><a href="projeto-api-financas.html#cb317-25" tabindex="-1"></a>  <span class="kw">const</span> iso <span class="op">=</span> (d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="fu">toISOString</span>()<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">10</span>)<span class="op">;</span></span>
+<span id="cb317-26"><a href="projeto-api-financas.html#cb317-26" tabindex="-1"></a>  <span class="cf">return</span> { <span class="dt">referencia</span><span class="op">:</span> <span class="fu">iso</span>(vencimento)<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">7</span>)<span class="op">,</span> <span class="dt">fechamento</span><span class="op">:</span> <span class="fu">iso</span>(fechamento)<span class="op">,</span> <span class="dt">vencimento</span><span class="op">:</span> <span class="fu">iso</span>(vencimento) }<span class="op">;</span></span>
+<span id="cb317-27"><a href="projeto-api-financas.html#cb317-27" tabindex="-1"></a>}</span>
+<span id="cb317-28"><a href="projeto-api-financas.html#cb317-28" tabindex="-1"></a></span>
+<span id="cb317-29"><a href="projeto-api-financas.html#cb317-29" tabindex="-1"></a>module<span class="op">.</span><span class="at">exports</span> <span class="op">=</span> { calcularFatura }<span class="op">;</span></span>
+<span id="cb317-30"><a href="projeto-api-financas.html#cb317-30" tabindex="-1"></a></span>
+<span id="cb317-31"><a href="projeto-api-financas.html#cb317-31" tabindex="-1"></a><span class="co">// calcularFatura(&#39;2026-12-28&#39;, { diaFechamento: 25, diaVencimento: 5 })</span></span>
+<span id="cb317-32"><a href="projeto-api-financas.html#cb317-32" tabindex="-1"></a><span class="co">// → { referencia: &#39;2027-02&#39;, fechamento: &#39;2027-01-25&#39;, vencimento: &#39;2027-02-05&#39; }</span></span></code></pre></div>
+<blockquote>
+<p><strong>Dica de implementação.</strong> Busque no banco todos os lançamentos de saída de cada cartão, calcule a fatura de cada um com <code>calcularFatura(data, cartao, parcela_atual)</code> e agrupe os resultados por <code>referencia</code> com <code>reduce</code>. Depois, mantenha só as faturas a partir da atual. Isso exercita bem os métodos de array do capítulo de JavaScript.</p>
+<p><strong>Datas no <code>mysql2</code>.</strong> Por padrão, colunas <code>DATE</code> chegam como objetos <code>Date</code>, sujeitos ao fuso horário. Para receber o texto <code>'AAAA-MM-DD'</code>, use a opção <code>dateStrings: true</code> na configuração da conexão.</p>
+</blockquote>
+</div>
+<div id="desafio-pontuação-extra-saúde-financeira" class="section level3" number="11.5.10">
+<h3><span class="header-section-number">11.5.10</span> Desafio (pontuação extra) — Saúde financeira</h3>
+<p><code>GET /saude-financeira</code></p>
+<p>Uma rota que <strong>analisa os dados do próprio usuário</strong> e devolve, em JSON, <strong>indicadores</strong>, <strong>projeções</strong> e <strong>dicas</strong>. Não há resposta única: o grupo escolhe as análises. Sugestões:</p>
+<table>
+<caption><span id="tab:tabela-indicadores-backend">Table 11.4: </span> Sugestões de indicadores</caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Indicador</th>
+<th>Como calcular (sugestão)</th>
+<th>Exemplo de dica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Taxa de poupança</strong></td>
+<td>(entradas − saídas) ÷ entradas, por mês</td>
+<td>“Você guardou 4% da sua renda em outubro. Uma meta comum é guardar pelo menos 10%.”</td>
+</tr>
+<tr class="even">
+<td><strong>Comprometimento com cartões</strong></td>
+<td>Total das próximas faturas ÷ renda média mensal</td>
+<td>“Suas faturas dos próximos 3 meses comprometem 62% da sua renda.”</td>
+</tr>
+<tr class="odd">
+<td><strong>Parcelas futuras</strong></td>
+<td>Soma das parcelas a vencer, por mês</td>
+<td>“Você tem R$ 1.240,00 em parcelas até março de 2027.”</td>
+</tr>
+<tr class="even">
+<td><strong>Regra 50/30/20</strong></td>
+<td>Classificar as categorias em <em>necessidades</em>, <em>desejos</em> e <em>poupança</em> e comparar com 50% / 30% / 20%</td>
+<td>“Os gastos com desejos estão em 41% (referência: 30%).”</td>
+</tr>
+<tr class="odd">
+<td><strong>Projeção de saldo</strong></td>
+<td>Média das entradas e saídas dos últimos 3 meses + parcelas já conhecidas, para os próximos 3 a 6 meses</td>
+<td>Lista mês a mês com o saldo previsto e um alerta se ficar negativo</td>
+</tr>
+<tr class="even">
+<td><strong>Categoria fora da curva</strong></td>
+<td>Gasto do mês na categoria × média dos 3 meses anteriores</td>
+<td>“Seus gastos com Alimentação estão 35% acima da sua média.”</td>
+</tr>
+<tr class="odd">
+<td><strong>Reserva de emergência</strong></td>
+<td>Saldo das contas marcadas como reserva (sugere-se um campo <code>reserva</code> em <code>fontes_destinos</code>) ÷ média de saídas mensais</td>
+<td>“Sua reserva cobre 1,8 mês de despesas. Uma referência comum é de 3 a 6 meses.”</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb318"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb318-1"><a href="projeto-api-financas.html#cb318-1" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb318-2"><a href="projeto-api-financas.html#cb318-2" tabindex="-1"></a>  <span class="dt">&quot;aviso&quot;</span><span class="fu">:</span> <span class="st">&quot;Informações educativas; não constituem recomendação financeira profissional.&quot;</span><span class="fu">,</span></span>
+<span id="cb318-3"><a href="projeto-api-financas.html#cb318-3" tabindex="-1"></a>  <span class="dt">&quot;indicadores&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb318-4"><a href="projeto-api-financas.html#cb318-4" tabindex="-1"></a>    <span class="dt">&quot;taxaPoupanca&quot;</span><span class="fu">:</span> <span class="fl">0.04</span><span class="fu">,</span></span>
+<span id="cb318-5"><a href="projeto-api-financas.html#cb318-5" tabindex="-1"></a>    <span class="dt">&quot;comprometimentoCartoes&quot;</span><span class="fu">:</span> <span class="fl">0.62</span><span class="fu">,</span></span>
+<span id="cb318-6"><a href="projeto-api-financas.html#cb318-6" tabindex="-1"></a>    <span class="dt">&quot;mesesDeReserva&quot;</span><span class="fu">:</span> <span class="fl">1.8</span></span>
+<span id="cb318-7"><a href="projeto-api-financas.html#cb318-7" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb318-8"><a href="projeto-api-financas.html#cb318-8" tabindex="-1"></a>  <span class="dt">&quot;projecao&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb318-9"><a href="projeto-api-financas.html#cb318-9" tabindex="-1"></a>    <span class="fu">{</span> <span class="dt">&quot;mes&quot;</span><span class="fu">:</span> <span class="st">&quot;2026-11&quot;</span><span class="fu">,</span> <span class="dt">&quot;entradas&quot;</span><span class="fu">:</span> <span class="fl">5200.00</span><span class="fu">,</span> <span class="dt">&quot;saidas&quot;</span><span class="fu">:</span> <span class="fl">4950.00</span><span class="fu">,</span> <span class="dt">&quot;saldoPrevisto&quot;</span><span class="fu">:</span> <span class="fl">250.00</span> <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb318-10"><a href="projeto-api-financas.html#cb318-10" tabindex="-1"></a>    <span class="fu">{</span> <span class="dt">&quot;mes&quot;</span><span class="fu">:</span> <span class="st">&quot;2026-12&quot;</span><span class="fu">,</span> <span class="dt">&quot;entradas&quot;</span><span class="fu">:</span> <span class="fl">5200.00</span><span class="fu">,</span> <span class="dt">&quot;saidas&quot;</span><span class="fu">:</span> <span class="fl">5410.00</span><span class="fu">,</span> <span class="dt">&quot;saldoPrevisto&quot;</span><span class="fu">:</span> <span class="fl">-210.00</span> <span class="fu">}</span></span>
+<span id="cb318-11"><a href="projeto-api-financas.html#cb318-11" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb318-12"><a href="projeto-api-financas.html#cb318-12" tabindex="-1"></a>  <span class="dt">&quot;dicas&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb318-13"><a href="projeto-api-financas.html#cb318-13" tabindex="-1"></a>    <span class="st">&quot;Seus gastos com Alimentação estão 35% acima da sua média dos últimos 3 meses.&quot;</span><span class="ot">,</span></span>
+<span id="cb318-14"><a href="projeto-api-financas.html#cb318-14" tabindex="-1"></a>    <span class="st">&quot;Seu saldo previsto para dezembro é negativo: revise as compras parceladas.&quot;</span></span>
+<span id="cb318-15"><a href="projeto-api-financas.html#cb318-15" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="cb318-16"><a href="projeto-api-financas.html#cb318-16" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p>As dicas podem ser geradas por <strong>regras</strong> (<code>if</code> com limites definidos pelo grupo e documentados no README). A resposta deve conter o campo <code>aviso</code> informando que as informações são <strong>educativas</strong> e <strong>não constituem recomendação financeira profissional</strong>.</p>
+<hr />
+</div>
+</div>
+<div id="padrão-de-respostas-e-códigos-de-status" class="section level2" number="11.6">
+<h2><span class="header-section-number">11.6</span> Padrão de respostas e códigos de <em>status</em></h2>
+<p>Todas as respostas de erro devem ter <strong>o mesmo formato</strong>:</p>
+<div class="sourceCode" id="cb319"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb319-1"><a href="projeto-api-financas.html#cb319-1" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb319-2"><a href="projeto-api-financas.html#cb319-2" tabindex="-1"></a>  <span class="dt">&quot;erro&quot;</span><span class="fu">:</span> <span class="st">&quot;Dados inválidos.&quot;</span><span class="fu">,</span></span>
+<span id="cb319-3"><a href="projeto-api-financas.html#cb319-3" tabindex="-1"></a>  <span class="dt">&quot;campos&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb319-4"><a href="projeto-api-financas.html#cb319-4" tabindex="-1"></a>    <span class="dt">&quot;valor&quot;</span><span class="fu">:</span> <span class="st">&quot;O valor deve ser maior que zero.&quot;</span><span class="fu">,</span></span>
+<span id="cb319-5"><a href="projeto-api-financas.html#cb319-5" tabindex="-1"></a>    <span class="dt">&quot;categoriaId&quot;</span><span class="fu">:</span> <span class="st">&quot;A categoria informada é de entrada, mas o lançamento é de saída.&quot;</span></span>
+<span id="cb319-6"><a href="projeto-api-financas.html#cb319-6" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb319-7"><a href="projeto-api-financas.html#cb319-7" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<table>
+<caption><span id="tab:tabela-status-backend">Table 11.5: </span> Códigos de <em>status</em> esperados</caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Código</th>
+<th>Quando usar neste projeto</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>200 OK</code></td>
+<td>Consultas, atualização e <em>login</em> bem-sucedidos</td>
+</tr>
+<tr class="even">
+<td><code>201 Created</code></td>
+<td>Cadastro de usuário, categoria, fonte/destino e lançamento</td>
+</tr>
+<tr class="odd">
+<td><code>204 No Content</code></td>
+<td>Exclusão bem-sucedida (sem corpo)</td>
+</tr>
+<tr class="even">
+<td><code>400 Bad Request</code></td>
+<td>Campos obrigatórios ausentes, formatos inválidos, regras de negócio violadas</td>
+</tr>
+<tr class="odd">
+<td><code>401 Unauthorized</code></td>
+<td><em>Token</em> ausente, inválido ou expirado; <em>login</em> com credenciais erradas</td>
+</tr>
+<tr class="even">
+<td><code>404 Not Found</code></td>
+<td>Registro inexistente <strong>ou de outro usuário</strong>; rota inexistente</td>
+</tr>
+<tr class="odd">
+<td><code>409 Conflict</code></td>
+<td>E-mail/CPF já cadastrado; nome repetido; exclusão de registro com lançamentos vinculados</td>
+</tr>
+<tr class="even">
+<td><code>500 Internal Server Error</code></td>
+<td>Erros inesperados (o detalhe vai para o <code>console.error</code>, não para o cliente)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+<div id="estrutura-do-projeto-1" class="section level2" number="11.7">
+<h2><span class="header-section-number">11.7</span> Estrutura do projeto</h2>
+<p>A estrutura segue a da loja de carros, acrescida de <code>utils/</code> e dos arquivos de configuração:</p>
+<pre class="text"><code>api-financas/
+├── database/
+│   ├── connection.js       → conexão com o MySQL (lendo o .env)
+│   ├── schema.sql          → criação do banco e das tabelas
+│   └── seed.sql            → dados para teste e demonstração
+├── middleware/
+│   └── auth.js             → protegerRota (express-jwt)
+├── models/                 → classes com o SQL (Usuario, Categoria, FonteDestino, Lancamento, Relatorio)
+├── routes/                 → um Router por recurso (auth, categorias, fontesDestinos, lancamentos, relatorios)
+├── utils/                  → funções puras (cpf.js, faturas.js, parcelas)
+├── testes/
+│   └── requisicoes.md      → comandos curl (ou coleção Postman/Insomnia exportada) para TODAS as rotas
+├── .env.example
+├── .gitignore              → node_modules/ e .env
+├── package.json
+├── README.md
+└── server.js</code></pre>
+<p>Regras:</p>
+<ul>
+<li>Sistema de módulos <strong>CommonJS</strong> (<code>require</code> / <code>module.exports</code>), como em todo o livro.</li>
+<li><strong>SQL apenas em <code>models/</code></strong>. As rotas validam os dados, chamam os métodos das classes e montam a resposta.</li>
+<li><em>Scripts</em> no <code>package.json</code>: <code>"start": "node server.js"</code> e <code>"dev": "nodemon server.js"</code> (com o <code>nodemon</code> em <code>devDependencies</code>).</li>
+<li><code>database/connection.js</code> deve ler <code>DB_HOST</code>, <code>DB_USER</code>, <code>DB_PASSWORD</code> e <code>DB_NAME</code> do <code>.env</code>. O uso de <code>mysql.createPool(...)</code> no lugar de <code>createConnection</code> é <strong>opcional</strong> e recomendado. Atenção: com <em>pool</em>, a transação deve ser feita em uma conexão obtida com <code>pool.getConnection(...)</code>.</li>
+<li>O uso de <code>async</code>/<code>await</code> com a interface de <em>promises</em> do <code>mysql2</code> (<code>connection.promise()</code> ou <code>require('mysql2/promise')</code>) é <strong>permitido</strong>, no lugar dos <em>callbacks</em> usados no livro.</li>
+</ul>
+<hr />
+</div>
+<div id="política-acadêmica" class="section level2" number="11.8">
+<h2><span class="header-section-number">11.8</span> Política acadêmica</h2>
+<ul>
+<li>Bibliotecas além de <code>express</code>, <code>mysql2</code>, <code>jsonwebtoken</code>, <code>express-jwt</code>, <code>bcrypt</code>, <code>dotenv</code> e <code>nodemon</code> precisam de <strong>aprovação prévia</strong> do professor; caso contrário, serão desconsideradas da avaliação.</li>
+<li>Se for constatada <strong>cópia de artefatos</strong> de outros projetos, será atribuída <strong>nota zero</strong>, sem direito à etapa de recuperação.</li>
+<li>O uso de assistentes de IA é permitido como apoio, mas <strong>ambos os integrantes devem ser capazes de explicar qualquer trecho</strong> do código durante a apresentação. A incapacidade de explicar o código entregue será tratada como ausência de autoria daquele trecho.</li>
+</ul>
+<hr />
+</div>
+<div id="entrega-e-apresentação" class="section level2" number="11.9">
+<h2><span class="header-section-number">11.9</span> Entrega e apresentação</h2>
+<p>A entrega consiste no <strong>link do repositório Git</strong>, com <em>commits</em> incrementais dos dois integrantes, e em uma <strong>apresentação de no máximo 10 minutos</strong>, contemplando obrigatoriamente:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Código-fonte:</strong> estrutura de pastas, <code>schema.sql</code>, uma classe de modelo, um arquivo de rotas e o <em>middleware</em>.</li>
+<li><strong>Execução pela linha de comando:</strong> criação do banco (<code>schema.sql</code> + <code>seed.sql</code>), <code>npm install</code> e <code>npm run dev</code>.</li>
+<li><strong>Cadastro e unicidade:</strong> cadastro de um usuário e tentativas de cadastro com o <strong>mesmo e-mail</strong> (com letras maiúsculas) e com o <strong>mesmo CPF</strong> (com pontuação), ambas rejeitadas com <code>409</code>.</li>
+<li><strong><em>Login</em> e proteção:</strong> <em>login</em>, requisição <strong>sem</strong> <em>token</em> (<code>401</code>) e tentativa de ler, alterar e excluir um lançamento <strong>de outro usuário</strong> (<code>404</code>).</li>
+<li><strong>CRUD:</strong> categorias, fontes/destinos e lançamentos, incluindo uma <strong>compra parcelada</strong> no cartão e uma validação que falha (ex.: saída com categoria de entrada).</li>
+<li><strong>Relatórios:</strong> por categoria, por fonte/destino e previsão de faturas, mostrando em qual fatura caiu cada parcela da compra do item 5.</li>
+<li><strong>Desafio</strong> (se implementado): rota de saúde financeira.</li>
+</ol>
+<hr />
+</div>
+<div id="critérios-de-avaliação" class="section level2" number="11.10">
+<h2><span class="header-section-number">11.10</span> Critérios de avaliação</h2>
+<p>A nota do projeto é de <strong>100 pontos</strong>, mais até <strong>10 pontos extras</strong> pelo desafio.</p>
+<table>
+<caption><span id="tab:tabela-criterios-backend">Table 11.6: </span> Critérios de avaliação</caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Critério</th>
+<th>Pontos</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td><strong>A. Usuários e autenticação</strong></td>
+<td><strong>25</strong></td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>Cadastro com validações no servidor (campos, e-mail, CPF com dígitos verificadores, senha) e transação com categorias/fonte padrão</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>E-mail e CPF únicos garantidos por <code>UNIQUE</code> no banco, com normalização e resposta <code>409</code> indicando o campo</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>Senha com <code>bcrypt</code>, <em>login</em> com JWT e expiração, chave secreta no <code>.env</code></td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>Rotas protegidas com <code>express-jwt</code>, tratamento do <code>UnauthorizedError</code> (<code>401</code>) e isolamento dos dados entre usuários (RF3)</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><strong>B. Cadastros e lançamentos</strong></td>
+<td><strong>25</strong></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>CRUD de categorias e de fontes/destinos com as regras de tipo, cartão, duplicidade e exclusão</td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>CRUD de lançamentos com validações (valor, data, compatibilidade de tipo, posse da categoria e da fonte/destino)</td>
+<td>9</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Filtros por <em>query parameters</em>, paginação e resumo (entradas, saídas e saldo)</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Compras parceladas, com divisão correta dos centavos e exclusão de todas as parcelas</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><strong>C. Relatórios</strong></td>
+<td><strong>20</strong></td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td>Relatório por categoria com <code>SUM</code>/<code>GROUP BY</code>, percentuais e comparação com o período anterior</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>10</td>
+<td>Relatório por fonte/destino (entradas, saídas e saldo das contas)</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>11</td>
+<td>Previsão de faturas (regra de fechamento, parcelas futuras, limite utilizado e disponível)</td>
+<td>8</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><strong>D. Organização e qualidade</strong></td>
+<td><strong>15</strong></td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td>Estrutura de pastas, <code>express.Router()</code> por recurso, SQL somente nas classes de <code>models/</code>, CommonJS</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td>Verbos HTTP, códigos de <em>status</em> e padrão único de resposta de erro</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td>Consultas parametrizadas (<code>?</code>), restrições no banco (FK, <code>UNIQUE</code>, <code>CHECK</code>) e tipos adequados para dinheiro</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td><code>package.json</code> com <em>scripts</em> e <code>nodemon</code>, <code>.env.example</code>, <code>.gitignore</code>, <code>schema.sql</code>, <code>seed.sql</code>, README e arquivo de testes com todas as rotas</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><strong>E. Apresentação</strong></td>
+<td><strong>15</strong></td>
+</tr>
+<tr class="odd">
+<td>16</td>
+<td>Explicação do código-fonte (ambos os integrantes)</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>17</td>
+<td>Execução pela linha de comando (banco e API)</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td>18</td>
+<td>Demonstração de todos os itens obrigatórios do roteiro, dentro do tempo</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><strong>TOTAL</strong></td>
+<td><strong>100</strong></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><strong>Desafio — Saúde financeira</strong> (pelo menos 3 indicadores, uma projeção mês a mês e dicas geradas a partir dos dados)</td>
+<td><strong>+10</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+<div id="sugestão-de-cronograma" class="section level2" number="11.11">
+<h2><span class="header-section-number">11.11</span> Sugestão de cronograma</h2>
+<table>
+<caption><span id="tab:tabela-cronograma-backend">Table 11.7: </span> Marcos sugeridos (as datas oficiais estão no ambiente virtual da disciplina)</caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Marco</th>
+<th>Entregável esperado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1. Projeto e banco</strong></td>
+<td><code>npm init</code>, dependências, <em>scripts</em>, <code>.env</code>, <code>schema.sql</code>, <code>connection.js</code> e <code>server.js</code> respondendo.</td>
+</tr>
+<tr class="even">
+<td><strong>2. Autenticação</strong></td>
+<td>Cadastro (com <code>UNIQUE</code> e transação), <em>login</em>, <code>protegerRota</code> e <code>/auth/me</code>.</td>
+</tr>
+<tr class="odd">
+<td><strong>3. CRUD</strong></td>
+<td>Categorias, fontes/destinos e lançamentos (com parcelamento), com validações e isolamento.</td>
+</tr>
+<tr class="even">
+<td><strong>4. Relatórios</strong></td>
+<td>Relatórios por categoria e por fonte/destino; previsão de faturas.</td>
+</tr>
+<tr class="odd">
+<td><strong>5. Acabamento</strong></td>
+<td><code>seed.sql</code>, arquivo de testes, README, desafio (opcional) e ensaio da apresentação.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+<div id="checklist-final-do-grupo" class="section level2" number="11.12">
+<h2><span class="header-section-number">11.12</span> <em>Checklist</em> final do grupo</h2>
+<ul class="task-list">
+<li><label><input type="checkbox" />Cadastrar o mesmo e-mail com letras maiúsculas diferentes é rejeitado com <code>409</code>.</label></li>
+<li><label><input type="checkbox" />Cadastrar o mesmo CPF com e sem pontuação é rejeitado com <code>409</code>.</label></li>
+<li><label><input type="checkbox" />Mesmo sem o <code>SELECT</code> prévio no código, o banco impede duplicatas.</label></li>
+<li><label><input type="checkbox" />Nenhuma resposta da API contém <code>senha_hash</code>.</label></li>
+<li><label><input type="checkbox" />Uma requisição sem <em>token</em>, ou com <em>token</em> expirado, recebe <code>401</code> em JSON (e não uma página de erro HTML).</label></li>
+<li><label><input type="checkbox" />Trocar o id na URL não dá acesso a dados de outro usuário.</label></li>
+<li><label><input type="checkbox" />Um lançamento de <strong>saída</strong> não aceita categoria de <strong>entrada</strong>.</label></li>
+<li><label><input type="checkbox" />Uma compra de R$ 100,00 em 3× gera parcelas que somam exatamente R$ 100,00.</label></li>
+<li><label><input type="checkbox" />Uma compra feita <strong>no dia do fechamento</strong> aparece na fatura do mês seguinte.</label></li>
+<li><label><input type="checkbox" />Os relatórios devolvem números (<code>980.5</code>), e não textos (<code>"980.50"</code>).</label></li>
+<li><label><input type="checkbox" />O <code>.env</code> <strong>não</strong> está no repositório; o <code>.env.example</code> está.</label></li>
+<li><label><input type="checkbox" />Seguindo apenas o README, outra pessoa consegue criar o banco e subir a API.</label></li>
+</ul>
+<hr />
+</div>
+<div id="referências-2" class="section level2" number="11.13">
+<h2><span class="header-section-number">11.13</span> Referências</h2>
+<ul>
+<li>Express: <a href="https://expressjs.com/pt-br/guide/routing.html">Roteamento</a>, <a href="https://expressjs.com/pt-br/guide/using-middleware.html">Usando <em>middlewares</em></a>, <a href="https://expressjs.com/pt-br/guide/error-handling.html">Tratamento de erros</a></li>
+<li><a href="https://sidorares.github.io/node-mysql2/docs">mysql2 — documentação</a> (consultas parametrizadas, <em>pool</em>, transações e opção <code>dateStrings</code>)</li>
+<li>MySQL: <a href="https://dev.mysql.com/doc/refman/8.0/en/create-table-check-constraints.html">Restrições <code>CHECK</code></a> e <a href="https://dev.mysql.com/doc/mysql-errors/8.0/en/server-error-reference.html">Mensagens de erro do servidor</a> (<code>ER_DUP_ENTRY</code>, 1062)</li>
+<li><a href="https://www.npmjs.com/package/jsonwebtoken">jsonwebtoken</a>, <a href="https://www.npmjs.com/package/express-jwt">express-jwt</a>, <a href="https://www.npmjs.com/package/bcrypt">bcrypt</a>, <a href="https://www.npmjs.com/package/dotenv">dotenv</a></li>
+<li>OWASP: <a href="https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html"><em>Password Storage Cheat Sheet</em></a></li>
+</ul>
+
+</div>
+</div>
+  </main>
+
+  <div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <div id="book-on-this-page"></div>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          <li><a id="book-source" href="#">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="#">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5">
+  <div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Desenvolvimento web Avançado</strong>" was written by Juliana Costa Silva. It was last built on 2026-10-30.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+
+
+</body>
+
+</html>

@@ -1,27 +1,54 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>_&gt;8 Express Framework | Desenvolvimento web Avançado</title>
-<meta name="author" content="Juliana Costa Silva">
-<meta name="description" content="Neste capítulo vamos estudar o framework Express, uma das bibliotecas mais utilizadas para desenvolvimento de aplicações web e APIs com Node.js. O Express simplifica a criação de servidores HTTP,...">
-<meta name="generator" content="bookdown 0.46 with bs4_book()">
-<meta property="og:title" content="_&gt;8 Express Framework | Desenvolvimento web Avançado">
-<meta property="og:type" content="book">
-<meta property="og:description" content="Neste capítulo vamos estudar o framework Express, uma das bibliotecas mais utilizadas para desenvolvimento de aplicações web e APIs com Node.js. O Express simplifica a criação de servidores HTTP,...">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="_&gt;8 Express Framework | Desenvolvimento web Avançado">
-<meta name="twitter:description" content="Neste capítulo vamos estudar o framework Express, uma das bibliotecas mais utilizadas para desenvolvimento de aplicações web e APIs com Node.js. O Express simplifica a criação de servidores HTTP,...">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.11.0/transition.js"></script><script src="libs/bs3compat-0.11.0/tabs.js"></script><script src="libs/bs3compat-0.11.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>_>8 Express Framework | Desenvolvimento web Avançado</title>
+
+    <meta name="author" content="Juliana Costa Silva" />
+  
+   <meta name="description" content="<p>This is a minimal book of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::bs4_book,
+set in the _output.yml file.</p>" />
+   <meta name="generator" content="placeholder" />
+  <meta property="og:title" content="_>8 Express Framework | Desenvolvimento web Avançado" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="<p>This is a minimal book of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::bs4_book,
+set in the _output.yml file.</p>" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="_>8 Express Framework | Desenvolvimento web Avançado" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal book of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::bs4_book,
+set in the _output.yml file.</p>" />
+  
+  <!-- JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script>
+    <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet" />
+    <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script>
+    <script src="libs/bs3compat-0.11.0/transition.js"></script>
+    <script src="libs/bs3compat-0.11.0/tabs.js"></script>
+    <script src="libs/bs3compat-0.11.0/bs3compat.js"></script>
+    <link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet" />
+    <script src="libs/bs4_book-1.0.0/bs4_book.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script>
+
+  <!-- CSS -->
+  <style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
-<style type="text/css">
+    <style type="text/css">
     /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
     div.csl-bib-body { }
     div.csl-entry {
@@ -43,13 +70,16 @@
       margin-left: 2em;
     }
   </style>
-<link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="style.css" />
+  
 </head>
+
 <body data-spy="scroll" data-target="#toc">
 
 <div class="container-fluid">
 <div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book">
+    <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
@@ -61,40 +91,27 @@
     <div id="main-nav" class="collapse-lg">
       <form role="search">
         <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
-</form>
+      </form>
 
-      <nav aria-label="Table of contents"><h2>Table of contents</h2>
-        <ul class="book-toc list-unstyled">
-<li><a class="" href="index.html">Sobre este livro</a></li>
-<li><a class="" href="javascript-basico-para-nodejs.html"><span class="header-section-number">1</span> JavaScript Basico para NodeJS</a></li>
-<li><a class="" href="javascript-e-objetos.html"><span class="header-section-number">2</span> Javascript e Objetos</a></li>
-<li><a class="" href="atividade-avaliativa.html"><span class="header-section-number">3</span> Atividade avaliativa</a></li>
-<li><a class="" href="web-services.html"><span class="header-section-number">4</span> Web Services</a></li>
-<li><a class="" href="lista-de-atividades-estudo-javascript-nodejs.html"><span class="header-section-number">5</span> Lista de Atividades — Estudo JavaScript (NodeJS)</a></li>
-<li><a class="" href="criando-um-servidor-http-com-nodejs.html"><span class="header-section-number">6</span> Criando um servidor HTTP com Nodejs</a></li>
-<li><a class="" href="npm-json-e-organiza%C3%A7%C3%A3o-de-projetos-node-js.html"><span class="header-section-number">7</span> NPM, JSON e organização de projetos Node JS</a></li>
-<li><a class="active" href="express-framework.html"><span class="header-section-number">8</span> Express Framework</a></li>
-<li><a class="" href="integra-de-apis-node.js-com-banco-de-dados.html"><span class="header-section-number">9</span> Integra de APIs Node.js com Banco de Dados</a></li>
-<li><a class="" href="apis-node-js-com-jwt.html"><span class="header-section-number">10</span> APIs Node JS com JWT</a></li>
-<li><a class="" href="loja-de-carros-com-clientes-e-vendas.html"><span class="header-section-number">11</span> Loja de carros com clientes e vendas</a></li>
-</ul>
+      <nav aria-label="Table of contents">
+        <h2>Table of contents</h2>
+        <div id="book-toc"></div>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/rstudio/bookdown-demo">View book source <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="#">View book source <i class="fab fa-github"></i></a></li></p>
         </div>
       </nav>
-</div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="express-framework" class="section level1" number="8">
-<h1>
-<span class="header-section-number">_&gt;8</span> Express Framework<a class="anchor" aria-label="anchor" href="#express-framework"><i class="fas fa-link"></i></a>
-</h1>
-<p>Neste capítulo vamos estudar o framework <strong>Express</strong>, uma das bibliotecas mais utilizadas para desenvolvimento de aplicações web e APIs com Node.js. O Express simplifica a criação de servidores HTTP, o gerenciamento de rotas e o processamento de requisições e respostas, tornando o desenvolvimento mais produtivo e organizado.<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Express.js, &lt;em&gt;Express - Framework Web Para Node.js&lt;/em&gt; (2026), &lt;a href="https://expressjs.com/pt-br/"&gt;https://expressjs.com/pt-br/&lt;/a&gt;; MDN Web Docs, &lt;em&gt;Introdução Ao Express/Node&lt;/em&gt; (2025), &lt;a href="https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Introduction"&gt;https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Introduction&lt;/a&gt;.&lt;/p&gt;'><sup>20</sup></a></span></p>
+    </div>
+  </header>
+
+  <main class="col-sm-12 col-md-9 col-lg-7" id="content">
+<div id="express-framework" class="section level1" number="8">
+<h1><span class="header-section-number">_>8</span> Express Framework</h1>
+<p>Neste capítulo vamos estudar o framework <strong>Express</strong>, uma das bibliotecas mais utilizadas para desenvolvimento de aplicações web e APIs com Node.js. O Express simplifica a criação de servidores HTTP, o gerenciamento de rotas e o processamento de requisições e respostas, tornando o desenvolvimento mais produtivo e organizado.<span class="citation"><a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a></span></p>
 <p>O conteúdo deste capítulo continua o projeto iniciado anteriormente com NPM e <code>nodemon</code>, substituindo o uso direto do módulo <code>http</code> por uma abordagem baseada em framework.</p>
 <div id="o-que-é-o-express" class="section level2" number="8.1">
-<h2>
-<span class="header-section-number">8.1</span> O que é o Express<a class="anchor" aria-label="anchor" href="#o-que-%C3%A9-o-express"><i class="fas fa-link"></i></a>
-</h2>
-<p>O <strong>Express</strong> é um framework minimalista para Node.js utilizado no desenvolvimento de aplicações web e APIs REST. Segundo a documentação oficial, o Express fornece um conjunto enxuto de funcionalidades para aplicações web e móveis.<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Express.js, &lt;em&gt;Express - Framework Web Para Node.js&lt;/em&gt;.&lt;/p&gt;"><sup>21</sup></a></span></p>
+<h2><span class="header-section-number">8.1</span> O que é o Express</h2>
+<p>O <strong>Express</strong> é um framework minimalista para Node.js utilizado no desenvolvimento de aplicações web e APIs REST. Segundo a documentação oficial, o Express fornece um conjunto enxuto de funcionalidades para aplicações web e móveis.<span class="citation"><a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a></span></p>
 <p>Antes do Express, ao utilizar apenas o módulo <code>http</code>, era necessário:</p>
 <ul>
 <li>analisar manualmente URLs;</li>
@@ -117,14 +134,11 @@
 <li>possui sintaxe simples;</li>
 <li>é flexível;</li>
 <li>possui grande ecossistema;</li>
-<li>é amplamente utilizado pela comunidade Node.js.<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;MDN Web Docs, &lt;em&gt;Introdução Ao Express/Node&lt;/em&gt;.&lt;/p&gt;"><sup>22</sup></a></span>
-</li>
+<li>é amplamente utilizado pela comunidade Node.js.<span class="citation"><a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a></span></li>
 </ul>
 </div>
 <div id="criando-um-projeto-express" class="section level2" number="8.2">
-<h2>
-<span class="header-section-number">8.2</span> Criando um projeto Express<a class="anchor" aria-label="anchor" href="#criando-um-projeto-express"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">8.2</span> Criando um projeto Express</h2>
 <p>O código de aula está no repositório do github: (<a href="https://github.com/costasilvati/DesWebAvancado/tree/main/codigos" class="uri">https://github.com/costasilvati/DesWebAvancado/tree/main/codigos</a>)[<a href="https://github.com/costasilvati/DesWebAvancado/tree/main/codigos" class="uri">https://github.com/costasilvati/DesWebAvancado/tree/main/codigos</a>]</p>
 <p>Crie uma nova pasta:</p>
 <div class="sourceCode" id="cb186"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb186-1"><a href="express-framework.html#cb186-1" tabindex="-1"></a><span class="fu">mkdir</span> api-express</span>
@@ -141,93 +155,81 @@
 └── server.js</code></pre>
 <p>Edite o <code>package.json</code>:</p>
 <div class="sourceCode" id="cb191"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb191-1"><a href="express-framework.html#cb191-1" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb191-2"><a href="express-framework.html#cb191-2" tabindex="-1"></a>  <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"api-express"</span><span class="fu">,</span></span>
-<span id="cb191-3"><a href="express-framework.html#cb191-3" tabindex="-1"></a>  <span class="dt">"version"</span><span class="fu">:</span> <span class="st">"1.0.0"</span><span class="fu">,</span></span>
-<span id="cb191-4"><a href="express-framework.html#cb191-4" tabindex="-1"></a>  <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"Projeto Express"</span><span class="fu">,</span></span>
-<span id="cb191-5"><a href="express-framework.html#cb191-5" tabindex="-1"></a>  <span class="dt">"main"</span><span class="fu">:</span> <span class="st">"server.js"</span><span class="fu">,</span></span>
-<span id="cb191-6"><a href="express-framework.html#cb191-6" tabindex="-1"></a>  <span class="dt">"scripts"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb191-7"><a href="express-framework.html#cb191-7" tabindex="-1"></a>    <span class="dt">"start"</span><span class="fu">:</span> <span class="st">"node server.js"</span><span class="fu">,</span></span>
-<span id="cb191-8"><a href="express-framework.html#cb191-8" tabindex="-1"></a>    <span class="dt">"dev"</span><span class="fu">:</span> <span class="st">"nodemon server.js"</span></span>
+<span id="cb191-2"><a href="express-framework.html#cb191-2" tabindex="-1"></a>  <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;api-express&quot;</span><span class="fu">,</span></span>
+<span id="cb191-3"><a href="express-framework.html#cb191-3" tabindex="-1"></a>  <span class="dt">&quot;version&quot;</span><span class="fu">:</span> <span class="st">&quot;1.0.0&quot;</span><span class="fu">,</span></span>
+<span id="cb191-4"><a href="express-framework.html#cb191-4" tabindex="-1"></a>  <span class="dt">&quot;description&quot;</span><span class="fu">:</span> <span class="st">&quot;Projeto Express&quot;</span><span class="fu">,</span></span>
+<span id="cb191-5"><a href="express-framework.html#cb191-5" tabindex="-1"></a>  <span class="dt">&quot;main&quot;</span><span class="fu">:</span> <span class="st">&quot;server.js&quot;</span><span class="fu">,</span></span>
+<span id="cb191-6"><a href="express-framework.html#cb191-6" tabindex="-1"></a>  <span class="dt">&quot;scripts&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb191-7"><a href="express-framework.html#cb191-7" tabindex="-1"></a>    <span class="dt">&quot;start&quot;</span><span class="fu">:</span> <span class="st">&quot;node server.js&quot;</span><span class="fu">,</span></span>
+<span id="cb191-8"><a href="express-framework.html#cb191-8" tabindex="-1"></a>    <span class="dt">&quot;dev&quot;</span><span class="fu">:</span> <span class="st">&quot;nodemon server.js&quot;</span></span>
 <span id="cb191-9"><a href="express-framework.html#cb191-9" tabindex="-1"></a>  <span class="fu">},</span></span>
-<span id="cb191-10"><a href="express-framework.html#cb191-10" tabindex="-1"></a>  <span class="dt">"dependencies"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb191-11"><a href="express-framework.html#cb191-11" tabindex="-1"></a>    <span class="dt">"express"</span><span class="fu">:</span> <span class="st">"^5.0.0"</span></span>
+<span id="cb191-10"><a href="express-framework.html#cb191-10" tabindex="-1"></a>  <span class="dt">&quot;dependencies&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb191-11"><a href="express-framework.html#cb191-11" tabindex="-1"></a>    <span class="dt">&quot;express&quot;</span><span class="fu">:</span> <span class="st">&quot;^5.0.0&quot;</span></span>
 <span id="cb191-12"><a href="express-framework.html#cb191-12" tabindex="-1"></a>  <span class="fu">},</span></span>
-<span id="cb191-13"><a href="express-framework.html#cb191-13" tabindex="-1"></a>  <span class="dt">"devDependencies"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb191-14"><a href="express-framework.html#cb191-14" tabindex="-1"></a>    <span class="dt">"nodemon"</span><span class="fu">:</span> <span class="st">"^3.0.0"</span></span>
+<span id="cb191-13"><a href="express-framework.html#cb191-13" tabindex="-1"></a>  <span class="dt">&quot;devDependencies&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb191-14"><a href="express-framework.html#cb191-14" tabindex="-1"></a>    <span class="dt">&quot;nodemon&quot;</span><span class="fu">:</span> <span class="st">&quot;^3.0.0&quot;</span></span>
 <span id="cb191-15"><a href="express-framework.html#cb191-15" tabindex="-1"></a>  <span class="fu">}</span></span>
 <span id="cb191-16"><a href="express-framework.html#cb191-16" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
 <p>Agora o projeto pode ser executado com:</p>
 <div class="sourceCode" id="cb192"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb192-1"><a href="express-framework.html#cb192-1" tabindex="-1"></a><span class="ex">npm</span> run dev</span></code></pre></div>
 </div>
 <div id="criando-o-primeiro-servidor-express" class="section level2" number="8.3">
-<h2>
-<span class="header-section-number">8.3</span> Criando o primeiro servidor Express<a class="anchor" aria-label="anchor" href="#criando-o-primeiro-servidor-express"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">8.3</span> Criando o primeiro servidor Express</h2>
 <p>Crie o arquivo <code>server.js</code>:</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb193-1"><a href="express-framework.html#cb193-1" tabindex="-1"></a><span class="kw">const</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">'express'</span>)<span class="op">;</span></span>
+<div class="sourceCode" id="cb193"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb193-1"><a href="express-framework.html#cb193-1" tabindex="-1"></a><span class="kw">const</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;express&#39;</span>)<span class="op">;</span></span>
 <span id="cb193-2"><a href="express-framework.html#cb193-2" tabindex="-1"></a></span>
 <span id="cb193-3"><a href="express-framework.html#cb193-3" tabindex="-1"></a><span class="kw">const</span> app <span class="op">=</span> <span class="fu">express</span>()<span class="op">;</span></span>
 <span id="cb193-4"><a href="express-framework.html#cb193-4" tabindex="-1"></a></span>
 <span id="cb193-5"><a href="express-framework.html#cb193-5" tabindex="-1"></a>app<span class="op">.</span><span class="fu">listen</span>(<span class="dv">3000</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
-<span id="cb193-6"><a href="express-framework.html#cb193-6" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">'Servidor Express executando na porta 3000'</span>)<span class="op">;</span></span>
+<span id="cb193-6"><a href="express-framework.html#cb193-6" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&#39;Servidor Express executando na porta 3000&#39;</span>)<span class="op">;</span></span>
 <span id="cb193-7"><a href="express-framework.html#cb193-7" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
 <p>Neste exemplo:</p>
 <ul>
-<li>
-<code>express()</code> cria a aplicação;</li>
-<li>
-<code>app</code> representa o servidor;</li>
-<li>
-<code>app.listen()</code> inicia o servidor.</li>
+<li><code>express()</code> cria a aplicação;</li>
+<li><code>app</code> representa o servidor;</li>
+<li><code>app.listen()</code> inicia o servidor.</li>
 </ul>
-<p>Segundo a documentação do Express, a aplicação criada por <code>express()</code> é uma função JavaScript que pode responder requisições HTTP.<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Express.js, &lt;em&gt;Express API Reference&lt;/em&gt; (2026), &lt;a href="https://expressjs.com/pt-br/4x/api.html"&gt;https://expressjs.com/pt-br/4x/api.html&lt;/a&gt;.&lt;/p&gt;'><sup>23</sup></a></span></p>
+<p>Segundo a documentação do Express, a aplicação criada por <code>express()</code> é uma função JavaScript que pode responder requisições HTTP.<span class="citation"><a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a></span></p>
 </div>
 <div id="configurando-rotas-na-raiz-do-projeto" class="section level2" number="8.4">
-<h2>
-<span class="header-section-number">8.4</span> Configurando rotas na raiz do projeto<a class="anchor" aria-label="anchor" href="#configurando-rotas-na-raiz-do-projeto"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">8.4</span> Configurando rotas na raiz do projeto</h2>
 <p>Uma rota define como o servidor responderá a uma URL específica.</p>
 <p>No Express, rotas são criadas com:</p>
 <div class="sourceCode" id="cb194"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb194-1"><a href="express-framework.html#cb194-1" tabindex="-1"></a>app<span class="op">.</span><span class="fu">metodoHTTP</span>(caminho<span class="op">,</span> callback)</span></code></pre></div>
 <p>Exemplo:</p>
-<div class="sourceCode" id="cb195"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb195-1"><a href="express-framework.html#cb195-1" tabindex="-1"></a>app<span class="op">.</span><span class="fu">get</span>(<span class="st">'/'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
-<span id="cb195-2"><a href="express-framework.html#cb195-2" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">send</span>(<span class="st">'Página inicial'</span>)<span class="op">;</span></span>
+<div class="sourceCode" id="cb195"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb195-1"><a href="express-framework.html#cb195-1" tabindex="-1"></a>app<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/&#39;</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb195-2"><a href="express-framework.html#cb195-2" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">send</span>(<span class="st">&#39;Página inicial&#39;</span>)<span class="op">;</span></span>
 <span id="cb195-3"><a href="express-framework.html#cb195-3" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
 <div id="exemplo-completo" class="section level3 unnumbered">
-<h3>Exemplo completo<a class="anchor" aria-label="anchor" href="#exemplo-completo"><i class="fas fa-link"></i></a>
-</h3>
-<div class="sourceCode" id="cb196"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb196-1"><a href="express-framework.html#cb196-1" tabindex="-1"></a><span class="kw">const</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">'express'</span>)<span class="op">;</span></span>
+<h3>Exemplo completo</h3>
+<div class="sourceCode" id="cb196"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb196-1"><a href="express-framework.html#cb196-1" tabindex="-1"></a><span class="kw">const</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;express&#39;</span>)<span class="op">;</span></span>
 <span id="cb196-2"><a href="express-framework.html#cb196-2" tabindex="-1"></a></span>
 <span id="cb196-3"><a href="express-framework.html#cb196-3" tabindex="-1"></a><span class="kw">const</span> app <span class="op">=</span> <span class="fu">express</span>()<span class="op">;</span></span>
 <span id="cb196-4"><a href="express-framework.html#cb196-4" tabindex="-1"></a></span>
-<span id="cb196-5"><a href="express-framework.html#cb196-5" tabindex="-1"></a>app<span class="op">.</span><span class="fu">get</span>(<span class="st">'/'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
-<span id="cb196-6"><a href="express-framework.html#cb196-6" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">send</span>(<span class="st">'Página inicial'</span>)<span class="op">;</span></span>
+<span id="cb196-5"><a href="express-framework.html#cb196-5" tabindex="-1"></a>app<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/&#39;</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb196-6"><a href="express-framework.html#cb196-6" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">send</span>(<span class="st">&#39;Página inicial&#39;</span>)<span class="op">;</span></span>
 <span id="cb196-7"><a href="express-framework.html#cb196-7" tabindex="-1"></a>})<span class="op">;</span></span>
 <span id="cb196-8"><a href="express-framework.html#cb196-8" tabindex="-1"></a></span>
-<span id="cb196-9"><a href="express-framework.html#cb196-9" tabindex="-1"></a>app<span class="op">.</span><span class="fu">get</span>(<span class="st">'/carros'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
-<span id="cb196-10"><a href="express-framework.html#cb196-10" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">send</span>(<span class="st">'Lista de carros'</span>)<span class="op">;</span></span>
+<span id="cb196-9"><a href="express-framework.html#cb196-9" tabindex="-1"></a>app<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/carros&#39;</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb196-10"><a href="express-framework.html#cb196-10" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">send</span>(<span class="st">&#39;Lista de carros&#39;</span>)<span class="op">;</span></span>
 <span id="cb196-11"><a href="express-framework.html#cb196-11" tabindex="-1"></a>})<span class="op">;</span></span>
 <span id="cb196-12"><a href="express-framework.html#cb196-12" tabindex="-1"></a></span>
-<span id="cb196-13"><a href="express-framework.html#cb196-13" tabindex="-1"></a>app<span class="op">.</span><span class="fu">get</span>(<span class="st">'/usuarios'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
-<span id="cb196-14"><a href="express-framework.html#cb196-14" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">send</span>(<span class="st">'Lista de usuários'</span>)<span class="op">;</span></span>
+<span id="cb196-13"><a href="express-framework.html#cb196-13" tabindex="-1"></a>app<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/usuarios&#39;</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb196-14"><a href="express-framework.html#cb196-14" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">send</span>(<span class="st">&#39;Lista de usuários&#39;</span>)<span class="op">;</span></span>
 <span id="cb196-15"><a href="express-framework.html#cb196-15" tabindex="-1"></a>})<span class="op">;</span></span>
 <span id="cb196-16"><a href="express-framework.html#cb196-16" tabindex="-1"></a></span>
 <span id="cb196-17"><a href="express-framework.html#cb196-17" tabindex="-1"></a>app<span class="op">.</span><span class="fu">listen</span>(<span class="dv">3000</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
-<span id="cb196-18"><a href="express-framework.html#cb196-18" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">'Servidor executando'</span>)<span class="op">;</span></span>
+<span id="cb196-18"><a href="express-framework.html#cb196-18" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&#39;Servidor executando&#39;</span>)<span class="op">;</span></span>
 <span id="cb196-19"><a href="express-framework.html#cb196-19" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
 <p>Neste exemplo:</p>
 <ul>
-<li>
-<code>/</code> representa a rota raiz;</li>
-<li>
-<code>/carros</code> representa o recurso carros;</li>
-<li>
-<code>/usuarios</code> representa o recurso usuários.</li>
+<li><code>/</code> representa a rota raiz;</li>
+<li><code>/carros</code> representa o recurso carros;</li>
+<li><code>/usuarios</code> representa o recurso usuários.</li>
 </ul>
 </div>
 <div id="como-funciona-internamente" class="section level3 unnumbered">
-<h3>Como funciona internamente<a class="anchor" aria-label="anchor" href="#como-funciona-internamente"><i class="fas fa-link"></i></a>
-</h3>
+<h3>Como funciona internamente</h3>
 <p>Quando o navegador acessa:</p>
 <pre class="text"><code>http://localhost:3000/carros</code></pre>
 <p>o Express:</p>
@@ -240,27 +242,21 @@
 </div>
 </div>
 <div id="objeto-res" class="section level2" number="8.5">
-<h2>
-<span class="header-section-number">8.5</span> Objeto res<a class="anchor" aria-label="anchor" href="#objeto-res"><i class="fas fa-link"></i></a>
-</h2>
-<p>O objeto <code>res</code> representa a resposta enviada ao cliente.<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Express.js, &lt;em&gt;Express API Reference&lt;/em&gt;.&lt;/p&gt;"><sup>24</sup></a></span></p>
+<h2><span class="header-section-number">8.5</span> Objeto res</h2>
+<p>O objeto <code>res</code> representa a resposta enviada ao cliente.<span class="citation"><a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a></span></p>
 <p>O Express fornece diversas funções utilitárias nesse objeto.</p>
 </div>
 <div id="retornando-texto-simples" class="section level2" number="8.6">
-<h2>
-<span class="header-section-number">8.6</span> Retornando texto simples<a class="anchor" aria-label="anchor" href="#retornando-texto-simples"><i class="fas fa-link"></i></a>
-</h2>
-<div class="sourceCode" id="cb198"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb198-1"><a href="express-framework.html#cb198-1" tabindex="-1"></a>app<span class="op">.</span><span class="fu">get</span>(<span class="st">'/'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
-<span id="cb198-2"><a href="express-framework.html#cb198-2" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">send</span>(<span class="st">'Servidor Express funcionando'</span>)<span class="op">;</span></span>
+<h2><span class="header-section-number">8.6</span> Retornando texto simples</h2>
+<div class="sourceCode" id="cb198"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb198-1"><a href="express-framework.html#cb198-1" tabindex="-1"></a>app<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/&#39;</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb198-2"><a href="express-framework.html#cb198-2" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">send</span>(<span class="st">&#39;Servidor Express funcionando&#39;</span>)<span class="op">;</span></span>
 <span id="cb198-3"><a href="express-framework.html#cb198-3" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
 </div>
 <div id="retornando-json" class="section level2" number="8.7">
-<h2>
-<span class="header-section-number">8.7</span> Retornando JSON<a class="anchor" aria-label="anchor" href="#retornando-json"><i class="fas fa-link"></i></a>
-</h2>
-<div class="sourceCode" id="cb199"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb199-1"><a href="express-framework.html#cb199-1" tabindex="-1"></a>app<span class="op">.</span><span class="fu">get</span>(<span class="st">'/produto'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<h2><span class="header-section-number">8.7</span> Retornando JSON</h2>
+<div class="sourceCode" id="cb199"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb199-1"><a href="express-framework.html#cb199-1" tabindex="-1"></a>app<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/produto&#39;</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
 <span id="cb199-2"><a href="express-framework.html#cb199-2" tabindex="-1"></a>  <span class="kw">const</span> produto <span class="op">=</span> {</span>
-<span id="cb199-3"><a href="express-framework.html#cb199-3" tabindex="-1"></a>    <span class="dt">nome</span><span class="op">:</span> <span class="st">'Notebook'</span><span class="op">,</span></span>
+<span id="cb199-3"><a href="express-framework.html#cb199-3" tabindex="-1"></a>    <span class="dt">nome</span><span class="op">:</span> <span class="st">&#39;Notebook&#39;</span><span class="op">,</span></span>
 <span id="cb199-4"><a href="express-framework.html#cb199-4" tabindex="-1"></a>    <span class="dt">preco</span><span class="op">:</span> <span class="dv">3500</span></span>
 <span id="cb199-5"><a href="express-framework.html#cb199-5" tabindex="-1"></a>  }<span class="op">;</span></span>
 <span id="cb199-6"><a href="express-framework.html#cb199-6" tabindex="-1"></a></span>
@@ -272,61 +268,51 @@
 <pre class="text"><code>Content-Type: application/json</code></pre>
 </div>
 <div id="informando-status-http" class="section level2" number="8.8">
-<h2>
-<span class="header-section-number">8.8</span> Informando status HTTP<a class="anchor" aria-label="anchor" href="#informando-status-http"><i class="fas fa-link"></i></a>
-</h2>
-<div class="sourceCode" id="cb202"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb202-1"><a href="express-framework.html#cb202-1" tabindex="-1"></a>app<span class="op">.</span><span class="fu">get</span>(<span class="st">'/erro'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<h2><span class="header-section-number">8.8</span> Informando status HTTP</h2>
+<div class="sourceCode" id="cb202"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb202-1"><a href="express-framework.html#cb202-1" tabindex="-1"></a>app<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/erro&#39;</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
 <span id="cb202-2"><a href="express-framework.html#cb202-2" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">status</span>(<span class="dv">404</span>)<span class="op">.</span><span class="fu">json</span>({</span>
-<span id="cb202-3"><a href="express-framework.html#cb202-3" tabindex="-1"></a>    <span class="dt">erro</span><span class="op">:</span> <span class="st">'Recurso não encontrado'</span></span>
+<span id="cb202-3"><a href="express-framework.html#cb202-3" tabindex="-1"></a>    <span class="dt">erro</span><span class="op">:</span> <span class="st">&#39;Recurso não encontrado&#39;</span></span>
 <span id="cb202-4"><a href="express-framework.html#cb202-4" tabindex="-1"></a>  })<span class="op">;</span></span>
 <span id="cb202-5"><a href="express-framework.html#cb202-5" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
 <p>Neste exemplo:</p>
 <ul>
-<li>
-<code>status(404)</code> define o código HTTP;</li>
-<li>
-<code>json()</code> envia a resposta.</li>
+<li><code>status(404)</code> define o código HTTP;</li>
+<li><code>json()</code> envia a resposta.</li>
 </ul>
 </div>
 <div id="informando-o-tipo-de-conteúdo" class="section level2" number="8.9">
-<h2>
-<span class="header-section-number">8.9</span> Informando o tipo de conteúdo<a class="anchor" aria-label="anchor" href="#informando-o-tipo-de-conte%C3%BAdo"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">8.9</span> Informando o tipo de conteúdo</h2>
 <p>O tipo de conteúdo pode ser definido com:</p>
 <div class="sourceCode" id="cb203"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb203-1"><a href="express-framework.html#cb203-1" tabindex="-1"></a>res<span class="op">.</span><span class="fu">type</span>()</span></code></pre></div>
 <p>Exemplo:</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb204-1"><a href="express-framework.html#cb204-1" tabindex="-1"></a>app<span class="op">.</span><span class="fu">get</span>(<span class="st">'/html'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
-<span id="cb204-2"><a href="express-framework.html#cb204-2" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">type</span>(<span class="st">'text/html'</span>)<span class="op">;</span></span>
+<div class="sourceCode" id="cb204"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb204-1"><a href="express-framework.html#cb204-1" tabindex="-1"></a>app<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/html&#39;</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb204-2"><a href="express-framework.html#cb204-2" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">type</span>(<span class="st">&#39;text/html&#39;</span>)<span class="op">;</span></span>
 <span id="cb204-3"><a href="express-framework.html#cb204-3" tabindex="-1"></a></span>
-<span id="cb204-4"><a href="express-framework.html#cb204-4" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">send</span>(<span class="st">'&lt;h1&gt;Olá Express&lt;/h1&gt;'</span>)<span class="op">;</span></span>
+<span id="cb204-4"><a href="express-framework.html#cb204-4" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">send</span>(<span class="st">&#39;&lt;h1&gt;Olá Express&lt;/h1&gt;&#39;</span>)<span class="op">;</span></span>
 <span id="cb204-5"><a href="express-framework.html#cb204-5" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
 <p>Também é possível usar:</p>
 <div class="sourceCode" id="cb205"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb205-1"><a href="express-framework.html#cb205-1" tabindex="-1"></a>res<span class="op">.</span><span class="fu">set</span>()</span></code></pre></div>
 <p>Exemplo:</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb206-1"><a href="express-framework.html#cb206-1" tabindex="-1"></a>res<span class="op">.</span><span class="fu">set</span>(<span class="st">'Content-Type'</span><span class="op">,</span> <span class="st">'application/json'</span>)<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb206-1"><a href="express-framework.html#cb206-1" tabindex="-1"></a>res<span class="op">.</span><span class="fu">set</span>(<span class="st">&#39;Content-Type&#39;</span><span class="op">,</span> <span class="st">&#39;application/json&#39;</span>)<span class="op">;</span></span></code></pre></div>
 </div>
 <div id="exemplo-completo-usando-res" class="section level2" number="8.10">
-<h2>
-<span class="header-section-number">8.10</span> Exemplo completo usando res<a class="anchor" aria-label="anchor" href="#exemplo-completo-usando-res"><i class="fas fa-link"></i></a>
-</h2>
-<div class="sourceCode" id="cb207"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb207-1"><a href="express-framework.html#cb207-1" tabindex="-1"></a>app<span class="op">.</span><span class="fu">get</span>(<span class="st">'/resposta'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<h2><span class="header-section-number">8.10</span> Exemplo completo usando res</h2>
+<div class="sourceCode" id="cb207"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb207-1"><a href="express-framework.html#cb207-1" tabindex="-1"></a>app<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/resposta&#39;</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
 <span id="cb207-2"><a href="express-framework.html#cb207-2" tabindex="-1"></a></span>
 <span id="cb207-3"><a href="express-framework.html#cb207-3" tabindex="-1"></a>  <span class="kw">const</span> dados <span class="op">=</span> {</span>
-<span id="cb207-4"><a href="express-framework.html#cb207-4" tabindex="-1"></a>    <span class="dt">mensagem</span><span class="op">:</span> <span class="st">'Resposta enviada com sucesso'</span></span>
+<span id="cb207-4"><a href="express-framework.html#cb207-4" tabindex="-1"></a>    <span class="dt">mensagem</span><span class="op">:</span> <span class="st">&#39;Resposta enviada com sucesso&#39;</span></span>
 <span id="cb207-5"><a href="express-framework.html#cb207-5" tabindex="-1"></a>  }<span class="op">;</span></span>
 <span id="cb207-6"><a href="express-framework.html#cb207-6" tabindex="-1"></a></span>
 <span id="cb207-7"><a href="express-framework.html#cb207-7" tabindex="-1"></a>  res</span>
 <span id="cb207-8"><a href="express-framework.html#cb207-8" tabindex="-1"></a>    <span class="op">.</span><span class="fu">status</span>(<span class="dv">200</span>)</span>
-<span id="cb207-9"><a href="express-framework.html#cb207-9" tabindex="-1"></a>    <span class="op">.</span><span class="fu">type</span>(<span class="st">'application/json'</span>)</span>
+<span id="cb207-9"><a href="express-framework.html#cb207-9" tabindex="-1"></a>    <span class="op">.</span><span class="fu">type</span>(<span class="st">&#39;application/json&#39;</span>)</span>
 <span id="cb207-10"><a href="express-framework.html#cb207-10" tabindex="-1"></a>    <span class="op">.</span><span class="fu">json</span>(dados)<span class="op">;</span></span>
 <span id="cb207-11"><a href="express-framework.html#cb207-11" tabindex="-1"></a></span>
 <span id="cb207-12"><a href="express-framework.html#cb207-12" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
 </div>
 <div id="objeto-req" class="section level2" number="8.11">
-<h2>
-<span class="header-section-number">8.11</span> Objeto req<a class="anchor" aria-label="anchor" href="#objeto-req"><i class="fas fa-link"></i></a>
-</h2>
-<p>O objeto <code>req</code> representa a requisição recebida pelo servidor.<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Express.js, &lt;em&gt;Express API Reference&lt;/em&gt;.&lt;/p&gt;"><sup>25</sup></a></span></p>
+<h2><span class="header-section-number">8.11</span> Objeto req</h2>
+<p>O objeto <code>req</code> representa a requisição recebida pelo servidor.<span class="citation"><a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a></span></p>
 <p>Ele contém:</p>
 <ul>
 <li>parâmetros da URL;</li>
@@ -337,16 +323,13 @@
 </ul>
 </div>
 <div id="query-parameters" class="section level2" number="8.12">
-<h2>
-<span class="header-section-number">8.12</span> Query Parameters<a class="anchor" aria-label="anchor" href="#query-parameters"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">8.12</span> Query Parameters</h2>
 <p>Query parameters são parâmetros enviados na URL após <code>?</code>.</p>
 <p>Exemplo:</p>
 <pre class="text"><code>/produtos?categoria=esportivo</code></pre>
 <div id="lendo-query-parameters" class="section level3 unnumbered">
-<h3>Lendo query parameters<a class="anchor" aria-label="anchor" href="#lendo-query-parameters"><i class="fas fa-link"></i></a>
-</h3>
-<div class="sourceCode" id="cb209"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb209-1"><a href="express-framework.html#cb209-1" tabindex="-1"></a>app<span class="op">.</span><span class="fu">get</span>(<span class="st">'/produtos'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<h3>Lendo query parameters</h3>
+<div class="sourceCode" id="cb209"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb209-1"><a href="express-framework.html#cb209-1" tabindex="-1"></a>app<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/produtos&#39;</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
 <span id="cb209-2"><a href="express-framework.html#cb209-2" tabindex="-1"></a></span>
 <span id="cb209-3"><a href="express-framework.html#cb209-3" tabindex="-1"></a>  <span class="kw">const</span> categoria <span class="op">=</span> req<span class="op">.</span><span class="at">query</span><span class="op">.</span><span class="at">categoria</span><span class="op">;</span></span>
 <span id="cb209-4"><a href="express-framework.html#cb209-4" tabindex="-1"></a></span>
@@ -359,21 +342,18 @@
 <pre class="text"><code>http://localhost:3000/produtos?categoria=esportivo</code></pre>
 <p>Resposta:</p>
 <div class="sourceCode" id="cb211"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb211-1"><a href="express-framework.html#cb211-1" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb211-2"><a href="express-framework.html#cb211-2" tabindex="-1"></a>  <span class="dt">"categoriaRecebida"</span><span class="fu">:</span> <span class="st">"esportivo"</span></span>
+<span id="cb211-2"><a href="express-framework.html#cb211-2" tabindex="-1"></a>  <span class="dt">&quot;categoriaRecebida&quot;</span><span class="fu">:</span> <span class="st">&quot;esportivo&quot;</span></span>
 <span id="cb211-3"><a href="express-framework.html#cb211-3" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
 </div>
 </div>
 <div id="path-parameters" class="section level2" number="8.13">
-<h2>
-<span class="header-section-number">8.13</span> Path Parameters<a class="anchor" aria-label="anchor" href="#path-parameters"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">8.13</span> Path Parameters</h2>
 <p>Path parameters são parâmetros inseridos diretamente na rota.</p>
 <p>Exemplo:</p>
 <pre class="text"><code>/produtos/10</code></pre>
 <div id="definindo-parâmetros-na-rota" class="section level3 unnumbered">
-<h3>Definindo parâmetros na rota<a class="anchor" aria-label="anchor" href="#definindo-par%C3%A2metros-na-rota"><i class="fas fa-link"></i></a>
-</h3>
-<div class="sourceCode" id="cb213"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb213-1"><a href="express-framework.html#cb213-1" tabindex="-1"></a>app<span class="op">.</span><span class="fu">get</span>(<span class="st">'/produtos/:id'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<h3>Definindo parâmetros na rota</h3>
+<div class="sourceCode" id="cb213"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb213-1"><a href="express-framework.html#cb213-1" tabindex="-1"></a>app<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/produtos/:id&#39;</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
 <span id="cb213-2"><a href="express-framework.html#cb213-2" tabindex="-1"></a></span>
 <span id="cb213-3"><a href="express-framework.html#cb213-3" tabindex="-1"></a>  <span class="kw">const</span> id <span class="op">=</span> req<span class="op">.</span><span class="at">params</span><span class="op">.</span><span class="at">id</span><span class="op">;</span></span>
 <span id="cb213-4"><a href="express-framework.html#cb213-4" tabindex="-1"></a></span>
@@ -386,34 +366,30 @@
 <pre class="text"><code>http://localhost:3000/produtos/10</code></pre>
 <p>Resposta:</p>
 <div class="sourceCode" id="cb215"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb215-1"><a href="express-framework.html#cb215-1" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb215-2"><a href="express-framework.html#cb215-2" tabindex="-1"></a>  <span class="dt">"idRecebido"</span><span class="fu">:</span> <span class="st">"10"</span></span>
+<span id="cb215-2"><a href="express-framework.html#cb215-2" tabindex="-1"></a>  <span class="dt">&quot;idRecebido&quot;</span><span class="fu">:</span> <span class="st">&quot;10&quot;</span></span>
 <span id="cb215-3"><a href="express-framework.html#cb215-3" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
 </div>
 </div>
 <div id="recebendo-dados-via-post" class="section level2" number="8.14">
-<h2>
-<span class="header-section-number">8.14</span> Recebendo dados via POST<a class="anchor" aria-label="anchor" href="#recebendo-dados-via-post"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">8.14</span> Recebendo dados via POST</h2>
 <p>Para ler dados enviados via POST, precisamos habilitar o parser JSON.</p>
 <div class="sourceCode" id="cb216"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb216-1"><a href="express-framework.html#cb216-1" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>(express<span class="op">.</span><span class="fu">json</span>())<span class="op">;</span></span></code></pre></div>
-<p>Segundo a documentação do Express, <code>express.json()</code> é um middleware que interpreta requisições JSON.<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Express.js, &lt;em&gt;Express.json() Middleware&lt;/em&gt; (2026), &lt;a href="https://expressjs.com/pt-br/4x/api.html#express.json"&gt;https://expressjs.com/pt-br/4x/api.html#express.json&lt;/a&gt;.&lt;/p&gt;'><sup>26</sup></a></span></p>
+<p>Segundo a documentação do Express, <code>express.json()</code> é um middleware que interpreta requisições JSON.<span class="citation"><a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a></span></p>
 </div>
 <div id="lendo-json-enviado-por-post" class="section level2" number="8.15">
-<h2>
-<span class="header-section-number">8.15</span> Lendo JSON enviado por POST<a class="anchor" aria-label="anchor" href="#lendo-json-enviado-por-post"><i class="fas fa-link"></i></a>
-</h2>
-<div class="sourceCode" id="cb217"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb217-1"><a href="express-framework.html#cb217-1" tabindex="-1"></a><span class="kw">const</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">'express'</span>)<span class="op">;</span></span>
+<h2><span class="header-section-number">8.15</span> Lendo JSON enviado por POST</h2>
+<div class="sourceCode" id="cb217"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb217-1"><a href="express-framework.html#cb217-1" tabindex="-1"></a><span class="kw">const</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;express&#39;</span>)<span class="op">;</span></span>
 <span id="cb217-2"><a href="express-framework.html#cb217-2" tabindex="-1"></a></span>
 <span id="cb217-3"><a href="express-framework.html#cb217-3" tabindex="-1"></a><span class="kw">const</span> app <span class="op">=</span> <span class="fu">express</span>()<span class="op">;</span></span>
 <span id="cb217-4"><a href="express-framework.html#cb217-4" tabindex="-1"></a></span>
 <span id="cb217-5"><a href="express-framework.html#cb217-5" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>(express<span class="op">.</span><span class="fu">json</span>())<span class="op">;</span></span>
 <span id="cb217-6"><a href="express-framework.html#cb217-6" tabindex="-1"></a></span>
-<span id="cb217-7"><a href="express-framework.html#cb217-7" tabindex="-1"></a>app<span class="op">.</span><span class="fu">post</span>(<span class="st">'/usuarios'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb217-7"><a href="express-framework.html#cb217-7" tabindex="-1"></a>app<span class="op">.</span><span class="fu">post</span>(<span class="st">&#39;/usuarios&#39;</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
 <span id="cb217-8"><a href="express-framework.html#cb217-8" tabindex="-1"></a></span>
 <span id="cb217-9"><a href="express-framework.html#cb217-9" tabindex="-1"></a>  <span class="kw">const</span> dados <span class="op">=</span> req<span class="op">.</span><span class="at">body</span><span class="op">;</span></span>
 <span id="cb217-10"><a href="express-framework.html#cb217-10" tabindex="-1"></a></span>
 <span id="cb217-11"><a href="express-framework.html#cb217-11" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">status</span>(<span class="dv">201</span>)<span class="op">.</span><span class="fu">json</span>({</span>
-<span id="cb217-12"><a href="express-framework.html#cb217-12" tabindex="-1"></a>    <span class="dt">mensagem</span><span class="op">:</span> <span class="st">'Usuário recebido'</span><span class="op">,</span></span>
+<span id="cb217-12"><a href="express-framework.html#cb217-12" tabindex="-1"></a>    <span class="dt">mensagem</span><span class="op">:</span> <span class="st">&#39;Usuário recebido&#39;</span><span class="op">,</span></span>
 <span id="cb217-13"><a href="express-framework.html#cb217-13" tabindex="-1"></a>    <span class="dt">dados</span><span class="op">:</span> dados</span>
 <span id="cb217-14"><a href="express-framework.html#cb217-14" tabindex="-1"></a>  })<span class="op">;</span></span>
 <span id="cb217-15"><a href="express-framework.html#cb217-15" tabindex="-1"></a></span>
@@ -421,39 +397,35 @@
 <span id="cb217-17"><a href="express-framework.html#cb217-17" tabindex="-1"></a></span>
 <span id="cb217-18"><a href="express-framework.html#cb217-18" tabindex="-1"></a>app<span class="op">.</span><span class="fu">listen</span>(<span class="dv">3000</span>)<span class="op">;</span></span></code></pre></div>
 <div id="json-enviado" class="section level3 unnumbered">
-<h3>JSON enviado<a class="anchor" aria-label="anchor" href="#json-enviado"><i class="fas fa-link"></i></a>
-</h3>
+<h3>JSON enviado</h3>
 <div class="sourceCode" id="cb218"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb218-1"><a href="express-framework.html#cb218-1" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb218-2"><a href="express-framework.html#cb218-2" tabindex="-1"></a>  <span class="dt">"nome"</span><span class="fu">:</span> <span class="st">"Ana"</span><span class="fu">,</span></span>
-<span id="cb218-3"><a href="express-framework.html#cb218-3" tabindex="-1"></a>  <span class="dt">"idade"</span><span class="fu">:</span> <span class="dv">25</span></span>
+<span id="cb218-2"><a href="express-framework.html#cb218-2" tabindex="-1"></a>  <span class="dt">&quot;nome&quot;</span><span class="fu">:</span> <span class="st">&quot;Ana&quot;</span><span class="fu">,</span></span>
+<span id="cb218-3"><a href="express-framework.html#cb218-3" tabindex="-1"></a>  <span class="dt">&quot;idade&quot;</span><span class="fu">:</span> <span class="dv">25</span></span>
 <span id="cb218-4"><a href="express-framework.html#cb218-4" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
 </div>
 <div id="resposta" class="section level3 unnumbered">
-<h3>Resposta<a class="anchor" aria-label="anchor" href="#resposta"><i class="fas fa-link"></i></a>
-</h3>
+<h3>Resposta</h3>
 <div class="sourceCode" id="cb219"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb219-1"><a href="express-framework.html#cb219-1" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb219-2"><a href="express-framework.html#cb219-2" tabindex="-1"></a>  <span class="dt">"mensagem"</span><span class="fu">:</span> <span class="st">"Usuário recebido"</span><span class="fu">,</span></span>
-<span id="cb219-3"><a href="express-framework.html#cb219-3" tabindex="-1"></a>  <span class="dt">"dados"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb219-4"><a href="express-framework.html#cb219-4" tabindex="-1"></a>    <span class="dt">"nome"</span><span class="fu">:</span> <span class="st">"Ana"</span><span class="fu">,</span></span>
-<span id="cb219-5"><a href="express-framework.html#cb219-5" tabindex="-1"></a>    <span class="dt">"idade"</span><span class="fu">:</span> <span class="dv">25</span></span>
+<span id="cb219-2"><a href="express-framework.html#cb219-2" tabindex="-1"></a>  <span class="dt">&quot;mensagem&quot;</span><span class="fu">:</span> <span class="st">&quot;Usuário recebido&quot;</span><span class="fu">,</span></span>
+<span id="cb219-3"><a href="express-framework.html#cb219-3" tabindex="-1"></a>  <span class="dt">&quot;dados&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb219-4"><a href="express-framework.html#cb219-4" tabindex="-1"></a>    <span class="dt">&quot;nome&quot;</span><span class="fu">:</span> <span class="st">&quot;Ana&quot;</span><span class="fu">,</span></span>
+<span id="cb219-5"><a href="express-framework.html#cb219-5" tabindex="-1"></a>    <span class="dt">&quot;idade&quot;</span><span class="fu">:</span> <span class="dv">25</span></span>
 <span id="cb219-6"><a href="express-framework.html#cb219-6" tabindex="-1"></a>  <span class="fu">}</span></span>
 <span id="cb219-7"><a href="express-framework.html#cb219-7" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
 <p>Envie o JSON através do comando CURL</p>
 <div class="sourceCode" id="cb220"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb220-1"><a href="express-framework.html#cb220-1" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-X</span> POST https://localhost:3000/usuarios<span class="dt">\</span></span>
-<span id="cb220-2"><a href="express-framework.html#cb220-2" tabindex="-1"></a>     <span class="at">-H</span> <span class="st">"Content-Type: application/json"</span> <span class="dt">\</span></span>
-<span id="cb220-3"><a href="express-framework.html#cb220-3" tabindex="-1"></a>     <span class="at">-d</span> <span class="st">'{"name":"Ana","idade":25}'</span></span></code></pre></div>
+<span id="cb220-2"><a href="express-framework.html#cb220-2" tabindex="-1"></a>     <span class="at">-H</span> <span class="st">&quot;Content-Type: application/json&quot;</span> <span class="dt">\</span></span>
+<span id="cb220-3"><a href="express-framework.html#cb220-3" tabindex="-1"></a>     <span class="at">-d</span> <span class="st">&#39;{&quot;name&quot;:&quot;Ana&quot;,&quot;idade&quot;:25}&#39;</span></span></code></pre></div>
 </div>
 </div>
 <div id="recebendo-dados-chavevalor" class="section level2" number="8.16">
-<h2>
-<span class="header-section-number">8.16</span> Recebendo dados chave=valor<a class="anchor" aria-label="anchor" href="#recebendo-dados-chavevalor"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">8.16</span> Recebendo dados chave=valor</h2>
 <p>O Express também pode interpretar formulários enviados como:</p>
 <pre class="text"><code>application/x-www-form-urlencoded</code></pre>
 <p>Ative o middleware:</p>
 <div class="sourceCode" id="cb222"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb222-1"><a href="express-framework.html#cb222-1" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>(express<span class="op">.</span><span class="fu">urlencoded</span>({ <span class="dt">extended</span><span class="op">:</span> <span class="kw">true</span> }))<span class="op">;</span></span></code></pre></div>
 <p>Exemplo:</p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb223-1"><a href="express-framework.html#cb223-1" tabindex="-1"></a>app<span class="op">.</span><span class="fu">post</span>(<span class="st">'/login'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<div class="sourceCode" id="cb223"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb223-1"><a href="express-framework.html#cb223-1" tabindex="-1"></a>app<span class="op">.</span><span class="fu">post</span>(<span class="st">&#39;/login&#39;</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
 <span id="cb223-2"><a href="express-framework.html#cb223-2" tabindex="-1"></a></span>
 <span id="cb223-3"><a href="express-framework.html#cb223-3" tabindex="-1"></a>  <span class="kw">const</span> usuario <span class="op">=</span> req<span class="op">.</span><span class="at">body</span><span class="op">.</span><span class="at">usuario</span><span class="op">;</span></span>
 <span id="cb223-4"><a href="express-framework.html#cb223-4" tabindex="-1"></a>  <span class="kw">const</span> senha <span class="op">=</span> req<span class="op">.</span><span class="at">body</span><span class="op">.</span><span class="at">senha</span><span class="op">;</span></span>
@@ -466,38 +438,33 @@
 <span id="cb223-11"><a href="express-framework.html#cb223-11" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
 </div>
 <div id="definindo-o-tipo-de-conteúdo-aceito" class="section level2" number="8.17">
-<h2>
-<span class="header-section-number">8.17</span> Definindo o tipo de conteúdo aceito<a class="anchor" aria-label="anchor" href="#definindo-o-tipo-de-conte%C3%BAdo-aceito"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">8.17</span> Definindo o tipo de conteúdo aceito</h2>
 <p>É possível validar o tipo de conteúdo recebido usando:</p>
 <div class="sourceCode" id="cb224"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb224-1"><a href="express-framework.html#cb224-1" tabindex="-1"></a>req<span class="op">.</span><span class="fu">is</span>()</span></code></pre></div>
 <p>Exemplo:</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb225-1"><a href="express-framework.html#cb225-1" tabindex="-1"></a>app<span class="op">.</span><span class="fu">post</span>(<span class="st">'/dados'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<div class="sourceCode" id="cb225"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb225-1"><a href="express-framework.html#cb225-1" tabindex="-1"></a>app<span class="op">.</span><span class="fu">post</span>(<span class="st">&#39;/dados&#39;</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
 <span id="cb225-2"><a href="express-framework.html#cb225-2" tabindex="-1"></a></span>
-<span id="cb225-3"><a href="express-framework.html#cb225-3" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span>req<span class="op">.</span><span class="fu">is</span>(<span class="st">'application/json'</span>)) {</span>
+<span id="cb225-3"><a href="express-framework.html#cb225-3" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span>req<span class="op">.</span><span class="fu">is</span>(<span class="st">&#39;application/json&#39;</span>)) {</span>
 <span id="cb225-4"><a href="express-framework.html#cb225-4" tabindex="-1"></a></span>
 <span id="cb225-5"><a href="express-framework.html#cb225-5" tabindex="-1"></a>    <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">415</span>)<span class="op">.</span><span class="fu">json</span>({</span>
-<span id="cb225-6"><a href="express-framework.html#cb225-6" tabindex="-1"></a>      <span class="dt">erro</span><span class="op">:</span> <span class="st">'Tipo de conteúdo inválido'</span></span>
+<span id="cb225-6"><a href="express-framework.html#cb225-6" tabindex="-1"></a>      <span class="dt">erro</span><span class="op">:</span> <span class="st">&#39;Tipo de conteúdo inválido&#39;</span></span>
 <span id="cb225-7"><a href="express-framework.html#cb225-7" tabindex="-1"></a>    })<span class="op">;</span></span>
 <span id="cb225-8"><a href="express-framework.html#cb225-8" tabindex="-1"></a></span>
 <span id="cb225-9"><a href="express-framework.html#cb225-9" tabindex="-1"></a>  }</span>
 <span id="cb225-10"><a href="express-framework.html#cb225-10" tabindex="-1"></a></span>
 <span id="cb225-11"><a href="express-framework.html#cb225-11" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">json</span>({</span>
-<span id="cb225-12"><a href="express-framework.html#cb225-12" tabindex="-1"></a>    <span class="dt">mensagem</span><span class="op">:</span> <span class="st">'JSON aceito'</span></span>
+<span id="cb225-12"><a href="express-framework.html#cb225-12" tabindex="-1"></a>    <span class="dt">mensagem</span><span class="op">:</span> <span class="st">&#39;JSON aceito&#39;</span></span>
 <span id="cb225-13"><a href="express-framework.html#cb225-13" tabindex="-1"></a>  })<span class="op">;</span></span>
 <span id="cb225-14"><a href="express-framework.html#cb225-14" tabindex="-1"></a></span>
 <span id="cb225-15"><a href="express-framework.html#cb225-15" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
 <p>Neste exemplo:</p>
 <ul>
-<li>
-<code>415</code> significa <em>Unsupported Media Type</em>;</li>
+<li><code>415</code> significa <em>Unsupported Media Type</em>;</li>
 <li>apenas requisições JSON são aceitas.</li>
 </ul>
 </div>
 <div id="organizando-rotas-na-pasta-routes" class="section level2" number="8.18">
-<h2>
-<span class="header-section-number">8.18</span> Organizando rotas na pasta routes<a class="anchor" aria-label="anchor" href="#organizando-rotas-na-pasta-routes"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">8.18</span> Organizando rotas na pasta routes</h2>
 <p>À medida que o projeto cresce, não é recomendável manter todas as rotas no arquivo principal.</p>
 <p>Uma prática comum é separar as rotas em arquivos.</p>
 <p>Estrutura:</p>
@@ -508,31 +475,29 @@
 └── server.js</code></pre>
 </div>
 <div id="criando-arquivo-de-rotas" class="section level2" number="8.19">
-<h2>
-<span class="header-section-number">8.19</span> Criando arquivo de rotas<a class="anchor" aria-label="anchor" href="#criando-arquivo-de-rotas"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">8.19</span> Criando arquivo de rotas</h2>
 <p>Arquivo:</p>
 <pre class="text"><code>routes/carros.js</code></pre>
 <p>Conteúdo:</p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb228-1"><a href="express-framework.html#cb228-1" tabindex="-1"></a><span class="kw">const</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">'express'</span>)<span class="op">;</span></span>
+<div class="sourceCode" id="cb228"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb228-1"><a href="express-framework.html#cb228-1" tabindex="-1"></a><span class="kw">const</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;express&#39;</span>)<span class="op">;</span></span>
 <span id="cb228-2"><a href="express-framework.html#cb228-2" tabindex="-1"></a></span>
 <span id="cb228-3"><a href="express-framework.html#cb228-3" tabindex="-1"></a><span class="kw">const</span> router <span class="op">=</span> express<span class="op">.</span><span class="fu">Router</span>()<span class="op">;</span></span>
 <span id="cb228-4"><a href="express-framework.html#cb228-4" tabindex="-1"></a></span>
-<span id="cb228-5"><a href="express-framework.html#cb228-5" tabindex="-1"></a>router<span class="op">.</span><span class="fu">get</span>(<span class="st">'/'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb228-5"><a href="express-framework.html#cb228-5" tabindex="-1"></a>router<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/&#39;</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
 <span id="cb228-6"><a href="express-framework.html#cb228-6" tabindex="-1"></a></span>
 <span id="cb228-7"><a href="express-framework.html#cb228-7" tabindex="-1"></a>  <span class="kw">const</span> carros <span class="op">=</span> [</span>
-<span id="cb228-8"><a href="express-framework.html#cb228-8" tabindex="-1"></a>    { <span class="dt">nome</span><span class="op">:</span> <span class="st">'Fusca'</span> }<span class="op">,</span></span>
-<span id="cb228-9"><a href="express-framework.html#cb228-9" tabindex="-1"></a>    { <span class="dt">nome</span><span class="op">:</span> <span class="st">'Ferrari'</span> }</span>
+<span id="cb228-8"><a href="express-framework.html#cb228-8" tabindex="-1"></a>    { <span class="dt">nome</span><span class="op">:</span> <span class="st">&#39;Fusca&#39;</span> }<span class="op">,</span></span>
+<span id="cb228-9"><a href="express-framework.html#cb228-9" tabindex="-1"></a>    { <span class="dt">nome</span><span class="op">:</span> <span class="st">&#39;Ferrari&#39;</span> }</span>
 <span id="cb228-10"><a href="express-framework.html#cb228-10" tabindex="-1"></a>  ]<span class="op">;</span></span>
 <span id="cb228-11"><a href="express-framework.html#cb228-11" tabindex="-1"></a></span>
 <span id="cb228-12"><a href="express-framework.html#cb228-12" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">json</span>(carros)<span class="op">;</span></span>
 <span id="cb228-13"><a href="express-framework.html#cb228-13" tabindex="-1"></a></span>
 <span id="cb228-14"><a href="express-framework.html#cb228-14" tabindex="-1"></a>})<span class="op">;</span></span>
 <span id="cb228-15"><a href="express-framework.html#cb228-15" tabindex="-1"></a></span>
-<span id="cb228-16"><a href="express-framework.html#cb228-16" tabindex="-1"></a>router<span class="op">.</span><span class="fu">get</span>(<span class="st">'/luxo'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb228-16"><a href="express-framework.html#cb228-16" tabindex="-1"></a>router<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/luxo&#39;</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
 <span id="cb228-17"><a href="express-framework.html#cb228-17" tabindex="-1"></a></span>
 <span id="cb228-18"><a href="express-framework.html#cb228-18" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">json</span>({</span>
-<span id="cb228-19"><a href="express-framework.html#cb228-19" tabindex="-1"></a>    <span class="dt">categoria</span><span class="op">:</span> <span class="st">'Luxo'</span></span>
+<span id="cb228-19"><a href="express-framework.html#cb228-19" tabindex="-1"></a>    <span class="dt">categoria</span><span class="op">:</span> <span class="st">&#39;Luxo&#39;</span></span>
 <span id="cb228-20"><a href="express-framework.html#cb228-20" tabindex="-1"></a>  })<span class="op">;</span></span>
 <span id="cb228-21"><a href="express-framework.html#cb228-21" tabindex="-1"></a></span>
 <span id="cb228-22"><a href="express-framework.html#cb228-22" tabindex="-1"></a>})<span class="op">;</span></span>
@@ -540,54 +505,46 @@
 <span id="cb228-24"><a href="express-framework.html#cb228-24" tabindex="-1"></a>module<span class="op">.</span><span class="at">exports</span> <span class="op">=</span> router<span class="op">;</span></span></code></pre></div>
 </div>
 <div id="utilizando-as-rotas-no-arquivo-principal" class="section level2" number="8.20">
-<h2>
-<span class="header-section-number">8.20</span> Utilizando as rotas no arquivo principal<a class="anchor" aria-label="anchor" href="#utilizando-as-rotas-no-arquivo-principal"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">8.20</span> Utilizando as rotas no arquivo principal</h2>
 <p>Arquivo:</p>
 <pre class="text"><code>server.js</code></pre>
-<div class="sourceCode" id="cb230"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb230-1"><a href="express-framework.html#cb230-1" tabindex="-1"></a><span class="kw">const</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">'express'</span>)<span class="op">;</span></span>
+<div class="sourceCode" id="cb230"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb230-1"><a href="express-framework.html#cb230-1" tabindex="-1"></a><span class="kw">const</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;express&#39;</span>)<span class="op">;</span></span>
 <span id="cb230-2"><a href="express-framework.html#cb230-2" tabindex="-1"></a></span>
 <span id="cb230-3"><a href="express-framework.html#cb230-3" tabindex="-1"></a><span class="kw">const</span> app <span class="op">=</span> <span class="fu">express</span>()<span class="op">;</span></span>
 <span id="cb230-4"><a href="express-framework.html#cb230-4" tabindex="-1"></a></span>
-<span id="cb230-5"><a href="express-framework.html#cb230-5" tabindex="-1"></a><span class="kw">const</span> carrosRoutes <span class="op">=</span> <span class="pp">require</span>(<span class="st">'./routes/carros'</span>)<span class="op">;</span></span>
+<span id="cb230-5"><a href="express-framework.html#cb230-5" tabindex="-1"></a><span class="kw">const</span> carrosRoutes <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;./routes/carros&#39;</span>)<span class="op">;</span></span>
 <span id="cb230-6"><a href="express-framework.html#cb230-6" tabindex="-1"></a></span>
 <span id="cb230-7"><a href="express-framework.html#cb230-7" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>(express<span class="op">.</span><span class="fu">json</span>())<span class="op">;</span></span>
 <span id="cb230-8"><a href="express-framework.html#cb230-8" tabindex="-1"></a></span>
-<span id="cb230-9"><a href="express-framework.html#cb230-9" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>(<span class="st">'/carros'</span><span class="op">,</span> carrosRoutes)<span class="op">;</span></span>
+<span id="cb230-9"><a href="express-framework.html#cb230-9" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>(<span class="st">&#39;/carros&#39;</span><span class="op">,</span> carrosRoutes)<span class="op">;</span></span>
 <span id="cb230-10"><a href="express-framework.html#cb230-10" tabindex="-1"></a></span>
 <span id="cb230-11"><a href="express-framework.html#cb230-11" tabindex="-1"></a>app<span class="op">.</span><span class="fu">listen</span>(<span class="dv">3000</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
-<span id="cb230-12"><a href="express-framework.html#cb230-12" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">'Servidor executando'</span>)<span class="op">;</span></span>
+<span id="cb230-12"><a href="express-framework.html#cb230-12" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&#39;Servidor executando&#39;</span>)<span class="op">;</span></span>
 <span id="cb230-13"><a href="express-framework.html#cb230-13" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
 </div>
 <div id="como-funciona-o-app.use" class="section level2" number="8.21">
-<h2>
-<span class="header-section-number">8.21</span> Como funciona o app.use<a class="anchor" aria-label="anchor" href="#como-funciona-o-app.use"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">8.21</span> Como funciona o app.use</h2>
 <p>O comando:</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb231-1"><a href="express-framework.html#cb231-1" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>(<span class="st">'/carros'</span><span class="op">,</span> carrosRoutes)<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb231-1"><a href="express-framework.html#cb231-1" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>(<span class="st">&#39;/carros&#39;</span><span class="op">,</span> carrosRoutes)<span class="op">;</span></span></code></pre></div>
 <p>define que todas as rotas presentes em <code>carrosRoutes</code> terão o prefixo:</p>
 <pre class="text"><code>/carros</code></pre>
 <p>Assim:</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb233-1"><a href="express-framework.html#cb233-1" tabindex="-1"></a>router<span class="op">.</span><span class="fu">get</span>(<span class="st">'/'</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb233-1"><a href="express-framework.html#cb233-1" tabindex="-1"></a>router<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/&#39;</span>)</span></code></pre></div>
 <p>torna-se:</p>
 <pre class="text"><code>/carros</code></pre>
 <p>E:</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb235-1"><a href="express-framework.html#cb235-1" tabindex="-1"></a>router<span class="op">.</span><span class="fu">get</span>(<span class="st">'/luxo'</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb235-1"><a href="express-framework.html#cb235-1" tabindex="-1"></a>router<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/luxo&#39;</span>)</span></code></pre></div>
 <p>torna-se:</p>
 <pre class="text"><code>/carros/luxo</code></pre>
 </div>
 <div id="testando-as-rotas-1" class="section level2" number="8.22">
-<h2>
-<span class="header-section-number">8.22</span> Testando as rotas<a class="anchor" aria-label="anchor" href="#testando-as-rotas-1"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">8.22</span> Testando as rotas</h2>
 <p>Agora podemos acessar:</p>
 <pre class="text"><code>http://localhost:3000/carros
 http://localhost:3000/carros/luxo</code></pre>
 </div>
 <div id="considerações-finais-1" class="section level2" number="8.23">
-<h2>
-<span class="header-section-number">8.23</span> Considerações finais<a class="anchor" aria-label="anchor" href="#considera%C3%A7%C3%B5es-finais-1"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">8.23</span> Considerações finais</h2>
 <p>Neste capítulo estudamos:</p>
 <ul>
 <li>o framework Express;</li>
@@ -605,69 +562,42 @@ http://localhost:3000/carros/luxo</code></pre>
 
 </div>
 </div>
+<div class="footnotes">
+<hr />
+<ol start="20">
+<li id="fn20"><p>Express.js, <em>Express - Framework Web Para Node.js</em> (2026), <a href="https://expressjs.com/pt-br/">https://expressjs.com/pt-br/</a>; MDN Web Docs, <em>Introdução Ao Express/Node</em> (2025), <a href="https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Introduction">https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Introduction</a>.<a href="express-framework.html#fnref20" class="footnote-back">↩︎</a></p></li>
+<li id="fn21"><p>Express.js, <em>Express - Framework Web Para Node.js</em>.<a href="express-framework.html#fnref21" class="footnote-back">↩︎</a></p></li>
+<li id="fn22"><p>MDN Web Docs, <em>Introdução Ao Express/Node</em>.<a href="express-framework.html#fnref22" class="footnote-back">↩︎</a></p></li>
+<li id="fn23"><p>Express.js, <em>Express API Reference</em> (2026), <a href="https://expressjs.com/pt-br/4x/api.html">https://expressjs.com/pt-br/4x/api.html</a>.<a href="express-framework.html#fnref23" class="footnote-back">↩︎</a></p></li>
+<li id="fn24"><p>Express.js, <em>Express API Reference</em>.<a href="express-framework.html#fnref24" class="footnote-back">↩︎</a></p></li>
+<li id="fn25"><p>Express.js, <em>Express API Reference</em>.<a href="express-framework.html#fnref25" class="footnote-back">↩︎</a></p></li>
+<li id="fn26"><p>Express.js, <em>Express.json() Middleware</em> (2026), <a href="https://expressjs.com/pt-br/4x/api.html#express.json">https://expressjs.com/pt-br/4x/api.html#express.json</a>.<a href="express-framework.html#fnref26" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+  </main>
 
-  <div class="chapter-nav">
-<div class="prev"><a href="npm-json-e-organiza%C3%A7%C3%A3o-de-projetos-node-js.html"><span class="header-section-number">7</span> NPM, JSON e organização de projetos Node JS</a></div>
-<div class="next"><a href="integra-de-apis-node.js-com-banco-de-dados.html"><span class="header-section-number">9</span> Integra de APIs Node.js com Banco de Dados</a></div>
-</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#express-framework"><span class="header-section-number">8</span> Express Framework</a></li>
-<li><a class="nav-link" href="#o-que-%C3%A9-o-express"><span class="header-section-number">8.1</span> O que é o Express</a></li>
-<li><a class="nav-link" href="#criando-um-projeto-express"><span class="header-section-number">8.2</span> Criando um projeto Express</a></li>
-<li><a class="nav-link" href="#criando-o-primeiro-servidor-express"><span class="header-section-number">8.3</span> Criando o primeiro servidor Express</a></li>
-<li>
-<a class="nav-link" href="#configurando-rotas-na-raiz-do-projeto"><span class="header-section-number">8.4</span> Configurando rotas na raiz do projeto</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#exemplo-completo">Exemplo completo</a></li>
-<li><a class="nav-link" href="#como-funciona-internamente">Como funciona internamente</a></li>
-</ul>
-</li>
-<li><a class="nav-link" href="#objeto-res"><span class="header-section-number">8.5</span> Objeto res</a></li>
-<li><a class="nav-link" href="#retornando-texto-simples"><span class="header-section-number">8.6</span> Retornando texto simples</a></li>
-<li><a class="nav-link" href="#retornando-json"><span class="header-section-number">8.7</span> Retornando JSON</a></li>
-<li><a class="nav-link" href="#informando-status-http"><span class="header-section-number">8.8</span> Informando status HTTP</a></li>
-<li><a class="nav-link" href="#informando-o-tipo-de-conte%C3%BAdo"><span class="header-section-number">8.9</span> Informando o tipo de conteúdo</a></li>
-<li><a class="nav-link" href="#exemplo-completo-usando-res"><span class="header-section-number">8.10</span> Exemplo completo usando res</a></li>
-<li><a class="nav-link" href="#objeto-req"><span class="header-section-number">8.11</span> Objeto req</a></li>
-<li>
-<a class="nav-link" href="#query-parameters"><span class="header-section-number">8.12</span> Query Parameters</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#lendo-query-parameters">Lendo query parameters</a></li></ul>
-</li>
-<li>
-<a class="nav-link" href="#path-parameters"><span class="header-section-number">8.13</span> Path Parameters</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#definindo-par%C3%A2metros-na-rota">Definindo parâmetros na rota</a></li></ul>
-</li>
-<li><a class="nav-link" href="#recebendo-dados-via-post"><span class="header-section-number">8.14</span> Recebendo dados via POST</a></li>
-<li>
-<a class="nav-link" href="#lendo-json-enviado-por-post"><span class="header-section-number">8.15</span> Lendo JSON enviado por POST</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#json-enviado">JSON enviado</a></li>
-<li><a class="nav-link" href="#resposta">Resposta</a></li>
-</ul>
-</li>
-<li><a class="nav-link" href="#recebendo-dados-chavevalor"><span class="header-section-number">8.16</span> Recebendo dados chave=valor</a></li>
-<li><a class="nav-link" href="#definindo-o-tipo-de-conte%C3%BAdo-aceito"><span class="header-section-number">8.17</span> Definindo o tipo de conteúdo aceito</a></li>
-<li><a class="nav-link" href="#organizando-rotas-na-pasta-routes"><span class="header-section-number">8.18</span> Organizando rotas na pasta routes</a></li>
-<li><a class="nav-link" href="#criando-arquivo-de-rotas"><span class="header-section-number">8.19</span> Criando arquivo de rotas</a></li>
-<li><a class="nav-link" href="#utilizando-as-rotas-no-arquivo-principal"><span class="header-section-number">8.20</span> Utilizando as rotas no arquivo principal</a></li>
-<li><a class="nav-link" href="#como-funciona-o-app.use"><span class="header-section-number">8.21</span> Como funciona o app.use</a></li>
-<li><a class="nav-link" href="#testando-as-rotas-1"><span class="header-section-number">8.22</span> Testando as rotas</a></li>
-<li><a class="nav-link" href="#considera%C3%A7%C3%B5es-finais-1"><span class="header-section-number">8.23</span> Considerações finais</a></li>
-</ul>
+  <div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <div id="book-on-this-page"></div>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/rstudio/bookdown-demo/blob/master/08-express.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/rstudio/bookdown-demo/edit/master/08-express.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+          <li><a id="book-source" href="#">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="#">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
-</div>
+      </div>
     </nav>
-</div>
+  </div>
 
 </div>
 </div> <!-- .container -->
 
-<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+<footer class="bg-primary text-light mt-5">
+  <div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Desenvolvimento web Avançado</strong>" was written by Juliana Costa Silva. It was last built on 2026-06-16.</p>
+    <p>"<strong>Desenvolvimento web Avançado</strong>" was written by Juliana Costa Silva. It was last built on 2026-10-30.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -676,5 +606,8 @@ http://localhost:3000/carros/luxo</code></pre>
 
 </div></div>
 </footer>
+
+
 </body>
+
 </html>
