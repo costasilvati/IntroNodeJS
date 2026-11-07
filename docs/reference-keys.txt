@@ -5,6 +5,7 @@ tab:tabela-indicadores-backend
 tab:tabela-status-backend
 tab:tabela-criterios-backend
 tab:tabela-cronograma-backend
+tab:copa-status
 javascript-basico-para-nodejs
 o-que-é-javascript-no-contexto-do-node.js
 declaração-de-variáveis
@@ -251,4 +252,19 @@ testando-o-fluxo-completo
 resultado-esperado-da-listagem-de-vendas
 por-que-usar-inner-join
 considerações-finais-4
+copa-api-financas
+por-que-esta-atividade
+copa-regras
+copa-sorteio
+as-quatro-rodadas
+copa-estudo
+rodada-1-códigos-de-status-e-regras-gerais
+rodada-2-caça-ao-bug
+rodada-3-parcelas-e-faturas
+divisão-das-parcelas-em-centavos-rf6
+em-qual-fatura-cai-cada-parcela-rf9
+rodada-4-aposta-final
+copa-carta-bug
+checklist-da-equipe-antes-da-aula
+copa-gabarito-treino
 materiais-extras

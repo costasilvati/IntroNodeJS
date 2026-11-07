@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>_&gt;13 Copa da API Finanças: roteiro de estudo | Desenvolvimento web Avançado</title>
+<meta name="author" content="Juliana Costa Silva">
+<meta name="description" content="Disciplina: Desenvolvimento Web Back-end (Node.js) — Engenharia de Software Atividade: jogo em sala, em equipe, sobre o Projeto 2 (API de Controle Financeiro) Formato: estudo em casa (1 semana) +...">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
+<meta property="og:title" content="_&gt;13 Copa da API Finanças: roteiro de estudo | Desenvolvimento web Avançado">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Disciplina: Desenvolvimento Web Back-end (Node.js) — Engenharia de Software Atividade: jogo em sala, em equipe, sobre o Projeto 2 (API de Controle Financeiro) Formato: estudo em casa (1 semana) +...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="_&gt;13 Copa da API Finanças: roteiro de estudo | Desenvolvimento web Avançado">
+<meta name="twitter:description" content="Disciplina: Desenvolvimento Web Back-end (Node.js) — Engenharia de Software Atividade: jogo em sala, em equipe, sobre o Projeto 2 (API de Controle Financeiro) Formato: estudo em casa (1 semana) +...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.11.0/transition.js"></script><script src="libs/bs3compat-0.11.0/tabs.js"></script><script src="libs/bs3compat-0.11.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Desenvolvimento web Avançado</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Sobre este livro</a></li>
+<li><a class="" href="javascript-basico-para-nodejs.html"><span class="header-section-number">1</span> JavaScript Basico para NodeJS</a></li>
+<li><a class="" href="javascript-e-objetos.html"><span class="header-section-number">2</span> Javascript e Objetos</a></li>
+<li><a class="" href="atividade-avaliativa.html"><span class="header-section-number">3</span> Atividade avaliativa</a></li>
+<li><a class="" href="web-services.html"><span class="header-section-number">4</span> Web Services</a></li>
+<li><a class="" href="lista-de-atividades-estudo-javascript-nodejs.html"><span class="header-section-number">5</span> Lista de Atividades — Estudo JavaScript (NodeJS)</a></li>
+<li><a class="" href="criando-um-servidor-http-com-nodejs.html"><span class="header-section-number">6</span> Criando um servidor HTTP com Nodejs</a></li>
+<li><a class="" href="npm-json-e-organiza%C3%A7%C3%A3o-de-projetos-node-js.html"><span class="header-section-number">7</span> NPM, JSON e organização de projetos Node JS</a></li>
+<li><a class="" href="express-framework.html"><span class="header-section-number">8</span> Express Framework</a></li>
+<li><a class="" href="integra-de-apis-node.js-com-banco-de-dados.html"><span class="header-section-number">9</span> Integra de APIs Node.js com Banco de Dados</a></li>
+<li><a class="" href="apis-node-js-com-jwt.html"><span class="header-section-number">10</span> APIs Node JS com JWT</a></li>
+<li><a class="" href="projeto-api-financas.html"><span class="header-section-number">11</span> Projeto Final — API de Controle Financeiro</a></li>
+<li><a class="" href="loja-de-carros-com-clientes-e-vendas.html"><span class="header-section-number">12</span> Loja de carros com clientes e vendas</a></li>
+<li><a class="active" href="copa-api-financas.html"><span class="header-section-number">13</span> Copa da API Finanças: roteiro de estudo</a></li>
+<li><a class="" href="materiais-extras.html"><span class="header-section-number">14</span> Materiais extras</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/rstudio/bookdown-demo">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="copa-api-financas" class="section level1" number="13">
+<h1>
+<span class="header-section-number">_&gt;13</span> Copa da API Finanças: roteiro de estudo<a class="anchor" aria-label="anchor" href="#copa-api-financas"><i class="fas fa-link"></i></a>
+</h1>
+<p><strong>Disciplina:</strong> Desenvolvimento Web Back-end (Node.js) — Engenharia de Software
+<strong>Atividade:</strong> jogo em sala, em equipe, sobre o Projeto 2 (API de Controle Financeiro)
+<strong>Formato:</strong> estudo em casa (1 semana) + torneio em sala (90 min)
+<strong>Equipes:</strong> as mesmas do Projeto 2 (3 integrantes; a equipe com 2 integrantes segue a regra da Seção <a href="copa-api-financas.html#copa-sorteio">13.2.1</a>)
+<strong>Material de referência:</strong> <a href="https://costasilvati.github.io/IntroNodeJS/projeto-api-financas.html">descrição do Projeto 2</a>, especialmente as seções 4 (requisitos funcionais), 6 (entidades), 7 (padrão de respostas), 8 (estrutura) e 13 (checklist final)</p>
+<hr>
+<div id="por-que-esta-atividade" class="section level2" number="13.1">
+<h2>
+<span class="header-section-number">13.1</span> Por que esta atividade?<a class="anchor" aria-label="anchor" href="#por-que-esta-atividade"><i class="fas fa-link"></i></a>
+</h2>
+<p>O Projeto 2 é avaliado também por uma <strong>apresentação em que todos os integrantes precisam explicar o código</strong> (critério E.16). A Copa é um ensaio em formato de jogo: ela cobra exatamente as regras que mais derrubam nota no projeto (códigos de status, isolamento entre usuários, parcelamento em centavos, previsão de faturas, segurança da senha e do token) e faz isso de modo que <strong>cada integrante responda sozinho</strong> em algum momento.</p>
+<blockquote>
+<p><strong>Atenção:</strong> quem responde em cada pergunta é definido por sorteio ou rodízio na hora. Não adianta a equipe ter “a pessoa que sabe tudo”: todos precisam estudar.</p>
+</blockquote>
+<hr>
+</div>
+<div id="copa-regras" class="section level2" number="13.2">
+<h2>
+<span class="header-section-number">13.2</span> Como funciona o jogo<a class="anchor" aria-label="anchor" href="#copa-regras"><i class="fas fa-link"></i></a>
+</h2>
+<div id="copa-sorteio" class="section level3" number="13.2.1">
+<h3>
+<span class="header-section-number">13.2.1</span> O sorteio de quem responde<a class="anchor" aria-label="anchor" href="#copa-sorteio"><i class="fas fa-link"></i></a>
+</h3>
+<p>No início da aula, cada integrante recebe um número: <strong>1, 2 ou 3</strong>. Em cada pergunta, o slide (ou o dado da professora) indica qual número responde. Esse integrante responde <strong>sem ajuda</strong> da equipe; conversar com o colega durante a resposta anula o ponto.</p>
+<ul>
+<li>
+<strong>Equipe com 2 integrantes:</strong> quando o número sorteado for 3, a própria equipe escolhe quem responde.</li>
+<li>
+<strong>Integrante ausente:</strong> quando o número dele for sorteado, a equipe escolhe quem responde, mas a pergunta vale metade dos pontos.</li>
+</ul>
+</div>
+<div id="as-quatro-rodadas" class="section level3" number="13.2.2">
+<h3>
+<span class="header-section-number">13.2.2</span> As quatro rodadas<a class="anchor" aria-label="anchor" href="#as-quatro-rodadas"><i class="fas fa-link"></i></a>
+</h3>
+<div class="inline-table"><table class="table table-sm">
+<colgroup>
+<col width="25%">
+<col width="25%">
+<col width="25%">
+<col width="25%">
+</colgroup>
+<thead><tr class="header">
+<th>Rodada</th>
+<th>Nome</th>
+<th>Formato</th>
+<th>Pontos</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><strong>Status relâmpago</strong></td>
+<td>Kahoot com 12 perguntas, 1 celular por equipe; cada pergunta indica o integrante que responde</td>
+<td>1 por acerto (máx. 12)</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><strong>Caça ao bug</strong></td>
+<td>Envelope com 4 trechos de código do projeto, cada um com um erro; 4 min por trecho</td>
+<td>0, 1 ou 2 por trecho (máx. 8)</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><strong>Fatura relâmpago</strong></td>
+<td>4 casos de parcelamento no cartão; todas as equipes mostram a resposta ao mesmo tempo</td>
+<td>0, 1 ou 2 por caso (máx. 8) + bônus de explicação</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><strong>Aposta final</strong></td>
+<td>Uma pergunta conceitual; a equipe aposta até metade dos pontos que tem</td>
+<td>± valor apostado</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Bônus da carta-bug:</strong> +2 pontos para cada equipe cuja carta-bug (Seção <a href="copa-api-financas.html#copa-carta-bug">13.4</a>) for usada no jogo.</p>
+<hr>
+</div>
+</div>
+<div id="copa-estudo" class="section level2" number="13.3">
+<h2>
+<span class="header-section-number">13.3</span> O que estudar<a class="anchor" aria-label="anchor" href="#copa-estudo"><i class="fas fa-link"></i></a>
+</h2>
+<p>Use a descrição do projeto e o código que a sua equipe já escreveu. Para cada tópico abaixo há um <strong>treino</strong>; resolvam em equipe e confiram o gabarito no final do roteiro (Seção <a href="copa-api-financas.html#copa-gabarito-treino">13.6</a>).</p>
+<div id="rodada-1-códigos-de-status-e-regras-gerais" class="section level3" number="13.3.1">
+<h3>
+<span class="header-section-number">13.3.1</span> Rodada 1: códigos de status e regras gerais<a class="anchor" aria-label="anchor" href="#rodada-1-c%C3%B3digos-de-status-e-regras-gerais"><i class="fas fa-link"></i></a>
+</h3>
+<p>O projeto define um padrão único de respostas (seção 7 da descrição). Memorize <strong>quando</strong> usar cada código — e, principalmente, as situações que costumam gerar dúvida.</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:copa-status">Table 13.1: </span> Códigos de status do Projeto 2</caption>
+<colgroup>
+<col width="33%">
+<col width="33%">
+<col width="33%">
+</colgroup>
+<thead><tr class="header">
+<th>Código</th>
+<th>Significado</th>
+<th>Situações no projeto</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>200</td>
+<td>OK</td>
+<td>Consultas, atualizações e login</td>
+</tr>
+<tr class="even">
+<td>201</td>
+<td>Created</td>
+<td>Criação de usuário, categoria, fonte/destino e lançamento</td>
+</tr>
+<tr class="odd">
+<td>204</td>
+<td>No Content</td>
+<td>Exclusão bem-sucedida, <strong>sem corpo</strong>
+</td>
+</tr>
+<tr class="even">
+<td>400</td>
+<td>Bad Request</td>
+<td>Campo ausente, formato inválido, regra de negócio violada</td>
+</tr>
+<tr class="odd">
+<td>401</td>
+<td>Unauthorized</td>
+<td>Token ausente, inválido ou expirado; login com credenciais erradas</td>
+</tr>
+<tr class="even">
+<td>404</td>
+<td>Not Found</td>
+<td>Registro inexistente <strong>ou de outro usuário</strong>; rota inexistente</td>
+</tr>
+<tr class="odd">
+<td>409</td>
+<td>Conflict</td>
+<td>E-mail/CPF duplicado, nome repetido, exclusão com vínculos</td>
+</tr>
+<tr class="even">
+<td>500</td>
+<td>Internal Server Error</td>
+<td>Erro inesperado (detalhe só no log do servidor)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Pontos de atenção:</p>
+<ul>
+<li>
+<strong>401 × 404 × 403.</strong> O projeto não usa 403 para “registro de outro usuário”: a resposta é <strong>404</strong>, porque um 403 confirmaria que o registro existe.</li>
+<li>
+<strong>Normalização.</strong> E-mail é gravado em minúsculas e sem espaços; CPF só com dígitos. Por isso <code>Ana@Email.com</code> e <code>ana@email.com</code> são o <strong>mesmo</strong> e-mail (409).</li>
+<li>
+<strong>De onde vem o id do usuário?</strong> Sempre do token (<code>req.auth.id</code>), nunca do corpo, da URL ou da query string (RF3).</li>
+<li>
+<strong>Senha.</strong> Gravada com <code>bcrypt.hash</code> e conferida com <code>bcrypt.compare</code>. O campo <code>senha_hash</code> <strong>nunca</strong> aparece em uma resposta.</li>
+<li>
+<strong>Token.</strong> Assinado com <code>jsonwebtoken</code>, chave no <code>.env</code> (<code>JWT_SECRET</code>), validade de 1 hora (<code>expiresIn: '1h'</code>); rotas protegidas com <code>express-jwt</code>.</li>
+<li>
+<strong>Organização.</strong> SQL só em <code>models/</code>; consultas sempre parametrizadas com <code>?</code>; rotas com <code>express.Router()</code>; módulos em CommonJS.</li>
+</ul>
+<p><strong>Treino 1.</strong> Escreva o código de status de cada situação:</p>
+<ol style="list-style-type: lower-alpha">
+<li>
+<code>POST /categorias</code> com um nome que o usuário já tem para o mesmo tipo.</li>
+<li>
+<code>PUT /fontes-destinos/12</code> com <code>tipo: "poupanca"</code>.</li>
+<li>
+<code>GET /relatorios/categorias</code> sem <code>inicio</code> e <code>fim</code>.</li>
+<li>
+<code>POST /auth/login</code> com a senha errada.</li>
+<li>
+<code>GET /rota-que-nao-existe</code>.</li>
+<li>
+<code>POST /lancamentos</code> válido.</li>
+</ol>
+</div>
+<div id="rodada-2-caça-ao-bug" class="section level3" number="13.3.2">
+<h3>
+<span class="header-section-number">13.3.2</span> Rodada 2: caça ao bug<a class="anchor" aria-label="anchor" href="#rodada-2-ca%C3%A7a-ao-bug"><i class="fas fa-link"></i></a>
+</h3>
+<p>Na Rodada 2 a equipe recebe trechos de código <strong>parecidos com os do projeto</strong>, cada um com <strong>um erro principal</strong>. Para cada trecho, a folha de respostas pede: <strong>(1)</strong> a linha ou o trecho com erro, <strong>(2)</strong> a regra do projeto que foi violada e <strong>(3)</strong> a correção.</p>
+<p>Os erros sorteados vêm desta lista (todos estão no checklist da seção 13 ou nos requisitos):</p>
+<ul>
+<li>consulta que não filtra pelo dono (<code>usuario_id</code>) — <strong>isolamento</strong> (RF3);</li>
+<li>resposta que devolve o <code>senha_hash</code>;</li>
+<li>SQL montado com <em>template string</em> ou concatenação, em vez de <code>?</code>;</li>
+<li>SQL fora de <code>models/</code>;</li>
+<li>parcelamento que não fecha o valor exato (divisão sem centavos);</li>
+<li>
+<code>DECIMAL</code>/<code>SUM</code> usado como número sem <code>Number()</code> (chega como texto no <code>mysql2</code>);</li>
+<li>lançamento de <strong>saída</strong> aceitando categoria de <strong>entrada</strong>;</li>
+<li>e-mail ou CPF sem normalização, ou duplicidade checada só com <code>SELECT</code>, sem <code>UNIQUE</code> no banco;</li>
+<li>rota protegida sem o middleware <code>protegerRota</code>, ou chave do JWT escrita no código;</li>
+<li>falta de <code>return</code> depois de uma resposta de erro (duas respostas para a mesma requisição).</li>
+</ul>
+<p><strong>Treino 2.</strong> Encontre o erro, diga a regra violada e corrija:</p>
+<div class="sourceCode" id="cb363"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb363-1"><a href="copa-api-financas.html#cb363-1" tabindex="-1"></a><span class="co">// routes/fontesDestinos.js</span></span>
+<span id="cb363-2"><a href="copa-api-financas.html#cb363-2" tabindex="-1"></a>router<span class="op">.</span><span class="fu">delete</span>(<span class="st">'/:id'</span><span class="op">,</span> <span class="kw">async</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb363-3"><a href="copa-api-financas.html#cb363-3" tabindex="-1"></a>  <span class="kw">const</span> [r] <span class="op">=</span> <span class="cf">await</span> db<span class="op">.</span><span class="fu">query</span>(</span>
+<span id="cb363-4"><a href="copa-api-financas.html#cb363-4" tabindex="-1"></a>    <span class="vs">`DELETE FROM fontes_destinos WHERE id = </span><span class="sc">${</span>req<span class="op">.</span><span class="at">params</span><span class="op">.</span><span class="at">id</span><span class="sc">}</span><span class="vs"> AND usuario_id = </span><span class="sc">${</span>req<span class="op">.</span><span class="at">auth</span><span class="op">.</span><span class="at">id</span><span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb363-5"><a href="copa-api-financas.html#cb363-5" tabindex="-1"></a>  )<span class="op">;</span></span>
+<span id="cb363-6"><a href="copa-api-financas.html#cb363-6" tabindex="-1"></a>  <span class="cf">if</span> (r<span class="op">.</span><span class="at">affectedRows</span> <span class="op">===</span> <span class="dv">0</span>) {</span>
+<span id="cb363-7"><a href="copa-api-financas.html#cb363-7" tabindex="-1"></a>    res<span class="op">.</span><span class="fu">status</span>(<span class="dv">404</span>)<span class="op">.</span><span class="fu">json</span>({ <span class="dt">erro</span><span class="op">:</span> <span class="st">'Fonte/destino não encontrada.'</span> })<span class="op">;</span></span>
+<span id="cb363-8"><a href="copa-api-financas.html#cb363-8" tabindex="-1"></a>  }</span>
+<span id="cb363-9"><a href="copa-api-financas.html#cb363-9" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">status</span>(<span class="dv">204</span>)<span class="op">.</span><span class="fu">end</span>()<span class="op">;</span></span>
+<span id="cb363-10"><a href="copa-api-financas.html#cb363-10" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+<blockquote>
+<p>Dica: este trecho tem <strong>três</strong> problemas. Na Rodada 2, cada trecho tem um erro principal, e a resposta precisa acertá-lo para valer 2 pontos.</p>
+</blockquote>
+</div>
+<div id="rodada-3-parcelas-e-faturas" class="section level3" number="13.3.3">
+<h3>
+<span class="header-section-number">13.3.3</span> Rodada 3: parcelas e faturas<a class="anchor" aria-label="anchor" href="#rodada-3-parcelas-e-faturas"><i class="fas fa-link"></i></a>
+</h3>
+<div id="divisão-das-parcelas-em-centavos-rf6" class="section level4" number="13.3.3.1">
+<h4>
+<span class="header-section-number">13.3.3.1</span> Divisão das parcelas em centavos (RF6)<a class="anchor" aria-label="anchor" href="#divis%C3%A3o-das-parcelas-em-centavos-rf6"><i class="fas fa-link"></i></a>
+</h4>
+<p>Dinheiro não pode ser dividido em ponto flutuante e arredondado parcela a parcela. O jeito correto é trabalhar em <strong>centavos inteiros</strong> e colocar a diferença na <strong>primeira</strong> parcela:</p>
+<div class="sourceCode" id="cb364"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb364-1"><a href="copa-api-financas.html#cb364-1" tabindex="-1"></a><span class="co">// utils/parcelas.js</span></span>
+<span id="cb364-2"><a href="copa-api-financas.html#cb364-2" tabindex="-1"></a><span class="kw">function</span> <span class="fu">dividirEmParcelas</span>(valor<span class="op">,</span> n) {</span>
+<span id="cb364-3"><a href="copa-api-financas.html#cb364-3" tabindex="-1"></a>  <span class="kw">const</span> totalCentavos <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(valor <span class="op">*</span> <span class="dv">100</span>)<span class="op">;</span></span>
+<span id="cb364-4"><a href="copa-api-financas.html#cb364-4" tabindex="-1"></a>  <span class="kw">const</span> base <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>(totalCentavos <span class="op">/</span> n)<span class="op">;</span></span>
+<span id="cb364-5"><a href="copa-api-financas.html#cb364-5" tabindex="-1"></a>  <span class="kw">const</span> resto <span class="op">=</span> totalCentavos <span class="op">-</span> base <span class="op">*</span> n<span class="op">;</span>          <span class="co">// 0 ≤ resto &lt; n</span></span>
+<span id="cb364-6"><a href="copa-api-financas.html#cb364-6" tabindex="-1"></a>  <span class="cf">return</span> <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>({ <span class="dt">length</span><span class="op">:</span> n }<span class="op">,</span> (_<span class="op">,</span> i) <span class="kw">=&gt;</span></span>
+<span id="cb364-7"><a href="copa-api-financas.html#cb364-7" tabindex="-1"></a>    (i <span class="op">===</span> <span class="dv">0</span> <span class="op">?</span> base <span class="op">+</span> resto <span class="op">:</span> base) <span class="op">/</span> <span class="dv">100</span></span>
+<span id="cb364-8"><a href="copa-api-financas.html#cb364-8" tabindex="-1"></a>  )<span class="op">;</span></span>
+<span id="cb364-9"><a href="copa-api-financas.html#cb364-9" tabindex="-1"></a>}</span>
+<span id="cb364-10"><a href="copa-api-financas.html#cb364-10" tabindex="-1"></a></span>
+<span id="cb364-11"><a href="copa-api-financas.html#cb364-11" tabindex="-1"></a>module<span class="op">.</span><span class="at">exports</span> <span class="op">=</span> { dividirEmParcelas }<span class="op">;</span></span></code></pre></div>
+<p>A soma das parcelas tem de ser <strong>exatamente</strong> o valor da compra (item do checklist: “R$ 100,00 em 3× soma exatamente R$ 100,00”).</p>
+<p><strong>Treino 3.</strong> Quais são as parcelas de R$ 250,00 em 7×? Confira que a soma dá R$ 250,00.</p>
+</div>
+<div id="em-qual-fatura-cai-cada-parcela-rf9" class="section level4" number="13.3.3.2">
+<h4>
+<span class="header-section-number">13.3.3.2</span> Em qual fatura cai cada parcela? (RF9)<a class="anchor" aria-label="anchor" href="#em-qual-fatura-cai-cada-parcela-rf9"><i class="fas fa-link"></i></a>
+</h4>
+<p>A regra completa está no RF9. Resumo, passo a passo:</p>
+<ol style="list-style-type: decimal">
+<li>
+<strong>Mês de fechamento da 1ª parcela.</strong> Compra <strong>antes</strong> do dia de fechamento entra na fatura que fecha no <strong>mesmo mês</strong>; compra <strong>no dia</strong> do fechamento <strong>ou depois</strong> entra na fatura do <strong>mês seguinte</strong>.</li>
+<li>
+<strong>Demais parcelas.</strong> A parcela <em>k</em> cai <em>k − 1</em> meses depois da primeira.</li>
+<li>
+<strong>Vencimento.</strong> Se o dia de vencimento for <strong>maior</strong> que o de fechamento, a fatura vence no <strong>mesmo mês</strong> do fechamento; senão, vence no <strong>mês seguinte</strong>.</li>
+<li>
+<strong>Referência.</strong> É o mês do <strong>vencimento</strong>, no formato <code>AAAA-MM</code>.</li>
+<li>
+<strong>Dias que não existem</strong> (por exemplo, dia 30 em fevereiro) viram o <strong>último dia</strong> do mês.</li>
+</ol>
+<p><strong>Exemplo resolvido.</strong> Cartão com fechamento no dia 15 e vencimento no dia 22; compra de R$ 90,00 em 3× em 12/05/2026.</p>
+<div class="inline-table"><table style="width:100%;" class="table table-sm">
+<colgroup>
+<col width="16%">
+<col width="16%">
+<col width="16%">
+<col width="16%">
+<col width="16%">
+<col width="16%">
+</colgroup>
+<thead><tr class="header">
+<th>Parcela</th>
+<th>Valor</th>
+<th>Fechamento</th>
+<th>Vencimento</th>
+<th>Referência</th>
+<th>Por quê</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>1/3</td>
+<td>R$ 30,00</td>
+<td>15/05/2026</td>
+<td>22/05/2026</td>
+<td>2026-05</td>
+<td>dia 12 &lt; 15 → mesmo mês; 22 &gt; 15 → vence no mesmo mês</td>
+</tr>
+<tr class="even">
+<td>2/3</td>
+<td>R$ 30,00</td>
+<td>15/06/2026</td>
+<td>22/06/2026</td>
+<td>2026-06</td>
+<td>1 mês depois</td>
+</tr>
+<tr class="odd">
+<td>3/3</td>
+<td>R$ 30,00</td>
+<td>15/07/2026</td>
+<td>22/07/2026</td>
+<td>2026-07</td>
+<td>2 meses depois</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Limite do cartão.</strong> Limite utilizado = soma das parcelas cuja fatura <strong>ainda não venceu</strong>; limite disponível = limite total − limite utilizado.</p>
+<p><strong>Treino 4.</strong> Cartão com fechamento no dia 18 e vencimento no dia 3; compra de R$ 250,00 em 2× em 18/08/2026. Monte a tabela (valor, fechamento, vencimento e referência de cada parcela).</p>
+<p><strong>Treino 5.</strong> Cartão com fechamento no dia 31 e vencimento no dia 8; compra de R$ 120,00 em 2× em 31/01/2026. Cuidado com fevereiro.</p>
+</div>
+</div>
+<div id="rodada-4-aposta-final" class="section level3" number="13.3.4">
+<h3>
+<span class="header-section-number">13.3.4</span> Rodada 4: aposta final<a class="anchor" aria-label="anchor" href="#rodada-4-aposta-final"><i class="fas fa-link"></i></a>
+</h3>
+<p>A pergunta final é <strong>conceitual</strong>: a equipe precisa explicar o <strong>porquê</strong> de uma decisão do projeto, citando os comandos ou recursos envolvidos. Estudem em especial:</p>
+<ul>
+<li>por que o <strong>cadastro usa transação</strong> e o que acontece se uma das inserções falhar (<code>beginTransaction</code>, <code>commit</code>, <code>rollback</code>; com pool, a transação usa uma conexão obtida por <code>pool.getConnection</code>);</li>
+<li>por que a duplicidade de e-mail/CPF deve ser garantida pelo <strong>banco</strong> (<code>UNIQUE</code>) e não apenas por um <code>SELECT</code> antes do <code>INSERT</code>;</li>
+<li>por que o registro de outro usuário responde <strong>404</strong> e não 403;</li>
+<li>por que os totais dos relatórios são calculados em SQL (<code>SUM</code>/<code>GROUP BY</code>) e convertidos com <code>Number()</code>.</li>
+</ul>
+<p><strong>Treino 6.</strong> Expliquem, em até 4 linhas, por que <code>UNIQUE</code> no banco é necessário mesmo que a rota faça um <code>SELECT</code> antes de inserir.</p>
+<hr>
+</div>
+</div>
+<div id="copa-carta-bug" class="section level2" number="13.4">
+<h2>
+<span class="header-section-number">13.4</span> Carta-bug: a contribuição da equipe<a class="anchor" aria-label="anchor" href="#copa-carta-bug"><i class="fas fa-link"></i></a>
+</h2>
+<p>Cada equipe deve enviar <strong>uma carta-bug</strong> pelo Moodle <strong>até a véspera da aula</strong>. As melhores cartas entram na Rodada 2 e valem <strong>+2 pontos</strong> para a equipe autora.</p>
+<p><strong>O que enviar:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Um trecho de <strong>6 a 15 linhas</strong> de código no estilo do projeto (Express, <code>mysql2</code>, JWT), com <strong>um</strong> erro ligado a uma regra do Projeto 2.</li>
+<li>A <strong>resposta</strong>: linha do erro, regra violada (cite o RF ou o item do checklist) e o código corrigido.</li>
+</ol>
+<p><strong>Regras:</strong></p>
+<ul>
+<li>O erro precisa ser de <strong>regra do projeto</strong> (status, isolamento, segurança, validação, centavos, faturas, organização), não de digitação.</li>
+<li>O trecho não pode ser cópia literal do código de outra equipe.</li>
+<li>Cartas muito parecidas com as da professora ou de outra equipe não pontuam.</li>
+</ul>
+<p><strong>Modelo:</strong></p>
+<div class="sourceCode" id="cb365"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb365-1"><a href="copa-api-financas.html#cb365-1" tabindex="-1"></a>**Equipe:** Equipe 07</span>
+<span id="cb365-2"><a href="copa-api-financas.html#cb365-2" tabindex="-1"></a>**Arquivo:** routes/categorias.js</span>
+<span id="cb365-3"><a href="copa-api-financas.html#cb365-3" tabindex="-1"></a></span>
+<span id="cb365-4"><a href="copa-api-financas.html#cb365-4" tabindex="-1"></a><span class="in">```javascript</span></span>
+<span id="cb365-5"><a href="copa-api-financas.html#cb365-5" tabindex="-1"></a><span class="co">// trecho com o erro</span></span>
+<span id="cb365-6"><a href="copa-api-financas.html#cb365-6" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb365-7"><a href="copa-api-financas.html#cb365-7" tabindex="-1"></a></span>
+<span id="cb365-8"><a href="copa-api-financas.html#cb365-8" tabindex="-1"></a>**Erro (linha):** ...</span>
+<span id="cb365-9"><a href="copa-api-financas.html#cb365-9" tabindex="-1"></a>**Regra violada:** RF... / item do checklist ...</span>
+<span id="cb365-10"><a href="copa-api-financas.html#cb365-10" tabindex="-1"></a>**Correção:**</span>
+<span id="cb365-11"><a href="copa-api-financas.html#cb365-11" tabindex="-1"></a></span>
+<span id="cb365-12"><a href="copa-api-financas.html#cb365-12" tabindex="-1"></a><span class="in">```javascript</span></span>
+<span id="cb365-13"><a href="copa-api-financas.html#cb365-13" tabindex="-1"></a><span class="co">// trecho corrigido</span></span>
+<span id="cb365-14"><a href="copa-api-financas.html#cb365-14" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<hr>
+</div>
+<div id="checklist-da-equipe-antes-da-aula" class="section level2" number="13.5">
+<h2>
+<span class="header-section-number">13.5</span> Checklist da equipe antes da aula<a class="anchor" aria-label="anchor" href="#checklist-da-equipe-antes-da-aula"><i class="fas fa-link"></i></a>
+</h2>
+<ul class="task-list">
+<li><label><input type="checkbox">Todos sabem o código de status de cada situação da Tabela <a href="copa-api-financas.html#tab:copa-status">13.1</a>.</label></li>
+<li><label><input type="checkbox">Todos explicam por que o id do usuário vem de <code>req.auth.id</code> e por que outro usuário recebe 404.</label></li>
+<li><label><input type="checkbox">Todos sabem calcular as parcelas em centavos e a fatura de cada parcela.</label></li>
+<li><label><input type="checkbox">Todos sabem por que o <code>senha_hash</code> não pode sair na resposta e onde fica a chave do JWT.</label></li>
+<li><label><input type="checkbox">A equipe resolveu os seis treinos e conferiu o gabarito.</label></li>
+<li><label><input type="checkbox">A carta-bug foi enviada pelo Moodle.</label></li>
+<li><label><input type="checkbox">Pelo menos um celular por equipe com o aplicativo ou o site do Kahoot funcionando.</label></li>
+</ul>
+<hr>
+</div>
+<div id="copa-gabarito-treino" class="section level2" number="13.6">
+<h2>
+<span class="header-section-number">13.6</span> Gabarito dos treinos<a class="anchor" aria-label="anchor" href="#copa-gabarito-treino"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>Treino 1.</strong> a) 409; b) 400 (<code>tipo</code> deve ser <code>renda</code>, <code>conta</code> ou <code>cartao_credito</code>); c) 400; d) 401, com mensagem genérica; e) 404, em JSON; f) 201.</p>
+<p><strong>Treino 2.</strong></p>
+<ol style="list-style-type: decimal">
+<li>
+<strong>SQL montado com <em>template string</em></strong> (regra: consultas parametrizadas com <code>?</code>), o que permite injeção de SQL.</li>
+<li>
+<strong>SQL dentro de <code>routes/</code></strong> (regra: SQL só em <code>models/</code>).</li>
+<li>
+<strong>Falta de <code>return</code></strong> depois do 404: a execução continua até o <code>res.status(204)</code> e o Express tenta responder duas vezes (<code>ERR_HTTP_HEADERS_SENT</code>).</li>
+</ol>
+<div class="sourceCode" id="cb366"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb366-1"><a href="copa-api-financas.html#cb366-1" tabindex="-1"></a><span class="co">// models/FonteDestino.js</span></span>
+<span id="cb366-2"><a href="copa-api-financas.html#cb366-2" tabindex="-1"></a><span class="kw">static</span> <span class="kw">async</span> <span class="fu">excluir</span>(id<span class="op">,</span> usuarioId) {</span>
+<span id="cb366-3"><a href="copa-api-financas.html#cb366-3" tabindex="-1"></a>  <span class="kw">const</span> [r] <span class="op">=</span> <span class="cf">await</span> db<span class="op">.</span><span class="fu">query</span>(</span>
+<span id="cb366-4"><a href="copa-api-financas.html#cb366-4" tabindex="-1"></a>    <span class="st">'DELETE FROM fontes_destinos WHERE id = ? AND usuario_id = ?'</span><span class="op">,</span></span>
+<span id="cb366-5"><a href="copa-api-financas.html#cb366-5" tabindex="-1"></a>    [id<span class="op">,</span> usuarioId]</span>
+<span id="cb366-6"><a href="copa-api-financas.html#cb366-6" tabindex="-1"></a>  )<span class="op">;</span></span>
+<span id="cb366-7"><a href="copa-api-financas.html#cb366-7" tabindex="-1"></a>  <span class="cf">return</span> r<span class="op">.</span><span class="at">affectedRows</span> <span class="op">&gt;</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb366-8"><a href="copa-api-financas.html#cb366-8" tabindex="-1"></a>}</span>
+<span id="cb366-9"><a href="copa-api-financas.html#cb366-9" tabindex="-1"></a></span>
+<span id="cb366-10"><a href="copa-api-financas.html#cb366-10" tabindex="-1"></a><span class="co">// routes/fontesDestinos.js</span></span>
+<span id="cb366-11"><a href="copa-api-financas.html#cb366-11" tabindex="-1"></a>router<span class="op">.</span><span class="fu">delete</span>(<span class="st">'/:id'</span><span class="op">,</span> <span class="kw">async</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb366-12"><a href="copa-api-financas.html#cb366-12" tabindex="-1"></a>  <span class="kw">const</span> excluiu <span class="op">=</span> <span class="cf">await</span> FonteDestino<span class="op">.</span><span class="fu">excluir</span>(req<span class="op">.</span><span class="at">params</span><span class="op">.</span><span class="at">id</span><span class="op">,</span> req<span class="op">.</span><span class="at">auth</span><span class="op">.</span><span class="at">id</span>)<span class="op">;</span></span>
+<span id="cb366-13"><a href="copa-api-financas.html#cb366-13" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span>excluiu) {</span>
+<span id="cb366-14"><a href="copa-api-financas.html#cb366-14" tabindex="-1"></a>    <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">404</span>)<span class="op">.</span><span class="fu">json</span>({ <span class="dt">erro</span><span class="op">:</span> <span class="st">'Fonte/destino não encontrada.'</span> })<span class="op">;</span></span>
+<span id="cb366-15"><a href="copa-api-financas.html#cb366-15" tabindex="-1"></a>  }</span>
+<span id="cb366-16"><a href="copa-api-financas.html#cb366-16" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">status</span>(<span class="dv">204</span>)<span class="op">.</span><span class="fu">end</span>()<span class="op">;</span></span>
+<span id="cb366-17"><a href="copa-api-financas.html#cb366-17" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+<p>(No projeto completo, a exclusão também precisa verificar lançamentos vinculados e responder 409.)</p>
+<p><strong>Treino 3.</strong> 25.000 centavos ÷ 7 = 3.571 centavos, com resto 3. Parcelas: R$ 35,74 + 6 × R$ 35,71 = R$ 250,00.</p>
+<p><strong>Treino 4.</strong></p>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th>Parcela</th>
+<th>Valor</th>
+<th>Fechamento</th>
+<th>Vencimento</th>
+<th>Referência</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>1/2</td>
+<td>R$ 125,00</td>
+<td>18/09/2026</td>
+<td>03/10/2026</td>
+<td>2026-10</td>
+</tr>
+<tr class="even">
+<td>2/2</td>
+<td>R$ 125,00</td>
+<td>18/10/2026</td>
+<td>03/11/2026</td>
+<td>2026-11</td>
+</tr>
+</tbody>
+</table></div>
+<p>A compra foi <strong>no dia</strong> do fechamento, então a 1ª parcela vai para o fechamento do mês seguinte (setembro); como o vencimento (3) é menor que o fechamento (18), a fatura vence no mês seguinte ao fechamento.</p>
+<p><strong>Treino 5.</strong></p>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th>Parcela</th>
+<th>Valor</th>
+<th>Fechamento</th>
+<th>Vencimento</th>
+<th>Referência</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>1/2</td>
+<td>R$ 60,00</td>
+<td>28/02/2026</td>
+<td>08/03/2026</td>
+<td>2026-03</td>
+</tr>
+<tr class="even">
+<td>2/2</td>
+<td>R$ 60,00</td>
+<td>31/03/2026</td>
+<td>08/04/2026</td>
+<td>2026-04</td>
+</tr>
+</tbody>
+</table></div>
+<p>A compra foi no dia 31, que é o dia do fechamento, então vai para fevereiro; fevereiro de 2026 não tem dia 31, então o fechamento é no último dia (28/02).</p>
+<p><strong>Treino 6.</strong> Duas requisições simultâneas podem fazer o <code>SELECT</code> ao mesmo tempo, ambas não encontram o e-mail e ambas inserem: o resultado é um e-mail duplicado (condição de corrida). A restrição <code>UNIQUE</code> faz o próprio banco recusar o segundo <code>INSERT</code> (erro <code>ER_DUP_ENTRY</code>), que a API converte em 409.</p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="loja-de-carros-com-clientes-e-vendas.html"><span class="header-section-number">12</span> Loja de carros com clientes e vendas</a></div>
+<div class="next"><a href="materiais-extras.html"><span class="header-section-number">14</span> Materiais extras</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#copa-api-financas"><span class="header-section-number">13</span> Copa da API Finanças: roteiro de estudo</a></li>
+<li><a class="nav-link" href="#por-que-esta-atividade"><span class="header-section-number">13.1</span> Por que esta atividade?</a></li>
+<li>
+<a class="nav-link" href="#copa-regras"><span class="header-section-number">13.2</span> Como funciona o jogo</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#copa-sorteio"><span class="header-section-number">13.2.1</span> O sorteio de quem responde</a></li>
+<li><a class="nav-link" href="#as-quatro-rodadas"><span class="header-section-number">13.2.2</span> As quatro rodadas</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#copa-estudo"><span class="header-section-number">13.3</span> O que estudar</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#rodada-1-c%C3%B3digos-de-status-e-regras-gerais"><span class="header-section-number">13.3.1</span> Rodada 1: códigos de status e regras gerais</a></li>
+<li><a class="nav-link" href="#rodada-2-ca%C3%A7a-ao-bug"><span class="header-section-number">13.3.2</span> Rodada 2: caça ao bug</a></li>
+<li><a class="nav-link" href="#rodada-3-parcelas-e-faturas"><span class="header-section-number">13.3.3</span> Rodada 3: parcelas e faturas</a></li>
+<li><a class="nav-link" href="#rodada-4-aposta-final"><span class="header-section-number">13.3.4</span> Rodada 4: aposta final</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#copa-carta-bug"><span class="header-section-number">13.4</span> Carta-bug: a contribuição da equipe</a></li>
+<li><a class="nav-link" href="#checklist-da-equipe-antes-da-aula"><span class="header-section-number">13.5</span> Checklist da equipe antes da aula</a></li>
+<li><a class="nav-link" href="#copa-gabarito-treino"><span class="header-section-number">13.6</span> Gabarito dos treinos</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/rstudio/bookdown-demo/blob/master/13-copa-api-financas-roteiro-estudo.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/rstudio/bookdown-demo/edit/master/13-copa-api-financas-roteiro-estudo.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Desenvolvimento web Avançado</strong>" was written by Juliana Costa Silva. It was last built on 2026-11-06.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>
