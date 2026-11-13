@@ -559,7 +559,7 @@
 <span id="cb268-22"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-22" tabindex="-1"></a></span>
 <span id="cb268-23"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-23" tabindex="-1"></a>    <span class="kw">const</span> sql <span class="op">=</span> <span class="vs">`</span></span>
 <span id="cb268-24"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-24" tabindex="-1"></a><span class="vs">      INSERT INTO carros (nome, marca, ano, preco)</span></span>
-<span id="cb268-25"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-25" tabindex="-1"></a><span class="vs">      VALUES (?, ?, ?, ?)</span></span>
+<span id="cb268-25"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-25" tabindex="-1"></a><span class="vs">      VALUES (?, ?, ?, ?, ?)</span></span>
 <span id="cb268-26"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-26" tabindex="-1"></a><span class="vs">    `</span><span class="op">;</span></span>
 <span id="cb268-27"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-27" tabindex="-1"></a></span>
 <span id="cb268-28"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-28" tabindex="-1"></a>    connection<span class="op">.</span><span class="fu">query</span>(</span>
@@ -568,7 +568,7 @@
 <span id="cb268-31"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-31" tabindex="-1"></a>        dados<span class="op">.</span><span class="at">nome</span><span class="op">,</span></span>
 <span id="cb268-32"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-32" tabindex="-1"></a>        dados<span class="op">.</span><span class="at">marca</span><span class="op">,</span></span>
 <span id="cb268-33"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-33" tabindex="-1"></a>        dados<span class="op">.</span><span class="at">ano</span><span class="op">,</span></span>
-<span id="cb268-34"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-34" tabindex="-1"></a>        dados<span class="op">.</span><span class="at">preco</span></span>
+<span id="cb268-34"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-34" tabindex="-1"></a>        dados<span class="op">.</span><span class="at">preco</span><span class="op">,</span> dados<span class="op">.</span><span class="at">placa</span></span>
 <span id="cb268-35"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-35" tabindex="-1"></a>      ]<span class="op">,</span></span>
 <span id="cb268-36"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-36" tabindex="-1"></a>      callback</span>
 <span id="cb268-37"><a href="integra-de-apis-node.js-com-banco-de-dados.html#cb268-37" tabindex="-1"></a>    )<span class="op">;</span></span>
@@ -774,7 +774,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Desenvolvimento web Avançado</strong>" was written by Juliana Costa Silva. It was last built on 2026-11-06.</p>
+    <p>"<strong>Desenvolvimento web Avançado</strong>" was written by Juliana Costa Silva. It was last built on 2026-11-13.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

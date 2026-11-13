@@ -454,96 +454,50 @@
 <li><label><input type="checkbox">A carta-bug foi enviada pelo Moodle.</label></li>
 <li><label><input type="checkbox">Pelo menos um celular por equipe com o aplicativo ou o site do Kahoot funcionando.</label></li>
 </ul>
-<hr>
 </div>
 <div id="copa-gabarito-treino" class="section level2" number="13.6">
 <h2>
 <span class="header-section-number">13.6</span> Gabarito dos treinos<a class="anchor" aria-label="anchor" href="#copa-gabarito-treino"><i class="fas fa-link"></i></a>
 </h2>
-<p><strong>Treino 1.</strong> a) 409; b) 400 (<code>tipo</code> deve ser <code>renda</code>, <code>conta</code> ou <code>cartao_credito</code>); c) 400; d) 401, com mensagem genérica; e) 404, em JSON; f) 201.</p>
-<p><strong>Treino 2.</strong></p>
-<ol style="list-style-type: decimal">
-<li>
-<strong>SQL montado com <em>template string</em></strong> (regra: consultas parametrizadas com <code>?</code>), o que permite injeção de SQL.</li>
-<li>
-<strong>SQL dentro de <code>routes/</code></strong> (regra: SQL só em <code>models/</code>).</li>
-<li>
-<strong>Falta de <code>return</code></strong> depois do 404: a execução continua até o <code>res.status(204)</code> e o Express tenta responder duas vezes (<code>ERR_HTTP_HEADERS_SENT</code>).</li>
-</ol>
-<div class="sourceCode" id="cb366"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb366-1"><a href="copa-api-financas.html#cb366-1" tabindex="-1"></a><span class="co">// models/FonteDestino.js</span></span>
-<span id="cb366-2"><a href="copa-api-financas.html#cb366-2" tabindex="-1"></a><span class="kw">static</span> <span class="kw">async</span> <span class="fu">excluir</span>(id<span class="op">,</span> usuarioId) {</span>
-<span id="cb366-3"><a href="copa-api-financas.html#cb366-3" tabindex="-1"></a>  <span class="kw">const</span> [r] <span class="op">=</span> <span class="cf">await</span> db<span class="op">.</span><span class="fu">query</span>(</span>
-<span id="cb366-4"><a href="copa-api-financas.html#cb366-4" tabindex="-1"></a>    <span class="st">'DELETE FROM fontes_destinos WHERE id = ? AND usuario_id = ?'</span><span class="op">,</span></span>
-<span id="cb366-5"><a href="copa-api-financas.html#cb366-5" tabindex="-1"></a>    [id<span class="op">,</span> usuarioId]</span>
-<span id="cb366-6"><a href="copa-api-financas.html#cb366-6" tabindex="-1"></a>  )<span class="op">;</span></span>
-<span id="cb366-7"><a href="copa-api-financas.html#cb366-7" tabindex="-1"></a>  <span class="cf">return</span> r<span class="op">.</span><span class="at">affectedRows</span> <span class="op">&gt;</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb366-8"><a href="copa-api-financas.html#cb366-8" tabindex="-1"></a>}</span>
-<span id="cb366-9"><a href="copa-api-financas.html#cb366-9" tabindex="-1"></a></span>
-<span id="cb366-10"><a href="copa-api-financas.html#cb366-10" tabindex="-1"></a><span class="co">// routes/fontesDestinos.js</span></span>
-<span id="cb366-11"><a href="copa-api-financas.html#cb366-11" tabindex="-1"></a>router<span class="op">.</span><span class="fu">delete</span>(<span class="st">'/:id'</span><span class="op">,</span> <span class="kw">async</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
-<span id="cb366-12"><a href="copa-api-financas.html#cb366-12" tabindex="-1"></a>  <span class="kw">const</span> excluiu <span class="op">=</span> <span class="cf">await</span> FonteDestino<span class="op">.</span><span class="fu">excluir</span>(req<span class="op">.</span><span class="at">params</span><span class="op">.</span><span class="at">id</span><span class="op">,</span> req<span class="op">.</span><span class="at">auth</span><span class="op">.</span><span class="at">id</span>)<span class="op">;</span></span>
-<span id="cb366-13"><a href="copa-api-financas.html#cb366-13" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span>excluiu) {</span>
-<span id="cb366-14"><a href="copa-api-financas.html#cb366-14" tabindex="-1"></a>    <span class="cf">return</span> res<span class="op">.</span><span class="fu">status</span>(<span class="dv">404</span>)<span class="op">.</span><span class="fu">json</span>({ <span class="dt">erro</span><span class="op">:</span> <span class="st">'Fonte/destino não encontrada.'</span> })<span class="op">;</span></span>
-<span id="cb366-15"><a href="copa-api-financas.html#cb366-15" tabindex="-1"></a>  }</span>
-<span id="cb366-16"><a href="copa-api-financas.html#cb366-16" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">status</span>(<span class="dv">204</span>)<span class="op">.</span><span class="fu">end</span>()<span class="op">;</span></span>
-<span id="cb366-17"><a href="copa-api-financas.html#cb366-17" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
-<p>(No projeto completo, a exclusão também precisa verificar lançamentos vinculados e responder 409.)</p>
-<p><strong>Treino 3.</strong> 25.000 centavos ÷ 7 = 3.571 centavos, com resto 3. Parcelas: R$ 35,74 + 6 × R$ 35,71 = R$ 250,00.</p>
-<p><strong>Treino 4.</strong></p>
-<div class="inline-table"><table class="table table-sm">
-<thead><tr class="header">
-<th>Parcela</th>
-<th>Valor</th>
-<th>Fechamento</th>
-<th>Vencimento</th>
-<th>Referência</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td>1/2</td>
-<td>R$ 125,00</td>
-<td>18/09/2026</td>
-<td>03/10/2026</td>
-<td>2026-10</td>
-</tr>
-<tr class="even">
-<td>2/2</td>
-<td>R$ 125,00</td>
-<td>18/10/2026</td>
-<td>03/11/2026</td>
-<td>2026-11</td>
-</tr>
-</tbody>
-</table></div>
-<p>A compra foi <strong>no dia</strong> do fechamento, então a 1ª parcela vai para o fechamento do mês seguinte (setembro); como o vencimento (3) é menor que o fechamento (18), a fatura vence no mês seguinte ao fechamento.</p>
-<p><strong>Treino 5.</strong></p>
-<div class="inline-table"><table class="table table-sm">
-<thead><tr class="header">
-<th>Parcela</th>
-<th>Valor</th>
-<th>Fechamento</th>
-<th>Vencimento</th>
-<th>Referência</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td>1/2</td>
-<td>R$ 60,00</td>
-<td>28/02/2026</td>
-<td>08/03/2026</td>
-<td>2026-03</td>
-</tr>
-<tr class="even">
-<td>2/2</td>
-<td>R$ 60,00</td>
-<td>31/03/2026</td>
-<td>08/04/2026</td>
-<td>2026-04</td>
-</tr>
-</tbody>
-</table></div>
-<p>A compra foi no dia 31, que é o dia do fechamento, então vai para fevereiro; fevereiro de 2026 não tem dia 31, então o fechamento é no último dia (28/02).</p>
-<p><strong>Treino 6.</strong> Duas requisições simultâneas podem fazer o <code>SELECT</code> ao mesmo tempo, ambas não encontram o e-mail e ambas inserem: o resultado é um e-mail duplicado (condição de corrida). A restrição <code>UNIQUE</code> faz o próprio banco recusar o segundo <code>INSERT</code> (erro <code>ER_DUP_ENTRY</code>), que a API converte em 409.</p>
+<p>Disponível após o dia 13/11/2026 as 23:59.</p>
+<!-- **Treino 1.** a) 409; b) 400 (`tipo` deve ser `renda`, `conta` ou `cartao_credito`); c) 400; d) 401, com mensagem genérica; e) 404, em JSON; f) 201. -->
+<!-- **Treino 2.** -->
+<!-- 1. **SQL montado com *template string*** (regra: consultas parametrizadas com `?`), o que permite injeção de SQL. -->
+<!-- 2. **SQL dentro de `routes/`** (regra: SQL só em `models/`). -->
+<!-- 3. **Falta de `return`** depois do 404: a execução continua até o `res.status(204)` e o Express tenta responder duas vezes (`ERR_HTTP_HEADERS_SENT`). -->
+<!-- ```javascript -->
+<!-- // models/FonteDestino.js -->
+<!-- static async excluir(id, usuarioId) { -->
+<!--   const [r] = await db.query( -->
+<!--     'DELETE FROM fontes_destinos WHERE id = ? AND usuario_id = ?', -->
+<!--     [id, usuarioId] -->
+<!--   ); -->
+<!--   return r.affectedRows > 0; -->
+<!-- } -->
+<!-- // routes/fontesDestinos.js -->
+<!-- router.delete('/:id', async (req, res) => { -->
+<!--   const excluiu = await FonteDestino.excluir(req.params.id, req.auth.id); -->
+<!--   if (!excluiu) { -->
+<!--     return res.status(404).json({ erro: 'Fonte/destino não encontrada.' }); -->
+<!--   } -->
+<!--   res.status(204).end(); -->
+<!-- }); -->
+<!-- ``` -->
+<!-- (No projeto completo, a exclusão também precisa verificar lançamentos vinculados e responder 409.) -->
+<!-- **Treino 3.** 25.000 centavos ÷ 7 = 3.571 centavos, com resto 3. Parcelas: R$ 35,74 + 6 × R$ 35,71 = R$ 250,00. -->
+<!-- **Treino 4.** -->
+<!-- | Parcela | Valor | Fechamento | Vencimento | Referência | -->
+<!-- |---|---|---|---|---| -->
+<!-- | 1/2 | R$ 125,00 | 18/09/2026 | 03/10/2026 | 2026-10 | -->
+<!-- | 2/2 | R$ 125,00 | 18/10/2026 | 03/11/2026 | 2026-11 | -->
+<!-- A compra foi **no dia** do fechamento, então a 1ª parcela vai para o fechamento do mês seguinte (setembro); como o vencimento (3) é menor que o fechamento (18), a fatura vence no mês seguinte ao fechamento. -->
+<!-- **Treino 5.** -->
+<!-- | Parcela | Valor | Fechamento | Vencimento | Referência | -->
+<!-- |---|---|---|---|---| -->
+<!-- | 1/2 | R$ 60,00 | 28/02/2026 | 08/03/2026 | 2026-03 | -->
+<!-- | 2/2 | R$ 60,00 | 31/03/2026 | 08/04/2026 | 2026-04 | -->
+<!-- A compra foi no dia 31, que é o dia do fechamento, então vai para fevereiro; fevereiro de 2026 não tem dia 31, então o fechamento é no último dia (28/02). -->
+<!-- **Treino 6.** Duas requisições simultâneas podem fazer o `SELECT` ao mesmo tempo, ambas não encontram o e-mail e ambas inserem: o resultado é um e-mail duplicado (condição de corrida). A restrição `UNIQUE` faz o próprio banco recusar o segundo `INSERT` (erro `ER_DUP_ENTRY`), que a API converte em 409. -->
 
 </div>
 </div>
@@ -589,7 +543,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Desenvolvimento web Avançado</strong>" was written by Juliana Costa Silva. It was last built on 2026-11-06.</p>
+    <p>"<strong>Desenvolvimento web Avançado</strong>" was written by Juliana Costa Silva. It was last built on 2026-11-13.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

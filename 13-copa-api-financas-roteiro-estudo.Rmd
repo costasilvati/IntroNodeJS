@@ -218,7 +218,6 @@ Cada equipe deve enviar **uma carta-bug** pelo Moodle **até a véspera da aula*
 - [ ] A carta-bug foi enviada pelo Moodle.
 - [ ] Pelo menos um celular por equipe com o aplicativo ou o site do Kahoot funcionando.
 
----
 
 ## Gabarito dos treinos {#copa-gabarito-treino}
 

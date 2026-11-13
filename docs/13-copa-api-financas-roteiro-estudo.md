@@ -218,58 +218,60 @@ Cada equipe deve enviar **uma carta-bug** pelo Moodle **até a véspera da aula*
 - [ ] A carta-bug foi enviada pelo Moodle.
 - [ ] Pelo menos um celular por equipe com o aplicativo ou o site do Kahoot funcionando.
 
----
 
 ## Gabarito dos treinos {#copa-gabarito-treino}
 
-**Treino 1.** a) 409; b) 400 (`tipo` deve ser `renda`, `conta` ou `cartao_credito`); c) 400; d) 401, com mensagem genérica; e) 404, em JSON; f) 201.
+Disponível após o dia 13/11/2026 as 23:59.
 
-**Treino 2.**
 
-1. **SQL montado com *template string*** (regra: consultas parametrizadas com `?`), o que permite injeção de SQL.
-2. **SQL dentro de `routes/`** (regra: SQL só em `models/`).
-3. **Falta de `return`** depois do 404: a execução continua até o `res.status(204)` e o Express tenta responder duas vezes (`ERR_HTTP_HEADERS_SENT`).
+<!-- **Treino 1.** a) 409; b) 400 (`tipo` deve ser `renda`, `conta` ou `cartao_credito`); c) 400; d) 401, com mensagem genérica; e) 404, em JSON; f) 201. -->
 
-```javascript
-// models/FonteDestino.js
-static async excluir(id, usuarioId) {
-  const [r] = await db.query(
-    'DELETE FROM fontes_destinos WHERE id = ? AND usuario_id = ?',
-    [id, usuarioId]
-  );
-  return r.affectedRows > 0;
-}
+<!-- **Treino 2.** -->
 
-// routes/fontesDestinos.js
-router.delete('/:id', async (req, res) => {
-  const excluiu = await FonteDestino.excluir(req.params.id, req.auth.id);
-  if (!excluiu) {
-    return res.status(404).json({ erro: 'Fonte/destino não encontrada.' });
-  }
-  res.status(204).end();
-});
-```
+<!-- 1. **SQL montado com *template string*** (regra: consultas parametrizadas com `?`), o que permite injeção de SQL. -->
+<!-- 2. **SQL dentro de `routes/`** (regra: SQL só em `models/`). -->
+<!-- 3. **Falta de `return`** depois do 404: a execução continua até o `res.status(204)` e o Express tenta responder duas vezes (`ERR_HTTP_HEADERS_SENT`). -->
 
-(No projeto completo, a exclusão também precisa verificar lançamentos vinculados e responder 409.)
+<!-- ```javascript -->
+<!-- // models/FonteDestino.js -->
+<!-- static async excluir(id, usuarioId) { -->
+<!--   const [r] = await db.query( -->
+<!--     'DELETE FROM fontes_destinos WHERE id = ? AND usuario_id = ?', -->
+<!--     [id, usuarioId] -->
+<!--   ); -->
+<!--   return r.affectedRows > 0; -->
+<!-- } -->
 
-**Treino 3.** 25.000 centavos ÷ 7 = 3.571 centavos, com resto 3. Parcelas: R$ 35,74 + 6 × R$ 35,71 = R$ 250,00.
+<!-- // routes/fontesDestinos.js -->
+<!-- router.delete('/:id', async (req, res) => { -->
+<!--   const excluiu = await FonteDestino.excluir(req.params.id, req.auth.id); -->
+<!--   if (!excluiu) { -->
+<!--     return res.status(404).json({ erro: 'Fonte/destino não encontrada.' }); -->
+<!--   } -->
+<!--   res.status(204).end(); -->
+<!-- }); -->
+<!-- ``` -->
 
-**Treino 4.**
+<!-- (No projeto completo, a exclusão também precisa verificar lançamentos vinculados e responder 409.) -->
 
-| Parcela | Valor | Fechamento | Vencimento | Referência |
-|---|---|---|---|---|
-| 1/2 | R$ 125,00 | 18/09/2026 | 03/10/2026 | 2026-10 |
-| 2/2 | R$ 125,00 | 18/10/2026 | 03/11/2026 | 2026-11 |
+<!-- **Treino 3.** 25.000 centavos ÷ 7 = 3.571 centavos, com resto 3. Parcelas: R$ 35,74 + 6 × R$ 35,71 = R$ 250,00. -->
 
-A compra foi **no dia** do fechamento, então a 1ª parcela vai para o fechamento do mês seguinte (setembro); como o vencimento (3) é menor que o fechamento (18), a fatura vence no mês seguinte ao fechamento.
+<!-- **Treino 4.** -->
 
-**Treino 5.**
+<!-- | Parcela | Valor | Fechamento | Vencimento | Referência | -->
+<!-- |---|---|---|---|---| -->
+<!-- | 1/2 | R$ 125,00 | 18/09/2026 | 03/10/2026 | 2026-10 | -->
+<!-- | 2/2 | R$ 125,00 | 18/10/2026 | 03/11/2026 | 2026-11 | -->
 
-| Parcela | Valor | Fechamento | Vencimento | Referência |
-|---|---|---|---|---|
-| 1/2 | R$ 60,00 | 28/02/2026 | 08/03/2026 | 2026-03 |
-| 2/2 | R$ 60,00 | 31/03/2026 | 08/04/2026 | 2026-04 |
+<!-- A compra foi **no dia** do fechamento, então a 1ª parcela vai para o fechamento do mês seguinte (setembro); como o vencimento (3) é menor que o fechamento (18), a fatura vence no mês seguinte ao fechamento. -->
 
-A compra foi no dia 31, que é o dia do fechamento, então vai para fevereiro; fevereiro de 2026 não tem dia 31, então o fechamento é no último dia (28/02).
+<!-- **Treino 5.** -->
 
-**Treino 6.** Duas requisições simultâneas podem fazer o `SELECT` ao mesmo tempo, ambas não encontram o e-mail e ambas inserem: o resultado é um e-mail duplicado (condição de corrida). A restrição `UNIQUE` faz o próprio banco recusar o segundo `INSERT` (erro `ER_DUP_ENTRY`), que a API converte em 409.
+<!-- | Parcela | Valor | Fechamento | Vencimento | Referência | -->
+<!-- |---|---|---|---|---| -->
+<!-- | 1/2 | R$ 60,00 | 28/02/2026 | 08/03/2026 | 2026-03 | -->
+<!-- | 2/2 | R$ 60,00 | 31/03/2026 | 08/04/2026 | 2026-04 | -->
+
+<!-- A compra foi no dia 31, que é o dia do fechamento, então vai para fevereiro; fevereiro de 2026 não tem dia 31, então o fechamento é no último dia (28/02). -->
+
+<!-- **Treino 6.** Duas requisições simultâneas podem fazer o `SELECT` ao mesmo tempo, ambas não encontram o e-mail e ambas inserem: o resultado é um e-mail duplicado (condição de corrida). A restrição `UNIQUE` faz o próprio banco recusar o segundo `INSERT` (erro `ER_DUP_ENTRY`), que a API converte em 409. -->
