@@ -76,7 +76,7 @@ CREATE TABLE carros (
     marca VARCHAR(100) NOT NULL,
     ano INT NOT NULL,
     preco DECIMAL(10,2) NOT NULL,
-    vendido BOOLEAN DEFAULT FALSE
+    vendido BOOLEAN DEFAULT FALSE // remover
 );
 ```
 

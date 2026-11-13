@@ -523,7 +523,7 @@ class Carro {
 
     const sql = `
       INSERT INTO carros (nome, marca, ano, preco)
-      VALUES (?, ?, ?, ?)
+      VALUES (?, ?, ?, ?, ?)
     `;
 
     connection.query(
@@ -532,7 +532,7 @@ class Carro {
         dados.nome,
         dados.marca,
         dados.ano,
-        dados.preco
+        dados.preco, dados.placa
       ],
       callback
     );
