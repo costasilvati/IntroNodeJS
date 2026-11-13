@@ -220,7 +220,10 @@ Cada equipe deve enviar **uma carta-bug** pelo Moodle **até a véspera da aula*
 
 ---
 
-<!-- ## Gabarito dos treinos {#copa-gabarito-treino} -->
+## Gabarito dos treinos {#copa-gabarito-treino}
+
+Disponível após o dia 13/11/2026 as 23:59.
+
 
 <!-- **Treino 1.** a) 409; b) 400 (`tipo` deve ser `renda`, `conta` ou `cartao_credito`); c) 400; d) 401, com mensagem genérica; e) 404, em JSON; f) 201. -->
 
